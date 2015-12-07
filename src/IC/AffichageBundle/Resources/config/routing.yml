@@ -1,0 +1,3 @@
+ic_affichage_composant_interne:
+    path:     /Composant-Interne
+    defaults: { _controller: ICAffichageBundle:Composant:interne }

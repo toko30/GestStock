@@ -2,11 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        {% stylesheets 'css/base.css' %}<link rel="stylesheet" href="{{ asset_url }}" type="text/css">{% endstylesheets %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <header id="entete"><img src="../../img/logo.png" alt="logo idcapt"></header>
+        <nav id="menuHorizontal">
+            <a href="Affichage">Affichage</a>
+            <a href="Approvisionnement">Approvisionnement</a>
+            <a href="Production">Production</a>
+            <a href="Controle-Qualite">Contrôle Qualité</a>
+            <a href="Produit-Fini">Produit Fini</a>
+            <a href="Administration">Administration</a>
+        </nav>
+        <div class="test"></div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

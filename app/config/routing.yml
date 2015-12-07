@@ -1,7 +1,7 @@
-oc_platform:
-    resource: "@OCPlatformBundle/Resources/config/routing.yml"
-    prefix:   /
+ic_production:
+    resource: "@ICProductionBundle/Resources/config/routing.yml"
+    prefix:   /Production
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+ic_affichage:
+    resource: "@ICAffichageBundle/Resources/config/routing.yml"
+    prefix:   /Affichage
