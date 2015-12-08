@@ -1,3 +1,8 @@
 ic_affichage_composant_interne:
     path:     /Composant-Interne
     defaults: { _controller: ICAffichageBundle:Composant:interne }
+ic_affichage_sous_traitant:
+    path:     /Composant-Sous-Traitant-{id}
+    defaults: { _controller: ICAffichageBundle:Composant:soustraitant }
+    requirements:
+        id: \d{1,10}

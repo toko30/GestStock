@@ -3,7 +3,7 @@
 {% block title %}Affichage{% endblock %}
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/css/layout.css' %}
+	'@ICAffichageBundle/Resources/css/*' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}

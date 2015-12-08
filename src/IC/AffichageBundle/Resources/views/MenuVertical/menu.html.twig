@@ -1,2 +1,11 @@
-<form method="post" action="">
-</form>
+<nav id="lienMenuVertical">
+	<h1 class="titreMenuVertical"><a href="{{ path('ic_affichage_composant_interne') }}">Composant interne</a></h1>
+	{% if sousTraitants[0].id is not empty %}
+		<h1 class="titreMenuVertical"><a href="{{ path('ic_affichage_sous_traitant', {'id':sousTraitants[0].id}) }}">Composant sous-traitant</a></h1>
+	
+		{% for sousTraitant in sousTraitants %}
+			<a href="{{ path('ic_affichage_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+		{% endfor %}
+	{% endif %}
+</nav>
+{{ form(form) }}
