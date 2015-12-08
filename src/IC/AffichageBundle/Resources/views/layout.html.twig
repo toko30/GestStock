@@ -1,4 +1,17 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Affichage{% endblock %}
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/css/layout.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
 {% block entete %}Affichage{% endblock %}
-{% block body %}{% endblock %}
+
+{% block body %}
+	<section id="menuVertical">
+		{{ render(controller("ICAffichageBundle:Composant:menu")) }}
+	</section>
+{% endblock %}

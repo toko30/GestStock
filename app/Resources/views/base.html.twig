@@ -3,10 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}{% endblock %}</title>
-        {% stylesheets filter='cssrewrite'
-        'css/base.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}
+        {% block stylesheets %}
+            {% stylesheets filter='cssrewrite'
+            'css/base.css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+            {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
