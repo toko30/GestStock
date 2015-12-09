@@ -37,3 +37,7 @@ body
 	color: #00B8D6;
 	background: white;
 }
+body
+{
+	overflow : scroll;	
+}

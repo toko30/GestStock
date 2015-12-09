@@ -52,13 +52,6 @@ class Composant
     /**
      * @var integer
      *
-     * @ORM\Column(name="stock_st", type="integer", nullable=false)
-     */
-    private $stockSt;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="stock_mini", type="integer", nullable=false)
      */
     private $stockMini;

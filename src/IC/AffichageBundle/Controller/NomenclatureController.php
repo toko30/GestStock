@@ -7,7 +7,7 @@ use IC\AffichageBundle\Form\ComposantInterneType;
 
 class NomenclatureController extends Controller
 {
-    public function nomenclatureAction()
+    public function nomenclatureComposantAction()
     {
         return $this->render('ICAffichageBundle:Composant:interne.html.twig');
     }

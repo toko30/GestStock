@@ -25,6 +25,11 @@
             <a href="{{ path('ic_affichage_composant_interne') }}">Administration</a>
         </nav>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts 
+	       'js/jquery.js' %}
+	           <script type="text/javascript" src="{{ asset_url }}"></script>
+	       {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>

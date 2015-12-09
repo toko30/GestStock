@@ -1,0 +1,24 @@
+table
+{
+	border-collapse: collapse;
+	margin: 50px auto 20px auto;
+}
+tr th
+{
+	background: #00B8D6;
+	color:white;
+	padding: 10px 20px;
+	letter-spacing: 1.5px;
+}
+tr td, tr th
+{
+	border: 1px solid #00B8D6;
+	text-align: center;
+	height:30px;
+}
+.stockInsufisant td
+{
+	background: red;
+	border: 1px solid red;
+	color: white;
+}

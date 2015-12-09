@@ -3,7 +3,8 @@
 {% block title %}Affichage{% endblock %}
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/css/*' %}
+	'@ICAffichageBundle/Resources/public/css/layout.css'
+	'@ICAffichageBundle/Resources/public/css/menu_vertical.css' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
@@ -12,6 +13,13 @@
 
 {% block body %}
 	<section id="menuVertical">
-		{{ render(controller("ICAffichageBundle:Composant:menu")) }}
+		{{ render(controller("ICAffichageBundle:Composant:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
+{% endblock %}
+{% block javascripts %}
+	{% javascripts 
+	'@ICAffichageBundle/Resources/public/js/*' %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}

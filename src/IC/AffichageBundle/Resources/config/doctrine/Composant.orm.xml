@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Composant" table="composant">
+  <entity name="IC\AffichageBundle\Entity\Composant" table="composant">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -20,11 +20,6 @@
       </options>
     </field>
     <field name="stockInterne" type="integer" column="stock_interne" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="stockSt" type="integer" column="stock_st" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
