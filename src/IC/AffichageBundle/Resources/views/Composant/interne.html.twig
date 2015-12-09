@@ -1,1 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends "ICAffichageBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/interne.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+{% block body %}
+	{{ parent()}}
+	<table>
+		<tr>
+			<th>Famille</th>
+			<th>Sous Famille</th>
+			<th>Désignation</th>
+			<th>Boitier</th>
+			<th>Stock Minimum</th>
+			<th>Stock</th>
+			<th>Détails</th>
+		</tr>
+		
+		{% for composant in composants %}
+			<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+				<td>{{composant.idFamille}}</td>
+				<td></td>
+				<td>{{composant.nom}}</td>
+				<td>{{composant.boitier}}</td>
+				<td>{{composant.stockMini}}</td>
+				<td>{{composant.stockInterne}}</td>
+				<td></td>
+			</tr>
+		{% endfor %}
+		</table>
+{% endblock %}

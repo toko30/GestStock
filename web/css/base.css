@@ -3,16 +3,28 @@ body
 	margin: 0;
 	font-family: "Calibri";
 }
+#entete img
+{
+	margin: 10px 0;
+}
+#entete div
+{
+	width:500px;
+	margin:-70px 0 45px 200px ;
+	font-size: 25px;
+	color:#00B8D6;
+}
 #menuHorizontal
 {
 	width: 100%;
 	background:#00B8D6;
+	text-align: center;
 }
 #menuHorizontal a
 {
 	color: white;
 	display: inline-block;
-	width: 16.35%;
+	width: 200px;
 	height:40px;
 	text-align: center;
 	text-decoration: none;
@@ -25,7 +37,7 @@ body
 	color: #00B8D6;
 	background: white;
 }
-.test
+body
 {
-height: 1000px;	
+	overflow : scroll;	
 }

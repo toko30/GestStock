@@ -1,0 +1,56 @@
+<nav id="lienMenuVertical">
+	<span class="titreMenuVertical">Stock Matière Première</span><br>
+	
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_composant_interne') }}">Stock Interne</a><br>
+		
+	{% if sousTraitants[0].id is not empty %}
+		
+		{% image 'img/plus.png' %}
+    		<span id="sousMenu1" class="sousMenu"><img id="sousMenu11" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Stock Sous-Traitants</span>
+		{% endimage %}
+		<br>
+		<div class="divSousMenu" id="sousMenu111">
+		{% for sousTraitant in sousTraitants %}
+			<a class="sousSousMenu" href="{{ path('ic_affichage_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+		{% endfor %}
+		</div>
+	{% endif %}
+	
+	{% if nomenclatures[0].id is not empty %}
+	
+		<span class="titreMenuVertical">Nomenclatures</span><br>
+		
+			{% image 'img/plus.png' %}
+    			<span id="sousMenu2" class="sousMenu"><img id="sousMenu21" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Nomenclatures PCB</span>
+			{% endimage %}
+			<br>
+			<div class="divSousMenu" id="sousMenu211">
+				{% for nomenclature in nomenclatures %}
+					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_composant', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
+				{% endfor %}
+			</div>
+			
+			{% image 'img/plus.png' %}
+    			<span id="sousMenu3" class="sousMenu"><img id="sousMenu31" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Nomenclatures PF</span>
+			{% endimage %}
+			
+			<div class="divSousMenu" id="sousMenu311">
+				{% for nomenclature in nomenclatures %}
+					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_composant', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
+				{% endfor %}
+			</div>
+			<span class="titreMenuVertical">Approvisionnement</span><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Approvisionnement Interne</a><br>
+			<span class="titreMenuVertical">Production</span><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Production Interne</a><br>
+			<span class="titreMenuVertical">Produit Fini</span><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Lecteur Idcapt</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Identifiant</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Lecteur CV</a><br>
+	{% endif %}
+</nav>
+{% if url == "ic_affichage_composant_interne" %}
+	{{ include("ICAffichageBundle:Form:FormComposantInterne.html.twig") }}
+{% elseif url == "ic_affichage_sous_traitant" %}
+	page sous-traitant
+{% endif %}
