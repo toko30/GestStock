@@ -1,10 +1,19 @@
 <nav id="lienMenuVertical">
-	<h1 class="titreMenuVertical"><a href="{{ path('ic_affichage_composant_interne') }}">Composant interne</a></h1>
+	<h1>Stock Composant</h1>
+		<h2><a class="sousmenu" href="{{ path('ic_affichage_composant_interne') }}">Composant Interne</a></h2>
+	
 	{% if sousTraitants[0].id is not empty %}
-		<h1 class="titreMenuVertical"><a href="{{ path('ic_affichage_sous_traitant', {'id':sousTraitants[0].id}) }}">Composant sous-traitant</a></h1>
+		<h2 class="sousmenu">Composant sous-traitants</h2>
 	
 		{% for sousTraitant in sousTraitants %}
-			<a href="{{ path('ic_affichage_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+			<h3><a class="sousMenu" href="{{ path('ic_affichage_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a></h3>
+		{% endfor %}
+	{% endif %}
+	{% if nomenclatures[0].id is not empty %}
+		<h1 class="titreMenuVertical">Nomenclatures</h1>
+	
+		{% for nomenclature in nomenclatures %}
+			<h3><a class="sousMenu" href="{{ path('ic_affichage_nomenclature', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a></h3>
 		{% endfor %}
 	{% endif %}
 </nav>

@@ -6,3 +6,6 @@ ic_affichage_sous_traitant:
     defaults: { _controller: ICAffichageBundle:Composant:soustraitant }
     requirements:
         id: \d{1,10}
+ic_affichage_nomenclature:
+    path:     /Nomenclature-{id}
+    defaults: { _controller: ICAffichageBundle:Nomenclature:nomenclature}

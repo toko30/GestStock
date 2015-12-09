@@ -1,7 +1,7 @@
 <?php
 namespace IC\AffichageBundle\Form;
 
-class MenuCompInterne
+class MenuComposantInterne
 {
     private $recherche;
     private $typeRecherche = 0;

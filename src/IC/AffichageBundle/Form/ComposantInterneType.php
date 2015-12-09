@@ -28,25 +28,30 @@ class ComposantInterneType extends AbstractType
     foreach($this->getSousFam() AS $sousFamille)
       $choixSousFamille[] = $sousFamille->getNom();   
         
-$builder->add('Famille', 'choice', array('choices' => $choixFamille,
-            'multiple' => true,
-            'expanded' => true,
-            'preferred_choices' => array(2),
-            'empty_data'  => 0));
-            
-$builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
-            'multiple' => true,
-            'expanded' => true,
-            'preferred_choices' => array(2),
-            'empty_data'  => 0));         
-        
+    $builder->add('Famille', 'choice', array('choices' => $choixFamille,
+                'multiple' => true,
+                'expanded' => true,
+                'preferred_choices' => array(2),
+                'empty_data'  => 0));
+                
+    $builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
+                'multiple' => true,
+                'expanded' => true,
+                'preferred_choices' => array(2),
+                'empty_data'  => 0));  
+                       
+    $builder->add('Etat', 'choice', array('choices' => array('Stock suffisant', 'A commander'),
+                'multiple' => true,
+                'expanded' => true,
+                'preferred_choices' => array(2),
+                'empty_data'  => 0));         
     $builder->add('Trier', 'submit');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'IC\AffichageBundle\Form\MenuCompInterne'
+      'data_class' => 'IC\AffichageBundle\Form\MenuComposantInterne'
     ));
   }
 
