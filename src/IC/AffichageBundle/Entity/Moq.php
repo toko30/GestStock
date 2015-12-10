@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Moq
  *
  * @ORM\Table(name="moq")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\MoqRepository")
  */
 class Moq
 {

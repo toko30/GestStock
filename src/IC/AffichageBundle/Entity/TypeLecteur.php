@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TypeLecteur
  *
  * @ORM\Table(name="type_lecteur")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\TypeLecteurRepository")
  */
 class TypeLecteur
 {

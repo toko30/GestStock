@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SousTraitant
  *
  * @ORM\Table(name="sous_traitant")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\SousTraitantRepository")
  */
 class SousTraitant
 {

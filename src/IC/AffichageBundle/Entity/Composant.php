@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Composant
  *
  * @ORM\Table(name="composant")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ComposantRepository")
  */
 class Composant
 {
@@ -62,8 +62,25 @@ class Composant
      * @ORM\Column(name="id_famille", type="integer", nullable=false)
      */
     private $idFamille;
-
-
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_sous_famille", type="integer", nullable=false)
+     */
+    private $idSousFamille;
+    
+    /**
+    * @ORM\OneToOne(targetEntity="Famille", cascade={"persist"})
+    * @JoinColumn(name="id_famille", referencedColumnName="id")
+    */
+    private $famille;
+    
+    /**
+    * @ORM\OneToOne(targetEntity="Famille", cascade={"persist"})
+    * @JoinColumn(name="id_sous_famille", referencedColumnName="id")
+    */
+    private $sousFamille;
 
     /**
      * Get id
@@ -241,5 +258,53 @@ class Composant
     public function getIdFamille()
     {
         return $this->idFamille;
+    }
+
+    /**
+     * Set Famille
+     *
+     * @param integer $famille
+     *
+     * @return array
+     */    
+    public function setFamille($famille)
+    {
+        $this->famille = $famille;
+
+        return $this;
+    }
+
+    /**
+     * Get famille
+     *
+     * @return array
+     */
+    public function getFamille()
+    {
+        return $this->famille;
+    }
+    
+    /**
+     * Set idFamille
+     *
+     * @param integer $famille
+     *
+     * @return array
+     */    
+    public function setSousFamille($sousFamille)
+    {
+        $this->sousFamille = $sousFamille;
+
+        return $this;
+    }
+
+    /**
+     * Get famille
+     *
+     * @return array
+     */
+    public function getSousFamille()
+    {
+        return $this->sousFamille;
     }
 }

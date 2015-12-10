@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Lot
  *
  * @ORM\Table(name="lot")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\LotRepository")
  */
 class Lot
 {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoVenteBadge
  *
  * @ORM\Table(name="histo_vente_badge")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoVenteBadgeRepository")
  */
 class HistoVenteBadge
 {

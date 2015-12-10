@@ -2,8 +2,13 @@
 
 namespace IC\AffichageBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * sous_famille
+ * SousFamille
+ *
+ * @ORM\Table(name="sous_famille")
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\SousFamilleRepository")
  */
 class SousFamille
 {

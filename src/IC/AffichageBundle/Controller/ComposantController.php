@@ -3,39 +3,42 @@
 namespace IC\AffichageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use IC\AffichageBundle\Form\ComposantInterneType;
 use Symfony\Component\HttpFoundation\Response;
+use IC\AffichageBundle\Form\ComposantInterneType;
+use IC\AffichageBundle\Entity\Composant;
+use IC\AffichageBundle\Repository\ComposantRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class ComposantController extends Controller
 {
-    public function interneAction()
+    public function interneAction(Request $request)
     {
-        $repositoryComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant');
+        if('POST' == $request->getMethod())
+            $listComposant = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:Composant')->getStockByCritere($_POST);
+        else
+            $listComposant = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:Composant')->findAll();
         
-        $listComposant = $repositoryComposant->findAll();
-        
+       
         return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('composants' => $listComposant));
     }
+    
     public function soustraitantAction($id)
     {
-        return $this->render('ICAffichageBundle:Composant:sous-traitant.html.twig', array('sousTraitant'=> $id));
+        return $this->render('ICAffichageBundle:Composant:sousTraitant.html.twig', array('sousTraitant'=> $id));
     }
     
     public function menuAction($url)
     {
-        //Liste des requètes Doctrine pour les options du menu
-        $repositoryFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Famille');
-        $repositorySousFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousFamille');
-        $repositoryFournisseur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Fournisseur');
-        $repositorySousTraitant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousTraitant');
-        $repositoryNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Nomenclature');
-                
-        $listFamille = $repositoryFamille->findAll();
-        $listSousFamille = $repositorySousFamille->findAll();
-        $listFournisseur = $repositoryFournisseur->findAll();
-        $listSousTraitant = $repositorySousTraitant->findAll();
-        $listNomenclature = $repositoryNomenclature->findAll();  
+        //Connexion Doctrine
+        $em = $this->getDoctrine()->getManager();
         
+        //Liste des requètes Doctrine pour les options du menu
+        $listFamille = $em->getRepository('ICAffichageBundle:Famille')->findAll();
+        $listSousFamille = $em->getRepository('ICAffichageBundle:SousFamille')->findAll();
+        $listFournisseur = $em->getRepository('ICAffichageBundle:Fournisseur')->findAll();
+        $listSousTraitant = $em->getRepository('ICAffichageBundle:SousTraitant')->findAll();
+        $listNomenclature = $em->getRepository('ICAffichageBundle:Nomenclature')->findAll();
+
         //Création du formulaire de trie pour la page Composant Interne
         $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille, $listFournisseur, $listNomenclature));
         

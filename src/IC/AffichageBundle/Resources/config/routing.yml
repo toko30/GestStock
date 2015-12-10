@@ -1,11 +1,57 @@
 ic_affichage_composant_interne:
-    path:     /Composant-Interne
+    path:     /Stock-Interne
     defaults: { _controller: ICAffichageBundle:Composant:interne }
+    
 ic_affichage_sous_traitant:
-    path:     /Composant-Sous-Traitant-{id}
+    path:     /Stock-Sous-Traitant-{id}
     defaults: { _controller: ICAffichageBundle:Composant:soustraitant }
     requirements:
         id: \d{1,10}
-ic_affichage_nomenclature_composant:
-    path:     /Nomenclature-Composant-{id}
-    defaults: { _controller: ICAffichageBundle:Nomenclature:nomenclatureComposant}
+        
+ic_affichage_nomenclature_pcb:
+    path:     /Nomenclature-PCB-{id}
+    defaults: { _controller: ICAffichageBundle:Nomenclature:nomenclatureComposant }
+    
+ic_affichage_nomenclature_pf:
+    path:     /Nomenclature-Produit-Fini-{id}
+    defaults: { _controller: ICAffichageBundle:Nomenclature:nomenclatureComplete }
+
+ic_affichage_appro_interne:
+    path:     /Approvisionnement-Interne
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementInterne }
+
+ic_affichage_appro_sous_traitant:
+    path:     /Approvisionnement-Sous-Traitant-{id}
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementSousTraitant }
+    requirements:
+       id: \d{1,10}
+       
+ic_affichage_appro_identifiant:
+    path:     /Approvisionnement-Identifiant
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementInterne }
+    
+ic_affichage_appro_cv:
+    path:     /Approvisionnement-LecteurCV
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementLecteurCV }
+
+ic_affichage_production_interne:
+    path:     /Production-Interne
+    defaults: {_controller: ICAffichageBundle:Production:productionInterne }
+
+ic_affichage_production_sous_traitant:
+    path:     /Production-Sous-Traitant-{id}
+    defaults: {_controller: ICAffichageBundle:Production:productionInterne}
+    requirements:
+       id: \d{1,10}
+         
+ic_affichage_produit_fini_interne:
+    path:     /Produit-Fini-Idcapt
+    defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniIdcapt }
+    
+ic_affichage_produit_fini_identifiant:
+    path:     /Produit-Fini-Identifiant
+    defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniIdentifiant }
+    
+ic_affichage_produit_fini_lecteur_cv:
+    path:     /Produit-Fini-Lecteur-CV
+    defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniLecteurCV }

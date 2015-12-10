@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoVenteLecteur
  *
  * @ORM\Table(name="histo_vente_lecteur")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoVenteLecteurRepository")
  */
 class HistoVenteLecteur
 {

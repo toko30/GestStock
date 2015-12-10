@@ -1,0 +1,3 @@
+ic_produit_fini_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ICProduitFiniBundle:Default:index }

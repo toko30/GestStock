@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ErreurTest
  *
  * @ORM\Table(name="erreur_test")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ErreurTestRepository")
  */
 class ErreurTest
 {
