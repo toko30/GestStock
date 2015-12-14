@@ -1,1 +1,17 @@
 {% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Production Sous Traitant{% endblock %}
+
+{% block entete %}{{ parent() }} Production Sous Traitant{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+{% endblock %}

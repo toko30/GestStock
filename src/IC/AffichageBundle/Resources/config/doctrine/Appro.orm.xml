@@ -4,32 +4,18 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="idCommande" type="integer" column="id_commande" nullable="false">
+    <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="idLieu" type="integer" column="id_lieu" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="dateCommande" type="date" column="date_commande" nullable="false"/>
     <field name="typeProduit" type="integer" column="type_produit" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="idProduit" type="integer" column="id_produit" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="quantite" type="integer" column="quantite" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="lieu" type="integer" column="lieu" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="etat" type="integer" column="etat" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>

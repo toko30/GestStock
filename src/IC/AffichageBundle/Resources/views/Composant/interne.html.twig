@@ -2,6 +2,7 @@
 {% block title %}{{ parent() }} - Stock Interne{% endblock %}
 
 {% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/interne.css' %}
@@ -9,6 +10,7 @@
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
+
 {% block body %}
 	{{ parent()}}
 	<table>

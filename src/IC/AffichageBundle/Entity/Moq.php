@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Moq
  *
  * @ORM\Table(name="moq")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\MoqRepository")
+ * @ORM\Entity
  */
 class Moq
 {
@@ -50,16 +50,6 @@ class Moq
     private $moq;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idComposant
@@ -155,5 +145,15 @@ class Moq
     public function getMoq()
     {
         return $this->moq;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

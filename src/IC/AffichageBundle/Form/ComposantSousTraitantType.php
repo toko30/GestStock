@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ComposantInterneType extends AbstractType
+class ComposantSousTraitantType extends AbstractType
 {
   private $famille;
   private $sousFamille;
@@ -69,13 +69,6 @@ class ComposantInterneType extends AbstractType
               'empty_data'  => 0));    
                                                  
     $builder->add('Trier', 'submit');
-  }
-
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'IC\AffichageBundle\Form\MenuComposantInterne'
-    ));
   }
 
   public function getName()

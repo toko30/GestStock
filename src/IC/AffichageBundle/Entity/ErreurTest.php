@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ErreurTest
  *
  * @ORM\Table(name="erreur_test")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ErreurTestRepository")
+ * @ORM\Entity
  */
 class ErreurTest
 {
@@ -50,16 +50,6 @@ class ErreurTest
     private $dateTest;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set numSerie
@@ -155,5 +145,15 @@ class ErreurTest
     public function getDateTest()
     {
         return $this->dateTest;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

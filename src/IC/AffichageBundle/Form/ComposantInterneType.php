@@ -79,8 +79,6 @@ class ComposantInterneType extends AbstractType
     $builder->add('Trier', 'submit');
   }
 
-
-
   public function getName()
   {
     return 'formComposantInterne';

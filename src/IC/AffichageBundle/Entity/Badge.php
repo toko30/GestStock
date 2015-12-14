@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Badge
  *
  * @ORM\Table(name="badge")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\BadgeRepository")
+ * @ORM\Entity
  */
 class Badge
 {
@@ -43,16 +43,6 @@ class Badge
     private $quantite;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idType
@@ -124,5 +114,15 @@ class Badge
     public function getQuantite()
     {
         return $this->quantite;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

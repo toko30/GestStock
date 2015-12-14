@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Client
  *
  * @ORM\Table(name="client")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ClientRepository")
+ * @ORM\Entity
  */
 class Client
 {
@@ -36,16 +36,6 @@ class Client
     private $refCompta;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -93,5 +83,15 @@ class Client
     public function getRefCompta()
     {
         return $this->refCompta;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

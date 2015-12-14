@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Fournisseur
  *
  * @ORM\Table(name="fournisseur")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\FournisseurRepository")
+ * @ORM\Entity
  */
 class Fournisseur
 {
@@ -64,16 +64,6 @@ class Fournisseur
     private $type;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -217,5 +207,15 @@ class Fournisseur
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

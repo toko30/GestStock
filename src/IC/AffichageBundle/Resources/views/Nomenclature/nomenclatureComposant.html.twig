@@ -1,1 +1,45 @@
 {% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Nomenclature PCB{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature PCB{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+<h1>{{nomenclatures[0].nomenclature.nom}} - V{{nomenclatures[0].nomenclature.version}}</h1>
+	<table>
+		<tr>
+			<th class="titreFamille">Famille</th>
+			<th class="titreSousFamille">Sous Famille</th>
+			<th class="titreDesignation">Désignation</th>
+			<th class="titreBoitier">Boitier</th>
+			<th class="titreStock">Quantité</th>
+			<th class="titreDetails"></th>
+		</tr>
+		{% for nomenclature in nomenclatures %}
+			<tr>
+				<td class="famille">{{nomenclature.composant.Famille.nom}}</td>
+				<td class="sousFamille">{{nomenclature.composant.sousFamille.nom}}</td>
+				<td class="designation">{{nomenclature.composant.nom}}</td>
+				<td class="boitier">{{nomenclature.composant.boitier}}</td>
+				<td class="stock">{{nomenclature.quantite}}</td>
+				<td class="details">
+					<a href="">
+					{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+						<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+					{% endimage %}
+					</a>
+				</td>
+			</tr>
+			
+		{% endfor %}
+	</table>
+{% endblock %}

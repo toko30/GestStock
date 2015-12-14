@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoVenteBadge
  *
  * @ORM\Table(name="histo_vente_badge")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoVenteBadgeRepository")
+ * @ORM\Entity
  */
 class HistoVenteBadge
 {
@@ -50,16 +50,6 @@ class HistoVenteBadge
     private $dateVente;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idClient
@@ -155,5 +145,15 @@ class HistoVenteBadge
     public function getDateVente()
     {
         return $this->dateVente;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

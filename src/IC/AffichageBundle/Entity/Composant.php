@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Composant
  *
- * @ORM\Table(name="composant")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ComposantRepository")
+ * @ORM\Table(name="composant", indexes={@ORM\Index(name="famille", columns={"id_famille"})})
+ * @ORM\Entity
  */
 class Composant
 {
@@ -59,38 +59,31 @@ class Composant
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_famille", type="integer", nullable=false)
-     */
-    private $idFamille;
-    
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id_sous_famille", type="integer", nullable=false)
      */
     private $idSousFamille;
-    
-    /**
-    * @ORM\OneToOne(targetEntity="Famille", cascade={"persist"})
-    * @JoinColumn(name="id_famille", referencedColumnName="id")
-    */
-    private $famille;
-    
-    /**
-    * @ORM\OneToOne(targetEntity="Famille", cascade={"persist"})
-    * @JoinColumn(name="id_sous_famille", referencedColumnName="id")
-    */
-    private $sousFamille;
 
     /**
-     * Get id
+     * @var \Famille
      *
-     * @return integer
+     * @ORM\ManyToOne(targetEntity="Famille")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_famille", referencedColumnName="id")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $idFamille;
+
+
+    /**
+     * @var \IC\AffichageBundle\Entity\Famille
+     */
+    private $famille;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\SousFamille
+     */
+    private $sousFamille;
+
 
     /**
      * Set nom
@@ -189,30 +182,6 @@ class Composant
     }
 
     /**
-     * Set stockSt
-     *
-     * @param integer $stockSt
-     *
-     * @return Composant
-     */
-    public function setStockSt($stockSt)
-    {
-        $this->stockSt = $stockSt;
-
-        return $this;
-    }
-
-    /**
-     * Get stockSt
-     *
-     * @return integer
-     */
-    public function getStockSt()
-    {
-        return $this->stockSt;
-    }
-
-    /**
      * Set stockMini
      *
      * @param integer $stockMini
@@ -261,13 +230,47 @@ class Composant
     }
 
     /**
-     * Set Famille
+     * Set idSousFamille
      *
-     * @param integer $famille
+     * @param integer $idSousFamille
      *
-     * @return array
-     */    
-    public function setFamille($famille)
+     * @return Composant
+     */
+    public function setIdSousFamille($idSousFamille)
+    {
+        $this->idSousFamille = $idSousFamille;
+
+        return $this;
+    }
+
+    /**
+     * Get idSousFamille
+     *
+     * @return integer
+     */
+    public function getIdSousFamille()
+    {
+        return $this->idSousFamille;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set famille
+     *
+     * @param \IC\AffichageBundle\Entity\Famille $famille
+     *
+     * @return Composant
+     */
+    public function setFamille(\IC\AffichageBundle\Entity\Famille $famille = null)
     {
         $this->famille = $famille;
 
@@ -277,21 +280,21 @@ class Composant
     /**
      * Get famille
      *
-     * @return array
+     * @return \IC\AffichageBundle\Entity\Famille
      */
     public function getFamille()
     {
         return $this->famille;
     }
-    
+
     /**
-     * Set idFamille
+     * Set sousFamille
      *
-     * @param integer $famille
+     * @param \IC\AffichageBundle\Entity\SousFamille $sousFamille
      *
-     * @return array
-     */    
-    public function setSousFamille($sousFamille)
+     * @return Composant
+     */
+    public function setSousFamille(\IC\AffichageBundle\Entity\SousFamille $sousFamille = null)
     {
         $this->sousFamille = $sousFamille;
 
@@ -299,9 +302,9 @@ class Composant
     }
 
     /**
-     * Get famille
+     * Get sousFamille
      *
-     * @return array
+     * @return \IC\AffichageBundle\Entity\SousFamille
      */
     public function getSousFamille()
     {
