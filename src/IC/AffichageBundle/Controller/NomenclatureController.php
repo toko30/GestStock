@@ -9,12 +9,16 @@ class NomenclatureController extends Controller
 {
     public function nomenclatureComposantAction($id)
     {
-        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig');
+        $listNomenclature = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ComposantNomenclature')->getComposantNomenclaturePCBById($id);
+        
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('nomenclatures' => $listNomenclature));
     }
     
     public function nomenclatureCompleteAction($id)
     {
-        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComplete.html.twig');
+        $listNomenclature = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ComposantNomenclature')->getComposantNomenclatureCompleteById($id);
+       
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('nomenclatures' => $listNomenclature));
     }  
       
     public function menuAction()

@@ -1,8 +1,12 @@
+h1
+{
+	text-align: center;	
+}
 table
 {
 	border-collapse: collapse;
 	margin: 50px auto 20px auto;
-	width:70%;
+	width:50%;
 }
 tr td, tr th
 {
@@ -19,46 +23,24 @@ tr th
 	font-size: 18px;
 	padding: 5px 10px;
 }
-
-.stockInsufisant td
-{
-	background: red;
-	border: 1px solid red;
-	color: white;
-}
-.stockInsufisant:hover td
-{
-	background: darkred;
-	border: 1px solid darkred;
-}
 tr:hover
 {
 	background: #00B8D6;
 	color: white;
 }
-tr td
-{
-	border: 1px solid #00B8D6;
-	text-align: center;
-	height:30px;
-}
 .titreFamille
 {
-	width:10%;
+	width:15%;
 }
 .titreSousFamille
 {
-	width:10%;
+	width:15%;
 }
 .titreDesignation
 {
 	width:auto;
 }
 .titreBoitier
-{
-	width:10%;
-}
-.titreStockMinimum
 {
 	width:10%;
 }

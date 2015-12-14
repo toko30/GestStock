@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ComposantSousTraitant
  *
  * @ORM\Table(name="composant_sous_traitant")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ComposantSousTraitantRepository")
+ * @ORM\Entity
  */
 class ComposantSousTraitant
 {
@@ -43,16 +43,16 @@ class ComposantSousTraitant
     private $quantite;
 
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Composant
+     */
+    private $composant;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @var \IC\AffichageBundle\Entity\SousTraitant
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $sousTraitant;
+
 
     /**
      * Set idSousTraitant
@@ -124,5 +124,63 @@ class ComposantSousTraitant
     public function getQuantite()
     {
         return $this->quantite;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set composant
+     *
+     * @param \IC\AffichageBundle\Entity\Composant $composant
+     *
+     * @return ComposantSousTraitant
+     */
+    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    {
+        $this->composant = $composant;
+
+        return $this;
+    }
+
+    /**
+     * Get composant
+     *
+     * @return \IC\AffichageBundle\Entity\Composant
+     */
+    public function getComposant()
+    {
+        return $this->composant;
+    }
+
+    /**
+     * Set sousTraitant
+     *
+     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
+     *
+     * @return ComposantSousTraitant
+     */
+    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
+    {
+        $this->sousTraitant = $sousTraitant;
+
+        return $this;
+    }
+
+    /**
+     * Get sousTraitant
+     *
+     * @return \IC\AffichageBundle\Entity\SousTraitant
+     */
+    public function getSousTraitant()
+    {
+        return $this->sousTraitant;
     }
 }

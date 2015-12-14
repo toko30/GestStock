@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Famille
  *
  * @ORM\Table(name="famille")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\FamilleRepository")
+ * @ORM\Entity
  */
 class Famille
 {
@@ -29,16 +29,6 @@ class Famille
     private $nom;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -62,5 +52,15 @@ class Famille
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

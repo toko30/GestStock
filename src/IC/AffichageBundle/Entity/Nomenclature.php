@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Nomenclature
  *
  * @ORM\Table(name="nomenclature")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\NomenclatureRepository")
+ * @ORM\Entity
  */
 class Nomenclature
 {
@@ -41,18 +41,6 @@ class Nomenclature
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;
-
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -125,4 +113,15 @@ class Nomenclature
     {
         return $this->type;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

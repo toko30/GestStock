@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ComposantNomenclature
  *
  * @ORM\Table(name="composant_nomenclature")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ComposantNomenclatureRepository")
+ * @ORM\Entity
  */
 class ComposantNomenclature
 {
@@ -17,7 +17,7 @@ class ComposantNomenclature
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -43,30 +43,23 @@ class ComposantNomenclature
     private $quantite;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="type", type="integer", nullable=false)
+     * @ORM\Column(name="position", type="text", length=65535, nullable=false)
      */
-    private $type;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="sous_type", type="integer", nullable=false)
-     */
-    private $sousType;
-
+    private $position;
 
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @var \IC\AffichageBundle\Entity\Composant
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $composant;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\Nomenclature
+     */
+    private $nomenclature;
+
 
     /**
      * Set idComposant
@@ -141,50 +134,60 @@ class ComposantNomenclature
     }
 
     /**
-     * Set type
+     * Get id
      *
-     * @param integer $type
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set composant
+     *
+     * @param \IC\AffichageBundle\Entity\Composant $composant
      *
      * @return ComposantNomenclature
      */
-    public function setType($type)
+    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
     {
-        $this->type = $type;
+        $this->composant = $composant;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get composant
      *
-     * @return integer
+     * @return \IC\AffichageBundle\Entity\Composant
      */
-    public function getType()
+    public function getComposant()
     {
-        return $this->type;
+        return $this->composant;
     }
 
     /**
-     * Set sousType
+     * Set nomenclature
      *
-     * @param integer $sousType
+     * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
      *
      * @return ComposantNomenclature
      */
-    public function setSousType($sousType)
+    public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
     {
-        $this->sousType = $sousType;
+        $this->nomenclature = $nomenclature;
 
         return $this;
     }
 
     /**
-     * Get sousType
+     * Get nomenclature
      *
-     * @return integer
+     * @return \IC\AffichageBundle\Entity\Nomenclature
      */
-    public function getSousType()
+    public function getNomenclature()
     {
-        return $this->sousType;
+        return $this->nomenclature;
     }
 }

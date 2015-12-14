@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Lecteur
  *
  * @ORM\Table(name="lecteur")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\LecteurRepository")
+ * @ORM\Entity
  */
 class Lecteur
 {
@@ -50,16 +50,6 @@ class Lecteur
     private $dateCreation;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set etat
@@ -155,5 +145,15 @@ class Lecteur
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

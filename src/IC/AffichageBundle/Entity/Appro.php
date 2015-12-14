@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Appro
  *
  * @ORM\Table(name="appro")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ApproRepository")
+ * @ORM\Entity
  */
 class Appro
 {
@@ -24,9 +24,23 @@ class Appro
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
+     * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
-    private $idCommande;
+    private $idFournisseur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_lieu", type="integer", nullable=false)
+     */
+    private $idLieu;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_commande", type="date", nullable=false)
+     */
+    private $dateCommande;
 
     /**
      * @var integer
@@ -35,45 +49,42 @@ class Appro
      */
     private $typeProduit;
 
+
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_produit", type="integer", nullable=false)
+     */
+    private $idCommande;
+
+    /**
+     * @var integer
      */
     private $idProduit;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
     private $quantite;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="lieu", type="integer", nullable=false)
      */
     private $lieu;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="etat", type="integer", nullable=false)
      */
     private $etat;
 
-
+    /**
+     * @var \IC\AffichageBundle\Entity\Composant
+     */
+    private $composant;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @var \IC\AffichageBundle\Entity\ComposantAppro
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $composantAppro;
+
 
     /**
      * Set idCommande
@@ -217,5 +228,63 @@ class Appro
     public function getEtat()
     {
         return $this->etat;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set composant
+     *
+     * @param \IC\AffichageBundle\Entity\Composant $composant
+     *
+     * @return Appro
+     */
+    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    {
+        $this->composant = $composant;
+
+        return $this;
+    }
+
+    /**
+     * Get composant
+     *
+     * @return \IC\AffichageBundle\Entity\Composant
+     */
+    public function getComposant()
+    {
+        return $this->composant;
+    }
+
+    /**
+     * Set composantAppro
+     *
+     * @param \IC\AffichageBundle\Entity\ComposantAppro $composantAppro
+     *
+     * @return Appro
+     */
+    public function setComposantAppro(\IC\AffichageBundle\Entity\ComposantAppro $composantAppro = null)
+    {
+        $this->composantAppro = $composantAppro;
+
+        return $this;
+    }
+
+    /**
+     * Get composantAppro
+     *
+     * @return \IC\AffichageBundle\Entity\ComposantAppro
+     */
+    public function getComposantAppro()
+    {
+        return $this->composantAppro;
     }
 }

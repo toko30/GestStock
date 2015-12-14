@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sav
  *
  * @ORM\Table(name="sav")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\SavRepository")
+ * @ORM\Entity
  */
 class Sav
 {
@@ -64,16 +64,6 @@ class Sav
     private $commentaire;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set numSerie
@@ -217,5 +207,15 @@ class Sav
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

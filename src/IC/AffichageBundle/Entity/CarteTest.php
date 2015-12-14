@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CarteTest
  *
  * @ORM\Table(name="carte_test")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\CarteTestRepository")
+ * @ORM\Entity
  */
 class CarteTest
 {
@@ -50,16 +50,6 @@ class CarteTest
     private $assemble;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set numSerie
@@ -155,5 +145,15 @@ class CarteTest
     public function getAssemble()
     {
         return $this->assemble;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

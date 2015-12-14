@@ -6,5 +6,5 @@ use Doctrine\ORM\EntityRepository;
 
 class NomenclatureRepository extends EntityRepository
 {
-
+	
 }

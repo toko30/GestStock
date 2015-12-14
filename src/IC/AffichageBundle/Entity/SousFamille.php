@@ -7,43 +7,42 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SousFamille
  *
- * @ORM\Table(name="sous_famille")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\SousFamilleRepository")
+ * @ORM\Table(name="sous_famille", indexes={@ORM\Index(name="sous_famille", columns={"id_famille"})})
+ * @ORM\Entity
  */
 class SousFamille
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_famille", type="integer", nullable=false)
      */
     private $idFamille;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idFamille
      *
      * @param integer $idFamille
      *
-     * @return sous_famille
+     * @return SousFamille
      */
     public function setIdFamille($idFamille)
     {
@@ -67,7 +66,7 @@ class SousFamille
      *
      * @param string $nom
      *
-     * @return sous_famille
+     * @return SousFamille
      */
     public function setNom($nom)
     {
@@ -85,5 +84,14 @@ class SousFamille
     {
         return $this->nom;
     }
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

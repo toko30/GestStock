@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoVenteLecteur
  *
  * @ORM\Table(name="histo_vente_lecteur")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoVenteLecteurRepository")
+ * @ORM\Entity
  */
 class HistoVenteLecteur
 {
@@ -43,16 +43,6 @@ class HistoVenteLecteur
     private $dateVente;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idClient
@@ -124,5 +114,15 @@ class HistoVenteLecteur
     public function getDateVente()
     {
         return $this->dateVente;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Lot
  *
  * @ORM\Table(name="lot")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\LotRepository")
+ * @ORM\Entity
  */
 class Lot
 {
@@ -29,16 +29,6 @@ class Lot
     private $idNomenclature;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idNomenclature
@@ -62,5 +52,15 @@ class Lot
     public function getIdNomenclature()
     {
         return $this->idNomenclature;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

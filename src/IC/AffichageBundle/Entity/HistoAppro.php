@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoAppro
  *
  * @ORM\Table(name="histo_appro")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoApproRepository")
+ * @ORM\Entity
  */
 class HistoAppro
 {
@@ -57,16 +57,6 @@ class HistoAppro
     private $dateAppro;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idFournisseur
@@ -186,5 +176,15 @@ class HistoAppro
     public function getDateAppro()
     {
         return $this->dateAppro;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

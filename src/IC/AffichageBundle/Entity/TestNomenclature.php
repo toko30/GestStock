@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TestNomenclature
  *
  * @ORM\Table(name="test_nomenclature")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\TestNomenclatureRepository")
+ * @ORM\Entity
  */
 class TestNomenclature
 {
@@ -36,16 +36,6 @@ class TestNomenclature
     private $idListeTest;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idNomenclature
@@ -93,5 +83,15 @@ class TestNomenclature
     public function getIdListeTest()
     {
         return $this->idListeTest;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

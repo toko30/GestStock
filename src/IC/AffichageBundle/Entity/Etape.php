@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Etape
  *
  * @ORM\Table(name="etape")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\EtapeRepository")
+ * @ORM\Entity
  */
 class Etape
 {
@@ -29,16 +29,6 @@ class Etape
     private $nom;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -62,5 +52,15 @@ class Etape
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

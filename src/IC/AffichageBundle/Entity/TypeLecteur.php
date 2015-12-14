@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TypeLecteur
  *
  * @ORM\Table(name="type_lecteur")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\TypeLecteurRepository")
+ * @ORM\Entity
  */
 class TypeLecteur
 {
@@ -43,16 +43,6 @@ class TypeLecteur
     private $idFournisseur;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set reference
@@ -124,5 +114,15 @@ class TypeLecteur
     public function getIdFournisseur()
     {
         return $this->idFournisseur;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

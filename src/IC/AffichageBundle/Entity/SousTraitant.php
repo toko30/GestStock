@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SousTraitant
  *
  * @ORM\Table(name="sous_traitant")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\SousTraitantRepository")
+ * @ORM\Entity
  */
 class SousTraitant
 {
@@ -29,16 +29,6 @@ class SousTraitant
     private $nom;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -62,5 +52,15 @@ class SousTraitant
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

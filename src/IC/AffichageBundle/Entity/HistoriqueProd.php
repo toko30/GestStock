@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoriqueProd
  *
  * @ORM\Table(name="historique_prod")
- * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoriqueProdRepository")
+ * @ORM\Entity
  */
 class HistoriqueProd
 {
@@ -50,16 +50,6 @@ class HistoriqueProd
     private $lieu;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idNomenclature
@@ -155,5 +145,15 @@ class HistoriqueProd
     public function getLieu()
     {
         return $this->lieu;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
