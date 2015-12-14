@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HistoAppro
  *
  * @ORM\Table(name="histo_appro")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\HistoApproRepository")
  */
 class HistoAppro
 {

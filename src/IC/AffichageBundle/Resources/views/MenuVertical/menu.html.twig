@@ -26,7 +26,7 @@
 			<br>
 			<div class="divSousMenu" id="sousMenu211">
 				{% for nomenclature in nomenclatures %}
-					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_composant', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
+					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pcb', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
 				{% endfor %}
 			</div>
 			
@@ -36,17 +36,17 @@
 			
 			<div class="divSousMenu" id="sousMenu311">
 				{% for nomenclature in nomenclatures %}
-					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_composant', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
+					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pf', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
 				{% endfor %}
 			</div>
 			<span class="titreMenuVertical">Approvisionnement</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Approvisionnement Interne</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_appro_interne') }}">Approvisionnement Interne</a><br>
 			<span class="titreMenuVertical">Production</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Production Interne</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_production_interne') }}">Production Interne</a><br>
 			<span class="titreMenuVertical">Produit Fini</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Lecteur Idcapt</a><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Identifiant</a><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_composant_interne') }}">Lecteur CV</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_interne') }}">Lecteur Idcapt</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_identifiant') }}">Identifiant</a><br>
+				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
 	{% endif %}
 </nav>
 {% if url == "ic_affichage_composant_interne" %}

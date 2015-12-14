@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Appro
  *
  * @ORM\Table(name="appro")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ApproRepository")
  */
 class Appro
 {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\AffichageBundle\Entity\Composant" table="composant">
+  <entity name="IC\AffichageBundle\Entity\Composant" repository-class="IC\AffichageBundle\Repository\ComposantRepository" table="composant">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -34,5 +34,16 @@
         <option name="unsigned"/>
       </options>
     </field>
-  </entity>
+    <field name="idSousFamille" type="integer" column="id_sous_famille" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+      <one-to-one field="famille" target-entity="Famille" >
+        <join-column name="id_famille" referenced-column-name="id" />
+      </one-to-one>
+       <one-to-one field="sousFamille" target-entity="SousFamille" >
+        <join-column name="id_sous_famille" referenced-column-name="id" />
+      </one-to-one>
+    </entity>
 </doctrine-mapping>

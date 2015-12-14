@@ -36,7 +36,11 @@ a
 .divSousMenu
 {
 	display: none;
-	margin-left:30px;
+	margin-left:50px;
+}
+.divSousMenu a:hover
+{
+	font-weight: bold;
 }
 .labelRecherche
 {
@@ -51,21 +55,40 @@ a
 	width: 90%;
 	margin: 0 12px 10px 12px;
 }
+.ChoixRecherche
+{
+margin-left:35px;	
+}
+.submitRecherche
+{
+	display: block;
+	margin:10px auto 0px auto;
+}
 .titreCheckBox
 {
 	display: inline-block;
 	cursor: pointer;
 }
+.titreCheckBox:hover
+{
+	font-weight: bold;
+}
 .imgFlecheCheckBox{
 	width:12px;
 	height:12px;
 	cursor: pointer;
+	margin-left:10px;
 }
 .checkBox
 {
-	margin-left: 20px;
+	margin-left: 30px;
 }
 .divCheckBox
 {
 	display: none;
+}
+.submitTrie
+{
+	display: block;
+	margin:10px auto 0px auto;
 }

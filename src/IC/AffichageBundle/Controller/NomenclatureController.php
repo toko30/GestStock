@@ -7,11 +7,16 @@ use IC\AffichageBundle\Form\ComposantInterneType;
 
 class NomenclatureController extends Controller
 {
-    public function nomenclatureComposantAction()
+    public function nomenclatureComposantAction($id)
     {
-        return $this->render('ICAffichageBundle:Composant:interne.html.twig');
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig');
     }
     
+    public function nomenclatureCompleteAction($id)
+    {
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComplete.html.twig');
+    }  
+      
     public function menuAction()
     {
         $repositoryFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Famille');

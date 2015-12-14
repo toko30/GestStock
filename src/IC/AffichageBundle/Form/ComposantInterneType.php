@@ -36,47 +36,50 @@ class ComposantInterneType extends AbstractType
       $choixNomenclature[] = $nomenclature->getNom(); 
       
     $builder->add('recherche', 'text', array('required' => false));
-                 
+    
+    $builder->add('choixRecherche', 'choice', array('choices' => array('Désignation', 'Référence'),
+                  'multiple' => false,
+                  'expanded' => true,
+                  'empty_data'  => 0));
+                                 
     $builder->add('famille', 'choice', array('choices' => $choixFamille,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0));
                 
     $builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));   
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0));   
                                       
     $builder->add('etat', 'choice', array('choices' => array('Stock suffisant', 'A commander'),
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0)); 
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0)); 
                  
     $builder->add('fournisseur', 'choice', array('choices' => $choixFournisseur,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));  
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0));  
                                
     $builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0)); 
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0)); 
 
     $builder->add('stock', 'text', array('required' => false));
+    
     $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
-              'multiple' => false,
-              'expanded' => true,
-              'empty_data'  => 0));    
-                                                 
+                'required' => false,
+                'multiple' => false,
+                'expanded' => true,
+                'empty_data'  => 0));
+                    
+    $builder->add('Rechercher', 'submit');                                            
     $builder->add('Trier', 'submit');
   }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'IC\AffichageBundle\Form\MenuComposantInterne'
-    ));
-  }
+
 
   public function getName()
   {

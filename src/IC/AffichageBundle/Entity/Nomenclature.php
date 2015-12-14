@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Nomenclature
  *
  * @ORM\Table(name="nomenclature")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\NomenclatureRepository")
  */
 class Nomenclature
 {

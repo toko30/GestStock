@@ -13,24 +13,30 @@
 	{{ parent()}}
 	<table>
 		<tr>
-			<th>Famille</th>
-			<th>Sous Famille</th>
-			<th>Désignation</th>
-			<th>Boitier</th>
-			<th>Stock Minimum</th>
-			<th>Stock</th>
-			<th>Détails</th>
+			<th class="titreFamille">Famille</th>
+			<th class="titreSousFamille">Sous Famille</th>
+			<th class="titreDesignation">Désignation</th>
+			<th class="titreBoitier">Boitier</th>
+			<th class="titreStockMinimum">Stock mini</th>
+			<th class="titreStock">Stock</th>
+			<th class="titreDetails"></th>
 		</tr>
-		
-		{% for composant in composants %}
+	
+		{% for composant in composants %}	
 			<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
-				<td>{{composant.idFamille}}</td>
-				<td></td>
-				<td>{{composant.nom}}</td>
-				<td>{{composant.boitier}}</td>
-				<td>{{composant.stockMini}}</td>
-				<td>{{composant.stockInterne}}</td>
-				<td></td>
+				<td class="famille">{{composant.Famille.nom}}</td>
+				<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+				<td class="designation">{{composant.nom}}</td>
+				<td class="boitier">{{composant.boitier}}</td>
+				<td class="stockMinimum">{{composant.stockMini}}</td>
+				<td class="stock">{{composant.stockInterne}}</td>
+				<td class="details">
+					<a href="">
+					{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+						<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+					{% endimage %}
+					</a>
+				</td>
 			</tr>
 		{% endfor %}
 		</table>

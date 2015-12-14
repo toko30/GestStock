@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ListeTest
  *
  * @ORM\Table(name="liste_test")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\ListeTestRepository")
  */
 class ListeTest
 {

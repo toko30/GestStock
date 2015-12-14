@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Etape
  *
  * @ORM\Table(name="etape")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IC\AffichageBundle\Repository\EtapeRepository")
  */
 class Etape
 {
