@@ -24,9 +24,16 @@ class TypeLecteur
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=100, nullable=false)
+     * @ORM\Column(name="reference_fournisseur", type="string", length=250, nullable=false)
      */
-    private $reference;
+    private $referenceFournisseur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference_interne", type="string", length=100, nullable=false)
+     */
+    private $referenceInterne;
 
     /**
      * @var string
@@ -38,34 +45,93 @@ class TypeLecteur
     /**
      * @var integer
      *
+     * @ORM\Column(name="frequence", type="integer", nullable=false)
+     */
+    private $frequence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
     private $idFournisseur;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="petite", type="integer", nullable=false)
+     */
+    private $petite;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="moyenne", type="integer", nullable=false)
+     */
+    private $moyenne;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="grande", type="integer", nullable=false)
+     */
+    private $grande;
+
 
 
     /**
-     * Set reference
+     * Set referenceInterne
      *
-     * @param string $reference
+     * @param string $referenceInterne
      *
      * @return TypeLecteur
      */
-    public function setReference($reference)
+    public function setReferenceInterne($referenceInterne)
     {
-        $this->reference = $reference;
+        $this->referenceInterne = $referenceInterne;
 
         return $this;
     }
 
     /**
-     * Get reference
+     * Get referenceInterne
      *
      * @return string
      */
-    public function getReference()
+    public function getReferenceInterne()
     {
-        return $this->reference;
+        return $this->referenceInterne;
+    }
+
+    /**
+     * Set referenceFournisseur
+     *
+     * @param string $referenceFournisseur
+     *
+     * @return TypeLecteur
+     */
+    public function setReferenceFournisseur($referenceFournisseur)
+    {
+        $this->referenceFournisseur = $referenceFournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get referenceFournisseur
+     *
+     * @return string
+     */
+    public function getReferenceFournisseur()
+    {
+        return $this->referenceFournisseur;
     }
 
     /**

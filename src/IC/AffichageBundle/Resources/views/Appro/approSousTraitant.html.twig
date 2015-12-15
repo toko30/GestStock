@@ -6,12 +6,33 @@
 
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+	'@ICAffichageBundle/Resources/public/css/appro.css' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
+	{{ parent() }}
+	<h1>Approvisionnement {{appro[0].appro.sousTraitant.nom}}</h1>
+	<table>
+		<tr>
+			<th>Famille</th>
+			<th>SousFamille</th>
+			<th>Designation</th>
+			<th>Boitier</th>
+			<th>Quantité</th>
+			<th>Date d'envoi</th>
+		</tr>
+		{% for approvisionnement in appro %}
+			<tr>
+				<td>{{approvisionnement.composant.famille.nom}}</td>
+				<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+				<td>{{approvisionnement.composant.nom}}</td>
+				<td>{{approvisionnement.composant.boitier}}</td>
+				<td>{{approvisionnement.quantite}}</td>
+				<td>{{approvisionnement.appro.dateCommande|date('d-m-Y')}}</td>
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

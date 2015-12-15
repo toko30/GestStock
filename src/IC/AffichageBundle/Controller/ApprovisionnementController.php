@@ -9,12 +9,16 @@ class ApprovisionnementController extends Controller
 {
     public function approvisionnementInterneAction()
     {
-        return $this->render('ICAffichageBundle:Appro:approInterne.html.twig');
+        $appro = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproInterne();
+        
+        return $this->render('ICAffichageBundle:Appro:approInterne.html.twig', array('appro' => $appro));
     }
     
     public function approvisionnementSousTraitantAction($id)
     {
-        return $this->render('ICAffichageBundle:Appro:approSousTraitant.html.twig');
+        $appro = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproSousTraitant($id);
+        
+        return $this->render('ICAffichageBundle:Appro:approSousTraitant.html.twig', array('appro' => $appro));
     }
 
     public function approvisionnementIdentifiantAction()
@@ -25,22 +29,5 @@ class ApprovisionnementController extends Controller
     public function approvisionnementLecteurCVAction()
     {
         return $this->render('ICAffichageBundle:Appro:approLecteurCV.html.twig');
-    }
-    public function menuAction()
-    {
-        $repositoryFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Famille');
-        $repositorySousFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousFamille');
-        $repositoryNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Nomenclature');
-        
-        $listFamille = $repositoryFamille->findAll();
-        $listSousFamille = $repositorySousFamille->findAll();
-        $listnomenclature = $repositorySousFamille->findAll();
-        
-        $repository = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousTraitant');
-        $sousTraitant = $repository->findAll();
-        
-        $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille));
-
-        return $this->render('ICAffichageBundle:MenuVertical:menu.html.twig', array('form' => $form->createView(), 'sousTraitants' => $sousTraitant));
     }
 }

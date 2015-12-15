@@ -28,7 +28,7 @@ ic_affichage_appro_sous_traitant:
        
 ic_affichage_appro_identifiant:
     path:     /Approvisionnement-Identifiant
-    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementInterne }
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementIdentifiant }
     
 ic_affichage_appro_cv:
     path:     /Approvisionnement-LecteurCV
@@ -40,7 +40,7 @@ ic_affichage_production_interne:
 
 ic_affichage_production_sous_traitant:
     path:     /Production-Sous-Traitant-{id}
-    defaults: {_controller: ICAffichageBundle:Production:productionInterne}
+    defaults: {_controller: ICAffichageBundle:Production:productionSousTraitant}
     requirements:
        id: \d{1,10}
          

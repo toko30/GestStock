@@ -1,5 +1,3 @@
-{{ form_start(form, {'attr': {'class': 'form-verical'}}) }}
-
 <div id="recherche">
 	{{ form_label(form.recherche, 'Recherche', {'label_attr': {'class': 'labelRecherche'}}) }}<br>
 	{{ form_widget(form.recherche, {'attr': {'class': 'inputRecherche'}}) }}
@@ -17,7 +15,7 @@
 	<br>
 	<div id="checkBox111" class="divCheckBox">
 		{% for child in form.famille %}
-			{{ form_widget(child, {'attr': {'class': 'checkBox', 'value': loop.index}}) }}
+			{{ form_widget(child, {'attr': {'class': 'checkBox'}}) }}
 			{{ form_label(child, child, {'label_attr': {'class': 'labelCheckBox'}}) }} <br>
 		{% endfor %}
 	</div>
@@ -26,54 +24,30 @@
     	<img id="checkBox21" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
 	{% endimage %}	
 	{{ form_label(form.sousFamille, 'Sous Famille', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox2'}}) }}
-	<br>
+	<br>	
 	<div id="checkBox211" class="divCheckBox">
 		{% for child in form.sousFamille %}
-			{{ form_widget(child, {'attr': {'class': 'checkBox', 'value': loop.index}}) }}
-			{{ form_label(child, child, {'label_attr': {'class': 'labelCheckBox'}}) }} <br>
-		{% endfor %}
-	</div>
-		
-	{% image 'img/plus.png' %}
-    	<img id="checkBox31" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
-	{% endimage %}
-	{{ form_label(form.etat, 'Etat', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox3'}}) }}	
-	<br>
-	<div id="checkBox311" class="divCheckBox">
-		{% for child in form.etat %}
-			{{ form_widget(child, {'attr': {'class': 'checkBox', 'value': loop.index}}) }}
-			{{ form_label(child, child, {'label_attr': {'class': 'labelCheckBox'}}) }} <br>
-		{% endfor %}
-	</div>
-	{% image 'img/plus.png' %}
-    	<img id="checkBox41" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
-	{% endimage %}
-	{{ form_label(form.fournisseur, 'Fournisseur', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox4'}}) }}	
-	<br>
-	<div id="checkBox411" class="divCheckBox">
-		{% for child in form.fournisseur %}
-			{{ form_widget(child, {'attr': {'class': 'checkBox', 'value': loop.index}}) }}
+			{{ form_widget(child, {'attr': {'class': 'checkBox',}}) }}
 			{{ form_label(child, child, {'label_attr': {'class': 'labelCheckBox'}}) }} <br>
 		{% endfor %}
 	</div>
 	
 	{% image 'img/plus.png' %}
-    	<img id="checkBox51" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
+    	<img id="checkBox31" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
 	{% endimage %}
-	{{ form_label(form.nomenclature, 'Nomenclature', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox5'}}) }}		
+	{{ form_label(form.nomenclature, 'Nomenclature', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox3'}}) }}		
 	<br>
-	<div id="checkBox511" class="divCheckBox">
+	<div id="checkBox311" class="divCheckBox">
 		{% for child in form.nomenclature %}
-			{{ form_widget(child, {'attr': {'class': 'checkBox', 'value': loop.index}}) }}
+			{{ form_widget(child, {'attr': {'class': 'checkBox'}}) }}
 			{{ form_label(child ,child , {'label_attr': {'class': 'labelCheckBox'}}) }} <br>
 		{% endfor %}
 	</div>
 	{% image 'img/plus.png' %}
-    	<img id="checkBox61" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
+    	<img id="checkBox41" class="imgFlecheCheckBox" src="{{ asset_url }}" alt="Fleche Bas" />
 	{% endimage %}
-	{{ form_label(form.stock, 'Stock', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox6'}}) }}
-	<br>
-	<div id="checkBox611" class="divCheckBox">
+	{{ form_label(form.stock, 'Stock', {'label_attr': {'class': 'titreCheckBox', 'id': 'checkBox4'}}) }}
+	<div id="checkBox411" class="divCheckBox">
 		{{ form_widget(form.stock, {'attr': {'class': 'inputStock'}}) }}<br>
 		{% for child in form.plus_ou_moins %}
 			{{ form_widget(child, {'attr': {'class': 'radioStock'}}) }}
@@ -83,4 +57,3 @@
 	<br>
 	{{ form_widget(form.Trier, {'attr': {'class': 'submitTrie'}}) }}
 	{{ form_end(form) }}
-</div>

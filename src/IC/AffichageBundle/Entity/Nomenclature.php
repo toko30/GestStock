@@ -42,6 +42,8 @@ class Nomenclature
      */
     private $type;
 
+
+
     /**
      * Set nom
      *
@@ -123,5 +125,4 @@ class Nomenclature
     {
         return $this->id;
     }
-
 }

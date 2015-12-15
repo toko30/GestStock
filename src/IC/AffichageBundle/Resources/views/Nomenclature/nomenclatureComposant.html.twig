@@ -14,6 +14,7 @@
 
 {% block body %}
 {{ parent() }}
+
 <h1>{{nomenclatures[0].nomenclature.nom}} - V{{nomenclatures[0].nomenclature.version}}</h1>
 	<table>
 		<tr>
@@ -22,6 +23,7 @@
 			<th class="titreDesignation">Désignation</th>
 			<th class="titreBoitier">Boitier</th>
 			<th class="titreStock">Quantité</th>
+			<th class="titreStock">Position</th>
 			<th class="titreDetails"></th>
 		</tr>
 		{% for nomenclature in nomenclatures %}
@@ -31,6 +33,7 @@
 				<td class="designation">{{nomenclature.composant.nom}}</td>
 				<td class="boitier">{{nomenclature.composant.boitier}}</td>
 				<td class="stock">{{nomenclature.quantite}}</td>
+				<td class="stock">{{nomenclature.position}}</td>
 				<td class="details">
 					<a href="">
 					{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}

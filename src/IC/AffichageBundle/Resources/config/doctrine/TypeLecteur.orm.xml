@@ -4,7 +4,12 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="reference" type="string" column="reference" length="100" nullable="false">
+    <field name="referenceInterne" type="string" column="reference_interne" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="referenceFournisseur" type="string" column="reference_fournisseur" length="250" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

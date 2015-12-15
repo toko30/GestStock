@@ -14,10 +14,23 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="frequence" type="integer" column="frequence" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="type" type="integer" column="type" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
     <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
+    <one-to-one field="sousTypeBadge" target-entity="SousTypeBadge" >
+        <join-column name="type" referenced-column-name="id" />
+      </one-to-one>
   </entity>
 </doctrine-mapping>

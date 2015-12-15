@@ -5,12 +5,12 @@ namespace IC\AffichageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypeProduit
+ * SousTypeBadge
  *
- * @ORM\Table(name="type_produit")
+ * @ORM\Table(name="sous_type_badge")
  * @ORM\Entity
  */
-class TypeProduit
+class SousTypeBadge
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class TypeProduit
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
      */
     private $nom;
 
@@ -35,7 +35,7 @@ class TypeProduit
      *
      * @param string $nom
      *
-     * @return TypeProduit
+     * @return SousTypeBadge
      */
     public function setNom($nom)
     {

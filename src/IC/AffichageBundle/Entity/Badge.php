@@ -29,19 +29,17 @@ class Badge
     private $idType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
-     */
-    private $description;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="quantite", type="integer", nullable=true)
      */
     private $quantite;
 
+
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeBadge
+     */
+    private $typeBadge;
 
 
     /**
@@ -66,30 +64,6 @@ class Badge
     public function getIdType()
     {
         return $this->idType;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Badge
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -124,5 +98,29 @@ class Badge
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set typeBadge
+     *
+     * @param \IC\AffichageBundle\Entity\TypeBadge $typeBadge
+     *
+     * @return Badge
+     */
+    public function setTypeBadge(\IC\AffichageBundle\Entity\TypeBadge $typeBadge = null)
+    {
+        $this->typeBadge = $typeBadge;
+
+        return $this;
+    }
+
+    /**
+     * Get typeBadge
+     *
+     * @return \IC\AffichageBundle\Entity\TypeBadge
+     */
+    public function getTypeBadge()
+    {
+        return $this->typeBadge;
     }
 }

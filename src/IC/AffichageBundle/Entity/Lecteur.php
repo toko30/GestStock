@@ -22,13 +22,6 @@ class Lecteur
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="etat", type="integer", nullable=false)
-     */
-    private $etat;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="num_serie", type="string", length=100, nullable=false)
@@ -49,6 +42,16 @@ class Lecteur
      */
     private $dateCreation;
 
+
+    /**
+     * @var integer
+     */
+    private $etat;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeLecteur
+     */
+    private $typeLecteur;
 
 
     /**
@@ -155,5 +158,29 @@ class Lecteur
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set typeLecteur
+     *
+     * @param \IC\AffichageBundle\Entity\TypeLecteur $typeLecteur
+     *
+     * @return Lecteur
+     */
+    public function setTypeLecteur(\IC\AffichageBundle\Entity\TypeLecteur $typeLecteur = null)
+    {
+        $this->typeLecteur = $typeLecteur;
+
+        return $this;
+    }
+
+    /**
+     * Get typeLecteur
+     *
+     * @return \IC\AffichageBundle\Entity\TypeLecteur
+     */
+    public function getTypeLecteur()
+    {
+        return $this->typeLecteur;
     }
 }

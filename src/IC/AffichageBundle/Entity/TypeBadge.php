@@ -38,10 +38,29 @@ class TypeBadge
     /**
      * @var integer
      *
+     * @ORM\Column(name="frequence", type="integer", nullable=false)
+     */
+    private $frequence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
     private $idFournisseur;
 
+
+    /**
+     * @var \IC\AffichageBundle\Entity\SousTypeBadge
+     */
+    private $sousTypeBadge;
 
 
     /**
@@ -93,6 +112,54 @@ class TypeBadge
     }
 
     /**
+     * Set frequence
+     *
+     * @param integer $frequence
+     *
+     * @return TypeBadge
+     */
+    public function setFrequence($frequence)
+    {
+        $this->frequence = $frequence;
+
+        return $this;
+    }
+
+    /**
+     * Get frequence
+     *
+     * @return integer
+     */
+    public function getFrequence()
+    {
+        return $this->frequence;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return TypeBadge
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Set idFournisseur
      *
      * @param integer $idFournisseur
@@ -124,5 +191,29 @@ class TypeBadge
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set sousTypeBadge
+     *
+     * @param \IC\AffichageBundle\Entity\SousTypeBadge $sousTypeBadge
+     *
+     * @return TypeBadge
+     */
+    public function setSousTypeBadge(\IC\AffichageBundle\Entity\SousTypeBadge $sousTypeBadge = null)
+    {
+        $this->sousTypeBadge = $sousTypeBadge;
+
+        return $this;
+    }
+
+    /**
+     * Get sousTypeBadge
+     *
+     * @return \IC\AffichageBundle\Entity\SousTypeBadge
+     */
+    public function getSousTypeBadge()
+    {
+        return $this->sousTypeBadge;
     }
 }

@@ -5,12 +5,12 @@ namespace IC\AffichageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ComposantNomenclature
+ * Production
  *
- * @ORM\Table(name="composant_nomenclature")
+ * @ORM\Table(name="production")
  * @ORM\Entity
  */
-class ComposantNomenclature
+class Production
 {
     /**
      * @var integer
@@ -24,9 +24,9 @@ class ComposantNomenclature
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_composant", type="integer", nullable=false)
+     * @ORM\Column(name="id_lieu", type="integer", nullable=false)
      */
-    private $idComposant;
+    private $idLieu;
 
     /**
      * @var integer
@@ -43,17 +43,24 @@ class ComposantNomenclature
     private $quantite;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="position", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="etape", type="integer", nullable=false)
      */
-    private $position;
+    private $etape;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_prod", type="date", nullable=false)
+     */
+    private $dateProd;
 
 
     /**
-     * @var \IC\AffichageBundle\Entity\Composant
+     * @var \IC\AffichageBundle\Entity\SousTraitant
      */
-    private $composant;
+    private $sousTraitant;
 
     /**
      * @var \IC\AffichageBundle\Entity\Nomenclature
@@ -62,27 +69,27 @@ class ComposantNomenclature
 
 
     /**
-     * Set idComposant
+     * Set idLieu
      *
-     * @param integer $idComposant
+     * @param integer $idLieu
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
-    public function setIdComposant($idComposant)
+    public function setIdLieu($idLieu)
     {
-        $this->idComposant = $idComposant;
+        $this->idLieu = $idLieu;
 
         return $this;
     }
 
     /**
-     * Get idComposant
+     * Get idLieu
      *
      * @return integer
      */
-    public function getIdComposant()
+    public function getIdLieu()
     {
-        return $this->idComposant;
+        return $this->idLieu;
     }
 
     /**
@@ -90,7 +97,7 @@ class ComposantNomenclature
      *
      * @param integer $idNomenclature
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
     public function setIdNomenclature($idNomenclature)
     {
@@ -114,7 +121,7 @@ class ComposantNomenclature
      *
      * @param integer $quantite
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
     public function setQuantite($quantite)
     {
@@ -134,27 +141,51 @@ class ComposantNomenclature
     }
 
     /**
-     * Set position
+     * Set etape
      *
-     * @param string $position
+     * @param integer $etape
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
-    public function setPosition($position)
+    public function setEtape($etape)
     {
-        $this->position = $position;
+        $this->etape = $etape;
 
         return $this;
     }
 
     /**
-     * Get position
+     * Get etape
      *
-     * @return string
+     * @return integer
      */
-    public function getPosition()
+    public function getEtape()
     {
-        return $this->position;
+        return $this->etape;
+    }
+
+    /**
+     * Set dateProd
+     *
+     * @param \DateTime $dateProd
+     *
+     * @return Production
+     */
+    public function setDateProd($dateProd)
+    {
+        $this->dateProd = $dateProd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateProd
+     *
+     * @return \DateTime
+     */
+    public function getDateProd()
+    {
+        return $this->dateProd;
     }
 
     /**
@@ -168,27 +199,27 @@ class ComposantNomenclature
     }
 
     /**
-     * Set composant
+     * Set sousTraitant
      *
-     * @param \IC\AffichageBundle\Entity\Composant $composant
+     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
-    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
     {
-        $this->composant = $composant;
+        $this->sousTraitant = $sousTraitant;
 
         return $this;
     }
 
     /**
-     * Get composant
+     * Get sousTraitant
      *
-     * @return \IC\AffichageBundle\Entity\Composant
+     * @return \IC\AffichageBundle\Entity\SousTraitant
      */
-    public function getComposant()
+    public function getSousTraitant()
     {
-        return $this->composant;
+        return $this->sousTraitant;
     }
 
     /**
@@ -196,7 +227,7 @@ class ComposantNomenclature
      *
      * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
      *
-     * @return ComposantNomenclature
+     * @return Production
      */
     public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
     {

@@ -51,63 +51,86 @@ class Appro
 
 
     /**
-     * @var integer
+     * @var \IC\AffichageBundle\Entity\SousTraitant
      */
-    private $idCommande;
+    private $sousTraitant;
 
     /**
-     * @var integer
+     * @var \IC\AffichageBundle\Entity\Fournisseur
      */
-    private $idProduit;
-
-    /**
-     * @var integer
-     */
-    private $quantite;
-
-    /**
-     * @var integer
-     */
-    private $lieu;
-
-    /**
-     * @var integer
-     */
-    private $etat;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\Composant
-     */
-    private $composant;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\ComposantAppro
-     */
-    private $composantAppro;
+    private $fournisseur;
 
 
     /**
-     * Set idCommande
+     * Set idFournisseur
      *
-     * @param integer $idCommande
+     * @param integer $idFournisseur
      *
      * @return Appro
      */
-    public function setIdCommande($idCommande)
+    public function setIdFournisseur($idFournisseur)
     {
-        $this->idCommande = $idCommande;
+        $this->idFournisseur = $idFournisseur;
 
         return $this;
     }
 
     /**
-     * Get idCommande
+     * Get idFournisseur
      *
      * @return integer
      */
-    public function getIdCommande()
+    public function getIdFournisseur()
     {
-        return $this->idCommande;
+        return $this->idFournisseur;
+    }
+
+    /**
+     * Set idLieu
+     *
+     * @param integer $idLieu
+     *
+     * @return Appro
+     */
+    public function setIdLieu($idLieu)
+    {
+        $this->idLieu = $idLieu;
+
+        return $this;
+    }
+
+    /**
+     * Get idLieu
+     *
+     * @return integer
+     */
+    public function getIdLieu()
+    {
+        return $this->idLieu;
+    }
+
+    /**
+     * Set dateCommande
+     *
+     * @param \DateTime $dateCommande
+     *
+     * @return Appro
+     */
+    public function setDateCommande($dateCommande)
+    {
+        $this->dateCommande = $dateCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCommande
+     *
+     * @return \DateTime
+     */
+    public function getDateCommande()
+    {
+        return $this->dateCommande;
     }
 
     /**
@@ -135,102 +158,6 @@ class Appro
     }
 
     /**
-     * Set idProduit
-     *
-     * @param integer $idProduit
-     *
-     * @return Appro
-     */
-    public function setIdProduit($idProduit)
-    {
-        $this->idProduit = $idProduit;
-
-        return $this;
-    }
-
-    /**
-     * Get idProduit
-     *
-     * @return integer
-     */
-    public function getIdProduit()
-    {
-        return $this->idProduit;
-    }
-
-    /**
-     * Set quantite
-     *
-     * @param integer $quantite
-     *
-     * @return Appro
-     */
-    public function setQuantite($quantite)
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    /**
-     * Get quantite
-     *
-     * @return integer
-     */
-    public function getQuantite()
-    {
-        return $this->quantite;
-    }
-
-    /**
-     * Set lieu
-     *
-     * @param integer $lieu
-     *
-     * @return Appro
-     */
-    public function setLieu($lieu)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
-
-    /**
-     * Get lieu
-     *
-     * @return integer
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * Set etat
-     *
-     * @param integer $etat
-     *
-     * @return Appro
-     */
-    public function setEtat($etat)
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    /**
-     * Get etat
-     *
-     * @return integer
-     */
-    public function getEtat()
-    {
-        return $this->etat;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -241,50 +168,50 @@ class Appro
     }
 
     /**
-     * Set composant
+     * Set sousTraitant
      *
-     * @param \IC\AffichageBundle\Entity\Composant $composant
+     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
      *
      * @return Appro
      */
-    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
     {
-        $this->composant = $composant;
+        $this->sousTraitant = $sousTraitant;
 
         return $this;
     }
 
     /**
-     * Get composant
+     * Get sousTraitant
      *
-     * @return \IC\AffichageBundle\Entity\Composant
+     * @return \IC\AffichageBundle\Entity\SousTraitant
      */
-    public function getComposant()
+    public function getSousTraitant()
     {
-        return $this->composant;
+        return $this->sousTraitant;
     }
 
     /**
-     * Set composantAppro
+     * Set fournisseur
      *
-     * @param \IC\AffichageBundle\Entity\ComposantAppro $composantAppro
+     * @param \IC\AffichageBundle\Entity\Fournisseur $fournisseur
      *
      * @return Appro
      */
-    public function setComposantAppro(\IC\AffichageBundle\Entity\ComposantAppro $composantAppro = null)
+    public function setFournisseur(\IC\AffichageBundle\Entity\Fournisseur $fournisseur = null)
     {
-        $this->composantAppro = $composantAppro;
+        $this->fournisseur = $fournisseur;
 
         return $this;
     }
 
     /**
-     * Get composantAppro
+     * Get fournisseur
      *
-     * @return \IC\AffichageBundle\Entity\ComposantAppro
+     * @return \IC\AffichageBundle\Entity\Fournisseur
      */
-    public function getComposantAppro()
+    public function getFournisseur()
     {
-        return $this->composantAppro;
+        return $this->fournisseur;
     }
 }
