@@ -54,6 +54,7 @@ class ComposantSousTraitantType extends AbstractType
                 'empty_data'  => 0)); 
 
     $builder->add('stock', 'text', array('required' => false));
+    
     $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
               'multiple' => false,
               'expanded' => true,

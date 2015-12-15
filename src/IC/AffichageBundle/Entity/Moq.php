@@ -50,6 +50,16 @@ class Moq
     private $moq;
 
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Fournisseur
+     */
+    private $fournisseur;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\Composant
+     */
+    private $composant;
+
 
     /**
      * Set idComposant
@@ -155,5 +165,53 @@ class Moq
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \IC\AffichageBundle\Entity\Fournisseur $fournisseur
+     *
+     * @return Moq
+     */
+    public function setFournisseur(\IC\AffichageBundle\Entity\Fournisseur $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \IC\AffichageBundle\Entity\Fournisseur
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
+    }
+
+    /**
+     * Set composant
+     *
+     * @param \IC\AffichageBundle\Entity\Composant $composant
+     *
+     * @return Moq
+     */
+    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    {
+        $this->composant = $composant;
+
+        return $this;
+    }
+
+    /**
+     * Get composant
+     *
+     * @return \IC\AffichageBundle\Entity\Composant
+     */
+    public function getComposant()
+    {
+        return $this->composant;
     }
 }

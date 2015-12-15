@@ -20,6 +20,4 @@ class NomenclatureController extends Controller
        
         return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('nomenclatures' => $listNomenclature));
     }  
-      
-
 }

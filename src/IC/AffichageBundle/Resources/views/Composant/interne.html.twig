@@ -13,7 +13,9 @@
 
 {% block body %}
 	{{ parent()}}
+
 	<h1>Stock Interne</h1>
+	
 	<table>
 		<tr>
 			<th class="titreFamille">Famille</th>
@@ -25,22 +27,78 @@
 			<th class="titreDetails"></th>
 		</tr>
 	
-		{% for composant in composants %}	
-			<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
-				<td class="famille">{{composant.Famille.nom}}</td>
-				<td class="sousFamille">{{composant.SousFamille.nom}}</td>
-				<td class="designation">{{composant.nom}}</td>
-				<td class="boitier">{{composant.boitier}}</td>
-				<td class="stock">{{composant.stockMini}}</td>
-				<td class="stock">{{composant.stockInterne}}</td>
-				<td class="details">
-					<a href="">
-					{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
-						<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
-					{% endimage %}
-					</a>
-				</td>
-			</tr>
+		{% for composant in composants %}
+			{% if 0 in etat %}
+				<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>	
+			{% else %}
+				{% if '1' in etat[0] and '2'  not in etat[0] %}
+					{% if composant.stockMini <= composant.stockInterne %}
+						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% elseif '2' in etat[0] and '1'  not in etat[0]%}
+					{% if composant.stockMini > composant.stockInterne %}
+						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% else %}	
+					<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+						<td class="famille">{{composant.Famille.nom}}</td>
+						<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+						<td class="designation">{{composant.nom}}</td>
+						<td class="boitier">{{composant.boitier}}</td>
+						<td class="stock">{{composant.stockMini}}</td>
+						<td class="stock">{{composant.stockInterne}}</td>
+						<td class="details">
+							<a href="">
+							{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+								<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+							{% endimage %}
+							</a>
+						</td>
+					</tr>									
+				{% endif %}
+			{% endif %}
 		{% endfor %}
 		</table>
 {% endblock %}

@@ -10,15 +10,25 @@ class ComposantController extends Controller
 {
     public function interneAction(Request $request)
     {
+        $etat[0] = 0;
+        
         if('POST' == $request->getMethod())
-            if($_POST['formComposantInterne']['fournisseur'])
+        {
+            if(!empty($_POST['formComposantInterne']['etat']))
+                $etat[0] = $_POST['formComposantInterne']['etat'];   
+                
+            if(empty($_POST['formComposantInterne']['fournisseur']))
                 $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockByCritere($_POST['formComposantInterne']);
             else
-                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockFournisseurByCritere($_POST['formComposantInterne']);
+            {
+                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Moq')->getStockFournisseurByCritere($_POST['formComposantInterne']); 
+                return $this->render('ICAffichageBundle:Composant:interneFournisseur.html.twig', array('composants1' => $listComposant, 'etat' => $etat));           
+            }       
+        }
         else
             $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->findAll();
-                var_dump($_POST);
-        return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('composants' => $listComposant));
+
+        return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('composants' => $listComposant, 'etat' => $etat));
     }
     
     public function soustraitantAction(Request $request, $id)

@@ -24,6 +24,7 @@ class ProductionRepository extends EntityRepository
 		->getQuery()
 		->getResult();
    }
+   
    public function getProdSousTraitant($id)
    {
 		return $this->createQueryBuilder('p')

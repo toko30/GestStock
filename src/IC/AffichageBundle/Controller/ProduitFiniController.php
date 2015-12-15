@@ -25,6 +25,4 @@ class ProduitFiniController extends Controller
                 
         return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'CV'));
     }
-        
- 
 }
