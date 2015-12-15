@@ -6,12 +6,33 @@
 
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+	'@ICAffichageBundle/Resources/public/css/production.css' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
+	{{ parent() }}
+	
+	<h1>Production Interne</h1>
+	
+	{% if prod is empty %}
+		Aucune production en cours
+	{% else %}
+		<table>
+		<tr>
+			<th>Produit</th>
+			<th>Quantité</th>
+			<th>Date de lancement</th>
+		</tr>
+		{% for production in prod %}
+			<tr>
+				<td>{{production.nomenclature.nom}}-V{{production.nomenclature.version}}</td>
+				<td>{{production.quantite}}</td>
+				<td>{{production.dateProd|date('d-m-Y')}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% endif %}
 {% endblock %}

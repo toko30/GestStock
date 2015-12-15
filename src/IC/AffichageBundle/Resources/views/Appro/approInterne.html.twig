@@ -7,12 +7,64 @@
 
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+	'@ICAffichageBundle/Resources/public/css/appro.css' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
+	{{ parent() }}
+	
+	{% if appro is empty %}
+		aucune commande en cours
+	{% else %}
+	
+		{% set id = appro[0].appro.id %}
+		
+		<h1>{{appro[0].appro.fournisseur.nom}} le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h1>
+		<table>
+			<tr>
+				<th>Famille</th>
+				<th>Sous Famille</th>
+				<th>Designation</th>
+				<th>Boitier</th>
+				<th>quantite</th>
+			</tr>
+			{% for approvisionnement in appro %}
+			
+				{% if approvisionnement.appro.id != id %}
+					{% set id = approvisionnement.appro.id %}
+					</table>
+					
+					<h1>{{approvisionnement.appro.fournisseur.nom}} le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h1>
+					
+					<table>
+						<tr>
+							<th>Famille</th>
+							<th>Sous Famille</th>
+							<th>Designation</th>
+							<th>Boitier</th>
+							<th>quantite</th>
+						</tr>				
+					<tr>
+						<td>{{approvisionnement.composant.famille.nom}}</td>
+						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+						<td>{{approvisionnement.composant.nom}}</td>
+						<td>{{approvisionnement.composant.boitier}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{%else %}
+					<tr>
+						<td>{{approvisionnement.composant.famille.nom}}</td>
+						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+						<td>{{approvisionnement.composant.nom}}</td>
+						<td>{{approvisionnement.composant.boitier}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{% endif %}
+				
+			{% endfor %}
+		</table>
+	{% endif %}
 {% endblock %}

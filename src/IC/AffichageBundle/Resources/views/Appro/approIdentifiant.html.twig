@@ -13,5 +13,51 @@
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
+	{{ parent() }}
+	
+	<h1>Approvisionnement Identifiant</h1>
+	
+	{% if appro is empty %}
+			aucune commande en cours
+	{% else %}
+	
+		{% set id = appro[0].appro.id %}
+		
+		<h2>Commande passée le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h2>
+		<table>
+			<tr>
+				<th>référence</th>
+				<th>Designation</th>
+				<th>quantite</th>
+			</tr>
+			{% for approvisionnement in appro %}
+			
+				{% if approvisionnement.appro.id != id %}
+					{% set id = approvisionnement.appro.id %}
+					</table>
+					
+					<h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
+					
+					<table>
+						<tr>
+							<th>Référence</th>
+							<th>Designation</th>
+							<th>quantite</th>
+						</tr>				
+					<tr>
+						<td>{{approvisionnement.typeBadge.reference}}</td>
+						<td>{{approvisionnement.typeBadge.designation}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{%else %}
+					<tr>
+						<td>{{approvisionnement.typeBadge.reference}}</td>
+						<td>{{approvisionnement.typeBadge.designation}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{% endif %}
+				
+			{% endfor %}
+		</table>
+	{% endif %}
 {% endblock %}

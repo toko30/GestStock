@@ -8,12 +8,13 @@ class ComposantNomenclatureRepository extends EntityRepository
 {
    public function getComposantNomenclatureCompleteById($id)
    {
-		return $this->createQueryBuilder('n')
-		->join('n.composant', 'c')
+		return $this->createQueryBuilder('nc')
+		->join('nc.nomenclature', 'n')
+		->join('nc.composant', 'c')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
 		->addSelect('c')
-		->where('n.idNomenclature = :id')
+		->where('nc.idNomenclature = :id')
 		->setParameter('id', $id)
 		->getQuery()
 		->getResult();

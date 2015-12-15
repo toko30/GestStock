@@ -14,4 +14,19 @@
 
 {% block body %}
 {{ parent() }}
+	<h1>Stock Lecteur {{page}}</h1>
+	<table>
+		<tr>
+			<th>Référence</th>
+			<th>Désignation</th>
+			<th>Quantité</th>
+		</tr>
+		{% for lect in lecteur %}
+		<tr>
+			<td>{{lect.referenceInterne}}</td>
+			<td>{{lect.designation}}</td>
+			<td>{{lect.nbProduit}}</td>
+		</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

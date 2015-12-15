@@ -17,7 +17,7 @@ class ComposantNomenclature
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -131,6 +131,30 @@ class ComposantNomenclature
     public function getQuantite()
     {
         return $this->quantite;
+    }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     *
+     * @return ComposantNomenclature
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 
     /**

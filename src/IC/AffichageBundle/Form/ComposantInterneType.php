@@ -70,7 +70,6 @@ class ComposantInterneType extends AbstractType
     $builder->add('stock', 'text', array('required' => false));
     
     $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
-                'required' => false,
                 'multiple' => false,
                 'expanded' => true,
                 'empty_data'  => 0));

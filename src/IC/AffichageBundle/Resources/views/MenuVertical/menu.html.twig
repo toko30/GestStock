@@ -40,17 +40,49 @@
 				{% endfor %}
 			</div>
 			<span class="titreMenuVertical">Approvisionnement</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_appro_interne') }}">Approvisionnement Interne</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_interne') }}">Appro Stock Interne</a><br>
+				
+				{% image 'img/plus.png' %}
+					<span id="sousMenu4" class="sousMenu"><img id="sousMenu41" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Appro Sous Traitant</span><br>
+				{% endimage %}
+				
+				<div class="divSousMenu" id="sousMenu411">
+					{% if appro is empty %}
+						Aucune appro en cours
+					{% else %}
+						{% for approvisionnement in appro %}
+							<a class="sousSousMenu" href="{{ path('ic_affichage_appro_sous_traitant', {'id': approvisionnement.sousTraitant.id}) }}">{{ approvisionnement.sousTraitant.nom }}</a><br>
+						{% endfor %}
+					{% endif %}
+				</div>
+				
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_identifiant') }}">Appro Identifiant</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_cv') }}">Appro Lecteur CV</a><br>
 			<span class="titreMenuVertical">Production</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_production_interne') }}">Production Interne</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_production_interne') }}">Production Interne</a><br>
+				
+				{% image 'img/plus.png' %}
+					<span id="sousMenu5" class="sousMenu"><img id="sousMenu51" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Production Sous Traitant</span><br>
+				{% endimage %}
+				
+				<div class="divSousMenu" id="sousMenu511">
+					{% if prod is empty %}
+						<span>Aucune production en cours</span>
+					{% else %}
+						{% for production in prod %}
+							<a class="sousSousMenu" href="{{ path('ic_affichage_production_sous_traitant', {'id': production.sousTraitant.id}) }}">{{ production.sousTraitant.nom }}</a><br>
+						{% endfor %}
+					{% endif %}
+				</div>
+				
 			<span class="titreMenuVertical">Produit Fini</span><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_interne') }}">Lecteur Idcapt</a><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_identifiant') }}">Identifiant</a><br>
-				<a class="sousMenu" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_interne') }}">Lecteur Idcapt</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_identifiant') }}">Identifiant</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
 	{% endif %}
 </nav>
 {% if url == "ic_affichage_composant_interne" %}
 	{{ include("ICAffichageBundle:Form:FormComposantInterne.html.twig") }}
 {% elseif url == "ic_affichage_sous_traitant" %}
-	page sous-traitant
+	{{ include("ICAffichageBundle:Form:FormComposantSousTraitant.html.twig") }}
 {% endif %}

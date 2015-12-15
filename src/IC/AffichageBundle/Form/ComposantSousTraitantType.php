@@ -13,11 +13,10 @@ class ComposantSousTraitantType extends AbstractType
   private $fournisseur;
   private $nomenclature;
   
-  public function __construct($fam, $sousFam, $four, $nom)
+  public function __construct($fam, $sousFam, $nom)
   {
     $this->fam = $fam;
     $this->sousFam = $sousFam;
-    $this->fournisseur = $four;
     $this->nomenclature = $nom;
   }
   
@@ -27,16 +26,18 @@ class ComposantSousTraitantType extends AbstractType
       $choixFamille[] = $famille->getNom();
       
     foreach($this->getSousFam() AS $sousFamille)
-      $choixSousFamille[] = $sousFamille->getNom();  
-       
-    foreach($this->getFournisseur() AS $fournisseur)
-      $choixFournisseur[] = $fournisseur->getNom(); 
+      $choixSousFamille[] = $sousFamille->getNom();   
 
     foreach($this->getNomenclature() AS $nomenclature)
       $choixNomenclature[] = $nomenclature->getNom(); 
       
     $builder->add('recherche', 'text', array('required' => false));
-                 
+    
+    $builder->add('choixRecherche', 'choice', array('choices' => array('Désignation', 'Référence'),
+                  'multiple' => false,
+                  'expanded' => true,
+                  'empty_data'  => 0));
+                                   
     $builder->add('famille', 'choice', array('choices' => $choixFamille,
                 'multiple' => true,
                 'expanded' => true,
@@ -46,16 +47,6 @@ class ComposantSousTraitantType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'empty_data'  => 0));   
-                                      
-    $builder->add('etat', 'choice', array('choices' => array('Stock suffisant', 'A commander'),
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0)); 
-                 
-    $builder->add('fournisseur', 'choice', array('choices' => $choixFournisseur,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));  
                                
     $builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
                 'multiple' => true,
@@ -67,7 +58,8 @@ class ComposantSousTraitantType extends AbstractType
               'multiple' => false,
               'expanded' => true,
               'empty_data'  => 0));    
-                                                 
+              
+   $builder->add('Rechercher', 'submit');                                                 
     $builder->add('Trier', 'submit');
   }
 

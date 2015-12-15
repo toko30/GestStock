@@ -13,13 +13,14 @@
 
 {% block body %}
 	{{ parent()}}
+	<h1>Stock Interne</h1>
 	<table>
 		<tr>
 			<th class="titreFamille">Famille</th>
 			<th class="titreSousFamille">Sous Famille</th>
 			<th class="titreDesignation">Désignation</th>
 			<th class="titreBoitier">Boitier</th>
-			<th class="titreStockMinimum">Stock mini</th>
+			<th class="titreStock">Stock mini</th>
 			<th class="titreStock">Stock</th>
 			<th class="titreDetails"></th>
 		</tr>
@@ -30,7 +31,7 @@
 				<td class="sousFamille">{{composant.SousFamille.nom}}</td>
 				<td class="designation">{{composant.nom}}</td>
 				<td class="boitier">{{composant.boitier}}</td>
-				<td class="stockMinimum">{{composant.stockMini}}</td>
+				<td class="stock">{{composant.stockMini}}</td>
 				<td class="stock">{{composant.stockInterne}}</td>
 				<td class="details">
 					<a href="">

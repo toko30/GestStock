@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\AffichageBundle\Entity\TypeBadge" table="type_badge">
+  <entity name="IC\AffichageBundle\Entity\TypeBadge" repository-class="IC\AffichageBundle\Repository\TypeBadgeRepository" table="type_badge">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -14,10 +14,23 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="frequence" type="integer" column="frequence" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="type" type="integer" column="type" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
     <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
+    <one-to-one field="sousTypeBadge" target-entity="SousTypeBadge" >
+        <join-column name="type" referenced-column-name="id" />
+      </one-to-one>
   </entity>
 </doctrine-mapping>

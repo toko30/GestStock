@@ -9,34 +9,22 @@ class ProduitFiniController extends Controller
 {
     public function produitFiniIdcaptAction()
     {
-        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig');
+        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteurInterne();
+        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'Idcapt'));
     }
 
     public function produitFiniIdentifiantAction()
     {
-        return $this->render('ICAffichageBundle:produitFini:identifiant.html.twig');
+         $nbBadge = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Badge')->getStockBadge();
+        return $this->render('ICAffichageBundle:produitFini:identifiant.html.twig', array('badge' => $nbBadge));
     }
 
     public function produitFiniLecteurCVAction()
     {
-        return $this->render('ICAffichageBundle:produitFini:lecteurcv.html.twig');
+        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteurCV();
+                
+        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'CV'));
     }
         
-    public function menuAction()
-    {
-        $repositoryFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Famille');
-        $repositorySousFamille = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousFamille');
-        $repositoryNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Nomenclature');
-        
-        $listFamille = $repositoryFamille->findAll();
-        $listSousFamille = $repositorySousFamille->findAll();
-        $listnomenclature = $repositorySousFamille->findAll();
-        
-        $repository = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:SousTraitant');
-        $sousTraitant = $repository->findAll();
-        
-        $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille));
-
-        return $this->render('ICAffichageBundle:MenuVertical:menu.html.twig', array('form' => $form->createView(), 'sousTraitants' => $sousTraitant));
-    }
+ 
 }
