@@ -43,6 +43,16 @@ class ApproIdentifiant
     private $quantite;
 
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Appro
+     */
+    private $appro;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeBadge
+     */
+    private $typeBadge;
+
 
     /**
      * Set idCommande
@@ -124,5 +134,53 @@ class ApproIdentifiant
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set appro
+     *
+     * @param \IC\AffichageBundle\Entity\Appro $appro
+     *
+     * @return ApproIdentifiant
+     */
+    public function setAppro(\IC\AffichageBundle\Entity\Appro $appro = null)
+    {
+        $this->appro = $appro;
+
+        return $this;
+    }
+
+    /**
+     * Get appro
+     *
+     * @return \IC\AffichageBundle\Entity\Appro
+     */
+    public function getAppro()
+    {
+        return $this->appro;
+    }
+
+    /**
+     * Set typeBadge
+     *
+     * @param \IC\AffichageBundle\Entity\TypeBadge $typeBadge
+     *
+     * @return ApproIdentifiant
+     */
+    public function setTypeBadge(\IC\AffichageBundle\Entity\TypeBadge $typeBadge = null)
+    {
+        $this->typeBadge = $typeBadge;
+
+        return $this;
+    }
+
+    /**
+     * Get typeBadge
+     *
+     * @return \IC\AffichageBundle\Entity\TypeBadge
+     */
+    public function getTypeBadge()
+    {
+        return $this->typeBadge;
     }
 }

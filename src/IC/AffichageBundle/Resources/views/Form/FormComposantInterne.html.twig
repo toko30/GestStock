@@ -5,8 +5,14 @@
 	{{ form_widget(form.recherche, {'attr': {'class': 'inputRecherche'}}) }}
 	<br>
 	{% for child in form.choixRecherche %}
-		{{ form_widget(child, {'attr': {'class': 'ChoixRecherche'}}) }}
+		{% if loop.index == 1 %}
+			{{ form_widget(child, {'attr': {'class': 'ChoixRecherche', 'checked': 'checked'}}) }}
+		{% else %}
+			{{ form_widget(child, {'attr': {'class': 'ChoixRecherche'}}) }}
+		{% endif %}
+		
 		{{ form_label(child, child, {'label_attr': {'class': 'labelChoixRecherche'}}) }}
+		
 	{% endfor %}
 	{{ form_widget(form.Rechercher, {'attr': {'class': 'submitRecherche'}}) }}
 	<br>
@@ -76,7 +82,11 @@
 	<div id="checkBox611" class="divCheckBox">
 		{{ form_widget(form.stock, {'attr': {'class': 'inputStock'}}) }}<br>
 		{% for child in form.plus_ou_moins %}
-			{{ form_widget(child, {'attr': {'class': 'radioStock'}}) }}
+			{% if loop.index == 1 %}
+				{{ form_widget(child, {'attr': {'class': 'radioStock', 'checked': 'checked'}}) }}
+			{% else %}
+				{{ form_widget(child, {'attr': {'class': 'radioStock'}}) }}
+			{% endif %}
 			{{ form_label(child ,child , {'label_attr': {'class': 'labelStock'}}) }}
 		{% endfor %}
 	</div>

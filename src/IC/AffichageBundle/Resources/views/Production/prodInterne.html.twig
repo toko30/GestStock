@@ -28,7 +28,7 @@
 		</tr>
 		{% for production in prod %}
 			<tr>
-				<td>{{production.nomenclature.nom}}</td>
+				<td>{{production.nomenclature.nom}}-V{{production.nomenclature.version}}</td>
 				<td>{{production.quantite}}</td>
 				<td>{{production.dateProd|date('d-m-Y')}}</td>
 			</tr>

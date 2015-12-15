@@ -1,3 +1,7 @@
+table
+{
+	width: 70%;
+}
 .stockInsufisant td
 {
 	background: red;
@@ -8,56 +12,4 @@
 {
 	background: darkred;
 	border: 1px solid darkred;
-}
-
-.titreFamille
-{
-	width:10%;
-}
-.titreSousFamille
-{
-	width:10%;
-}
-.titreDesignation
-{
-	width:auto;
-}
-.titreBoitier
-{
-	width:10%;
-}
-.titreStockMinimum
-{
-	width:10%;
-}
-.titreStock
-{
-	width:10%;
-}
-.titreDetails
-{
-	background: white;
-	border-top: 0;
-	border-right: 0;
-	width:2%;
-}
-.designation
-{
-	text-align:left;
-	padding-left: 5px;	
-}
-.details
-{
-	background: #00B8D6;
-}
-.flecheDetails
-{
-	margin-top: 4px;
-	width: 12px;
-	height: 12px;
-}
-
-.details a
-{
-	color: white;
 }

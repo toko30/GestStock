@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\AffichageBundle\Entity\TypeLecteur" table="type_lecteur">
+  <entity name="IC\AffichageBundle\Entity\TypeLecteur" repository-class="IC\AffichageBundle\Repository\TypeLecteurRepository" table="type_lecteur">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>

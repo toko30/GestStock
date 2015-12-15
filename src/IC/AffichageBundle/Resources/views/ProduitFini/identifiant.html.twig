@@ -14,7 +14,6 @@
 
 {% block body %}
 {{ parent() }}
-{{dump(badge)}}
 	<h1>Stock Identifiant</h1>
 	<table>
 		<tr>
@@ -23,11 +22,11 @@
 			<th>Quantité</th>
 		</tr>
 		{% for bad in badge %}
-		<tr>
-			<td>{{bad.typeBadge.reference}}</td>
-			<td>{{bad.typeBadge.designation}}</td>
-			<td>{{bad.quantite}}</td>
-		</tr>
+			<tr>
+				<td>{{bad.typeBadge.reference}}</td>
+				<td>{{bad.typeBadge.designation}}</td>
+				<td>{{bad.quantite}}</td>
+			</tr>
 		{% endfor %}
 	</table>
 {% endblock %}

@@ -9,25 +9,29 @@ class ApprovisionnementController extends Controller
 {
     public function approvisionnementInterneAction()
     {
-        $appro = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproInterne();
+        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproInterne();
         
         return $this->render('ICAffichageBundle:Appro:approInterne.html.twig', array('appro' => $appro));
     }
     
     public function approvisionnementSousTraitantAction($id)
     {
-        $appro = $this->getDoctrine()->getEntityManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproSousTraitant($id);
+        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproSousTraitant($id);
         
         return $this->render('ICAffichageBundle:Appro:approSousTraitant.html.twig', array('appro' => $appro));
     }
 
     public function approvisionnementIdentifiantAction()
     {
-        return $this->render('ICAffichageBundle:Appro:approIdentifiant.html.twig');
+        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproIdentifiant')->getApproIdentifiant();
+        
+        return $this->render('ICAffichageBundle:Appro:approIdentifiant.html.twig', array('appro' => $appro));
     }
     
     public function approvisionnementLecteurCVAction()
     {
-        return $this->render('ICAffichageBundle:Appro:approLecteurCV.html.twig');
+        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproLecteur')-> getApproLecteur();
+        
+        return $this->render('ICAffichageBundle:Appro:approLecteurCV.html.twig', array('appro' => $appro));
     }
 }

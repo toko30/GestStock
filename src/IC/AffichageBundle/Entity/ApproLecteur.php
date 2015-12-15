@@ -43,6 +43,16 @@ class ApproLecteur
     private $quantite;
 
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Appro
+     */
+    private $appro;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeLecteur
+     */
+    private $typeLecteur;
+
 
     /**
      * Set idCommande
@@ -124,5 +134,53 @@ class ApproLecteur
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set appro
+     *
+     * @param \IC\AffichageBundle\Entity\Appro $appro
+     *
+     * @return ApproLecteur
+     */
+    public function setAppro(\IC\AffichageBundle\Entity\Appro $appro = null)
+    {
+        $this->appro = $appro;
+
+        return $this;
+    }
+
+    /**
+     * Get appro
+     *
+     * @return \IC\AffichageBundle\Entity\Appro
+     */
+    public function getAppro()
+    {
+        return $this->appro;
+    }
+
+    /**
+     * Set typeLecteur
+     *
+     * @param \IC\AffichageBundle\Entity\TypeLecteur $typeLecteur
+     *
+     * @return ApproLecteur
+     */
+    public function setTypeLecteur(\IC\AffichageBundle\Entity\TypeLecteur $typeLecteur = null)
+    {
+        $this->typeLecteur = $typeLecteur;
+
+        return $this;
+    }
+
+    /**
+     * Get typeLecteur
+     *
+     * @return \IC\AffichageBundle\Entity\TypeLecteur
+     */
+    public function getTypeLecteur()
+    {
+        return $this->typeLecteur;
     }
 }

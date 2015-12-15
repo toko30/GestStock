@@ -13,7 +13,7 @@
 
 {% block body %}
 	<section id="menuVertical">
-		{{ render(controller("ICAffichageBundle:Composant:menu", {'url': app.request.attributes.get('_route')})) }}
+		{{ render(controller("ICAffichageBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
 {% endblock %}
 {% block javascripts %}
