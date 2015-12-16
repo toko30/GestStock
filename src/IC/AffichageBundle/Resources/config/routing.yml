@@ -8,6 +8,12 @@ ic_affichage_sous_traitant:
     requirements:
         id: \d{1,10}
         
+ic_affichage_detail:
+    path:     /Detail-{id}
+    defaults: { _controller: ICAffichageBundle:Composant:detail }
+    requirements:
+        id: \d{1,10}
+                
 ic_affichage_nomenclature_pcb:
     path:     /Nomenclature-PCB-{id}
     defaults: { _controller: ICAffichageBundle:Nomenclature:nomenclatureComposant }

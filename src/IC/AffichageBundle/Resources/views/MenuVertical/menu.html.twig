@@ -81,8 +81,8 @@
 				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
 	{% endif %}
 </nav>
-<span onclick="$('.imp').tableExport({type:'excel', escape:'false', htmlContent:'false'})">Enregistrer au format Excel</span><br>
-<a>Imprimer</a><br>
+<span class="lienImp" onclick="$('.imp').tableExport({type:'excel', escape:'false'})">Enregistrer au format Excel</span><br>
+<span class="lienImp" onclick="javascript:window.print()">Imprimer</span><br>
 <br>
 {% if url == "ic_affichage_composant_interne" %}
 	{{ include("ICAffichageBundle:Form:FormComposantInterne.html.twig") }}

@@ -5,9 +5,9 @@
 {% block entete %}{{ parent() }} Approvisionnement Sous Traitant{% endblock %}
 
 {% block stylesheets %}
+	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/appro.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -16,7 +16,7 @@
 	{{ parent() }}
 	{% if appro is not empty %}
 		<h1>Approvisionnement {{appro[0].appro.sousTraitant.nom}}</h1>
-		<table>
+		<table class="imp">
 			<tr>
 				<th>Famille</th>
 				<th>SousFamille</th>

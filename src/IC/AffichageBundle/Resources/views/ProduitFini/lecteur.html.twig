@@ -15,11 +15,11 @@
 {% block body %}
 {{ parent() }}
 	<h1>Stock Lecteur {{page}}</h1>
-	<table>
+	<table class="imp">
 		<tr>
-			<th>Référence</th>
-			<th>Désignation</th>
-			<th>Quantité</th>
+			<td class="titreDesignation">Référence</td>
+			<td class="titreDesignation">Désignation</td>
+			<td class="titreStock">Quantité</td>
 		</tr>
 		{% for lect in lecteur %}
 		<tr>

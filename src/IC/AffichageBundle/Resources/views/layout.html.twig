@@ -8,6 +8,11 @@
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/impression.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print">
+	{% endstylesheets %}
 {% endblock %}
 {% block entete %}Affichage{% endblock %}
 

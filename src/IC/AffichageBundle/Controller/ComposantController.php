@@ -49,4 +49,8 @@ class ComposantController extends Controller
                   
         return $this->render('ICAffichageBundle:Composant:sousTraitant.html.twig', array('composantSousTraitants'=> $listComposant));
     }
+    public function detailAction($id)
+    {
+        return $this->render('ICAffichageBundle:Composant:detail.html.twig', array('id'=> $id));
+    }
 }

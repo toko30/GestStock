@@ -5,9 +5,9 @@
 {% block entete %}{{ parent() }} Production Interne{% endblock %}
 
 {% block stylesheets %}
+	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/production.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -20,11 +20,11 @@
 	{% if prod is empty %}
 		Aucune production en cours
 	{% else %}
-		<table>
+		<table class="imp">
 		<tr>
-			<th>Produit</th>
-			<th>Quantité</th>
-			<th>Date de lancement</th>
+			<td class="titreDesignation">Produit</td>
+			<td class="titreStock">Quantité</td>
+			<td class="titreStock">Date de lancement</td>
 		</tr>
 		{% for production in prod %}
 			<tr>

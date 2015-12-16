@@ -5,9 +5,9 @@
 {% block entete %}{{ parent() }} Nomenclature PCB{% endblock %}
 
 {% block stylesheets %}
+	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -16,15 +16,15 @@
 {{ parent() }}
 	{% if nomenclatures is not empty %}
 		<h1>{{nomenclatures[0].nomenclature.nom}} - V{{nomenclatures[0].nomenclature.version}}</h1>
-			<table>
+			<table class="imp">
 				<tr>
-					<th class="titreFamille">Famille</th>
-					<th class="titreSousFamille">Sous Famille</th>
-					<th class="titreDesignation">Désignation</th>
-					<th class="titreBoitier">Boitier</th>
-					<th class="titreStock">Quantité</th>
-					<th class="titreStock">Position</th>
-					<th class="titreDetails"></th>
+					<td class="titreFamille">Famille</td>
+					<td class="titreSousFamille">Sous Famille</td>
+					<td class="titreDesignation">Désignation</td>
+					<td class="titreBoitier">Boitier</td>
+					<td class="titreStock">Quantité</td>
+					<td class="titreStock">Position</td>
+					<td class="titreDetails"></td>
 				</tr>
 				{% for nomenclature in nomenclatures %}
 					<tr>

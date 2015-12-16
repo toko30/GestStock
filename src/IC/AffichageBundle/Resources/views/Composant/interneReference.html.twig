@@ -4,9 +4,9 @@
 {% block entete %}{{ parent() }} Stock Interne{% endblock %}
 
 {% block stylesheets %}
+	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/interne.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -22,7 +22,7 @@
 	
 	{% set id = composants[0].fournisseur.id %}
 	
-	<table>
+	<table class="imp">
 		<tr>
 			<th class="titreFamille">Famille</th>
 			<th class="titreSousFamille">Sous Famille</th>
@@ -42,7 +42,7 @@
 			
 			<h2>{{composant.fournisseur.nom}}</h2>
 			
-			<table>
+			<table class="imp">
 				<tr>
 					<th class="titreFamille">Famille</th>
 					<th class="titreSousFamille">Sous Famille</th>

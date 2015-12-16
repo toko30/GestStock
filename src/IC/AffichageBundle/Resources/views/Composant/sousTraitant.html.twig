@@ -5,9 +5,9 @@
 {% block entete %}{{ parent() }} Stock Sous Traitant{% endblock %}
 
 {% block stylesheets %}
+	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
 	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -16,7 +16,7 @@
 	{{ parent() }}
 	{% if composantSousTraitants is not empty %}
 		<h1>{{composantSousTraitants[0].soustraitant.nom}}</h1>
-		<table>
+		<table class="imp">
 			<tr>
 				<th class="titreFamille">Famille</th>
 				<th class="titreSousFamille">Sous Famille</th>

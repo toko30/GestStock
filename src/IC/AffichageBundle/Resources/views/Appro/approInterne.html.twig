@@ -23,7 +23,7 @@
 		{% set id = appro[0].appro.id %}
 		
 		<h1>{{appro[0].appro.fournisseur.nom}} le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h1>
-		<table>
+		<table class="imp">
 			<tr>
 				<th>Famille</th>
 				<th>Sous Famille</th>
@@ -39,7 +39,7 @@
 					
 					<h1>{{approvisionnement.appro.fournisseur.nom}} le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h1>
 					
-					<table>
+					<table class="imp">
 						<tr>
 							<th>Famille</th>
 							<th>Sous Famille</th>

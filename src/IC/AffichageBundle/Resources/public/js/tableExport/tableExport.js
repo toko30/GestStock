@@ -25,7 +25,7 @@ THE SOFTWARE.*/
             tableExport: function(options) {
                 var defaults = {
 						separator: ',',
-						ignoreColumn: [1,1],
+						ignoreColumn: [],
 						tableName:'yourTableName',
 						type:'csv',
 						pdfFontSize:14,
