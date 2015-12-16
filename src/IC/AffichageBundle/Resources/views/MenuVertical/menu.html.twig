@@ -81,12 +81,15 @@
 				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
 	{% endif %}
 </nav>
+<span onclick="$('.imp').tableExport({type:'excel', escape:'false', htmlContent:'false'})">Enregistrer au format Excel</span><br>
+<a>Imprimer</a><br>
+<br>
 {% if url == "ic_affichage_composant_interne" %}
 	{{ include("ICAffichageBundle:Form:FormComposantInterne.html.twig") }}
 {% elseif url == "ic_affichage_produit_fini_lecteur_cv" or  url == "ic_affichage_produit_fini_interne" %}
 	{{ include("ICAffichageBundle:Form:FormProduitFiniLecteur.html.twig") }}
 {% elseif url == "ic_affichage_produit_fini_identifiant" %}
 	{{ include("ICAffichageBundle:Form:FormProduitFiniIdentifiant.html.twig") }}
-{% else %}
+{% elseif url == "ic_affichage_sous_traitant" %}
 	{{ include("ICAffichageBundle:Form:FormComposantSousTraitant.html.twig") }}
 {% endif %}

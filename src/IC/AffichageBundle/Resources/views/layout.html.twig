@@ -17,9 +17,15 @@
 	</section>
 {% endblock %}
 {% block javascripts %}
-	{% javascripts 
-	'@ICAffichageBundle/Resources/public/js/*' %}
 	{{ parent() }}
-	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% javascripts 
+	'@ICAffichageBundle/Resources/public/js/*'
+	'@ICAffichageBundle/Resources/public/js/tableExport/tableExport.js'
+	'@ICAffichageBundle/Resources/public/js/tableExport/jquery.base64.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/sprintf.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/jspdf.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/base64.js' 
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

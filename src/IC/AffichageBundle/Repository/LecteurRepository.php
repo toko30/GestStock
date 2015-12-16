@@ -8,25 +8,31 @@ class LecteurRepository extends EntityRepository
 {
    public function countLecteur($critere, $id)
    {
-		$req = $this->createQueryBuilder('l')
-		->select('COUNT(l.idLecteur) as nbProduit, t.referenceInterne, t.designation')
-		->join('l.typeLecteur', 't')
-		->groupBy('l.idLecteur')
-		->where('t.idFournisseur = :id')
-		->setParameter('id', $id);
-		
-		if(!empty($critere['type']))
+        $req = $this->createQueryBuilder('l')
+        ->select('COUNT(l.idLecteur) as nbProduit, t.referenceInterne, t.designation')
+        ->join('l.typeLecteur', 't')
+        ->groupBy('l.idLecteur')
+        ->where('t.idFournisseur = :id')
+        ->setParameter('id', $id);
+        
+       if(!empty($critere['recherche']))
         {
-                $req->andWhere('t.type IN (:id1)') 
-                ->setParameter('id1', $critere['type']);
+            $req->andWhere('t.referenceInterne LIKE :ref')
+            ->setParameter('ref', '%'.$critere['recherche'].'%');
         }
-		
-		if(!empty($critere['frequence']))
+                
+        if(!empty($critere['type']))
         {
-                $req->andWhere('t.frequence IN (:id2)') 
-                ->setParameter('id2', $critere['frequence']);
+            $req->andWhere('t.type IN (:id1)') 
+            ->setParameter('id1', $critere['type']);
         }
-		
-		return $req->getQuery()->getResult();	   
+                
+        if(!empty($critere['frequence']))
+        {
+            $req->andWhere('t.frequence IN (:id2)') 
+            ->setParameter('id2', $critere['frequence']);
+        }
+        
+        return $req->getQuery()->getResult();	   
    }
 }
