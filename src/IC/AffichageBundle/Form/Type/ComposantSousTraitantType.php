@@ -1,23 +1,22 @@
 <?php
 
-namespace IC\AffichageBundle\Form;
+namespace IC\AffichageBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ComposantInterneType extends AbstractType
+class ComposantSousTraitantType extends AbstractType
 {
   private $famille;
   private $sousFamille;
   private $fournisseur;
   private $nomenclature;
   
-  public function __construct($fam, $sousFam, $four, $nom)
+  public function __construct($fam, $sousFam, $nom)
   {
     $this->fam = $fam;
     $this->sousFam = $sousFam;
-    $this->fournisseur = $four;
     $this->nomenclature = $nom;
   }
   
@@ -27,10 +26,7 @@ class ComposantInterneType extends AbstractType
       $choixFamille[] = $famille->getNom();
       
     foreach($this->getSousFam() AS $sousFamille)
-      $choixSousFamille[] = $sousFamille->getNom();  
-       
-    foreach($this->getFournisseur() AS $fournisseur)
-      $choixFournisseur[] = $fournisseur->getNom(); 
+      $choixSousFamille[] = $sousFamille->getNom();   
 
     foreach($this->getNomenclature() AS $nomenclature)
       $choixNomenclature[] = $nomenclature->getNom(); 
@@ -41,40 +37,30 @@ class ComposantInterneType extends AbstractType
                   'multiple' => false,
                   'expanded' => true,
                   'empty_data'  => 0));
-                                 
+                                   
     $builder->add('famille', 'choice', array('choices' => $choixFamille,
-                  'multiple' => true,
-                  'expanded' => true,
-                  'empty_data'  => 0));
+                'multiple' => true,
+                'expanded' => true,
+                'empty_data'  => 0));
                 
     $builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
-                  'multiple' => true,
-                  'expanded' => true,
-                  'empty_data'  => 0));   
-                                      
-    $builder->add('etat', 'choice', array('choices' => array('Stock suffisant', 'A commander'),
-                  'multiple' => true,
-                  'expanded' => true,
-                  'empty_data'  => 0)); 
-                 
-    $builder->add('fournisseur', 'choice', array('choices' => $choixFournisseur,
-                  'multiple' => true,
-                  'expanded' => true,
-                  'empty_data'  => 0));  
+                'multiple' => true,
+                'expanded' => true,
+                'empty_data'  => 0));   
                                
-    /*$builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
-                  'multiple' => true,
-                  'expanded' => true,
-                  'empty_data'  => 0));*/ 
+    $builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
+                'multiple' => true,
+                'expanded' => true,
+                'empty_data'  => 0)); 
 
     $builder->add('stock', 'text', array('required' => false));
     
     $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
-                'multiple' => false,
-                'expanded' => true,
-                'empty_data'  => 0));
-                    
-    $builder->add('Rechercher', 'submit');                                            
+              'multiple' => false,
+              'expanded' => true,
+              'empty_data'  => 0));    
+              
+   $builder->add('Rechercher', 'submit');                                                 
     $builder->add('Trier', 'submit');
   }
 

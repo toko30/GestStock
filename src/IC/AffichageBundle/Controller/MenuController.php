@@ -3,8 +3,8 @@
 namespace IC\AffichageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use IC\AffichageBundle\Form\ComposantInterneType;
-use IC\AffichageBundle\Form\ComposantSousTraitantType;
+use IC\AffichageBundle\Form\Type\ComposantInterneType;
+use IC\AffichageBundle\Form\Type\ComposantSousTraitantType;
 
 class MenuController extends Controller
 {

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class ComposantSousTraitantRepository extends EntityRepository
 {
-   public function getComposantSousTraitantById($id)
+   public function getStockSousTraitantById($id)
    {
 		return $this->createQueryBuilder('s')
 		->join('s.sousTraitant', 'st')
@@ -17,5 +17,10 @@ class ComposantSousTraitantRepository extends EntityRepository
 		->setParameter('id', $id)
 		->getQuery()
 		->getResult();
+   }
+   
+   public function getStockSousTraitantkByCritere($critere, $id)
+   {
+	   
    }
 }

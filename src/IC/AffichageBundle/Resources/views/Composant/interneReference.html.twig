@@ -1,0 +1,132 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/interne.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	{{ parent()}}
+	
+	<h1>Stock Interne Par Référence</h1>
+	
+	<h2>{{composants[0].fournisseur.nom}}</h2>
+	
+	{% set id = composants[0].fournisseur.id %}
+	
+	<table>
+		<tr>
+			<th class="titreFamille">Famille</th>
+			<th class="titreSousFamille">Sous Famille</th>
+			<th class="titreDesignation">Désignation</th>
+			<th class="titreDesignation">Référence</th>
+			<th class="titreStock">moq</th>
+			<th class="titreBoitier">Boitier</th>
+			<th class="titreStock">Stock mini</th>
+			<th class="titreStock">Stock</th>
+			<th class="titreDetails"></th>
+		</tr>
+		
+	{% for composant in composants %}
+		{% if composant.fournisseur.id != id %}
+			{% set id = composant.fournisseur.id %}
+			</table>
+			
+			<h2>{{composant.fournisseur.nom}}</h2>
+			
+			<table>
+				<tr>
+					<th class="titreFamille">Famille</th>
+					<th class="titreSousFamille">Sous Famille</th>
+					<th class="titreDesignation">Désignation</th>
+					<th class="titreDesignation">Référence</th>
+					<th class="titreStock">moq</th>
+					<th class="titreBoitier">Boitier</th>
+					<th class="titreStock">Stock mini</th>
+					<th class="titreStock">Stock</th>
+					<th class="titreDetails"></th>
+				</tr>
+		{% endif %}
+			{% if 0 in etat %}	
+
+				<tr class="{% if composant.composant.stockMini > composant.composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+					<td class="famille">{{composant.composant.Famille.nom}}</td>
+					<td class="sousFamille">{{composant.composant.SousFamille.nom}}</td>
+					<td class="designation">{{composant.composant.nom}}</td>
+					<td class="designation">{{composant.ref}}</td>
+					<td class="stock">{{composant.moq}}</td>
+					<td class="boitier">{{composant.composant.boitier}}</td>
+					<td class="stock">{{composant.composant.stockMini}}</td>
+					<td class="stock">{{composant.composant.stockInterne}}</td>
+					<td class="details">
+						<a href="">
+						{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+							<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+						{% endimage %}
+						</a>
+					</td>
+				</tr>			
+			{% else %}
+				{% if '1' in etat[0] and '2'  not in etat[0] %}
+					{% if composant.composant.stockMini <= composant.composant.stockInterne %}		
+						<tr class="{% if composant.composant.stockMini > composant.composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.composant.nom}}</td>
+							<td class="boitier">{{composant.composant.boitier}}</td>
+							<td class="stock">{{composant.composant.stockMini}}</td>
+							<td class="stock">{{composant.composant.stockInterne}}</td>
+							<td class="details">
+								<a href="">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% elseif '2' in etat[0] and '1'  not in etat[0] %}
+					{% if composant.composant.stockMini > composant.composant.stockInterne %}
+						<tr class="{% if composant.composant.stockMini > composant.composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.composant.nom}}</td>
+							<td class="boitier">{{composant.composant.boitier}}</td>
+							<td class="stock">{{composant.composant.stockMini}}</td>
+							<td class="stock">{{composant.composant.stockInterne}}</td>
+							<td class="details">
+								<a href="">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>			
+					{% endif %}
+				{% else %}	
+					<tr class="{% if composant.composant.stockMini > composant.composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+						<td class="famille">{{composant.composant.Famille.nom}}</td>
+						<td class="sousFamille">{{composant.composant.SousFamille.nom}}</td>
+						<td class="designation">{{composant.composant.nom}}</td>
+						<td class="boitier">{{composant.composant.boitier}}</td>
+						<td class="stock">{{composant.composant.stockMini}}</td>
+						<td class="stock">{{composant.composant.stockInterne}}</td>
+						<td class="details">
+							<a href="">
+							{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+								<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+							{% endimage %}
+							</a>
+						</td>
+					</tr>			
+				{% endif %}
+			{% endif %}
+	{% endfor %}
+	</table>
+{% endblock %}

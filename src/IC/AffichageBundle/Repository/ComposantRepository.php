@@ -13,9 +13,15 @@ class ComposantRepository extends EntityRepository
         ->join('c.famille', 'f')
         ->join('c.sousFamille', 's');
         
+        if(!empty($critere['recherche']))
+        {
+                $req->where('c.nom LIKE :nom')
+                ->setParameter('nom', '%'.$critere['recherche'].'%');
+        }   
+             
         if(!empty($critere['famille']))
         {
-                $req->where('c.idFamille IN (:id)') 
+                $req->andWhere('c.idFamille IN (:id)') 
                 ->setParameter('id', $critere['famille']);
         }
         
