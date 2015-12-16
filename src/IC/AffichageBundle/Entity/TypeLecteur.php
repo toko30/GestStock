@@ -191,4 +191,124 @@ class TypeLecteur
     {
         return $this->id;
     }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return TypeLecteur
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set frequence
+     *
+     * @param integer $frequence
+     *
+     * @return TypeLecteur
+     */
+    public function setFrequence($frequence)
+    {
+        $this->frequence = $frequence;
+
+        return $this;
+    }
+
+    /**
+     * Get frequence
+     *
+     * @return integer
+     */
+    public function getFrequence()
+    {
+        return $this->frequence;
+    }
+
+    /**
+     * Set petite
+     *
+     * @param integer $petite
+     *
+     * @return TypeLecteur
+     */
+    public function setPetite($petite)
+    {
+        $this->petite = $petite;
+
+        return $this;
+    }
+
+    /**
+     * Get petite
+     *
+     * @return integer
+     */
+    public function getPetite()
+    {
+        return $this->petite;
+    }
+
+    /**
+     * Set moyenne
+     *
+     * @param integer $moyenne
+     *
+     * @return TypeLecteur
+     */
+    public function setMoyenne($moyenne)
+    {
+        $this->moyenne = $moyenne;
+
+        return $this;
+    }
+
+    /**
+     * Get moyenne
+     *
+     * @return integer
+     */
+    public function getMoyenne()
+    {
+        return $this->moyenne;
+    }
+
+    /**
+     * Set grande
+     *
+     * @param integer $grande
+     *
+     * @return TypeLecteur
+     */
+    public function setGrande($grande)
+    {
+        $this->grande = $grande;
+
+        return $this;
+    }
+
+    /**
+     * Get grande
+     *
+     * @return integer
+     */
+    public function getGrande()
+    {
+        return $this->grande;
+    }
 }

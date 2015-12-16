@@ -9,7 +9,7 @@ class ProduitFiniController extends Controller
 {
     public function produitFiniIdcaptAction()
     {
-        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteurInterne();
+        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 0);
         return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'Idcapt'));
     }
 
@@ -21,7 +21,7 @@ class ProduitFiniController extends Controller
 
     public function produitFiniLecteurCVAction()
     {
-        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteurCV();
+        $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 6);
                 
         return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'CV'));
     }

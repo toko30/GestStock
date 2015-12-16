@@ -16,12 +16,22 @@ class MoqRepository extends EntityRepository
                                 ->join('m.fournisseur', 'f')
                                 ->join('m.composant', 'c')
                                 ->addSelect('c')
+                                ->groupBy('m.idComposant')
                                 ->where('m.idFournisseur = :id') 
                                 ->setParameter('id', $fournisseur);
+                                
                                 if(!empty($critere['recherche']))
                                 {
-                                        $req->andWhere('m.ref LIKE :ref')
-                                        ->setParameter('ref', '%'.$critere['recherche'].'%');
+                                        if($critere['choixRecherche'] == 0)
+                                        {
+                                                $req->andWhere('c.nom LIKE :nom')
+                                                ->setParameter('nom', '%'.$critere['recherche'].'%');                                                
+                                        }
+                                        else
+                                        {
+                                                $req->andWhere('m.ref LIKE :ref')
+                                                ->setParameter('ref', '%'.$critere['recherche'].'%');      
+                                        }
                                 }
                                 else
                                 {
@@ -36,7 +46,7 @@ class MoqRepository extends EntityRepository
                                 
                                 if(!empty($critere['sousFamille']))
                                 {
-                                        $req->andWhere('c.sousFamille IN (:id1)') 
+                                        $req->andWhere('c.idSousFamille IN (:id1)') 
                                         ->setParameter('id1', $critere['sousFamille']);
                                 }
                                 
@@ -70,7 +80,7 @@ class MoqRepository extends EntityRepository
                         
                         if(!empty($critere['sousFamille']))
                         {
-                                $req->andWhere('c.sousFamille IN (:id1)') 
+                                $req->andWhere('c.idSousFamille IN (:id1)') 
                                 ->setParameter('id1', $critere['sousFamille']);
                         }
                         

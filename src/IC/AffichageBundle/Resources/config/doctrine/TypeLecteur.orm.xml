@@ -19,9 +19,34 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="type" type="integer" column="type" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="frequence" type="integer" column="frequence" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
       <options>
         <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="petite" type="integer" column="petite" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="moyenne" type="integer" column="moyenne" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="grande" type="integer" column="grande" nullable="false">
+      <options>
+        <option name="fixed"/>
       </options>
     </field>
   </entity>

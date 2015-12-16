@@ -27,7 +27,7 @@ class ComposantRepository extends EntityRepository
         
         if(!empty($critere['sousFamille']))
         {
-                $req->andWhere('c.sousFamille IN (:id1)') 
+                $req->andWhere('c.idSousFamille IN (:id1)') 
                 ->setParameter('id1', $critere['sousFamille']);
         }
         

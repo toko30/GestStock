@@ -15,9 +15,10 @@ class ComposantController extends Controller
         //Partie Recherche et trie des composant
         if('POST' == $request->getMethod())
         {
-            var_dump($form->getData());
             if(!empty($_POST['formComposantInterne']['etat']))
                 $etat[0] = $_POST['formComposantInterne']['etat'];   
+                
+            
             
             //Recherche Par fournisseur ou par référence    
             if(!empty($_POST['formComposantInterne']['fournisseur']) || ($_POST['formComposantInterne']['choixRecherche'] == 1 && !empty($_POST['formComposantInterne']['recherche'])))
@@ -42,7 +43,7 @@ class ComposantController extends Controller
     public function soustraitantAction(Request $request, $id)
     {
         if('POST' == $request->getMethod())
-            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockSousTraitantkByCritere($_POST, $id);
+            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantkByCritere($_POST['formComposantSousTraitant'], $id);
         else
             $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantById($id);  
                   

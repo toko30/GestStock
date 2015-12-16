@@ -48,10 +48,10 @@ class ComposantSousTraitantType extends AbstractType
                 'expanded' => true,
                 'empty_data'  => 0));   
                                
-    $builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
+    /*$builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
                 'multiple' => true,
                 'expanded' => true,
-                'empty_data'  => 0)); 
+                'empty_data'  => 0)); */
 
     $builder->add('stock', 'text', array('required' => false));
     
@@ -66,7 +66,7 @@ class ComposantSousTraitantType extends AbstractType
 
   public function getName()
   {
-    return 'formComposantInterne';
+    return 'formComposantSousTraitant';
   }
   
   public function getFam()

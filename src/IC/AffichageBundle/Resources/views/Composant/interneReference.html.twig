@@ -15,7 +15,9 @@
 	{{ parent()}}
 	
 	<h1>Stock Interne Par Référence</h1>
-	
+{% if composants is empty %}
+	aucun composant ne correspond à votre recherche
+{% else %}	
 	<h2>{{composants[0].fournisseur.nom}}</h2>
 	
 	{% set id = composants[0].fournisseur.id %}
@@ -129,4 +131,5 @@
 			{% endif %}
 	{% endfor %}
 	</table>
+{% endif %}
 {% endblock %}

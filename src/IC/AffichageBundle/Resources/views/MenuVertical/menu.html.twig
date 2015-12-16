@@ -83,6 +83,10 @@
 </nav>
 {% if url == "ic_affichage_composant_interne" %}
 	{{ include("ICAffichageBundle:Form:FormComposantInterne.html.twig") }}
-{% elseif url == "ic_affichage_sous_traitant" %}
+{% elseif url == "ic_affichage_produit_fini_lecteur_cv" or  url == "ic_affichage_produit_fini_interne" %}
+	{{ include("ICAffichageBundle:Form:FormProduitFiniLecteur.html.twig") }}
+{% elseif url == "ic_affichage_produit_fini_identifiant" %}
+	{{ include("ICAffichageBundle:Form:FormProduitFiniIdentifiant.html.twig") }}
+{% else %}
 	{{ include("ICAffichageBundle:Form:FormComposantSousTraitant.html.twig") }}
 {% endif %}
