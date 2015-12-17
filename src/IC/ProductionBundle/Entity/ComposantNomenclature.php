@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * ComposantNomenclature
@@ -33,12 +33,12 @@ class ComposantNomenclature
     private $id;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Composant
+     * @var \IC\ProductionBundle\Entity\Composant
      */
     private $composant;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Nomenclature
+     * @var \IC\ProductionBundle\Entity\Nomenclature
      */
     private $nomenclature;
 
@@ -152,11 +152,11 @@ class ComposantNomenclature
     /**
      * Set composant
      *
-     * @param \IC\AffichageBundle\Entity\Composant $composant
+     * @param \IC\ProductionBundle\Entity\Composant $composant
      *
      * @return ComposantNomenclature
      */
-    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    public function setComposant(\IC\ProductionBundle\Entity\Composant $composant = null)
     {
         $this->composant = $composant;
 
@@ -166,7 +166,7 @@ class ComposantNomenclature
     /**
      * Get composant
      *
-     * @return \IC\AffichageBundle\Entity\Composant
+     * @return \IC\ProductionBundle\Entity\Composant
      */
     public function getComposant()
     {
@@ -176,11 +176,11 @@ class ComposantNomenclature
     /**
      * Set nomenclature
      *
-     * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
+     * @param \IC\ProductionBundle\Entity\Nomenclature $nomenclature
      *
      * @return ComposantNomenclature
      */
-    public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
+    public function setNomenclature(\IC\ProductionBundle\Entity\Nomenclature $nomenclature = null)
     {
         $this->nomenclature = $nomenclature;
 
@@ -190,11 +190,10 @@ class ComposantNomenclature
     /**
      * Get nomenclature
      *
-     * @return \IC\AffichageBundle\Entity\Nomenclature
+     * @return \IC\ProductionBundle\Entity\Nomenclature
      */
     public function getNomenclature()
     {
         return $this->nomenclature;
     }
 }
-

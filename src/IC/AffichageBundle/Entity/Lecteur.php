@@ -2,51 +2,35 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Lecteur
- *
- * @ORM\Table(name="lecteur")
- * @ORM\Entity
  */
 class Lecteur
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $etat;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="num_serie", type="string", length=100, nullable=false)
      */
     private $numSerie;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_lecteur", type="integer", nullable=false)
      */
     private $idLecteur;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date_creation", type="date", nullable=true)
      */
     private $dateCreation;
-
 
     /**
      * @var integer
      */
-    private $etat;
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\TypeLecteur
@@ -184,3 +168,4 @@ class Lecteur
         return $this->typeLecteur;
     }
 }
+

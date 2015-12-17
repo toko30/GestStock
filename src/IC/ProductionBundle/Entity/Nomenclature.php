@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * Nomenclature
@@ -110,4 +110,3 @@ class Nomenclature
         return $this->id;
     }
 }
-

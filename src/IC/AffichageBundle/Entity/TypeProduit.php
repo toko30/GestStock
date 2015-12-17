@@ -3,9 +3,9 @@
 namespace IC\AffichageBundle\Entity;
 
 /**
- * SousTraitant
+ * TypeProduit
  */
-class SousTraitant
+class TypeProduit
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class SousTraitant
      *
      * @param string $nom
      *
-     * @return SousTraitant
+     * @return TypeProduit
      */
     public function setNom($nom)
     {

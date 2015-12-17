@@ -2,53 +2,35 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Appro
- *
- * @ORM\Table(name="appro")
- * @ORM\Entity
  */
 class Appro
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
     private $idFournisseur;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_lieu", type="integer", nullable=false)
      */
     private $idLieu;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date_commande", type="date", nullable=false)
      */
     private $dateCommande;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="type_produit", type="integer", nullable=false)
      */
     private $typeProduit;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\SousTraitant
@@ -215,3 +197,4 @@ class Appro
         return $this->fournisseur;
     }
 }
+

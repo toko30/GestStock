@@ -12,6 +12,6 @@ class PrevisionnelleController extends Controller
     }
     public function sousTraitantAction($id)
     {
-        return $this->render('ICProductionBundle:Previsionnelle:interne.html.twig');
+        return $this->render('ICProductionBundle:Previsionnelle:sousTraitant.html.twig');
     }
 }

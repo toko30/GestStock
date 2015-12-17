@@ -2,60 +2,40 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * TypeBadge
- *
- * @ORM\Table(name="type_badge")
- * @ORM\Entity
  */
 class TypeBadge
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="reference", type="string", length=100, nullable=false)
      */
     private $reference;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="designation", type="text", length=65535, nullable=false)
      */
     private $designation;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="frequence", type="integer", nullable=false)
      */
     private $frequence;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
     private $idFournisseur;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\SousTypeBadge
@@ -217,3 +197,4 @@ class TypeBadge
         return $this->sousTypeBadge;
     }
 }
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * Production
@@ -38,12 +38,12 @@ class Production
     private $id;
 
     /**
-     * @var \IC\AffichageBundle\Entity\SousTraitant
+     * @var \IC\ProductionBundle\Entity\SousTraitant
      */
     private $sousTraitant;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Nomenclature
+     * @var \IC\ProductionBundle\Entity\Nomenclature
      */
     private $nomenclature;
 
@@ -181,11 +181,11 @@ class Production
     /**
      * Set sousTraitant
      *
-     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
+     * @param \IC\ProductionBundle\Entity\SousTraitant $sousTraitant
      *
      * @return Production
      */
-    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
+    public function setSousTraitant(\IC\ProductionBundle\Entity\SousTraitant $sousTraitant = null)
     {
         $this->sousTraitant = $sousTraitant;
 
@@ -195,7 +195,7 @@ class Production
     /**
      * Get sousTraitant
      *
-     * @return \IC\AffichageBundle\Entity\SousTraitant
+     * @return \IC\ProductionBundle\Entity\SousTraitant
      */
     public function getSousTraitant()
     {
@@ -205,11 +205,11 @@ class Production
     /**
      * Set nomenclature
      *
-     * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
+     * @param \IC\ProductionBundle\Entity\Nomenclature $nomenclature
      *
      * @return Production
      */
-    public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
+    public function setNomenclature(\IC\ProductionBundle\Entity\Nomenclature $nomenclature = null)
     {
         $this->nomenclature = $nomenclature;
 
@@ -219,11 +219,10 @@ class Production
     /**
      * Get nomenclature
      *
-     * @return \IC\AffichageBundle\Entity\Nomenclature
+     * @return \IC\ProductionBundle\Entity\Nomenclature
      */
     public function getNomenclature()
     {
         return $this->nomenclature;
     }
 }
-

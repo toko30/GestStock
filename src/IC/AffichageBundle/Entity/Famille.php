@@ -2,32 +2,20 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Famille
- *
- * @ORM\Table(name="famille")
- * @ORM\Entity
  */
 class Famille
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
      */
     private $nom;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
 
     /**
@@ -64,3 +52,4 @@ class Famille
         return $this->id;
     }
 }
+

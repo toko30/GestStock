@@ -2,46 +2,30 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * ApproLecteur
- *
- * @ORM\Table(name="appro_lecteur")
- * @ORM\Entity
  */
 class ApproLecteur
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
      */
     private $idCommande;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_lecteur", type="integer", nullable=false)
      */
     private $idLecteur;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
     private $quantite;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\Appro
@@ -184,3 +168,4 @@ class ApproLecteur
         return $this->typeLecteur;
     }
 }
+

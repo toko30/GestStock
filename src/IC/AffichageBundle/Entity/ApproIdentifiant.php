@@ -2,46 +2,30 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * ApproIdentifiant
- *
- * @ORM\Table(name="appro_identifiant")
- * @ORM\Entity
  */
 class ApproIdentifiant
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
      */
     private $idCommande;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_identifiant", type="integer", nullable=false)
      */
     private $idIdentifiant;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
     private $quantite;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\Appro
@@ -184,3 +168,4 @@ class ApproIdentifiant
         return $this->typeBadge;
     }
 }
+

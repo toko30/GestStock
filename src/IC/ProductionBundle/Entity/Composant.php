@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * Composant
@@ -48,12 +48,12 @@ class Composant
     private $id;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Famille
+     * @var \IC\ProductionBundle\Entity\Famille
      */
     private $famille;
 
     /**
-     * @var \IC\AffichageBundle\Entity\SousFamille
+     * @var \IC\ProductionBundle\Entity\SousFamille
      */
     private $sousFamille;
 
@@ -239,11 +239,11 @@ class Composant
     /**
      * Set famille
      *
-     * @param \IC\AffichageBundle\Entity\Famille $famille
+     * @param \IC\ProductionBundle\Entity\Famille $famille
      *
      * @return Composant
      */
-    public function setFamille(\IC\AffichageBundle\Entity\Famille $famille = null)
+    public function setFamille(\IC\ProductionBundle\Entity\Famille $famille = null)
     {
         $this->famille = $famille;
 
@@ -253,7 +253,7 @@ class Composant
     /**
      * Get famille
      *
-     * @return \IC\AffichageBundle\Entity\Famille
+     * @return \IC\ProductionBundle\Entity\Famille
      */
     public function getFamille()
     {
@@ -263,11 +263,11 @@ class Composant
     /**
      * Set sousFamille
      *
-     * @param \IC\AffichageBundle\Entity\SousFamille $sousFamille
+     * @param \IC\ProductionBundle\Entity\SousFamille $sousFamille
      *
      * @return Composant
      */
-    public function setSousFamille(\IC\AffichageBundle\Entity\SousFamille $sousFamille = null)
+    public function setSousFamille(\IC\ProductionBundle\Entity\SousFamille $sousFamille = null)
     {
         $this->sousFamille = $sousFamille;
 
@@ -277,11 +277,10 @@ class Composant
     /**
      * Get sousFamille
      *
-     * @return \IC\AffichageBundle\Entity\SousFamille
+     * @return \IC\ProductionBundle\Entity\SousFamille
      */
     public function getSousFamille()
     {
         return $this->sousFamille;
     }
 }
-

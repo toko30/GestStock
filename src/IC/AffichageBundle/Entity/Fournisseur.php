@@ -2,67 +2,45 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Fournisseur
- *
- * @ORM\Table(name="fournisseur")
- * @ORM\Entity
  */
 class Fournisseur
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="contact", type="string", length=100, nullable=false)
      */
     private $contact;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=250, nullable=false)
      */
     private $email;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="numero", type="integer", nullable=false)
      */
     private $numero;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="site", type="string", length=250, nullable=false)
      */
     private $site;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
 
     /**
@@ -219,3 +197,4 @@ class Fournisseur
         return $this->id;
     }
 }
+

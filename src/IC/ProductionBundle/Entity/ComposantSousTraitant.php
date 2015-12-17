@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * ComposantSousTraitant
@@ -28,12 +28,12 @@ class ComposantSousTraitant
     private $id;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Composant
+     * @var \IC\ProductionBundle\Entity\Composant
      */
     private $composant;
 
     /**
-     * @var \IC\AffichageBundle\Entity\SousTraitant
+     * @var \IC\ProductionBundle\Entity\SousTraitant
      */
     private $sousTraitant;
 
@@ -123,11 +123,11 @@ class ComposantSousTraitant
     /**
      * Set composant
      *
-     * @param \IC\AffichageBundle\Entity\Composant $composant
+     * @param \IC\ProductionBundle\Entity\Composant $composant
      *
      * @return ComposantSousTraitant
      */
-    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
+    public function setComposant(\IC\ProductionBundle\Entity\Composant $composant = null)
     {
         $this->composant = $composant;
 
@@ -137,7 +137,7 @@ class ComposantSousTraitant
     /**
      * Get composant
      *
-     * @return \IC\AffichageBundle\Entity\Composant
+     * @return \IC\ProductionBundle\Entity\Composant
      */
     public function getComposant()
     {
@@ -147,11 +147,11 @@ class ComposantSousTraitant
     /**
      * Set sousTraitant
      *
-     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
+     * @param \IC\ProductionBundle\Entity\SousTraitant $sousTraitant
      *
      * @return ComposantSousTraitant
      */
-    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
+    public function setSousTraitant(\IC\ProductionBundle\Entity\SousTraitant $sousTraitant = null)
     {
         $this->sousTraitant = $sousTraitant;
 
@@ -161,11 +161,10 @@ class ComposantSousTraitant
     /**
      * Get sousTraitant
      *
-     * @return \IC\AffichageBundle\Entity\SousTraitant
+     * @return \IC\ProductionBundle\Entity\SousTraitant
      */
     public function getSousTraitant()
     {
         return $this->sousTraitant;
     }
 }
-

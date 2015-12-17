@@ -2,53 +2,35 @@
 
 namespace IC\AffichageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Moq
- *
- * @ORM\Table(name="moq")
- * @ORM\Entity
  */
 class Moq
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_composant", type="integer", nullable=false)
      */
     private $idComposant;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_fournisseur", type="integer", nullable=false)
      */
     private $idFournisseur;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="ref", type="text", length=65535, nullable=false)
      */
     private $ref;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="moq", type="integer", nullable=false)
      */
     private $moq;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \IC\AffichageBundle\Entity\Fournisseur
@@ -215,3 +197,4 @@ class Moq
         return $this->composant;
     }
 }
+
