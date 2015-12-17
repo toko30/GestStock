@@ -2,10 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
-
-class ComposantRepository extends EntityRepository
+class ComposantRepository extends \Doctrine\ORM\EntityRepository
 {
    public function getStockByCritere($critere)
    {	
@@ -16,7 +13,7 @@ class ComposantRepository extends EntityRepository
         if(!empty($critere['recherche']))
         {
                 $req->where('c.nom LIKE :nom')
-                ->setParameter('nom', '%'.$critere['recherche'].'%');
+                ->setParameter('nom', '%'.trim($critere['recherche'], '#!').'%');
         }   
              
         if(!empty($critere['famille']))

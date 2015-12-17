@@ -2,9 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class MoqRepository extends EntityRepository
+class MoqRepository extends \Doctrine\ORM\EntityRepository
 {
         public function getStockFournisseurByCritere($critere)
         {
@@ -25,12 +23,12 @@ class MoqRepository extends EntityRepository
                                         if($critere['choixRecherche'] == 0)
                                         {
                                                 $req->andWhere('c.nom LIKE :nom')
-                                                ->setParameter('nom', '%'.$critere['recherche'].'%');                                                
+                                                ->setParameter('nom', '%'.trim($critere['recherche'], '#!').'%');                                                
                                         }
                                         else
                                         {
                                                 $req->andWhere('m.ref LIKE :ref')
-                                                ->setParameter('ref', '%'.$critere['recherche'].'%');      
+                                                ->setParameter('ref', '%'.trim($critere['recherche'], '#!').'%');      
                                         }
                                 }
                                 else
@@ -70,7 +68,7 @@ class MoqRepository extends EntityRepository
                         ->join('m.composant', 'c')
                         ->addSelect('c')
                         ->where('m.ref LIKE :ref')
-                        ->setParameter('ref', '%'.$critere['recherche'].'%');
+                        ->setParameter('ref', '%'.trim($critere['recherche'], '#!').'%');
                         
                         if(!empty($critere['famille']))
                         {

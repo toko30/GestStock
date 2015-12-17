@@ -3,9 +3,9 @@
 namespace IC\ProductionBundle\Entity;
 
 /**
- * SousTraitant
+ * Famille
  */
-class SousTraitant
+class Famille
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class SousTraitant
      *
      * @param string $nom
      *
-     * @return SousTraitant
+     * @return Famille
      */
     public function setNom($nom)
     {
@@ -52,3 +52,4 @@ class SousTraitant
         return $this->id;
     }
 }
+

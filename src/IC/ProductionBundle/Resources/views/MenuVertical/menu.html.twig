@@ -1,35 +1,18 @@
 <nav id="lienMenuVertical">
-	<span class="titreMenuVertical">Production Prévisionnelle</span><br>
+	<span class="titreMenuVertical">Production</span><br>
 	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_previsionnelle_interne') }}">Prod prévisionnelle Interne</a><br>
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Production Interne</a><br>
 		
 	{% if sousTraitants[0].id is not empty %}
 		
 		{% image 'img/plus.png' %}
-    		<span id="sousMenu1" class="sousMenu"><img id="sousMenu11" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Prod prévisionnelle ST</span>
+    		<span id="sousMenu1" class="sousMenu"><img id="sousMenu11" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Production ST</span>
 		{% endimage %}
 		<br>
 		<div class="divSousMenu" id="sousMenu111">
 		{% for sousTraitant in sousTraitants %}
-			<a class="sousSousMenu" href="{{ path('ic_production_previsionnelle_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+			<a class="sousSousMenu" href="{{ path('ic_production_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
 		{% endfor %}
 		</div>
 	{% endif %}
-	
-	<span class="titreMenuVertical">Production En cours</span><br>
-	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_previsionnelle_interne') }}">Prod Interne en cours</a><br>
-		
-	{% if sousTraitants[0].id is not empty %}
-		
-		{% image 'img/plus.png' %}
-    		<span id="sousMenu2" class="sousMenu"><img id="sousMenu21" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Prod ST en cours</span>
-		{% endimage %}
-		<br>
-		<div class="divSousMenu" id="sousMenu211">
-		{% for sousTraitant in sousTraitants %}
-			<a class="sousSousMenu" href="{{ path('ic_production_previsionnelle_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
-		{% endfor %}
-		</div>
-	{% endif %}	
 </nav>

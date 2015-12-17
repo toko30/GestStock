@@ -23,10 +23,10 @@ class MenuController extends Controller
         $listNomenclature = $em->getRepository('ICAffichageBundle:Nomenclature')->findAll();
         $listLecteur = $em->getRepository('ICAffichageBundle:SousTypeLecteur')->findAll();
         $listBadge = $em->getRepository('ICAffichageBundle:SousTypeBadge')->findAll();
-        $listAppro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Appro')->getListStAppro();
-        $listProd = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Production')->getListStProd();
+        $listAppro = $em->getRepository('ICAffichageBundle:Appro')->getListStAppro();
+        $listProd = $em->getRepository('ICAffichageBundle:Production')->getListStProd();
         
-        //Création des formulaire
+        //Création des formulaires
         if($url == 'ic_affichage_composant_interne')
             $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille, $listFournisseur, $listNomenclature));
         elseif($url == 'ic_affichage_produit_fini_lecteur_cv' || $url == 'ic_affichage_produit_fini_interne')

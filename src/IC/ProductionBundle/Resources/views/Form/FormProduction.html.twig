@@ -1,0 +1,10 @@
+{{ form_start(form, {'attr': {'class': 'form-verical'}}) }}
+
+<div id="recherche">
+
+	{{ form_widget(form.nomenclature, {'attr': {'class': 'ChoixRecherche'}}) }}		
+
+	{{ form_widget(form.quantite, {'attr': {'class': 'quantite'}}) }}
+	{{ form_widget(form.calculer, {'attr': {'class': 'calculer'}}) }}
+</div>
+{{ form_end(form) }}

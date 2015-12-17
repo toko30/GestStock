@@ -2,10 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-
-class ApproIdentifiantRepository extends EntityRepository
+class ApproIdentifiantRepository extends \Doctrine\ORM\EntityRepository
 {
 	 public function getApproIdentifiant()
    {

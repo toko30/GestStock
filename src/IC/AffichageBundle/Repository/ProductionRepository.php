@@ -2,9 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class ProductionRepository extends EntityRepository
+class ProductionRepository extends \Doctrine\ORM\EntityRepository
 {
    public function getListStProd()
    {

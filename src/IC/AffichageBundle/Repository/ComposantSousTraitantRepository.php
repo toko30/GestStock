@@ -2,9 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class ComposantSousTraitantRepository extends EntityRepository
+class ComposantSousTraitantRepository extends \Doctrine\ORM\EntityRepository
 {
    public function getStockSousTraitantById($id)
    {

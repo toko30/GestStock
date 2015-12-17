@@ -1,8 +1,8 @@
 {% extends 'ICProductionBundle::layout.html.twig' %}
 
-{% block title %}{{ parent() }} - Interne{% endblock %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
 
-{% block entete %}{{ parent() }} Interne{% endblock %}
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -13,6 +13,6 @@
 {% endblock %}
 
 {% block body %}
-	{{ parent() }}
-	{{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
+{{ parent() }}
+{{dump(composantNomenclature)}}
 {% endblock %}

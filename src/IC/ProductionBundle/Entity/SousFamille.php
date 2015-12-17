@@ -3,10 +3,15 @@
 namespace IC\ProductionBundle\Entity;
 
 /**
- * SousTraitant
+ * SousFamille
  */
-class SousTraitant
+class SousFamille
 {
+    /**
+     * @var integer
+     */
+    private $idFamille;
+
     /**
      * @var string
      */
@@ -19,11 +24,35 @@ class SousTraitant
 
 
     /**
+     * Set idFamille
+     *
+     * @param integer $idFamille
+     *
+     * @return SousFamille
+     */
+    public function setIdFamille($idFamille)
+    {
+        $this->idFamille = $idFamille;
+
+        return $this;
+    }
+
+    /**
+     * Get idFamille
+     *
+     * @return integer
+     */
+    public function getIdFamille()
+    {
+        return $this->idFamille;
+    }
+
+    /**
      * Set nom
      *
      * @param string $nom
      *
-     * @return SousTraitant
+     * @return SousFamille
      */
     public function setNom($nom)
     {
@@ -52,3 +81,4 @@ class SousTraitant
         return $this->id;
     }
 }
+

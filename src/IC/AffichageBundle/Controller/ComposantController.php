@@ -3,7 +3,6 @@
 namespace IC\AffichageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class ComposantController extends Controller
@@ -17,7 +16,7 @@ class ComposantController extends Controller
         {
             if(!empty($_POST['formComposantInterne']['etat']))
                 $etat[0] = $_POST['formComposantInterne']['etat'];   
- 
+
             //Recherche Par fournisseur ou par référence    
             if(!empty($_POST['formComposantInterne']['fournisseur']) || ($_POST['formComposantInterne']['choixRecherche'] == 1 && !empty($_POST['formComposantInterne']['recherche'])))
             {

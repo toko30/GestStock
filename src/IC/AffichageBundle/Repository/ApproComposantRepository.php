@@ -2,10 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-
-class ApproComposantRepository extends EntityRepository
+class ApproComposantRepository extends \Doctrine\ORM\EntityRepository
 {
    public function getApproInterne()
    {
