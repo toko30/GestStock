@@ -1,0 +1,19 @@
+ic_produit_fini:
+    resource: "@ICProduitFiniBundle/Resources/config/routing.yml"
+    prefix:   /Produit-Fini
+
+ic_test:
+    resource: "@ICTestBundle/Resources/config/routing.yml"
+    prefix:   /Controle-Qualite
+
+ic_approvisionnement:
+    resource: "@ICApprovisionnementBundle/Resources/config/routing.yml"
+    prefix:   /Approvisionnement
+
+ic_production:
+    resource: "@ICProductionBundle/Resources/config/routing.yml"
+    prefix:   /Production
+
+ic_affichage:
+    resource: "@ICAffichageBundle/Resources/config/routing.yml"
+    prefix:   /Affichage

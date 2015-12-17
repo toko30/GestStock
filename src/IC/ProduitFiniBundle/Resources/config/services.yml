@@ -1,0 +1,4 @@
+services:
+#    ic_produit_fini.example:
+#        class: IC\ProduitFiniBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

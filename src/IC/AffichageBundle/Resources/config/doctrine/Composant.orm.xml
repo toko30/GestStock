@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="IC\AffichageBundle\Entity\Composant" repository-class="IC\AffichageBundle\Repository\ComposantRepository" table="composant">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="250" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="info" type="text" column="info" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="boitier" type="string" column="boitier" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="stockInterne" type="integer" column="stock_interne" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="stockMini" type="integer" column="stock_mini" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="idFamille" type="integer" column="id_famille" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="idSousFamille" type="integer" column="id_sous_famille" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+      <one-to-one field="famille" target-entity="Famille" >
+        <join-column name="id_famille" referenced-column-name="id" />
+      </one-to-one>
+       <one-to-one field="sousFamille" target-entity="SousFamille" >
+        <join-column name="id_sous_famille" referenced-column-name="id" />
+      </one-to-one>
+    </entity>
+</doctrine-mapping>

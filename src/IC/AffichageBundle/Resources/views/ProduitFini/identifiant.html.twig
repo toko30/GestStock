@@ -1,0 +1,32 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Identifiant{% endblock %}
+
+{% block entete %}{{ parent() }} Identifiant{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+	<h1>Stock Identifiant</h1>
+	<table class="imp">
+		<tr>
+			<td class="titreDesignation">Référence</td>
+			<td class="titreDesignation">Désignation</td>
+			<td class="titreStock">Quantité</td>
+		</tr>
+		{% for bad in badge %}
+			<tr>
+				<td>{{bad.typeBadge.reference}}</td>
+				<td>{{bad.typeBadge.designation}}</td>
+				<td>{{bad.quantite}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Production Sous Traitant{% endblock %}
+
+{% block entete %}{{ parent() }} Production Sous Traitant{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/production.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+	
+	<h1>Production {{prod[0].sousTraitant.nom}}</h1>
+	
+	<table class="imp">
+	<tr>
+		<th>Produit</th>
+		<th>Quantité</th>
+		<th>Date de lancement</th>
+	</tr>
+	{% for production in prod %}
+		<tr>
+			<td>{{production.nomenclature.nom}}</td>
+			<td>{{production.quantite}}</td>
+			<td>{{production.dateProd|date('d-m-Y')}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

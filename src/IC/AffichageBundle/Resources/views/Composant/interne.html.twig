@@ -1,0 +1,104 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/interne.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	{{ parent()}}
+
+	<h1>Stock Interne</h1>
+	
+	<table class="imp">
+		<tr>
+			<td class="titreFamille">Famille</td>
+			<td class="titreSousFamille">Sous Famille</td>
+			<td class="titreDesignation">Désignation</td>
+			<td class="titreBoitier">Boitier</td>
+			<td class="titreStock">Stock mini</td>
+			<td class="titreStock">Stock</td>
+			<td class="titreDetails"></td>
+		</tr>
+	
+		{% for composant in composants %}
+			{% if 0 in etat %}
+				<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="{{ path('ic_affichage_detail', {'id': composant.id}) }}">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>	
+			{% else %}
+				{% if '1' in etat[0] and '2'  not in etat[0] %}
+					{% if composant.stockMini <= composant.stockInterne %}
+						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="{{ path('ic_affichage_detail', {'id': composant.id}) }}">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% elseif '2' in etat[0] and '1'  not in etat[0]%}
+					{% if composant.stockMini > composant.stockInterne %}
+						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+							<td class="famille">{{composant.Famille.nom}}</td>
+							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="designation">{{composant.nom}}</td>
+							<td class="boitier">{{composant.boitier}}</td>
+							<td class="stock">{{composant.stockMini}}</td>
+							<td class="stock">{{composant.stockInterne}}</td>
+							<td class="details">
+								<a href="{{ path('ic_affichage_detail', {'id': composant.id}) }}">
+								{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+									<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+								{% endimage %}
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% else %}	
+					<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
+						<td class="famille">{{composant.Famille.nom}}</td>
+						<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+						<td class="designation">{{composant.nom}}</td>
+						<td class="boitier">{{composant.boitier}}</td>
+						<td class="stock">{{composant.stockMini}}</td>
+						<td class="stock">{{composant.stockInterne}}</td>
+						<td class="details">
+							<a href="{{ path('ic_affichage_detail', {'id': composant.id}) }}">
+							{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+								<img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+							{% endimage %}
+							</a>
+						</td>
+					</tr>									
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+		</table>
+{% endblock %}

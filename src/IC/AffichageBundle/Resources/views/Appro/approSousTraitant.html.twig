@@ -1,0 +1,42 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Approvisionnement Sous Traitant{% endblock %}
+
+{% block entete %}{{ parent() }} Approvisionnement Sous Traitant{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/appro.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+	{% if appro is not empty %}
+		<h1>Approvisionnement {{appro[0].appro.sousTraitant.nom}}</h1>
+		<table class="imp">
+			<tr>
+				<th>Famille</th>
+				<th>SousFamille</th>
+				<th>Designation</th>
+				<th>Boitier</th>
+				<th>Quantité</th>
+				<th>Date d'envoi</th>
+			</tr>
+			{% for approvisionnement in appro %}
+				<tr>
+					<td>{{approvisionnement.composant.famille.nom}}</td>
+					<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+					<td>{{approvisionnement.composant.nom}}</td>
+					<td>{{approvisionnement.composant.boitier}}</td>
+					<td>{{approvisionnement.quantite}}</td>
+					<td>{{approvisionnement.appro.dateCommande|date('d-m-Y')}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		Aucun approvisionnement en cours pour ce sous-traitant
+	{% endif %}
+{% endblock %}
