@@ -1,3 +1,0 @@
-ic_production_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ICProductionBundle:Default:index }
