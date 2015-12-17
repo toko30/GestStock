@@ -2,7 +2,7 @@
   size: 21cm 29.7cm landscape; 
 }
 
-#menuVertical, #menuHorizontal, #entete div, .titreDetails, .details
+#menuVertical, #menuHorizontal, #entete div, .titreDetails, .details, .mini
 {
 	display:none;
 }

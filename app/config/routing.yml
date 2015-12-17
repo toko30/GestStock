@@ -1,3 +1,7 @@
+ic_administration:
+    resource: "@ICAdministrationBundle/Resources/config/routing.yml"
+    prefix:   /Administration
+
 ic_produit_fini:
     resource: "@ICProduitFiniBundle/Resources/config/routing.yml"
     prefix:   /Produit-Fini

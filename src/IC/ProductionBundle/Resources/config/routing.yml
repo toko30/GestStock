@@ -1,3 +1,9 @@
-ic_production_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ICProductionBundle:Default:index }
+ic_production_previsionnelle_interne:
+    path:     /Previsionelle-Interne
+    defaults: { _controller: ICProductionBundle:Previsionnelle:interne }
+    
+ic_production_previsionnelle_interne:
+    path:     /Previsionelle-SousTraitant-{id}
+    defaults: { _controller: ICProductionBundle:Previsionnelle:sousTraitant }
+    requirement:
+        id: \d
