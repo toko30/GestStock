@@ -15,7 +15,8 @@ class ProductionController extends Controller
         
         if('POST' == $request->getMethod())
         {
-            var_dump($_POST);$listeComposantnomenclature = $this->getDoctrine()->getManager()->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProdInterne($_POST['formProduction']['nomenclature']);
+            var_dump($_POST);
+            $listeComposantnomenclature = $this->getDoctrine()->getManager()->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProdInterne($_POST['formProduction']['nomenclature']);
             return $this->render('ICProductionBundle:Liste:interne.html.twig', array('quantite'  => $_POST['formProduction']['quantite'], 'composantNomenclature' => $listeComposantnomenclature));            
         }
         else

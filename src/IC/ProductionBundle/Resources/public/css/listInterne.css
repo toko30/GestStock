@@ -1,0 +1,11 @@
+.stockInsufisant td
+{
+	background: red;
+	border: 1px solid red;
+	color: white;
+}
+.stockInsufisant:hover td
+{
+	background: darkred;
+	border: 1px solid darkred;
+}

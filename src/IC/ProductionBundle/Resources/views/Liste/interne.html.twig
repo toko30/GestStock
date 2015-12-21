@@ -7,12 +7,27 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/public/css/interne.css' %}
+	'@ICProductionBundle/Resources/public/css/listInterne.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
 
 {% block body %}
 {{ parent() }}
-{{dump(composantNomenclature)}}
+<h1></h1>
+<table>
+	<tr>
+		<td>designation</td>
+		<td>Quantité nécessaire</td>
+		<td>Stock Restant</td>
+	</tr>
+	{% for composant in composantNomenclature %}
+		{% set quantiteTotale = composant.quantite * quantite %}
+		<tr class="{% if composant.composant.stockInterne - quantiteTotale < 0 %}stockInsufisant{% endif %}">
+			<td>{{composant.composant.nom}}</td>
+			<td>{{quantiteTotale}}</td>
+			<td>{{composant.composant.stockInterne - quantiteTotale}}</td>
+		</tr>
+	{% endfor %}
+</table>
 {% endblock %}
