@@ -10,4 +10,13 @@ namespace IC\ProductionBundle\Repository;
  */
 class ComposantSousTraitantRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getComposantSt($id)
+	{
+		return $this->createQueryBuilder('cst')
+		->join('cst.sousTraitant', 'st')
+		->where('cst.idSousTraitant = :id')
+		->setParameter('id', $id)
+		->getQuery()
+		->getResult();
+	}
 }

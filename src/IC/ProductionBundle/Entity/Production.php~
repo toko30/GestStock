@@ -40,12 +40,12 @@ class Production
     /**
      * @var \IC\ProductionBundle\Entity\SousTraitant
      */
-    private $sousTraitant;
+    private $sousTraitant = null;
 
     /**
-     * @var \IC\ProductionBundle\Entity\Nomenclature
+     * @var \IC\ProductionBundle\Entity\VersionNomenclature
      */
-    private $nomenclature;
+    private $version = null;
 
 
     /**
@@ -185,7 +185,7 @@ class Production
      *
      * @return Production
      */
-    public function setSousTraitant(\IC\ProductionBundle\Entity\SousTraitant $sousTraitant = null)
+    public function setSousTraitant(\IC\ProductionBundle\Entity\SousTraitant $sousTraitant)
     {
         $this->sousTraitant = $sousTraitant;
 
@@ -203,26 +203,26 @@ class Production
     }
 
     /**
-     * Set nomenclature
+     * Set version
      *
-     * @param \IC\ProductionBundle\Entity\Nomenclature $nomenclature
+     * @param \IC\ProductionBundle\Entity\VersionNomenclature $version
      *
      * @return Production
      */
-    public function setNomenclature(\IC\ProductionBundle\Entity\Nomenclature $nomenclature = null)
+    public function setVersion(\IC\ProductionBundle\Entity\VersionNomenclature $version)
     {
-        $this->nomenclature = $nomenclature;
+        $this->version = $version;
 
         return $this;
     }
 
     /**
-     * Get nomenclature
+     * Get version
      *
-     * @return \IC\ProductionBundle\Entity\Nomenclature
+     * @return \IC\ProductionBundle\Entity\VersionNomenclature
      */
-    public function getNomenclature()
+    public function getVersion()
     {
-        return $this->nomenclature;
+        return $this->version;
     }
 }

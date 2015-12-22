@@ -11,7 +11,9 @@
 		<br>
 		<div class="divSousMenu" id="sousMenu111">
 		{% for sousTraitant in sousTraitants %}
-			<a class="sousSousMenu" href="{{ path('ic_production_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+            {% if sousTraitant.id != 0 %}
+			     <a class="sousSousMenu" href="{{ path('ic_production_sous_traitant', {'id': sousTraitant.id}) }}">{{ sousTraitant.nom }}</a><br>
+            {% endif %}
 		{% endfor %}
 		</div>
 	{% endif %}

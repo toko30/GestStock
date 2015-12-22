@@ -7,4 +7,14 @@ ic_production_sous_traitant:
     defaults: { _controller: ICProductionBundle:Production:sousTraitant }
     requirements:
         id: \d{1,10}
-        
+
+ic_calcul:
+    path:     /Calcul{idProducteur}-{idVersion}-{quantite1}-{quantite2}
+    defaults:  
+        _controller: ICProductionBundle:Production:calcul
+        quantite2:   0
+    requirements:
+        idProducteur: \d{1,10}
+        idVersion:    \d{1,10}
+        quantite1:    \d{1,10}
+        quantite2:    \d{1,10}

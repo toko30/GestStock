@@ -3,15 +3,10 @@
 namespace IC\ProductionBundle\Entity;
 
 /**
- * ComposantNomenclature
+ * ProduitFiniNomenclature
  */
-class ComposantNomenclature
+class ProduitFiniNomenclature
 {
-    /**
-     * @var integer
-     */
-    private $idComposant;
-
     /**
      * @var integer
      */
@@ -20,17 +15,12 @@ class ComposantNomenclature
     /**
      * @var integer
      */
-    private $quantite;
-
-    /**
-     * @var string
-     */
-    private $position;
+    private $idComposant;
 
     /**
      * @var integer
      */
-    private $optionSt;
+    private $quantite;
 
     /**
      * @var integer
@@ -49,35 +39,11 @@ class ComposantNomenclature
 
 
     /**
-     * Set idComposant
-     *
-     * @param integer $idComposant
-     *
-     * @return ComposantNomenclature
-     */
-    public function setIdComposant($idComposant)
-    {
-        $this->idComposant = $idComposant;
-
-        return $this;
-    }
-
-    /**
-     * Get idComposant
-     *
-     * @return integer
-     */
-    public function getIdComposant()
-    {
-        return $this->idComposant;
-    }
-
-    /**
      * Set idNomenclature
      *
      * @param integer $idNomenclature
      *
-     * @return ComposantNomenclature
+     * @return ProduitFiniNomenclature
      */
     public function setIdNomenclature($idNomenclature)
     {
@@ -97,11 +63,35 @@ class ComposantNomenclature
     }
 
     /**
+     * Set idComposant
+     *
+     * @param integer $idComposant
+     *
+     * @return ProduitFiniNomenclature
+     */
+    public function setIdComposant($idComposant)
+    {
+        $this->idComposant = $idComposant;
+
+        return $this;
+    }
+
+    /**
+     * Get idComposant
+     *
+     * @return integer
+     */
+    public function getIdComposant()
+    {
+        return $this->idComposant;
+    }
+
+    /**
      * Set quantite
      *
      * @param integer $quantite
      *
-     * @return ComposantNomenclature
+     * @return ProduitFiniNomenclature
      */
     public function setQuantite($quantite)
     {
@@ -121,54 +111,6 @@ class ComposantNomenclature
     }
 
     /**
-     * Set position
-     *
-     * @param string $position
-     *
-     * @return ComposantNomenclature
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return string
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * Set optionSt
-     *
-     * @param integer $optionSt
-     *
-     * @return ComposantNomenclature
-     */
-    public function setOptionSt($optionSt)
-    {
-        $this->optionSt = $optionSt;
-
-        return $this;
-    }
-
-    /**
-     * Get optionSt
-     *
-     * @return integer
-     */
-    public function getOptionSt()
-    {
-        return $this->optionSt;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -183,7 +125,7 @@ class ComposantNomenclature
      *
      * @param \IC\ProductionBundle\Entity\VersionNomenclature $version
      *
-     * @return ComposantNomenclature
+     * @return ProduitFiniNomenclature
      */
     public function setVersion(\IC\ProductionBundle\Entity\VersionNomenclature $version = null)
     {
@@ -207,7 +149,7 @@ class ComposantNomenclature
      *
      * @param \IC\ProductionBundle\Entity\Composant $composant
      *
-     * @return ComposantNomenclature
+     * @return ProduitFiniNomenclature
      */
     public function setComposant(\IC\ProductionBundle\Entity\Composant $composant = null)
     {

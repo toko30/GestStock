@@ -1,0 +1,48 @@
+{% extends 'ICProductionBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICProductionBundle/Resources/public/css/listInterne.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+{{sousTraitant}}
+<h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
+    <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
+<form method="post" action="{{ path('ic_calcul', {'idProducteur': id, 'idVersion': version, 'quantite1': quantite}) }}">  
+      
+    <input type="submit" value="Ajouter à la production prévisionnelle"></a> 
+
+    <table>
+        <tr>
+            <td></td>  
+            <td>designation</td>
+            <td>Quantité nécessaire</td>
+            <td>Stock Restant</td>
+        </tr>
+        {% for composant in composantNomenclature %}
+            
+            <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
+                <td>
+                {% if composant.option == 0 %}
+                    <input type="checkbox" name="option[]" value="{{composant.id}}" checked>
+                {% else %}
+                    <input type="checkbox" name="option[]" value="{{composant.id}}">
+                {% endif %}
+                </td>
+                <td>{{composant.designation}}</td>
+                <td>{{composant.quantite}}</td>
+                <td>{{composant.stock}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}
