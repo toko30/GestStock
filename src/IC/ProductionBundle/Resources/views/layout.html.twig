@@ -20,12 +20,12 @@
 	<section id="menuVertical">
 		{{ render(controller("ICProductionBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
+
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	{% javascripts 
-	'@ICAffichageBundle/Resources/public/js/*' 
-	%}
+	'@ICAffichageBundle/Resources/public/js/*' %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

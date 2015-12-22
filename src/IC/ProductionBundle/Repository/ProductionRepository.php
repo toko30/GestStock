@@ -10,4 +10,15 @@ namespace IC\ProductionBundle\Repository;
  */
 class ProductionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getProdInterne($idLieu)
+    {
+        return $this->createQueryBuilder('p')
+        ->join('p.version', 'v')
+        ->join('v.nomenclature', 'n')
+        ->where('p.idLieu = :idLieu')
+        ->setParameter('idLieu', $idLieu)
+        ->orderBy('p.dateProd')
+        ->getQuery()
+        ->getResult();
+    }
 }

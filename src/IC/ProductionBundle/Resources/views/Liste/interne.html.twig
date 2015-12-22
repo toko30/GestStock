@@ -11,31 +11,34 @@
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
-
 {% block body %}
+
 {{ parent() }}
-<h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
-    <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
+<section id="page">
     
-<a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': version, 'quantite1': quantite}) }}">Ajouter à la production prévisionnelle</a> 
-
-{% if nbProdManquant != 0 and (quantite - nbProdManquant) != 0 %} 
-    ou <a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': version, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
-{% endif %}
-
-<table>
-	<tr>  
-		<td>designation</td>
-		<td>Quantité nécessaire</td>
-		<td>Stock Restant</td>
-	</tr>
-	{% for composant in composantNomenclature %}
+    <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
+        <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
         
-		<tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
-			<td>{{composant.designation}}</td>
-			<td>{{composant.quantite}}</td>
-			<td>{{composant.stock}}</td>
-		</tr>
-	{% endfor %}
-</table>
+    <a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite}) }}">Ajouter à la production prévisionnelle</a> 
+
+    {% if nbProdManquant != 0 and (quantite - nbProdManquant) != 0 %} 
+        ou <a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
+    {% endif %}
+
+    <table>
+        <tr>  
+            <td>designation</td>
+            <td>Quantité nécessaire</td>
+            <td>Stock Restant</td>
+        </tr>
+        {% for composant in composantNomenclature %}
+            
+            <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
+                <td>{{composant.designation}}</td>
+                <td>{{composant.quantite}}</td>
+                <td>{{composant.stock}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
 {% endblock %}

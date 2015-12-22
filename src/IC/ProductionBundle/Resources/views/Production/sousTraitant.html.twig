@@ -1,6 +1,71 @@
 {% extends 'ICProductionBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {% endblock %}
+
+{% block entete %}{{ parent() }} {% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICProductionBundle/Resources/public/css/production.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
 {% block body %}
 	{{ parent() }}
+    <section id="page">
 	{{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
+    
+    <h1>Production Prévisionnelle</h1>
+    
+    {% if listePrevisionnelle is empty %}
+        <div>Aucun Production prévisionnelle calculée</div>
+    {% else %}
+        <table>
+            <tr>
+                <td>Nomenclature</td>
+                <td>Quantité</td>
+                <td></td>
+            </tr>
+        {% for previsionnelle in listePrevisionnelle %}
+            {% if previsionnelle.lancement == 0 %}
+                <tr class="productionImpossible">
+                    <td>{{previsionnelle.nom}}</td>
+                    <td>{{previsionnelle.quantite}}</td>
+                    <td><a href="">Approvisionnement</a></td> 
+                </tr>
+            {% else %}
+                <tr>
+                    <td>{{previsionnelle.nom}}</td>
+                    <td>{{previsionnelle.quantite}}</td>
+                    <td><a href="">Lancer la production</a></td>          
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+    {% endif %}
+    
+    <h1>Production en cours</h1>
+    
+    {% if listeEnCours is empty %}
+        <div>Aucune Production en cours</div>
+    {% else %}
+        <table>
+            <tr>
+                <td>Nomenclature</td>
+                <td>Quantité</td>
+                <td></td>
+            </tr>
+            
+            {% for enCours in listeEnCours %}
+                    <tr>
+                        <td>{{enCours.nom}}</td>
+                        <td>{{enCours.quantite}}</td>
+                        <td><a href="">Production terminer</a></td> 
+                    </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    </section>
 {% endblock %}
 

@@ -1,0 +1,12 @@
+.productionImpossible, .productionImpossible a, .productionImpossible td
+{
+    background: red;
+    border: 1px solid red;
+    color: white;
+}
+
+.productionImpossible:hover a, .productionImpossible a:hover, .productionImpossible:hover, .productionImpossible:hover td
+{
+    background: darkred;
+    border: 1px solid darkred;
+}
