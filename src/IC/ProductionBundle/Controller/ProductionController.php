@@ -58,9 +58,10 @@ class ProductionController extends Controller
                                                                                      'version' => $version,
                                                                                      'nbProdManquant' => $nbProdManquant));            
         }
-        //AFFICHAGE DES TABLEAUX PREVISIONNEL ET EN PROD EN COURS
+        //AFFICHAGE DES TABLEAUX PREVISIONNEL ET PROD EN COURS
         else
         {
+            //récupération des productions Internes
             $listeProd = $em->getRepository('ICProductionBundle:Production')->getProdInterne(0);
             
             //déclaration des variable vide au cas ou il n'y est pas de prod de lancée
@@ -72,23 +73,25 @@ class ProductionController extends Controller
             
             foreach($listeProd as $prod)
             {
-                //enregistrement des productions en cours
+                //enregistrement des productions en cours pour affichage
                 if($prod->getEtape() == 2)
                 {
+                    $listeEnCours[$i]['id'] = $prod->getId();
                     $listeEnCours[$i]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
                     $listeEnCours[$i]['quantite'] = $prod->getQuantite();
                     $listeEnCours[$i++]['date_prod'] = $prod->getDateProd();
                 }
                 else
                 {
-                    //enregistrement des prod prévisionelle
-                    $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($prod->getVersion()->getId());
-                    
+                    //enregistrement des prod prévisionelle pour affichage                                      
+                    $listePrevisionnelle[$i1]['id'] = $prod->getId();
                     $listePrevisionnelle[$i1]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
                     $listePrevisionnelle[$i1]['quantite'] = $prod->getQuantite();
                     $listePrevisionnelle[$i1]['lancement'] = 1;
                     
-                    //vérification de la possibilité de lancement d'une production
+                    //vérification de la possibilitée de lancement d'une production
+                    $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($prod->getVersion()->getId());
+                    
                     foreach($listeComposantnomenclature as $composantNomenclature)
                     {
                         if($composantNomenclature->getComposant()->getStockInterne() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
@@ -190,6 +193,7 @@ class ProductionController extends Controller
                 //enregistrement des productions en cours
                 if($prod->getEtape() == 2)
                 {
+                    $listeEnCours[$i]['id'] = $prod->getId();
                     $listeEnCours[$i]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
                     $listeEnCours[$i]['quantite'] = $prod->getQuantite();
                     $listeEnCours[$i++]['date_prod'] = $prod->getDateProd();
@@ -203,23 +207,27 @@ class ProductionController extends Controller
                     $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($prod->getVersion()->getId());
                     $listeComposantSousTraitant = $em->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($id);
                     
+                    $listePrevisionnelle[$i1]['id'] = $prod->getId();
                     $listePrevisionnelle[$i1]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
                     $listePrevisionnelle[$i1]['quantite'] = $prod->getQuantite();
-                    $listePrevisionnelle[$i1]['lancement'] = 1;
+                    $listePrevisionnelle[$i1]['lancement'] = 1;        
                     
                     //vérification de la possibilité de lancement d'une production
                     foreach($listeComposantnomenclature as $composantNomenclature)
                     {
+                        echo $composantNomenclature->getComposant()->getId().'<br>';
+                        
                         if(in_array($composantNomenclature->getComposant()->getId(), $listeComposantUtiliseSt))
-                        { 
+                        {
                             foreach($listeComposantSousTraitant as $composantSt)
                             {
                                 $composantManquant = 1;
                                 
                                 if($composantNomenclature->getComposant()->getId() == $composantSt->getIdComposant())
                                 {
+                                    
                                     $composantManquant = 0;
-                                    if($composantSt->getComposant()->getStockInterne() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
+                                    if($composantSt->getQuantite() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
                                     {
                                         $listePrevisionnelle[$i1]['lancement'] = 0; 
                                         break;
@@ -304,5 +312,80 @@ class ProductionController extends Controller
             return $this->redirectToRoute('ic_production_interne');
         else
             return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $idProducteur));
+    }
+    
+    public function lancementProdAction($idProd)
+    {
+        //Connexion doctrine
+        $em = $this->getDoctrine()->getManager();
+        
+        //Passage de l'etape 1(prévisionnelle) à l'étape 2(prod)
+        $production = $em->getRepository('ICProductionBundle:Production')->findOneBy(array('id' => $idProd));
+        $composantNomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($production->getIdNomenclature());
+        
+        //Sortie des composants l'or de production interne
+        if($production->getIdLieu() == 0)
+        {
+            foreach ($composantNomenclature as $composantNom)
+            {
+                $newQuantite = $composantNom->getComposant()->getStockInterne() - ($composantNom->getQuantite() * $production->getQuantite());
+                
+                $composant = $em->getRepository('ICProductionBundle:Composant')->find($composantNom->getComposant()->getId());
+                
+                $composant->setStockInterne($newQuantite);
+                
+                $em->flush();
+            }            
+        }
+        //Sortie des composants l'or de production Sous traitant
+        else
+        {
+            $composantUtilise = explode(',', $production->getComposantUtilise());
+            
+            foreach ($composantNomenclature as $composantNom)
+            {
+                $composantSt = $em->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($production->getIdLieu());
+                
+                foreach ($composantSt as $sousTraitant) 
+                {
+                    if(in_array($sousTraitant->getIdComposant(), $composantUtilise))
+                    {
+                        if($sousTraitant->getIdComposant() == $composantNom->getIdComposant())
+                        {
+                            $newQuantite = $sousTraitant->getQuantite() - ($composantNom->getQuantite() * $production->getQuantite());
+                            
+                            $sousTraitant->setQuantite($newQuantite);
+                            
+                            $em->flush();                                 
+                        }
+                    }
+                }
+            }                
+        }
+
+        $production->setEtape(2);
+        $production->setDateProd(new \Datetime());
+        $em->flush();
+        
+        if($production->getIdLieu() == 0)
+            return $this->redirectToRoute('ic_production_interne');
+        else
+            return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $production->getIdLieu()));
+    }
+    
+    public function lancementTestAction($idProd)
+    { 
+        //Connexion doctrine
+        $em = $this->getDoctrine()->getManager();
+        
+        //Passage de l'etape 1(prévisionnelle) à l'étape 2(prod)
+        $production = $em->getRepository('ICProductionBundle:Production')->findOneBy(array('id' => $idProd));
+        
+        $rand = rand(0, 99999999);
+        
+        /*if($idProducteur == 0)
+            return $this->redirectToRoute('ic_production_interne');
+        else
+            return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $idProducteur));*/
     }
 }

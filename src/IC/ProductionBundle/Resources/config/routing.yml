@@ -18,3 +18,16 @@ ic_calcul:
         idVersion:    \d{1,10}
         quantite1:    \d{1,10}
         quantite2:    \d{1,10}
+        
+ic_lancement_prod:
+    path:     /Lancement-Production-{idProd}
+    defaults: { _controller: ICProductionBundle:Production:lancementProd }
+    requirements:
+        idProd: \d{1,10}
+        
+ic_lancement_test:
+    path:     /lancementProd-Test-{idProd}
+    defaults: { _controller: ICProductionBundle:Production:lancementTest }
+    requirements:
+        idProd: \d{1,10}
+    

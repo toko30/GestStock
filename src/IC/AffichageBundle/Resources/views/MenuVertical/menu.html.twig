@@ -41,7 +41,9 @@
 					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pf', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
 				{% endfor %}
 			</div>
+            
 			<span class="titreMenuVertical">Approvisionnement</span><br>
+            
 				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_interne') }}">Appro Stock Interne</a><br>
 				
 				{% image 'img/plus.png' %}
@@ -58,9 +60,11 @@
 					{% endif %}
 				</div>
 				
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_identifiant') }}">Appro Identifiant</a><br>
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_cv') }}">Appro Lecteur CV</a><br>
+				<a class="sousMenu decalageNoPlus1" href="{{ path('ic_affichage_appro_identifiant') }}">Appro Identifiant</a><br>
+				<a class="sousMenu decalageNoPlus1" href="{{ path('ic_affichage_appro_cv') }}">Appro Lecteur CV</a><br>
+                
 			<span class="titreMenuVertical">Production</span><br>
+            
 				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_production_interne') }}">Production Interne</a><br>
 				
 				{% image 'img/plus.png' %}

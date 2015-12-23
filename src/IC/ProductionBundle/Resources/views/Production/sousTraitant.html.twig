@@ -18,9 +18,7 @@
     
     <h1>Production Prévisionnelle</h1>
     
-    {% if listePrevisionnelle is empty %}
-        <div>Aucun Production prévisionnelle calculée</div>
-    {% else %}
+    {% if listePrevisionnelle is not empty %}
         <table>
             <tr>
                 <td>Nomenclature</td>
@@ -38,7 +36,7 @@
                 <tr>
                     <td>{{previsionnelle.nom}}</td>
                     <td>{{previsionnelle.quantite}}</td>
-                    <td><a href="">Lancer la production</a></td>          
+                    <td><a href="{{ path('ic_lancement_prod', {idProd: previsionnelle.id}) }}">Lancer la production</a></td>          
                 </tr>
             {% endif %}
         {% endfor %}
@@ -47,9 +45,7 @@
     
     <h1>Production en cours</h1>
     
-    {% if listeEnCours is empty %}
-        <div>Aucune Production en cours</div>
-    {% else %}
+    {% if listeEnCours is not empty %}
         <table>
             <tr>
                 <td>Nomenclature</td>
@@ -61,7 +57,7 @@
                     <tr>
                         <td>{{enCours.nom}}</td>
                         <td>{{enCours.quantite}}</td>
-                        <td><a href="">Production terminer</a></td> 
+                        <td><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">Production terminer</a></td> 
                     </tr>
             {% endfor %}
         </table>
