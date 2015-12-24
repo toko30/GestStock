@@ -31,3 +31,8 @@ ic_lancement_test:
     requirements:
         idProd: \d{1,10}
     
+ic_suppression_previsionnelle:
+    path:     /Suppression-previsionelle-{idProd}
+    defaults: { _controller: ICProductionBundle:Production:suppression }
+    requirements:
+        idProd: \d{1,10}

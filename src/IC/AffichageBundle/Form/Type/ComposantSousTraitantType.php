@@ -29,7 +29,7 @@ class ComposantSousTraitantType extends AbstractType
       $choixSousFamille[] = $sousFamille->getNom();   
 
     foreach($this->getNomenclature() AS $nomenclature)
-      $choixNomenclature[] = $nomenclature->getNom(); 
+      $choixNomenclature[] = $nomenclature->getNomenclature()->getNom(); 
       
     $builder->add('recherche', 'text', array('required' => false));
     

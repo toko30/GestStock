@@ -110,4 +110,3 @@ class Badge
         return $this->typeBadge;
     }
 }
-

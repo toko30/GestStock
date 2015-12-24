@@ -168,4 +168,3 @@ class ComposantSousTraitant
         return $this->sousTraitant;
     }
 }
-

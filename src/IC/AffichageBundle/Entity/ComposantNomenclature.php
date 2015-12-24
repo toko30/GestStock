@@ -30,17 +30,22 @@ class ComposantNomenclature
     /**
      * @var integer
      */
+    private $optionSt;
+
+    /**
+     * @var integer
+     */
     private $id;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\VersionNomenclature
+     */
+    private $version;
 
     /**
      * @var \IC\AffichageBundle\Entity\Composant
      */
     private $composant;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\Nomenclature
-     */
-    private $nomenclature;
 
 
     /**
@@ -140,6 +145,30 @@ class ComposantNomenclature
     }
 
     /**
+     * Set optionSt
+     *
+     * @param integer $optionSt
+     *
+     * @return ComposantNomenclature
+     */
+    public function setOptionSt($optionSt)
+    {
+        $this->optionSt = $optionSt;
+
+        return $this;
+    }
+
+    /**
+     * Get optionSt
+     *
+     * @return integer
+     */
+    public function getOptionSt()
+    {
+        return $this->optionSt;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -147,6 +176,30 @@ class ComposantNomenclature
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set version
+     *
+     * @param \IC\AffichageBundle\Entity\VersionNomenclature $version
+     *
+     * @return ComposantNomenclature
+     */
+    public function setVersion(\IC\AffichageBundle\Entity\VersionNomenclature $version = null)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return \IC\AffichageBundle\Entity\VersionNomenclature
+     */
+    public function getVersion()
+    {
+        return $this->version;
     }
 
     /**
@@ -171,30 +224,6 @@ class ComposantNomenclature
     public function getComposant()
     {
         return $this->composant;
-    }
-
-    /**
-     * Set nomenclature
-     *
-     * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
-     *
-     * @return ComposantNomenclature
-     */
-    public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
-    {
-        $this->nomenclature = $nomenclature;
-
-        return $this;
-    }
-
-    /**
-     * Get nomenclature
-     *
-     * @return \IC\AffichageBundle\Entity\Nomenclature
-     */
-    public function getNomenclature()
-    {
-        return $this->nomenclature;
     }
 }
 

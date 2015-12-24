@@ -5,6 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use IC\ProductionBundle\Form\Type\ProductionType;
 use IC\ProductionBundle\Entity\Production;
+use IC\ProductionBundle\Entity\Lot;
+use IC\ProductionBundle\Entity\CarteTest;
 
 class ProductionController extends Controller
 {
@@ -215,27 +217,32 @@ class ProductionController extends Controller
                     //vérification de la possibilité de lancement d'une production
                     foreach($listeComposantnomenclature as $composantNomenclature)
                     {
-                        echo $composantNomenclature->getComposant()->getId().'<br>';
-                        
                         if(in_array($composantNomenclature->getComposant()->getId(), $listeComposantUtiliseSt))
                         {
-                            foreach($listeComposantSousTraitant as $composantSt)
+                            if(empty($listeComposantSousTraitant))
                             {
                                 $composantManquant = 1;
-                                
-                                if($composantNomenclature->getComposant()->getId() == $composantSt->getIdComposant())
-                                {
-                                    
-                                    $composantManquant = 0;
-                                    if($composantSt->getQuantite() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
-                                    {
-                                        $listePrevisionnelle[$i1]['lancement'] = 0; 
-                                        break;
-                                    }
-                                    break; 
-                                }
                             }
-                            //Si le composant n'est pas trouver dans la boucle c'est qu'il n'est pas chez le sousTraitant(on ne peut donc pas produire)
+                            else
+                            {
+                                foreach($listeComposantSousTraitant as $composantSt)
+                                {
+                                    $composantManquant = 1;
+                                    
+                                    if($composantNomenclature->getComposant()->getId() == $composantSt->getIdComposant())
+                                    {                          
+                                        $composantManquant = 0;
+                                        if($composantSt->getQuantite() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
+                                        {
+                                            $listePrevisionnelle[$i1]['lancement'] = 0; 
+                                            break;
+                                        }
+                                        break; 
+                                    }
+                                }                                
+                            }
+
+                            //Si le composant n'est pas trouvé dans la boucle c'est qu'il n'est pas chez le sousTraitant(on ne peut donc pas produire)
                             if($composantManquant == 1)
                             {
                                 $listePrevisionnelle[$i1]['lancement'] = 0; 
@@ -319,7 +326,7 @@ class ProductionController extends Controller
         //Connexion doctrine
         $em = $this->getDoctrine()->getManager();
         
-        //Passage de l'etape 1(prévisionnelle) à l'étape 2(prod)
+        //selection de la production à lancer et la nomenclature pour sortir les composants du stock
         $production = $em->getRepository('ICProductionBundle:Production')->findOneBy(array('id' => $idProd));
         $composantNomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($production->getIdNomenclature());
         
@@ -362,11 +369,13 @@ class ProductionController extends Controller
                 }
             }                
         }
-
+        
+        //Passage de la production de l'etape 1(prévisionnelle) à l'étape 2(prod)
         $production->setEtape(2);
         $production->setDateProd(new \Datetime());
         $em->flush();
         
+        //redirection vers l'affichage
         if($production->getIdLieu() == 0)
             return $this->redirectToRoute('ic_production_interne');
         else
@@ -374,18 +383,79 @@ class ProductionController extends Controller
     }
     
     public function lancementTestAction($idProd)
-    { 
+    {
         //Connexion doctrine
         $em = $this->getDoctrine()->getManager();
         
-        //Passage de l'etape 1(prévisionnelle) à l'étape 2(prod)
+        //sélection de la production qui vient d'être terminée
         $production = $em->getRepository('ICProductionBundle:Production')->findOneBy(array('id' => $idProd));
+        $idProducteur = $production->getIdLieu();
         
-        $rand = rand(0, 99999999);
+        //création du lot de lecteur
+        $lot = new Lot();
+        $lot->setIdnomenclature($production->getVersion()->getVersion());
+        $lot->setDateProd($production->getDateProd());
+        $lot->setDateTest(new \Datetime());
         
-        /*if($idProducteur == 0)
+        $em->persist($lot);
+        $em->flush();
+        
+        //recupération du lot créé précédement
+        $lastLot = $em->getRepository('ICProductionBundle:Lot')->getLastLot();
+        
+        //création de la liste de carte à tester ainsi que leurs numéro de série
+        for($i =0; $i < $production->getQuantite(); $i++)
+        {
+            while(true)
+            {
+                $rand = str_pad(rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+                
+                //vérification que le numéro généré n'est pas déja utilisé
+                $verifDispoLecteur = $em->getRepository('ICProductionBundle:Lecteur')->findOneBy(array('numSerie' => $rand));
+                $verifDispoCarteTest = $em->getRepository('ICProductionBundle:CarteTest')->findOneBy(array('numSerie' => $rand));
+                
+                //s'il n'est pas utilisé on ajoute le ligne dans CarteTest
+                if(empty($verifDispo) && empty($verifDispoCarteTest))
+                {
+                    $lecteurTest = new CarteTest();  
+                    $lecteurTest->setNumSerie($rand);
+                    $lecteurTest->setIdLot($lastLot[0]->getId());
+                    $lecteurTest->setEtat(1);
+                    $lecteurTest->setAssemble(0);
+                    
+                    $em->persist($lecteurTest);
+                    $em->flush();
+                    break;
+                }
+            }
+        }
+        
+        //Supréssion de la production terminée
+        $em->remove($production);
+        $em->flush();
+        
+        //redirection vers l'affichage        
+        if($idProducteur == 0)
             return $this->redirectToRoute('ic_production_interne');
         else
-            return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $idProducteur));*/
+            return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $idProducteur));
+    }
+    
+    public function suppressionAction($idProd)
+    {
+        //Connexion doctrine
+        $em = $this->getDoctrine()->getManager();
+        
+        $production = $em->getRepository('ICProductionBundle:Production')->findOneBy(array('id' => $idProd));
+        $idProducteur = $production->getIdLieu();
+        
+        $em->remove($production);
+        $em->flush();
+        
+        //redirection vers l'affichage
+        if($idProducteur == 0)
+            return $this->redirectToRoute('ic_production_interne');
+        else
+            return $this->redirectToRoute('ic_production_sous_traitant', array('id' => $idProducteur));
     }
 }

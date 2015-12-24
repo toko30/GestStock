@@ -20,12 +20,11 @@ class MenuController extends Controller
         $listSousFamille = $em->getRepository('ICAffichageBundle:SousFamille')->findAll();
         $listFournisseur = $em->getRepository('ICAffichageBundle:Fournisseur')->findAll();
         $listSousTraitant = $em->getRepository('ICAffichageBundle:SousTraitant')->findAll();
-        $listNomenclature = $em->getRepository('ICAffichageBundle:Nomenclature')->findAll();
+        $listNomenclature = $em->getRepository('ICAffichageBundle:VersionNomenclature')->getAllNomenclatureLastVersion();
         $listLecteur = $em->getRepository('ICAffichageBundle:SousTypeLecteur')->findAll();
         $listBadge = $em->getRepository('ICAffichageBundle:SousTypeBadge')->findAll();
         $listAppro = $em->getRepository('ICAffichageBundle:Appro')->getListStAppro();
         $listProd = $em->getRepository('ICAffichageBundle:Production')->getListStProd();
-        
         //Création des formulaires
         if($url == 'ic_affichage_composant_interne')
             $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille, $listFournisseur, $listNomenclature));

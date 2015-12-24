@@ -24,9 +24,14 @@
         <option name="fixed"/>
       </options>
     </field>
-    <many-to-one field="nomenclature" target-entity="Nomenclature">
+    <field name="optionSt" type="integer" column="option_st" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="version" target-entity="VersionNomenclature">
       <join-column name="id_nomenclature" referenced-column-name="id" />
-    </many-to-one>
+    </one-to-one>
     <one-to-one field="composant" target-entity="Composant" >
       <join-column name="id_composant" referenced-column-name="id" />
     </one-to-one>

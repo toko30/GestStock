@@ -17,7 +17,7 @@
             {% endfor %}
 		</div>
 	{% endif %}
-	
+
 	{% if nomenclatures[0].id is not empty %}
 	
 		<span class="titreMenuVertical">Nomenclatures</span><br>
@@ -27,9 +27,14 @@
 			{% endimage %}
 			<br>
 			<div class="divSousMenu" id="sousMenu211">
+                {% set idLastAffiche = nomenclatures[0].idNomenclature %}
+                    <a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pcb', {'id': nomenclatures[0].id}) }}">{{ nomenclatures[0].nomenclature.nom }}-V{{nomenclatures[0].version}}</a><br>
 				{% for nomenclature in nomenclatures %}
-					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pcb', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
-				{% endfor %}
+                    {% if idLastAffiche != nomenclature.idNomenclature %}
+                        {% set idLastAffiche = nomenclature.idNomenclature %}
+					    <a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pcb', {'id': nomenclature.id}) }}">{{ nomenclature.nomenclature.nom }}-V{{nomenclature.version}}</a><br>
+				    {% endif %}
+                {% endfor %}
 			</div>
 			
 			{% image 'img/plus.png' %}
@@ -37,9 +42,14 @@
 			{% endimage %}
 			
 			<div class="divSousMenu" id="sousMenu311">
+                {% set idLastAffiche = nomenclatures[0].idNomenclature %}
+                    <a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pf', {'id': nomenclatures[0].id}) }}">{{ nomenclatures[0].nomenclature.nom }}-V{{nomenclatures[0].version}}</a><br>
 				{% for nomenclature in nomenclatures %}
-					<a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pf', {'id': nomenclature.id}) }}">{{ nomenclature.nom }}</a><br>
-				{% endfor %}
+                    {% if idLastAffiche != nomenclature.idNomenclature %}
+                        {% set idLastAffiche = nomenclature.idNomenclature %}
+					   <a class="sousSousMenu" href="{{ path('ic_affichage_nomenclature_pf', {'id': nomenclature.id}) }}">{{ nomenclature.nomenclature.nom }}-V{{nomenclature.version}}</a><br>
+				    {% endif %}
+                {% endfor %}
 			</div>
             
 			<span class="titreMenuVertical">Approvisionnement</span><br>

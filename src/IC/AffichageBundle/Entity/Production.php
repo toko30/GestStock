@@ -225,5 +225,62 @@ class Production
     {
         return $this->nomenclature;
     }
-}
+    /**
+     * @var string
+     */
+    private $composantUtilise;
 
+    /**
+     * @var \IC\AffichageBundle\Entity\VersionNomenclature
+     */
+    private $version;
+
+
+    /**
+     * Set composantUtilise
+     *
+     * @param string $composantUtilise
+     *
+     * @return Production
+     */
+    public function setComposantUtilise($composantUtilise)
+    {
+        $this->composantUtilise = $composantUtilise;
+
+        return $this;
+    }
+
+    /**
+     * Get composantUtilise
+     *
+     * @return string
+     */
+    public function getComposantUtilise()
+    {
+        return $this->composantUtilise;
+    }
+
+    /**
+     * Set version
+     *
+     * @param \IC\AffichageBundle\Entity\VersionNomenclature $version
+     *
+     * @return Production
+     */
+    public function setVersion(\IC\AffichageBundle\Entity\VersionNomenclature $version = null)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return \IC\AffichageBundle\Entity\VersionNomenclature
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+}

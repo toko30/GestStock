@@ -197,4 +197,3 @@ class Moq
         return $this->composant;
     }
 }
-

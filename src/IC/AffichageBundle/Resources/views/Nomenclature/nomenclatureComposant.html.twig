@@ -13,9 +13,9 @@
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
+    {{ parent() }}
 	{% if nomenclatures is not empty %}
-		<h1>{{nomenclatures[0].nomenclature.nom}} - V{{nomenclatures[0].nomenclature.version}}</h1>
+		<h1>{{nomenclatures[0].version.nomenclature.nom}} - V{{nomenclatures[0].version.version}}</h1>
 			<table class="imp">
 				<tr>
 					<td class="titreFamille">Famille</td>

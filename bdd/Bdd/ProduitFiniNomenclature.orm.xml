@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\ProductionBundle\Entity\VersionNomenclature" repository-class="IC\ProductionBundle\Repository\VersionNomenclatureRepository" table="version_nomenclature">
+  <entity name="IC\AffichageBundle\Entity\ProduitFiniNomenclature" repository-class="IC\AffichageBundle\Repository\ProduitFiniNomenclature" table="produit_fini_nomenclature">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="idNomenclature" type="integer" column="id_nomenclature" nullable="false">
       <options>
-        <option name="unsigned"/>
+        <option name="fixed"/>
       </options>
     </field>
-    <field name="version" type="integer" column="version" nullable="false">
+    <field name="idComposant" type="integer" column="id_composant" nullable="false">
       <options>
-        <option name="unsigned"/>
+        <option name="fixed"/>
       </options>
     </field>
-    <one-to-one field="nomenclature" target-entity="Nomenclature" >
-      <join-column name="id_nomenclature" referenced-column-name="id" />
-    </one-to-one>
+    <field name="quantite" type="integer" column="quantite" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

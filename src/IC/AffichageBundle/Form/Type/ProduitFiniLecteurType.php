@@ -45,5 +45,4 @@ class ProduitFiniLecteurType extends AbstractType
   {
     return $this->type;
   }
-  
 }

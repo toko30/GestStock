@@ -1,6 +1,6 @@
 #menuVertical
 {
-	width:300px;
+	width:20%;
 	border-right: 1px solid #00B8D6;
 	border-bottom: 1px solid #00B8D6;
 	float:left;
@@ -31,7 +31,7 @@ tr th
 	font-size: 18px;
 	padding: 5px 10px;
 }
-tr:hover
+.ligneHover:hover
 {
 	background: #00B8D6;
 	color: white;
@@ -39,5 +39,5 @@ tr:hover
 #page
 {
     float:left;
-    width:70%;
+    width:75%;
 }

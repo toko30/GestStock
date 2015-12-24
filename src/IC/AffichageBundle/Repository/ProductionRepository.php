@@ -16,9 +16,11 @@ class ProductionRepository extends \Doctrine\ORM\EntityRepository
    public function getProdInterne()
    {
 		return $this->createQueryBuilder('p')
-		->join('p.nomenclature', 'n')
-		->addSelect('n')
-		->where('p.idLieu = 0')
+		->join('p.version', 'v')
+        ->join('v.nomenclature', 'n')
+		->addSelect('v', 'n')
+        ->orderBy('p.dateProd')
+		->where('p.idLieu = 0 AND p.etape = 2')
 		->getQuery()
 		->getResult();
    }
@@ -26,11 +28,12 @@ class ProductionRepository extends \Doctrine\ORM\EntityRepository
    public function getProdSousTraitant($id)
    {
 		return $this->createQueryBuilder('p')
-		->join('p.nomenclature', 'n')
+		->join('p.version', 'v')
+        ->join('v.nomenclature', 'n')
 		->join('p.sousTraitant', 's')
-		->addSelect('n')
-		->addSelect('s')
-		->where('p.idLieu = :id')
+		->addSelect('v', 'n', 's')
+        ->orderBy('p.dateProd')
+		->where('p.idLieu = :id  AND p.etape = 2')
 		->setParameter('id', $id)
 		->getQuery()
 		->getResult();

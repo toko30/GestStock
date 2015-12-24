@@ -52,4 +52,3 @@ class SousTraitant
         return $this->id;
     }
 }
-

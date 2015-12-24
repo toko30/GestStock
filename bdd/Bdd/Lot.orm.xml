@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\ProductionBundle\Entity\VersionNomenclature" repository-class="IC\ProductionBundle\Repository\VersionNomenclatureRepository" table="version_nomenclature">
+  <entity name="IC\AffichageBundle\Entity\Lot" repository-class="IC\AffichageBundle\Repository\LotRepository" table="lot">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -9,13 +9,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="version" type="integer" column="version" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <one-to-one field="nomenclature" target-entity="Nomenclature" >
-      <join-column name="id_nomenclature" referenced-column-name="id" />
-    </one-to-one>
+    <field name="dateProd" type="date" column="date_prod" nullable="false"/>
+    <field name="dateTest" type="date" column="date_test" nullable="false"/>
   </entity>
 </doctrine-mapping>

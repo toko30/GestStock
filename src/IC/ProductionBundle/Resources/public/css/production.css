@@ -10,3 +10,77 @@
     background: darkred;
     border: 1px solid darkred;
 }
+.productionImpossible a
+{
+    text-decoration: underline;
+}
+
+.imgcross
+{
+    margin-top:5px;
+    width:15px;
+    height:15px;
+}
+
+.productionImpossible .croix
+{
+    background:white;
+}
+
+form
+{
+    text-align: center;    
+}
+
+.divTableProduction
+{
+    float:left;
+    margin: 0 5%;
+    width:40%;
+}
+table
+{
+width:100%;    
+}
+.caseVideSup
+{
+    border:0;
+    width:5%
+}
+.caseVideProd
+{
+    border:0;
+    width:25%;
+}
+.ligneCaseVideSup
+{
+    border-right: 0;
+}
+.ligneCaseVideProd, .ligneCaseVideProd a
+{
+    border:0;
+    text-decoration: underline;
+    color: #00B8D6;
+}
+.titreNomenclature, .titreQuantite
+{
+    background: #00B8D6;
+    width:auto;
+    border:0;
+    color:white;
+    font-weight: bold;
+}
+.titreQuantite
+{
+    width:30%;
+    border-right: 1px solid #00B8D6;
+}
+.ligneHover:hover .ligneCaseVideProd, .ligneHover:hover .ligneCaseVideProd a
+{
+    border: 1px solid  #00B8D6;
+    color:white;
+}
+.nom
+{
+    border-left: 0;
+}

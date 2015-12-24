@@ -14,7 +14,7 @@
 
 {% block body %}
 	{{ parent() }}
-	
+
 	<h1>Production Interne</h1>
 	
 	{% if prod is empty %}
@@ -28,7 +28,7 @@
 		</tr>
 		{% for production in prod %}
 			<tr>
-				<td>{{production.nomenclature.nom}}-V{{production.nomenclature.version}}</td>
+				<td>{{production.version.nomenclature.nom}}-V{{production.version.version}}</td>
 				<td>{{production.quantite}}</td>
 				<td>{{production.dateProd|date('d-m-Y')}}</td>
 			</tr>

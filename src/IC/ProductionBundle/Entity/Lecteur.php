@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AffichageBundle\Entity;
+namespace IC\ProductionBundle\Entity;
 
 /**
  * Lecteur
@@ -25,6 +25,11 @@ class Lecteur
     /**
      * @var \DateTime
      */
+    private $dateProd;
+
+    /**
+     * @var \DateTime
+     */
     private $dateCreation;
 
     /**
@@ -33,7 +38,7 @@ class Lecteur
     private $id;
 
     /**
-     * @var \IC\AffichageBundle\Entity\TypeLecteur
+     * @var \IC\ProductionBundle\Entity\TypeLecteur
      */
     private $typeLecteur;
 
@@ -111,6 +116,30 @@ class Lecteur
     }
 
     /**
+     * Set dateProd
+     *
+     * @param \DateTime $dateProd
+     *
+     * @return Lecteur
+     */
+    public function setDateProd($dateProd)
+    {
+        $this->dateProd = $dateProd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateProd
+     *
+     * @return \DateTime
+     */
+    public function getDateProd()
+    {
+        return $this->dateProd;
+    }
+
+    /**
      * Set dateCreation
      *
      * @param \DateTime $dateCreation
@@ -147,11 +176,11 @@ class Lecteur
     /**
      * Set typeLecteur
      *
-     * @param \IC\AffichageBundle\Entity\TypeLecteur $typeLecteur
+     * @param \IC\ProductionBundle\Entity\TypeLecteur $typeLecteur
      *
      * @return Lecteur
      */
-    public function setTypeLecteur(\IC\AffichageBundle\Entity\TypeLecteur $typeLecteur = null)
+    public function setTypeLecteur(\IC\ProductionBundle\Entity\TypeLecteur $typeLecteur = null)
     {
         $this->typeLecteur = $typeLecteur;
 
@@ -161,7 +190,7 @@ class Lecteur
     /**
      * Get typeLecteur
      *
-     * @return \IC\AffichageBundle\Entity\TypeLecteur
+     * @return \IC\ProductionBundle\Entity\TypeLecteur
      */
     public function getTypeLecteur()
     {

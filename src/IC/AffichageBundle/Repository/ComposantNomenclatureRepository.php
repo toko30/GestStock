@@ -7,8 +7,9 @@ class ComposantNomenclatureRepository extends \Doctrine\ORM\EntityRepository
    public function getComposantNomenclatureCompleteById($id)
    {
 		return $this->createQueryBuilder('nc')
-		->join('nc.nomenclature', 'n')
-		->join('nc.composant', 'c')
+        ->join('nc.composant', 'c')
+		->join('nc.version', 'v')
+        ->join('v.nomenclature', 'n')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
 		->addSelect('c')
@@ -20,14 +21,16 @@ class ComposantNomenclatureRepository extends \Doctrine\ORM\EntityRepository
    
    public function getComposantNomenclaturePCBById($id)
    {
-		return $this->createQueryBuilder('n')
-		->join('n.composant', 'c')
+		return $this->createQueryBuilder('nc')
+        ->join('nc.composant', 'c')
+		->join('nc.version', 'v')
+        ->join('v.nomenclature', 'n')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
-		->addSelect('c')
-		->where('n.idNomenclature = :id AND c.idFamille = 1')
+		->addSelect('c', 'v', 'n')
+		->where('nc.idNomenclature = :id')
 		->setParameter('id', $id)
 		->getQuery()
-		->getResult();	   
+		->getResult();   
    }
 }
