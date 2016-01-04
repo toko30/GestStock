@@ -8,6 +8,7 @@ class ApprovisionnementMPController extends Controller
 {
     public function approInterneProductionAction()
     {
+        
         return $this->render('ICApprovisionnementBundle:MP:production.html.twig', array('partie' => 'approvisionnement', 'name' => 'test'));
     }
     

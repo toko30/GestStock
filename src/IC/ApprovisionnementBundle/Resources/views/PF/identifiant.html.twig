@@ -1,8 +1,15 @@
 {% extends 'ICApprovisionnementBundle::layout.html.twig' %}
+
+{% block title %} {{ parent() }} - Identifiants{% endblock %}
+
+{% block entete %} {{ parent() }} Identifiants{% endblock %}
+
 {% block body %}
     {{ parent() }}
-    Hello {{ name }}!
+
 {% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
+    
 {% endblock %}

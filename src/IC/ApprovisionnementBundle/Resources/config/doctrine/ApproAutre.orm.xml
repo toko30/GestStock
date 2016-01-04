@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="IC\ApprovisionnementBundle\Entity\ApproAutre" repository-class="IC\ApprovisionnementBundle\Repository\ApproAutreRepository" table="appro_autre">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idCommande" type="integer" column="id_commande" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="idLecteur" type="integer" column="id_lecteur" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="quantite" type="integer" column="quantite" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="appro" target-entity="Appro" >
+      <join-column name="id_commande" referenced-column-name="id" />
+    </one-to-one>
+    <one-to-one field="typeLecteur" target-entity="TypeLecteur" >
+      <join-column name="id_lecteur" referenced-column-name="id" />
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

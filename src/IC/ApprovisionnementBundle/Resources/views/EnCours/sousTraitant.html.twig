@@ -1,5 +1,10 @@
 {% extends 'ICApprovisionnementBundle::layout.html.twig' %}
+
+{% block title %} {{ parent() }} production{% endblock %}
+
+{% block entete %} {{ parent() }} production{% endblock %}
+
 {% block body %}
     {{ parent() }}
-    Hello {{ name }}!
+
 {% endblock %}
