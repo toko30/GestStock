@@ -28,10 +28,10 @@ class ApprovisionnementController extends Controller
         return $this->render('ICAffichageBundle:Appro:approIdentifiant.html.twig', array('appro' => $appro));
     }
     
-    public function approvisionnementLecteurCVAction()
+    public function approvisionnementAutreAction()
     {
         $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproLecteur')-> getApproLecteur();
         
-        return $this->render('ICAffichageBundle:Appro:approLecteurCV.html.twig', array('appro' => $appro));
+        return $this->render('ICAffichageBundle:Appro:approAutre.html.twig', array('appro' => $appro));
     }
 }

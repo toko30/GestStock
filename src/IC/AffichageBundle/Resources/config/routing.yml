@@ -36,9 +36,9 @@ ic_affichage_appro_identifiant:
     path:     /Approvisionnement-Identifiant
     defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementIdentifiant }
     
-ic_affichage_appro_cv:
-    path:     /Approvisionnement-LecteurCV
-    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementLecteurCV }
+ic_affichage_appro_autre:
+    path:     /Approvisionnement-Autre-Produits-Finis
+    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementAutre }
 
 ic_affichage_production_interne:
     path:     /Production-Interne
@@ -58,6 +58,6 @@ ic_affichage_produit_fini_identifiant:
     path:     /Produit-Fini-Identifiant
     defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniIdentifiant }
     
-ic_affichage_produit_fini_lecteur_cv:
-    path:     /Produit-Fini-Lecteur-CV
-    defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniLecteurCV }
+ic_affichage_produit_fini_autre:
+    path:     /Produit-Fini-Autre
+    defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniAutre }

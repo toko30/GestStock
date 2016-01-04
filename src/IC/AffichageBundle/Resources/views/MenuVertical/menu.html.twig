@@ -54,8 +54,9 @@
             
 			<span class="titreMenuVertical">Approvisionnement</span><br>
             
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_interne') }}">Appro Stock Interne</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_appro_interne') }}">Appro Matière Première</a><br>
 				
+                {#
 				{% image 'img/plus.png' %}
 					<span id="sousMenu4" class="sousMenu"><img id="sousMenu41" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Appro Sous Traitant</span><br>
 				{% endimage %}
@@ -69,16 +70,17 @@
 						{% endfor %}
 					{% endif %}
 				</div>
+                #}
 				
 				<a class="sousMenu decalageNoPlus1" href="{{ path('ic_affichage_appro_identifiant') }}">Appro Identifiant</a><br>
-				<a class="sousMenu decalageNoPlus1" href="{{ path('ic_affichage_appro_cv') }}">Appro Lecteur CV</a><br>
+				<a class="sousMenu decalageNoPlus1" href="{{ path('ic_affichage_appro_autre') }}">Appro Autre Produit Fini</a><br>
                 
 			<span class="titreMenuVertical">Production</span><br>
             
 				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_production_interne') }}">Production Interne</a><br>
 				
 				{% image 'img/plus.png' %}
-					<span id="sousMenu5" class="sousMenu"><img id="sousMenu51" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Production Sous Traitant</span><br>
+					<span id="sousMenu5" class="sousMenu"><img id="sousMenu51" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Production Sous-Traitants</span><br>
 				{% endimage %}
 				
 				<div class="divSousMenu" id="sousMenu511">
@@ -91,10 +93,10 @@
 					{% endif %}
 				</div>
 				
-			<span class="titreMenuVertical">Produit Fini</span><br>
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_interne') }}">Lecteur Idcapt</a><br>
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_identifiant') }}">Identifiant</a><br>
-				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_lecteur_cv') }}">Lecteur CV</a><br>
+			<span class="titreMenuVertical">Stock Produits Finis</span><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_interne') }}">Lecteurs</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_identifiant') }}">Identifiants</a><br>
+				<a class="sousMenu decalageNoPlus" href="{{ path('ic_affichage_produit_fini_autre') }}">Autres</a><br>
 	{% endif %}
 </nav>
 <span class="lienImp" onclick="$('.imp').tableExport({type:'excel', escape:'false'})">Enregistrer au format Excel</span><br>

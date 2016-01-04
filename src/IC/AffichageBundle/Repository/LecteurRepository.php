@@ -9,9 +9,18 @@ class LecteurRepository extends \Doctrine\ORM\EntityRepository
         $req = $this->createQueryBuilder('l')
         ->select('COUNT(l.idLecteur) as nbProduit, t.referenceInterne, t.designation')
         ->join('l.typeLecteur', 't')
-        ->groupBy('l.idLecteur')
-        ->where('t.idFournisseur = :id')
-        ->setParameter('id', $id);
+        ->groupBy('l.idLecteur');  
+        
+        if($id == 0)
+        {
+            $req->where('t.idFournisseur = :id')
+            ->setParameter('id', 0);         
+        }
+        else
+        {
+            $req->where('t.idFournisseur != :id')
+            ->setParameter('id', 0);              
+        }
         
        if(!empty($critere['recherche']))
         {

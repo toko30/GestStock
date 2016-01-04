@@ -14,7 +14,7 @@ class ProduitFiniController extends Controller
         else
             $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 0);
             
-        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'Idcapt'));
+        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur));
     }
 
     public function produitFiniIdentifiantAction()
@@ -27,13 +27,13 @@ class ProduitFiniController extends Controller
         return $this->render('ICAffichageBundle:produitFini:identifiant.html.twig', array('badge' => $nbBadge));
     }
 
-    public function produitFiniLecteurCVAction()
+    public function produitFiniAutreAction()
     {
         if(!empty($_POST['formProduitFiniLecteur']))
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 6);
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 1);
         else
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 6); 
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 1); 
                    
-        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur, 'page' => 'CV'));
+        return $this->render('ICAffichageBundle:produitFini:autre.html.twig', array('lecteur' => $nbLecteur));
     }
 }

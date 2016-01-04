@@ -1,3 +1,3 @@
-ic_approvisionnement_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ICApprovisionnementBundle:Default:index }
+ic_approvisionnement_mp:
+    path:     /Matiere-Premiere
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementMP:approInterneProduction }

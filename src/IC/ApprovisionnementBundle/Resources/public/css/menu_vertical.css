@@ -1,0 +1,107 @@
+#lienMenuVertical
+{
+	border-bottom: 3px solid #00B8D6;
+	width:100%;
+	padding-bottom: 20px;
+	margin-bottom:20px;
+}
+#recherche
+{
+	border-top: 3px solid #00B8D6;
+}
+.titreMenuVertical
+{
+	color: #00B8D6;
+	font-size: 25px;
+	margin:5px 5px 5px 5px;
+}
+a
+{
+	color:black;
+	text-decoration: none;
+}
+.sousMenu
+{
+	cursor: pointer;
+	margin:5px 15px;
+	font-size:20px;
+		
+}
+.lienImp
+{
+	cursor:pointer;
+	font-size:20px;
+}
+.decalageNoPlus
+{
+	padding-left:17px;
+}
+.decalageNoPlus1
+{
+	padding-left:16px;
+}
+.imgFlecheliste
+{
+	width:14px;
+	height:14px;
+	margin-right:2px
+}
+.divSousMenu
+{
+	display: none;
+	margin-left:50px;
+}
+.divSousMenu a:hover
+{
+	font-weight: bold;
+}
+.labelRecherche
+{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin: 20px 0 5px 0;
+	font-size: 20px;
+}
+.inputRecherche
+{
+	width: 90%;
+	margin: 0 12px 10px 12px;
+}
+.ChoixRecherche
+{
+margin-left:35px;	
+}
+.submitRecherche
+{
+	display: block;
+	margin:10px auto 0px auto;
+}
+.titreCheckBox
+{
+	display: inline-block;
+	cursor: pointer;
+}
+.titreCheckBox:hover
+{
+	font-weight: bold;
+}
+.imgFlecheCheckBox{
+	width:12px;
+	height:12px;
+	cursor: pointer;
+	margin-left:10px;
+}
+.checkBox
+{
+	margin-left: 30px;
+}
+.divCheckBox
+{
+	display: none;
+}
+.submitTrie
+{
+	display: block;
+	margin:10px auto 0px auto;
+}

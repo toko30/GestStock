@@ -17,7 +17,7 @@ class ProductionRepository extends \Doctrine\ORM\EntityRepository
         ->join('v.nomenclature', 'n')
         ->where('p.idLieu = :idLieu')
         ->setParameter('idLieu', $idLieu)
-        ->orderBy('p.dateProd')
+        ->orderBy('p.id')
         ->getQuery()
         ->getResult();
     }
