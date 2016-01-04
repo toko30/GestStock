@@ -6,8 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ApprovisionnementPFController extends Controller
 {
-    public function approInterneProductionAction()
+    public function approProduitsFinisIdentifiantsAction()
     {
-        return $this->render('ICApprovisionnementBundle:Default:index.html.twig', array('name' => 'test'));
+        return $this->render('ICApprovisionnementBundle:PF:identifiant.html.twig', array('partie' => 'approvisionnement', 'name' => 'test'));
+    }
+    
+    public function approProduitsFinisAutresAction()
+    {
+        return $this->render('ICApprovisionnementBundle:PF:autre.html.twig', array('partie' => 'approvisionnement', 'name' => 'test'));
     }
 }

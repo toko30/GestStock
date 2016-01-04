@@ -17,17 +17,47 @@
             <div>{% block entete %}{% endblock %}</div>
         </header>
         <nav id="menuHorizontal">
+        {% if partie == 'affichage' %}
+            <span class="spanMenu">Affichage</span>
+        {% else %}
             <a href="{{ path('ic_affichage_composant_interne') }}">Affichage</a>
-            <a href="{{ path('ic_approvisionnement_mp') }}">Approvisionnement</a>
+        {% endif %}
+        
+        {% if partie == 'approvisionnement' %}
+            <span class="spanMenu">Approvisionnement</span>
+        {% else %}
+            <a href="{{ path('ic_approvisionnement_mp_production') }}">Approvisionnement</a>
+        {% endif %}
+        
+        {% if partie == 'production' %}
+            <span class="spanMenu">Production</span>
+        {% else %}        
             <a href="{{ path('ic_production_interne') }}">Production</a>
+        {% endif %}
+        
+        {% if partie == 'test' %}
+            <span class="spanMenu">Contrôle Qualité</span>
+        {% else %}  
             <a href="{{ path('ic_affichage_composant_interne') }}">Contrôle Qualité</a>
+        {% endif %}
+        
+        {% if partie == 'produit_fini' %}
+            <span class="spanMenu">Produit Fini</span>
+        {% else %}  
             <a href="{{ path('ic_affichage_composant_interne') }}">Produit Fini</a>
+        {% endif %}
+        
+        {% if partie == 'admin' %}
+            <span class="spanMenu">Administration</span>
+        {% else %}  
             <a href="{{ path('ic_affichage_composant_interne') }}">Administration</a>
+        {% endif %}
+        
         </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}
             {% javascripts 
-	       'js/jquery.js' %}
+	        'js/jquery.js' %}
 	           <script type="text/javascript" src="{{ asset_url }}"></script>
 	       {% endjavascripts %}
         {% endblock %}

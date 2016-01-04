@@ -1,16 +1,22 @@
 ic_affichage_composant_interne:
-    path:     /Stock-Interne
-    defaults: { _controller: ICAffichageBundle:Composant:interne }
+    path:     /Stock-Interne{partie}
+    defaults: 
+        _controller: ICAffichageBundle:Composant:interne
+        partie: affichage
     
 ic_affichage_sous_traitant:
     path:     /Stock-Sous-Traitant-{id}
-    defaults: { _controller: ICAffichageBundle:Composant:soustraitant }
+    defaults: 
+        _controller: ICAffichageBundle:Composant:soustraitant 
+        partie: affichage
     requirements:
         id: \d{1,10}
 
 ic_affichage_detail:
     path:     /Detail-{id}
-    defaults: { _controller: ICAffichageBundle:Composant:detail }
+    defaults: 
+        _controller: ICAffichageBundle:Composant:detail 
+        partie: affichage
     requirements:
         id: \d{1,10}
 
@@ -61,3 +67,4 @@ ic_affichage_produit_fini_identifiant:
 ic_affichage_produit_fini_autre:
     path:     /Produit-Fini-Autre
     defaults: {_controller: ICAffichageBundle:ProduitFini:produitFiniAutre }
+    

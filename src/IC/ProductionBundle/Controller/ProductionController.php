@@ -53,7 +53,8 @@ class ProductionController extends Controller
                 }
             }
             //génération de la vue avec les info de la carte et ses composants calculés précédement
-            return $this->render('ICProductionBundle:Liste:interne.html.twig', array('quantite' => $_POST['formProduction']['quantite'], 
+            return $this->render('ICProductionBundle:Liste:interne.html.twig', array('partie' => 'production',
+                                                                                     'quantite' => $_POST['formProduction']['quantite'], 
                                                                                      'composantNomenclature' => $tabComposant,
                                                                                      'nomenclature' => $nomenclature,
                                                                                      'idVersion' => $idVersion,
@@ -100,14 +101,15 @@ class ProductionController extends Controller
                         {
                             $listePrevisionnelle[$i1]['lancement'] = 0; 
                             break;
-                        }     
+                        }
                     }
                     $i1++;
                 }
             }
             //Création du formulaire et affichage de la vue
             $form = $this->createForm(new ProductionType());
-            return $this->render('ICProductionBundle:Production:interne.html.twig', array('form' => $form->createView(),
+            return $this->render('ICProductionBundle:Production:interne.html.twig', array('partie' => 'production',
+                                                                                          'form' => $form->createView(),
                                                                                           'listeEnCours' => $listeEnCours,
                                                                                           'listePrevisionnelle' => $listePrevisionnelle));
         }
@@ -168,7 +170,8 @@ class ProductionController extends Controller
                 }
             }
 
-            return $this->render('ICProductionBundle:Liste:sousTraitant.html.twig', array('id' => $id,
+            return $this->render('ICProductionBundle:Liste:sousTraitant.html.twig', array('partie' => 'production',
+                                                                                          'id' => $id,
                                                                                           'quantite' => $_POST['formProduction']['quantite'],
                                                                                           'composantNomenclature' => $tabComposant,
                                                                                           'sousTraitant' => $nomSousTraitant,
@@ -256,7 +259,8 @@ class ProductionController extends Controller
             
             //création du formulaire et affichage de la vue
             $form = $this->createForm(new ProductionType());  
-            return $this->render('ICProductionBundle:Production:sousTraitant.html.twig', array('form' => $form->createView(),
+            return $this->render('ICProductionBundle:Production:sousTraitant.html.twig', array('partie' => 'production',
+                                                                                               'form' => $form->createView(),
                                                                                                'listeEnCours' => $listeEnCours,
                                                                                                'listePrevisionnelle' => $listePrevisionnelle));
         }

@@ -11,14 +11,14 @@ class ProductionController extends Controller
     {
         $prod = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Production')->getProdInterne();
         
-        return $this->render('ICAffichageBundle:Production:prodInterne.html.twig', array('prod' => $prod));
+        return $this->render('ICAffichageBundle:Production:prodInterne.html.twig', array('partie' => 'affichage', 'prod' => $prod));
     }
     
     public function productionSousTraitantAction($id)
     {
         $prod = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Production')->getProdSousTraitant($id);
         
-        return $this->render('ICAffichageBundle:Production:prodSousTraitant.html.twig', array('prod' => $prod));
+        return $this->render('ICAffichageBundle:Production:prodSousTraitant.html.twig', array('partie' => 'affichage', 'prod' => $prod));
     }    
 
 }

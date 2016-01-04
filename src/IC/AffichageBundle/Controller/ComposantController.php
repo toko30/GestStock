@@ -23,9 +23,9 @@ class ComposantController extends Controller
                 $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Moq')->getStockFournisseurByCritere($_POST['formComposantInterne']); 
                 
                 if(!empty($_POST['formComposantInterne']['recherche']) && empty($_POST['formComposantInterne']['fournisseur']))
-                    return $this->render('ICAffichageBundle:Composant:interneReference.html.twig', array('composants' => $listComposant, 'etat' => $etat));
+                    return $this->render('ICAffichageBundle:Composant:interneReference.html.twig', array('partie' => 'affichage', 'composants' => $listComposant, 'etat' => $etat));
                 else             
-                    return $this->render('ICAffichageBundle:Composant:interneFournisseur.html.twig', array('composants1' => $listComposant, 'etat' => $etat));                 
+                    return $this->render('ICAffichageBundle:Composant:interneFournisseur.html.twig', array('partie' => 'affichage', 'composants1' => $listComposant, 'etat' => $etat));                 
             } 
             else
                 //recheche basique par composant
@@ -34,7 +34,7 @@ class ComposantController extends Controller
         else
             $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->findAll();
 
-        return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('composants' => $listComposant, 'etat' => $etat));
+        return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('partie' => 'affichage', 'composants' => $listComposant, 'etat' => $etat));
     }
     
     public function soustraitantAction(Request $request, $id)
@@ -45,10 +45,10 @@ class ComposantController extends Controller
         else
             $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantById($id);  
                   
-        return $this->render('ICAffichageBundle:Composant:sousTraitant.html.twig', array('composantSousTraitants'=> $listComposant));
+        return $this->render('ICAffichageBundle:Composant:sousTraitant.html.twig', array('partie' => 'affichage', 'composantSousTraitants'=> $listComposant));
     }
     public function detailAction($id)
     {
-        return $this->render('ICAffichageBundle:Composant:detail.html.twig', array('id'=> $id));
+        return $this->render('ICAffichageBundle:Composant:detail.html.twig', array('partie' => 'affichage', 'id'=> $id));
     }
 }

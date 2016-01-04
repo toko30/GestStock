@@ -1,21 +1,28 @@
 <nav id="lienMenuVertical">
 	<span class="titreMenuVertical">Appro MP</span><br>
 	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">MP nécessaire à la production</a><br>
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">MP en état critique</a><br>
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_mp_production') }}">MP nécessaire à la production</a><br>
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_mp_critique') }}">MP en état critique</a><br>
         
 	<span class="titreMenuVertical">Appro PF</span><br>
 	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Identifiants</a><br>
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Autres</a><br> 
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_pf_identifiant') }}">Identifiants</a><br>
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_pf_autre') }}">Autres</a><br> 
 
 	<span class="titreMenuVertical">Appro En Cours</span><br>
 	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Matière Première</a><br>
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Produits Finis</a><br> 
-
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_en_cours_mp') }}">Matière Première</a><br>
+    {% image 'img/plus.png' %}
+        <span id="sousMenu1" class="sousMenu"><img id="sousMenu11" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Produits Finis</span>
+    {% endimage %}
+    <br>
+    <div class="divSousMenu" id="sousMenu111">
+        <a class="sousSousMenu" href="{{ path('ic_approvisionnement_en_cours_identifiant') }}">Identifiants</a><br>
+        <a class="sousSousMenu" href="{{ path('ic_approvisionnement_en_cours_autre') }}">Autres</a><br>
+    </div>
+    
 	<span class="titreMenuVertical">Envoi MP Sous-Traitant</span><br>
 	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Liste sous traitant MP manquant</a><br>
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_envoi_sous_traitant') }}">Liste sous traitant MP manquant</a><br>
         
 </nav>

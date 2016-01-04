@@ -14,7 +14,7 @@ class ProduitFiniController extends Controller
         else
             $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 0);
             
-        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('lecteur' => $nbLecteur));
+        return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('partie' => 'affichage', 'lecteur' => $nbLecteur));
     }
 
     public function produitFiniIdentifiantAction()
@@ -24,7 +24,7 @@ class ProduitFiniController extends Controller
         else
             $nbBadge = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Badge')->getStockBadge(0);
                     
-        return $this->render('ICAffichageBundle:produitFini:identifiant.html.twig', array('badge' => $nbBadge));
+        return $this->render('ICAffichageBundle:produitFini:identifiant.html.twig', array('partie' => 'affichage', 'badge' => $nbBadge));
     }
 
     public function produitFiniAutreAction()
@@ -34,6 +34,6 @@ class ProduitFiniController extends Controller
         else
             $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 1); 
                    
-        return $this->render('ICAffichageBundle:produitFini:autre.html.twig', array('lecteur' => $nbLecteur));
+        return $this->render('ICAffichageBundle:produitFini:autre.html.twig', array('partie' => 'affichage', 'lecteur' => $nbLecteur));
     }
 }

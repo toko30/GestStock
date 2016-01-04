@@ -1,3 +1,31 @@
-ic_approvisionnement_mp:
-    path:     /Matiere-Premiere
+ic_approvisionnement_mp_production:
+    path:     /Matiere-Premiere-Production
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementMP:approInterneProduction }
+    
+ic_approvisionnement_mp_critique:
+    path:     /Matiere-Premiere-Critique
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementMP:approInterneCritique }
+    
+ic_approvisionnement_pf_identifiant:
+    path:     /Produits-Finis-Identifiants
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:approProduitsFinisIdentifiants }
+    
+ic_approvisionnement_pf_autre:
+    path:     /Produits-Finis-Autres
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:approProduitsFinisAutres }
+    
+ic_approvisionnement_en_cours_mp:
+    path:     /En-Cours-Matiere-Premiere
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursMP }
+    
+ic_approvisionnement_en_cours_identifiant:
+    path:     /En-Cours-Produits-Finis-Identifiant
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursPFIdentifiant }
+    
+ic_approvisionnement_en_cours_autre:
+    path:     /En-Cours-Produits-Finis-Autres
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursPFAutre }
+    
+ic_approvisionnement_envoi_sous_traitant:
+    path:     /Envoi-Sous-Traitant
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursSousTraitant }

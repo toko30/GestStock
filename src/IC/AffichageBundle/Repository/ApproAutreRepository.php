@@ -2,7 +2,7 @@
 
 namespace IC\AffichageBundle\Repository;
 
-class ApproLecteurRepository extends \Doctrine\ORM\EntityRepository
+class ApproAutreRepository extends \Doctrine\ORM\EntityRepository
 {
 	 public function getApproLecteur()
    {

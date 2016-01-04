@@ -11,13 +11,13 @@ class NomenclatureController extends Controller
     {
         $listNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantNomenclature')->getComposantNomenclaturePCBById($id);
         
-        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('nomenclatures' => $listNomenclature));
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('partie' => 'affichage', 'nomenclatures' => $listNomenclature));
     }
     
     public function nomenclatureCompleteAction($id)
     {
         $listNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantNomenclature')->getComposantNomenclatureCompleteById($id);
        
-        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('nomenclatures' => $listNomenclature));
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('partie' => 'affichage', 'nomenclatures' => $listNomenclature));
     }  
 }

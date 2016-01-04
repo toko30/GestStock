@@ -3,6 +3,17 @@ body
 	margin: 0;
 	font-family: "Calibri";
 }
+.spanMenu
+{
+    display: inline-block;
+    width: 200px;
+	height:40px;
+    color: #00B8D6;
+	background: white;
+    font-size: 20px;
+	padding-top: 10px;
+    margin-left:-4px;
+}
 #entete img
 {
 	margin: 10px 0;
@@ -30,6 +41,7 @@ body
 	text-decoration: none;
 	font-size: 20px;
 	padding-top: 10px;
+    margin-left:-4px;
 }
 #menuHorizontal a:hover
 {

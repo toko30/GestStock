@@ -3,9 +3,9 @@
 namespace IC\AffichageBundle\Entity;
 
 /**
- * ApproLecteur
+ * ApproAutre
  */
-class ApproLecteur
+class ApproAutre
 {
     /**
      * @var integer
@@ -43,7 +43,7 @@ class ApproLecteur
      *
      * @param integer $idCommande
      *
-     * @return ApproLecteur
+     * @return ApproAutre
      */
     public function setIdCommande($idCommande)
     {
@@ -67,7 +67,7 @@ class ApproLecteur
      *
      * @param integer $idLecteur
      *
-     * @return ApproLecteur
+     * @return ApproAutre
      */
     public function setIdLecteur($idLecteur)
     {
@@ -91,7 +91,7 @@ class ApproLecteur
      *
      * @param integer $quantite
      *
-     * @return ApproLecteur
+     * @return ApproAutre
      */
     public function setQuantite($quantite)
     {
@@ -125,7 +125,7 @@ class ApproLecteur
      *
      * @param \IC\AffichageBundle\Entity\Appro $appro
      *
-     * @return ApproLecteur
+     * @return ApproAutre
      */
     public function setAppro(\IC\AffichageBundle\Entity\Appro $appro = null)
     {
@@ -149,7 +149,7 @@ class ApproLecteur
      *
      * @param \IC\AffichageBundle\Entity\TypeLecteur $typeLecteur
      *
-     * @return ApproLecteur
+     * @return ApproAutre
      */
     public function setTypeLecteur(\IC\AffichageBundle\Entity\TypeLecteur $typeLecteur = null)
     {
