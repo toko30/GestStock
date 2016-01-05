@@ -10,4 +10,11 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class ApproComposantRepository extends \Doctrine\ORM\EntityRepository
 {
+   public function getApproEnCours()
+   {
+		return $this->createQueryBuilder('ac')
+		->select('ac')
+		->getQuery()
+		->getResult();
+   }
 }

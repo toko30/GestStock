@@ -10,4 +10,29 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class MoqRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getMoqAndFournisseur($listeIdComposant)
+    {
+        $req = $this->createQueryBuilder('m')
+        ->join('m.fournisseur', 'f')
+        ->join('m.composant', 'c')
+        ->addSelect('c', 'f')
+        ->orderBy('m.idFournisseur', 'ASC')
+        ->where('c.idFamille IN (:id)') 
+        ->setParameter('id', $listeIdComposant);
+        
+        /*
+        if(!empty($critere['famille']))
+        {
+                $req->where('c.idFamille IN (:id)') 
+                ->setParameter('id', $critere['famille']);
+        }
+        
+        if(!empty($critere['sousFamille']))
+        {
+                $req->andWhere('c.idSousFamille IN (:id1)') 
+                ->setParameter('id1', $critere['sousFamille']);
+        }
+        */
+        return $req->getQuery()->getResult();   
+    }
 }
