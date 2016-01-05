@@ -24,11 +24,16 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="dateProd" type="date" column="date_prod" nullable="false"/>
-    <one-to-one field="sousTraitant" target-entity="SousTraitant" >
+    <field name="composantUtilise" type="text" column="composant_utilise" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateProd" type="date" column="date_prod" nullable="true" />
+    <one-to-one field="sousTraitant" target-entity="SousTraitant">
       <join-column name="id_lieu" referenced-column-name="id" />
     </one-to-one>
-    <one-to-one field="nomenclature" target-entity="Nomenclature" >
+    <one-to-one field="version" target-entity="VersionNomenclature">
       <join-column name="id_nomenclature" referenced-column-name="id" />
     </one-to-one>
   </entity>

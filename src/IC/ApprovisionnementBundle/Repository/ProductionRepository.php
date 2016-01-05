@@ -10,4 +10,13 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class ProductionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getListProdEnAttente()
+    {
+        return $this->createQueryBuilder('p')
+        ->join('p.version', 'v')
+        ->where('p.etape = 1')
+        ->orderBy('p.idLieu', 'ASC')
+        ->getQuery()
+        ->getResult();        
+    }
 }
