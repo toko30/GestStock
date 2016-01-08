@@ -31,12 +31,6 @@ ic_affichage_nomenclature_pf:
 ic_affichage_appro_interne:
     path:     /Approvisionnement-Interne
     defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementInterne }
-
-ic_affichage_appro_sous_traitant:
-    path:     /Approvisionnement-Sous-Traitant-{id}
-    defaults: { _controller: ICAffichageBundle:Approvisionnement:approvisionnementSousTraitant }
-    requirements:
-       id: \d{1,10}
        
 ic_affichage_appro_identifiant:
     path:     /Approvisionnement-Identifiant

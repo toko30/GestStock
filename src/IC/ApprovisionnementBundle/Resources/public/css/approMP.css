@@ -1,0 +1,17 @@
+.inputQuantite
+{
+    text-align: center;
+    width: 50px;
+    margin: 0 10px;
+}
+.inputValiderCommande
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}

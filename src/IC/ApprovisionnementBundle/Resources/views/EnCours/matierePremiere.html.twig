@@ -4,6 +4,77 @@
 
 {% block entete %} {{ parent() }} En Cours Matières Premières{% endblock %}
 
+{% block stylesheets %}
+
+	{{ parent() }}
+	
+	{% stylesheets filter='cssrewrite'
+	'@ICApprovisionnementBundle/Resources/public/css/approMPEnCours.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+    
+{% endblock %}
+
 {% block body %}
+
     {{ parent() }}
+    <section id="page">
+    {% if appro is empty %}
+		aucune commande en cours
+	{% else %}
+	
+		{% set id = appro[0].appro.id %}
+		
+		<h1>{{appro[0].appro.fournisseur.nom}} le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h1>
+		<table class="imp">
+			<tr>
+				<th>Famille</th>
+				<th>Sous Famille</th>
+				<th>Designation</th>
+				<th>Boitier</th>
+				<th>quantite</th>
+			</tr>
+			{% for approvisionnement in appro %}
+			
+				{% if approvisionnement.appro.id != id %}
+					
+					</table> 
+					   
+                    <a class="inputValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
+                    
+                    {% set id = approvisionnement.appro.id %}
+                    
+                    <hr class="ligneSeparatrice">
+					
+                    <h1>{{approvisionnement.appro.fournisseur.nom}} le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h1>
+					
+					<table class="imp">
+						<tr>
+							<th>Famille</th>
+							<th>Sous Famille</th>
+							<th>Designation</th>
+							<th>Boitier</th>
+							<th>quantite</th>
+						</tr>				
+					<tr>
+						<td>{{approvisionnement.composant.famille.nom}}</td>
+						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+						<td>{{approvisionnement.composant.nom}}</td>
+						<td>{{approvisionnement.composant.boitier}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{%else %}
+					<tr>
+						<td>{{approvisionnement.composant.famille.nom}}</td>
+						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+						<td>{{approvisionnement.composant.nom}}</td>
+						<td>{{approvisionnement.composant.boitier}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+		</table>
+        <a class="inputValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
+	{% endif %}
+    </section>
 {% endblock %}

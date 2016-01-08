@@ -12,7 +12,7 @@ class ApproAutreRepository extends \Doctrine\ORM\EntityRepository
 		->addSelect('a')
 		->addSelect('tl')
 		->orderby('al.idCommande')
-		->where('a.idLieu = 0 AND a.typeProduit = 3')
+		->where('a.typeProduit = 3')
 		->getQuery()
 		->getResult();
    }

@@ -12,7 +12,7 @@ class ApproIdentifiantRepository extends \Doctrine\ORM\EntityRepository
 		->addSelect('a')
 		->addSelect('tb')
 		->orderby('ai.idCommande')
-		->where('a.idLieu = 0 AND a.typeProduit = 2')
+		->where('a.typeProduit = 2')
 		->getQuery()
 		->getResult();
    }

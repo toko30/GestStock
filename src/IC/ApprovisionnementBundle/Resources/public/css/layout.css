@@ -7,7 +7,11 @@
 	padding: 20px;
 	margin-bottom: 50px;
 }
-
+#page
+{
+float:left;
+min-width:75%;	
+}
 h1, h2
 {
 	text-align: center;	

@@ -9,7 +9,7 @@ ic_production_sous_traitant:
         id: \d{1,10}
 
 ic_calcul:
-    path:     /Calcul{idProducteur}-{idVersion}-{quantite1}-{quantite2}
+    path:     /Calcul-{idProducteur}-{idVersion}-{quantite1}-{quantite2}
     defaults:  
         _controller: ICProductionBundle:Production:calcul
         quantite2:   0

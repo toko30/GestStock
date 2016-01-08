@@ -9,20 +9,12 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="idLieu" type="integer" column="id_lieu" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
     <field name="dateCommande" type="date" column="date_commande" nullable="false"/>
     <field name="typeProduit" type="integer" column="type_produit" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <one-to-one field="sousTraitant" target-entity="SousTraitant" >
-      <join-column name="id_lieu" referenced-column-name="id" />
-    </one-to-one>
    <one-to-one field="fournisseur" target-entity="Fournisseur" >
       <join-column name="id_fournisseur" referenced-column-name="id" />
     </one-to-one>

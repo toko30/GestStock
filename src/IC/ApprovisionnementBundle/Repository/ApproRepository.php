@@ -10,4 +10,13 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class ApproRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastAppro()
+    {
+		return $this->createQueryBuilder('a')
+        ->select('a')
+        ->orderby('a.id', 'DESC')
+        ->setMaxResults('1')
+		->getQuery()
+		->getResult();
+	}
 }

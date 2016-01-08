@@ -1,5 +1,5 @@
 services:
-    ic_approvisionnement.calculcomposantprod:
-        class: IC\ApprovisionnementBundle\Classes\ICApprovisionnementProduction
+    ic_approvisionnement:
+        class: IC\ApprovisionnementBundle\Classes\ICApprovisionnement
         arguments: 
             entityManager: "@doctrine.orm.entity_manager"

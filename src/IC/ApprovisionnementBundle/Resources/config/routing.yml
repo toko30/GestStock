@@ -29,3 +29,16 @@ ic_approvisionnement_en_cours_autre:
 ic_approvisionnement_envoi_sous_traitant:
     path:     /Envoi-Sous-Traitant
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursSousTraitant }
+    
+ic_approvisionnement_calcul:
+    path:     /Calcul-Approvisionnement-{idFournisseur}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementMP:calculAppro }
+    methods:  POST
+    requirements:
+        idFournisseur: \d{1,10}
+
+ic_approvisionnement_vers_stock:
+    path:     /Vers-Stock-{idCommande}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStock }
+    requirements:
+        idCommande: \d{1,10}

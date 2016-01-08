@@ -56,7 +56,7 @@
                                 </td>
                                 <td class="nom">{{previsionnelle.nom}}</td>
                                 <td>{{previsionnelle.quantite}}</td>
-                                <td class="ligneCaseVideProd"><a href="{{ path('ic_lancement_prod', {idProd: previsionnelle.id}) }}">Lancer la prod</a></td>          
+                                <td class="caseProd"><a href="{{ path('ic_lancement_prod', {idProd: previsionnelle.id}) }}">Lancer la prod</a></td>          
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -79,7 +79,7 @@
                                 <tr class="ligneHover">
                                     <td>{{enCours.nom}}</td>
                                     <td>{{enCours.quantite}}</td>
-                                    <td class="ligneCaseVideProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">prod terminée</a></td> 
+                                    <td class="caseProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">prod terminée</a></td> 
                                 </tr>
                         {% endfor %}
                     </table>

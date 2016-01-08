@@ -12,13 +12,18 @@ class MoqRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getMoqAndFournisseur($listeIdComposant)
     {
+        for($i = 0; $i < count($listeIdComposant); $i++)
+        {
+            $listeId[] = $listeIdComposant[$i]['idComposant'];
+        }
+        
         $req = $this->createQueryBuilder('m')
         ->join('m.fournisseur', 'f')
         ->join('m.composant', 'c')
         ->addSelect('c', 'f')
         ->orderBy('m.idFournisseur', 'ASC')
-        ->where('c.idFamille IN (:id)') 
-        ->setParameter('id', $listeIdComposant);
+        ->where('m.idComposant IN (:id)') 
+        ->setParameter('id', $listeId);
         
         /*
         if(!empty($critere['famille']))

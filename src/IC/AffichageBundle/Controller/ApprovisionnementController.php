@@ -13,13 +13,6 @@ class ApprovisionnementController extends Controller
         
         return $this->render('ICAffichageBundle:Appro:approInterne.html.twig', array('partie' => 'affichage', 'appro' => $appro));
     }
-    
-    public function approvisionnementSousTraitantAction($id)
-    {
-        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproComposant')->getApproSousTraitant($id);
-        
-        return $this->render('ICAffichageBundle:Appro:approSousTraitant.html.twig', array('partie' => 'affichage', 'appro' => $appro));
-    }
 
     public function approvisionnementIdentifiantAction()
     {

@@ -13,11 +13,6 @@ class Appro
     private $idFournisseur;
 
     /**
-     * @var integer
-     */
-    private $idLieu;
-
-    /**
      * @var \DateTime
      */
     private $dateCommande;
@@ -31,11 +26,6 @@ class Appro
      * @var integer
      */
     private $id;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\SousTraitant
-     */
-    private $sousTraitant;
 
     /**
      * @var \IC\AffichageBundle\Entity\Fournisseur
@@ -65,30 +55,6 @@ class Appro
     public function getIdFournisseur()
     {
         return $this->idFournisseur;
-    }
-
-    /**
-     * Set idLieu
-     *
-     * @param integer $idLieu
-     *
-     * @return Appro
-     */
-    public function setIdLieu($idLieu)
-    {
-        $this->idLieu = $idLieu;
-
-        return $this;
-    }
-
-    /**
-     * Get idLieu
-     *
-     * @return integer
-     */
-    public function getIdLieu()
-    {
-        return $this->idLieu;
     }
 
     /**
@@ -147,30 +113,6 @@ class Appro
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set sousTraitant
-     *
-     * @param \IC\AffichageBundle\Entity\SousTraitant $sousTraitant
-     *
-     * @return Appro
-     */
-    public function setSousTraitant(\IC\AffichageBundle\Entity\SousTraitant $sousTraitant = null)
-    {
-        $this->sousTraitant = $sousTraitant;
-
-        return $this;
-    }
-
-    /**
-     * Get sousTraitant
-     *
-     * @return \IC\AffichageBundle\Entity\SousTraitant
-     */
-    public function getSousTraitant()
-    {
-        return $this->sousTraitant;
     }
 
     /**

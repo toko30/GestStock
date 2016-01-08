@@ -33,11 +33,6 @@ class Appro
     private $id;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\SousTraitant
-     */
-    private $sousTraitant;
-
-    /**
      * @var \IC\ApprovisionnementBundle\Entity\Fournisseur
      */
     private $fournisseur;
@@ -147,30 +142,6 @@ class Appro
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set sousTraitant
-     *
-     * @param \IC\ApprovisionnementBundle\Entity\SousTraitant $sousTraitant
-     *
-     * @return Appro
-     */
-    public function setSousTraitant(\IC\ApprovisionnementBundle\Entity\SousTraitant $sousTraitant = null)
-    {
-        $this->sousTraitant = $sousTraitant;
-
-        return $this;
-    }
-
-    /**
-     * Get sousTraitant
-     *
-     * @return \IC\ApprovisionnementBundle\Entity\SousTraitant
-     */
-    public function getSousTraitant()
-    {
-        return $this->sousTraitant;
     }
 
     /**
