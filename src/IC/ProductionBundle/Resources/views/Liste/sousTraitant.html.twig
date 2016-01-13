@@ -14,7 +14,6 @@
 
 {% block body %}
 {{ parent() }}
-{{sousTraitant}}
 <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
     <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
 <form method="post" action="{{ path('ic_calcul', {'idProducteur': id, 'idVersion': idVersion, 'quantite1': quantite}) }}">  

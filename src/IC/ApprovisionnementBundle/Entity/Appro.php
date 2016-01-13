@@ -13,11 +13,6 @@ class Appro
     private $idFournisseur;
 
     /**
-     * @var integer
-     */
-    private $idLieu;
-
-    /**
      * @var \DateTime
      */
     private $dateCommande;
@@ -60,30 +55,6 @@ class Appro
     public function getIdFournisseur()
     {
         return $this->idFournisseur;
-    }
-
-    /**
-     * Set idLieu
-     *
-     * @param integer $idLieu
-     *
-     * @return Appro
-     */
-    public function setIdLieu($idLieu)
-    {
-        $this->idLieu = $idLieu;
-
-        return $this;
-    }
-
-    /**
-     * Get idLieu
-     *
-     * @return integer
-     */
-    public function getIdLieu()
-    {
-        return $this->idLieu;
     }
 
     /**
@@ -168,3 +139,4 @@ class Appro
         return $this->fournisseur;
     }
 }
+

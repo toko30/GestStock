@@ -4,16 +4,16 @@ namespace IC\AffichageBundle\Repository;
 
 class ApproAutreRepository extends \Doctrine\ORM\EntityRepository
 {
-	 public function getApproLecteur()
-   {
-		return $this->createQueryBuilder('al')
-		->join('al.appro', 'a')
-		->join('al.typeLecteur', 'tl')
-		->addSelect('a')
-		->addSelect('tl')
-		->orderby('al.idCommande')
-		->where('a.typeProduit = 3')
-		->getQuery()
-		->getResult();
-   }
+    public function getApproAutre()
+    {
+        return $this->createQueryBuilder('al')
+        ->join('al.appro', 'a')
+        ->join('al.autre', 'ta')
+        ->addSelect('a')
+        ->addSelect('ta')
+        ->orderby('al.idCommande')
+        ->where('a.typeProduit = 4')
+        ->getQuery()
+        ->getResult();
+    }
 }

@@ -28,6 +28,11 @@ class Production
     private $etape;
 
     /**
+     * @var string
+     */
+    private $composantUtilise;
+
+    /**
      * @var \DateTime
      */
     private $dateProd;
@@ -43,9 +48,9 @@ class Production
     private $sousTraitant;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\Nomenclature
+     * @var \IC\ApprovisionnementBundle\Entity\VersionNomenclature
      */
-    private $nomenclature;
+    private $version;
 
 
     /**
@@ -145,6 +150,30 @@ class Production
     }
 
     /**
+     * Set composantUtilise
+     *
+     * @param string $composantUtilise
+     *
+     * @return Production
+     */
+    public function setComposantUtilise($composantUtilise)
+    {
+        $this->composantUtilise = $composantUtilise;
+
+        return $this;
+    }
+
+    /**
+     * Get composantUtilise
+     *
+     * @return string
+     */
+    public function getComposantUtilise()
+    {
+        return $this->composantUtilise;
+    }
+
+    /**
      * Set dateProd
      *
      * @param \DateTime $dateProd
@@ -203,64 +232,6 @@ class Production
     }
 
     /**
-     * Set nomenclature
-     *
-     * @param \IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature
-     *
-     * @return Production
-     */
-    public function setNomenclature(\IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature = null)
-    {
-        $this->nomenclature = $nomenclature;
-
-        return $this;
-    }
-
-    /**
-     * Get nomenclature
-     *
-     * @return \IC\ApprovisionnementBundle\Entity\Nomenclature
-     */
-    public function getNomenclature()
-    {
-        return $this->nomenclature;
-    }
-    /**
-     * @var string
-     */
-    private $composantUtilise;
-
-    /**
-     * @var \IC\ApprovisionnementBundle\Entity\VersionNomenclature
-     */
-    private $version;
-
-
-    /**
-     * Set composantUtilise
-     *
-     * @param string $composantUtilise
-     *
-     * @return Production
-     */
-    public function setComposantUtilise($composantUtilise)
-    {
-        $this->composantUtilise = $composantUtilise;
-
-        return $this;
-    }
-
-    /**
-     * Get composantUtilise
-     *
-     * @return string
-     */
-    public function getComposantUtilise()
-    {
-        return $this->composantUtilise;
-    }
-
-    /**
      * Set version
      *
      * @param \IC\ApprovisionnementBundle\Entity\VersionNomenclature $version
@@ -284,3 +255,4 @@ class Production
         return $this->version;
     }
 }
+

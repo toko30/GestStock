@@ -5,7 +5,115 @@
 {% block entete %} {{ parent() }} Autres Produits Finis{% endblock %}
 
 
-{% block body %}
-    {{ parent() }}
+{% block page %}
 
+    {{ parent() }}
+    
+    {% if typeLecteur is not empty %}
+        {% set id = typeLecteur[0].fournisseur.id %}
+        
+        <h2>{{typeLecteur[0].fournisseur.nom}}</h2>
+        
+        <form method="post" action="{{ path('ic_approvisionnement_calcul_autre', {idFournisseur: id}) }}">
+        <table class="imp">
+            <tr>
+                <th></th>
+                <th>référence</th>
+                <th>Designation</th>
+                <th>quantite</th>
+            </tr>
+            {% for typeLec in typeLecteur %}
+            
+                {% if typeLec.fournisseur.id != id %}
+                    
+                    </table>
+                        <input type="submit" value="Lancer la commande">  
+                    </form>
+                    
+                    {% set id = typeLec.fournisseur.id %}
+                    
+                    <h2>{{typeLec.fournisseur.nom}}</h2>
+                    
+                    <form method="post" action="{{ path('ic_approvisionnement_calcul_autre', {idFournisseur: id}) }}">
+                    <table class="imp">
+                        <tr>
+                            <th></th>
+                            <th>Référence</th>
+                            <th>Designation</th>
+                            <th>quantite</th>
+                        </tr>				
+                    <tr>
+                        <td><input type="checkbox" name="option[]" value="{{typeLec.id}}"></td>
+                        <td>{{typeLec.referenceInterne}}</td>
+                        <td>{{typeLec.designation}}</td>
+                        <td><input class="" type="text" name="{{typeLec.id}}"></td>
+                    </tr>
+                {%else %}
+                    <tr>
+                        <td><input type="checkbox" name="option[]" value="{{typeLec.id}}"></td>
+                        <td>{{typeLec.referenceInterne}}</td>
+                        <td>{{typeLec.designation}}</td>
+                        <td><input class="" type="text" name="{{typeLec.id}}"></td>
+                    </tr>
+                {% endif %}
+                
+            {% endfor %}
+        </table>   
+            <input type="submit" value="Lancer la commande">  
+        </form>    
+    {% endif %}
+    
+    {% if autre is not empty %}
+        {% set id = autre[0].fournisseur.id %}
+        
+        <h2>{{autre[0].fournisseur.nom}}</h2>
+        
+        <form method="post" action="{{ path('ic_approvisionnement_calcul_autre', {idFournisseur: id}) }}">
+        <table class="imp">
+            <tr>
+                <th></th>
+                <th>référence</th>
+                <th>Designation</th>
+                <th>quantite</th>
+            </tr>
+            {% for approvisionnement in autre %}
+            
+                {% if approvisionnement.fournisseur.id != id %}
+
+                    </table>
+                        <input type="submit" value="Lancer la commande">  
+                    </form>
+                    
+                    {% set id = approvisionnement.appro.id %}
+                    
+                    <h2>{{autre[0].fournisseur.nom}}</h2>
+                    
+                    <form method="post" action="{{ path('ic_approvisionnement_calcul_autre', {idFournisseur: id}) }}">
+                    <table class="imp">
+                        <tr>
+                            <th></th>
+                            <th>Référence</th>
+                            <th>Designation</th>
+                            <th>quantite</th>
+                        </tr>				
+                    <tr>
+                        <td><input type="checkbox" name="option[]" value="{{approvisionnement.id}}"></td>
+                        <td>{{approvisionnement.reference}}</td>
+                        <td>{{approvisionnement.designation}}</td>
+                        <td><input class="" type="text" name="{{approvisionnement.id}}"></td>
+                    </tr>
+                {%else %}
+                    <tr>
+                        <td><input type="checkbox" name="option[]" value="{{approvisionnement.id}}"></td>
+                        <td>{{approvisionnement.reference}}</td>
+                        <td>{{approvisionnement.designation}}</td>
+                        <td><input class="" type="text" name="{{approvisionnement.id}}"></td>
+                    </tr>
+                {% endif %}
+                
+            {% endfor %}
+        </table>  
+            <input type="submit" value="Lancer la commande">  
+        </form>   
+    {% endif %}
 {% endblock %}

@@ -57,6 +57,11 @@ class TypeLecteur
      */
     private $id;
 
+    /**
+     * @var \IC\ApprovisionnementBundle\Entity\Fournisseur
+     */
+    private $fournisseur;
+
 
     /**
      * Set referenceInterne
@@ -283,4 +288,29 @@ class TypeLecteur
     {
         return $this->id;
     }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur
+     *
+     * @return TypeLecteur
+     */
+    public function setFournisseur(\IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \IC\ApprovisionnementBundle\Entity\Fournisseur
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
+    }
 }
+

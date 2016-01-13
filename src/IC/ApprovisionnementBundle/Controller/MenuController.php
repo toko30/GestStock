@@ -13,11 +13,123 @@ class MenuController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         //Liste des requètes Doctrine pour les options du menu
-        //$listSousTraitant = $em->getRepository('ICProductionBundle:SousTraitant')->findAll();
-        //Création des formulaires en focntion de la page
+        $listProdSousTraitant = $em->getRepository('ICApprovisionnementBundle:Production')->getListProdSousTraitant();
+        $i = 0;
+        
+        foreach($listProdSousTraitant as $prodSousTraitant)
+        {
+            $listComposantNomenclature = $em->getRepository('ICApprovisionnementBundle:ComposantNomenclature')->getComposantNomenclature($prodSousTraitant->getIdNomenclature());
+            $listComposantSousTraitant = $em->getRepository('ICApprovisionnementBundle:ComposantSousTraitant')->getComposantSt($prodSousTraitant->getIdLieu());
+            
+            $listComposantUtilise = explode(',', $prodSousTraitant->getComposantUtilise());
+            
+            
+            //Si le sous traitant change on nettoie la liste des composant
+            if(!isset($idLieuPrecedent) || $prodSousTraitant->getIdLieu() != $idLieuPrecedent)
+            {
+                unset($quantiteNomenclature);
+            }
+            
+            $idLieuPrecedent = $prodSousTraitant->getIdLieu();
+            
+            //Si aucun composant n'est chez le sous traitant on lajoute a la liste
+            if(empty($listComposantSousTraitant))
+            {
+                $sousTraitant = $em->getRepository('ICApprovisionnementBundle:SousTraitant')->findOneBy(array('id' => $prodSousTraitant->getIdLieu()));
+                
+                if(empty($ListSousTraitant))
+                {
+                    $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                    $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();
+                }
+                else
+                {
+                    $existe = 0;
+                    //on vérifie que le sous traitant n'est pas déja dans la liste
+                    for($i1 = 0; $i1 < count($ListSousTraitant); $i1++)
+                    {
+                        if($sousTraitant->getId() == $ListSousTraitant[$i1]['idSousTraitant'])
+                            $existe = 1;
+                    }
+                    //si il n'y est pas on l'ajoute
+                    if($existe == 0)
+                    {
+                       $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                       $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();                        
+                    }
+                }
+            }
+            else
+            {
+                foreach($listComposantNomenclature as $composantNomenclature)
+                {
+                    if(in_array($composantNomenclature->getIdComposant(), $listComposantUtilise))
+                    {
+                        if(empty($quantiteNomenclature))
+                        {
+                            $quantiteNomenclature['idComposant'][] = $composantNomenclature->getIdComposant();
+                            $quantiteNomenclature['quantite'][] = $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();                        
+                        }
+                        else
+                        {
+                            $existe = 0;
+                            
+                            for($i1 = 0; $i1 < count($quantiteNomenclature['idComposant']); $i1++)
+                            {
+                                if($quantiteNomenclature['idComposant'][$i1] == $composantNomenclature->getIdComposant())
+                                {
+                                    $existe = 1;
+                                    $quantiteNomenclature['quantite'][$i1] += $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();
+                                }
+                            }
+                            
+                            if($existe == 0)
+                            {
+                                $quantiteNomenclature['idComposant'][] = $composantNomenclature->getIdComposant();
+                                $quantiteNomenclature['quantite'][] = $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();   
+                            }
+                        }
+                    }            
+                } 
+                
+                foreach ($listComposantSousTraitant as $ComposantST) 
+                {                            
+                    for($i1 = 0; $i1 < count($quantiteNomenclature['idComposant']); $i1++)
+                    {echo '1<br>';
+                        if($quantiteNomenclature['idComposant'][$i1] == $ComposantST->getId() && $quantiteNomenclature['quantite'][$i1] > $ComposantST->getQuantite())
+                        {
+
+                            if(empty($ListSousTraitant))
+                            {
+                                $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                                $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();
+                            }
+                            else
+                            {
+                                $existe = 0;
+                                //on vérifie que le sous traitant n'est pas déja dans la liste
+                                for($i1 = 0; $i1 < count($ListSousTraitant); $i1++)
+                                {
+                                    if($sousTraitant->getId() == $ListSousTraitant[$i1]['idSousTraitant'])
+                                        $existe = 1;
+                                }
+                                //si il n'y est pas on l'ajoute
+                                if($existe == 0)
+                                {
+                                $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                                $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();                        
+                                }
+                            }
+                        }
+                    }
+                }                                       
+            }           
+        }
+        var_dump($ListSousTraitant);
+        //Création des formulaires en fonction de la page
         
         //génération du template Twig
         return $this->render('ICApprovisionnementBundle:MenuVertical:menu.html.twig', array('url' => $url,
-                                                                                     'sousTraitants' => '1'));
+                                                                                            'sousTraitants' => '1'));
     }
 }

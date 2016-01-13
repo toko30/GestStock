@@ -10,4 +10,13 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class TypeLecteurRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllTypeLecteur()
+    {
+        return $this->createQueryBuilder('tl')
+        ->join('tl.fournisseur', 'f')
+        ->addSelect('f')
+        ->where('tl.idFournisseur != 0')
+        ->getQuery()
+        ->getResult();
+    }
 }

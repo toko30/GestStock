@@ -52,3 +52,4 @@ class SousTypeBadge
         return $this->id;
     }
 }
+

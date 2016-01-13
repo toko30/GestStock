@@ -49,5 +49,8 @@
         <option name="fixed"/>
       </options>
     </field>
+    <one-to-one field="fournisseur" target-entity="Fournisseur" >
+      <join-column name="id_fournisseur" referenced-column-name="id" />
+    </one-to-one>
   </entity>
 </doctrine-mapping>

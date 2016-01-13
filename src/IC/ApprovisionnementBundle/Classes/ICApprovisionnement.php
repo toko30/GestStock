@@ -131,7 +131,7 @@ class ICApprovisionnement
     {
         for($i = 0; $i < count($composantStockST['idComposant']); $i++)
         {
-            for($i1 = 0; $i1 < count($quantiteCommande['idComposant']); $i1++) 
+            for($i1 = 0; $i1 < count($quantiteCommande); $i1++) 
             {
                 if($quantiteCommande[$i1]['idComposant'] == $composantStockST['idComposant'][$i])
                 {

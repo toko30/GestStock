@@ -19,4 +19,13 @@ class ProductionRepository extends \Doctrine\ORM\EntityRepository
         ->getQuery()
         ->getResult();        
     }
+    
+    public function getListProdSousTraitant()
+    {
+        return $this->createQueryBuilder('p')
+        ->where('p.etape = 1 AND p.idLieu != 0')
+        ->orderBy('p.idLieu', 'ASC')
+        ->getQuery()
+        ->getResult();         
+    }
 }

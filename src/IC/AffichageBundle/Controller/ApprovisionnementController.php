@@ -23,8 +23,11 @@ class ApprovisionnementController extends Controller
     
     public function approvisionnementAutreAction()
     {
-        $appro = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproAutre')-> getApproLecteur();
+        $approLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproLecteur')-> getApproLecteur();
+        $approAutre = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ApproAutre')-> getApproAutre();
         
-        return $this->render('ICAffichageBundle:Appro:approAutre.html.twig', array('partie' => 'affichage', 'appro' => $appro));
+        return $this->render('ICAffichageBundle:Appro:approAutre.html.twig', array('partie' => 'affichage', 
+                                                                                   'approLecteur' => $approLecteur,
+                                                                                   'approAutre' => $approAutre));
     }
 }

@@ -9,7 +9,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="idLecteur" type="integer" column="id_lecteur" nullable="false">
+    <field name="idAutre" type="integer" column="id_autre" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
@@ -22,8 +22,8 @@
     <one-to-one field="appro" target-entity="Appro" >
       <join-column name="id_commande" referenced-column-name="id" />
     </one-to-one>
-    <one-to-one field="typeLecteur" target-entity="TypeLecteur" >
-      <join-column name="id_lecteur" referenced-column-name="id" />
+    <one-to-one field="autre" target-entity="Autre" >
+      <join-column name="id_autre" referenced-column-name="id" />
     </one-to-one>
   </entity>
 </doctrine-mapping>

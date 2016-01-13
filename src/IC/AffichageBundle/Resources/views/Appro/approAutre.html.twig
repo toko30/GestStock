@@ -13,51 +13,96 @@
 {% endblock %}
 
 {% block body %}
-{{ parent() }}
 
-<h1>Approvisionnement Autres Produits Finis</h1>
-{% if appro is empty %}
+    {{ parent() }}
+
+    <h1>Approvisionnement Autres Produits Finis</h1>
+    
+    {% if approLecteur is empty and approAutre is empty %}
 		aucune commande en cours
 	{% else %}
-	
-		{% set id = appro[0].appro.id %}
-		
-		<h2>Commande passée le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h2>
-		
-		<table class="imp">
-			<tr>
-				<th>référence</th>
-				<th>Designation</th>
-				<th>quantite</th>
-			</tr>
-			{% for approvisionnement in appro %}
-			
-				{% if approvisionnement.appro.id != id %}
-					{% set id = approvisionnement.appro.id %}
-					</table>
-					
-					<h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
-					
-					<table class="imp">
-						<tr>
-							<th>Référence</th>
-							<th>Designation</th>
-							<th>quantite</th>
-						</tr>				
-					<tr>
-						<td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-						<td>{{approvisionnement.typeLecteur.designation}}</td>
-						<td>{{approvisionnement.quantite}}</td>
-					</tr>
-				{%else %}
-					<tr>
-						<td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-						<td>{{approvisionnement.typeLecteur.designation}}</td>
-						<td>{{approvisionnement.quantite}}</td>
-					</tr>
-				{% endif %}
-				
-			{% endfor %}
-		</table>
+	   {% if approLecteur is not empty %}
+            {% set id = approLecteur[0].appro.id %}
+            
+            <h2>Commande passée le {{approLecteur[0].appro.dateCommande|date('d-m-Y')}}</h2>
+            
+            <table class="imp">
+                <tr>
+                    <th>référence</th>
+                    <th>Designation</th>
+                    <th>quantite</th>
+                </tr>
+                {% for approvisionnement in approLecteur %}
+                
+                    {% if approvisionnement.appro.id != id %}
+                        {% set id = approvisionnement.appro.id %}
+                        </table>
+                        
+                        <h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
+                        
+                        <table class="imp">
+                            <tr>
+                                <th>Référence</th>
+                                <th>Designation</th>
+                                <th>quantite</th>
+                            </tr>				
+                        <tr>
+                            <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
+                            <td>{{approvisionnement.typeLecteur.designation}}</td>
+                            <td>{{approvisionnement.quantite}}</td>
+                        </tr>
+                    {%else %}
+                        <tr>
+                            <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
+                            <td>{{approvisionnement.typeLecteur.designation}}</td>
+                            <td>{{approvisionnement.quantite}}</td>
+                        </tr>
+                    {% endif %}
+                    
+                {% endfor %}
+            </table>       
+       {% endif %}
+       
+       {% if approAutre is not empty %}
+            {% set id = approAutre[0].appro.id %}
+            
+            <h2>Commande passée le {{approAutre[0].appro.dateCommande|date('d-m-Y')}}</h2>
+            
+            <table class="imp">
+                <tr>
+                    <th>référence</th>
+                    <th>Designation</th>
+                    <th>quantite</th>
+                </tr>
+                {% for approvisionnement in approAutre %}
+                
+                    {% if approvisionnement.appro.id != id %}
+                        {% set id = approvisionnement.appro.id %}
+                        </table>
+                        
+                        <h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
+                        
+                        <table class="imp">
+                            <tr>
+                                <th>Référence</th>
+                                <th>Designation</th>
+                                <th>quantite</th>
+                            </tr>				
+                        <tr>
+                            <td>{{approvisionnement.autre.reference}}</td>
+                            <td>{{approvisionnement.autre.designation}}</td>
+                            <td>{{approvisionnement.quantite}}</td>
+                        </tr>
+                    {%else %}
+                        <tr>
+                            <td>{{approvisionnement.autre.reference}}</td>
+                            <td>{{approvisionnement.autre.designation}}</td>
+                            <td>{{approvisionnement.quantite}}</td>
+                        </tr>
+                    {% endif %}
+                    
+                {% endfor %}
+            </table>       
+       {% endif %}
 	{% endif %}
 {% endblock %}

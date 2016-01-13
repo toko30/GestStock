@@ -15,12 +15,15 @@
 	{{ parent() }}
     <section id="page">
         <h1>Evaluation des besoins de la production</h1>
+        
 	{{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
+    
         <div class="divTableProduction">
-            
-            <h1>Production en attente</h1> 
-               
-            {% if listePrevisionnelle is not empty %}              
+
+            {% if listePrevisionnelle is not empty %}   
+             
+                <h1>Production en attente</h1>          
+                
                 <table>
                     <tr>
                         <td class="caseVideSup"></td>
@@ -76,7 +79,7 @@
                             <tr class="ligneHover">
                                 <td>{{enCours.nom}}</td>
                                 <td>{{enCours.quantite}}</td>
-                                <td class="ligneCaseVideProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">Production terminer</a></td> 
+                                <td class="ligneCaseVideProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">Production terminée</a></td> 
                             </tr>
                     {% endfor %}
                 </table>

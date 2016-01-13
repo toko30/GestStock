@@ -197,3 +197,4 @@ class Fournisseur
         return $this->id;
     }
 }
+

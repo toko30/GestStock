@@ -130,7 +130,9 @@ class ProductionController extends Controller
             //enregistrement du sous traitant, du nom de la nomenclature et les composants qui y sont liés
             $ComposantSousTraitant = $em->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($id);
             $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($idVersion);  
-            $nomSousTraitant = $ComposantSousTraitant[0]->getSousTraitant()->getNom();
+            if(!empty($ComposantSousTraitant[0]))
+                $nomSousTraitant = $ComposantSousTraitant[0]->getSousTraitant()->getNom();
+                
             $nomenclature = $listeComposantnomenclature[0]->getVersion()->getNomenclature()->getNom();
                         
             //déclaration à 0 du nombre de carte qui ne pourront pas etre produites
@@ -173,8 +175,7 @@ class ProductionController extends Controller
             return $this->render('ICProductionBundle:Liste:sousTraitant.html.twig', array('partie' => 'production',
                                                                                           'id' => $id,
                                                                                           'quantite' => $_POST['formProduction']['quantite'],
-                                                                                          'composantNomenclature' => $tabComposant,
-                                                                                          'sousTraitant' => $nomSousTraitant,
+                                                                                          'composantNomenclature' => $tabComposant,       
                                                                                           'nomenclature' => $nomenclature,
                                                                                           'idVersion' => $idVersion,
                                                                                           'version' => $version,

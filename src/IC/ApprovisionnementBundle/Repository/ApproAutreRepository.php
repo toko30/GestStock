@@ -10,4 +10,27 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class ApproAutreRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getApproAutre()
+    {
+        return $this->createQueryBuilder('al')
+        ->join('al.appro', 'a')
+        ->join('al.autre', 'ta')
+        ->addSelect('a')
+        ->addSelect('ta')
+        ->orderby('al.idCommande')
+        ->where('a.typeProduit = 4')
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function getApproAutreById($id)
+    {
+        return $this->createQueryBuilder('aa')
+        ->join('aa.autre', 'a')
+        ->addSelect('a')
+        ->where('aa.idCommande = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getResult();
+    }
 }

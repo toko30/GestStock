@@ -1,0 +1,18 @@
+.lienValiderCommande
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width:240px;
+    text-align:center;
+}
+.ligneSeparatrice
+{
+    width: 60%;
+    margin: 30px auto 0 auto;
+}

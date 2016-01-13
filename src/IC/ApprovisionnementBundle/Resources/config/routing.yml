@@ -11,7 +11,7 @@ ic_approvisionnement_pf_identifiant:
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:approProduitsFinisIdentifiants }
     
 ic_approvisionnement_pf_autre:
-    path:     /Produits-Finis-Autres
+    path:     /Autres-Produits-Finis
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:approProduitsFinisAutres }
     
 ic_approvisionnement_en_cours_mp:
@@ -37,8 +37,40 @@ ic_approvisionnement_calcul:
     requirements:
         idFournisseur: \d{1,10}
 
+ic_approvisionnement_calcul_identifiant:
+    path:     /Calcul-Approvisionnement-Identifiant-{idFournisseur}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:calculApproIdentifiant }
+    methods:  POST
+    requirements:
+        idFournisseur: \d{1,10}
+        
+ic_approvisionnement_calcul_autre:
+    path:     /Calcul-Approvisionnement-Autre-{idFournisseur}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementPF:calculApproAutre }
+    methods:  POST
+    requirements:
+        idFournisseur: \d{1,10}
+        
 ic_approvisionnement_vers_stock:
-    path:     /Vers-Stock-{idCommande}
-    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStock }
+    path:     /Vers-Stock-Interne-{idCommande}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStockInterne }
+    requirements:
+        idCommande: \d{1,10}
+        
+ic_approvisionnement_vers_identifiant:
+    path:     /Vers-Stock-Identifiant-{idCommande}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStockIdentifiant }
+    requirements:
+        idCommande: \d{1,10}
+
+ic_approvisionnement_vers_lecteur:
+    path:     /Vers-Stock-Lecteur-{idCommande}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStockLecteur }
+    requirements:
+        idCommande: \d{1,10}
+
+ic_approvisionnement_vers_autre:
+    path:     /Vers-Stock-Autre-{idCommande}
+    defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStockAutre }
     requirements:
         idCommande: \d{1,10}

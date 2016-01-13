@@ -15,7 +15,7 @@ class ApproAutre
     /**
      * @var integer
      */
-    private $idLecteur;
+    private $idAutre;
 
     /**
      * @var integer
@@ -33,9 +33,9 @@ class ApproAutre
     private $appro;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\TypeLecteur
+     * @var \IC\ApprovisionnementBundle\Entity\Autre
      */
-    private $typeLecteur;
+    private $autre;
 
 
     /**
@@ -63,27 +63,27 @@ class ApproAutre
     }
 
     /**
-     * Set idLecteur
+     * Set idAutre
      *
-     * @param integer $idLecteur
+     * @param integer $idAutre
      *
      * @return ApproAutre
      */
-    public function setIdLecteur($idLecteur)
+    public function setIdAutre($idAutre)
     {
-        $this->idLecteur = $idLecteur;
+        $this->idAutre = $idAutre;
 
         return $this;
     }
 
     /**
-     * Get idLecteur
+     * Get idAutre
      *
      * @return integer
      */
-    public function getIdLecteur()
+    public function getIdAutre()
     {
-        return $this->idLecteur;
+        return $this->idAutre;
     }
 
     /**
@@ -145,26 +145,27 @@ class ApproAutre
     }
 
     /**
-     * Set typeLecteur
+     * Set autre
      *
-     * @param \IC\ApprovisionnementBundle\Entity\TypeLecteur $typeLecteur
+     * @param \IC\ApprovisionnementBundle\Entity\Autre $autre
      *
      * @return ApproAutre
      */
-    public function setTypeLecteur(\IC\ApprovisionnementBundle\Entity\TypeLecteur $typeLecteur = null)
+    public function setAutre(\IC\ApprovisionnementBundle\Entity\Autre $autre = null)
     {
-        $this->typeLecteur = $typeLecteur;
+        $this->autre = $autre;
 
         return $this;
     }
 
     /**
-     * Get typeLecteur
+     * Get autre
      *
-     * @return \IC\ApprovisionnementBundle\Entity\TypeLecteur
+     * @return \IC\ApprovisionnementBundle\Entity\Autre
      */
-    public function getTypeLecteur()
+    public function getAutre()
     {
-        return $this->typeLecteur;
+        return $this->autre;
     }
 }
+
