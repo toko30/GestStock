@@ -52,4 +52,3 @@ class TypeAutre
         return $this->id;
     }
 }
-

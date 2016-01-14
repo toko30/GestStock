@@ -168,4 +168,3 @@ class ApproLecteur
         return $this->typeLecteur;
     }
 }
-

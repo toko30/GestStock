@@ -29,9 +29,9 @@
         
 		<table class="imp">
 			<tr>
-				<th>référence</th>
-				<th>Designation</th>
-				<th>quantite</th>
+				<td class="titreReference">référence</td>
+				<td class="titreDesignation">Designation</td>
+				<td class="titreQte">Qte</td>
 			</tr>
 			{% for approvisionnement in appro %}
 			
@@ -47,19 +47,19 @@
 					
 					<table class="imp">
 						<tr>
-							<th>Référence</th>
-							<th>Designation</th>
-							<th>quantite</th>
+							<td class="titreReference">Référence</td>
+							<td class="titreDesignation">Designation</td>
+							<td class="titreQte">Qte</td>
 						</tr>				
 					<tr>
 						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
-						<td>{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
 				{%else %}
 					<tr>
 						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
-						<td>{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
 				{% endif %}				

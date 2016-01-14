@@ -3,38 +3,40 @@
 {% block title %} {{ parent() }} - Identifiants{% endblock %}
 
 {% block entete %} {{ parent() }} Identifiants{% endblock %}
+
 {% block stylesheets %}
 
 	{{ parent() }}
 	
 	{% stylesheets filter='cssrewrite'
-	'@ICApprovisionnementBundle/Resources/public/css/approPFEnCours.css' %}
+	'@ICApprovisionnementBundle/Resources/public/css/approPF.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
     
 {% endblock %}
+
 {% block page %}
     {{ parent() }}
     
     <form method="post" action="{{ path('ic_approvisionnement_calcul_identifiant', {idFournisseur: identifiant[0].typeBadge.idFournisseur}) }}">
         <table>
-        <tr>
-            <th></th>
-            <th>Référence</th>
-            <th>Désignation</th>
-            <th>Quantité</th>
-        </tr>
+            <tr>
+                <td class="titreCheckBoxTab"></td>
+                <td class="titreReference">Référence</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreQte">Qte</td>
+            </tr>
             {% for id in identifiant %}
                 <tr>
                     <td><input type="checkbox" name="option[]" value="{{id.id}}"></td>
                     <td>{{id.typeBadge.reference}}</td>
-                    <td>{{id.typeBadge.designation}}</td>
-                    <td><input class="" name="{{id.id}}">
+                    <td class="designation">{{id.typeBadge.designation}}</td>
+                    <td><input class="inputQuantite" name="{{id.id}}">
                 </tr>
             {% endfor %}
         </table>
         
-        <input class="" type="submit" value="Lancer la commande">
+        <input class="inputValiderCommande" type="submit" value="Lancer la commande">
         
     </form>
 {% endblock %}

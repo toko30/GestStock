@@ -18,7 +18,7 @@
 {% block body %}
 
     {{ parent() }}
-    
+
 	<section id="page">
         
         {% if composantFournisseur is empty %}
@@ -31,67 +31,63 @@
             
             <h1>{{composantFournisseur[0].fournisseur.nom}}</h1>
             
-            <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: composantFournisseur[0].fournisseur.id}) }}">
+            <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: composantFournisseur[0].fournisseur.id, page: page}) }}">
             
             <table class="imp">
                 <tr>
-                    <th></th>
-                    <th>Famille</th>
-                    <th>Sous Famille</th>
-                    <th>Designation</th>
-                    <th>Référence</th>
-                    <th>Boitier</th>
-                    <th>Moq</th>
-                    <th>Qte</th>
-                    <th>Quantité Mini</th>
+                    <td class="titreCheckBoxTab"></td>
+                    <td class="titreFamille">Famille</td>
+                    <td class="titreSousFamille">Sous Famille</td>
+                    <td class="titreDesignation">Designation</td>
+                    <td class="titreReference">Référence</td>
+                    <td class="titreBoitier">Boitier</td>
+                    <td class="titreQte">Qte</td>
+                    <td class="titreQteNecessaire">Qte Mini</td>
                 </tr>
                 {% for approvisionnement in composantFournisseur %}
                 
                     {% if approvisionnement.fournisseur.id != id %}
                         {% set id = approvisionnement.fournisseur.id %}
                         </table>
-                        <input class="inputValiderCommande" type="submit" value="Valider la commande">
+                            <input class="inputValiderCommande" type="submit" value="Valider la commande">
                         </form>
                         <h1>{{approvisionnement.fournisseur.nom}}</h1>
                         
                         <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: approvisionnement.fournisseur.id}) }}">
                         <table class="imp">
                             <tr>
-                                <th></th>
-                                <th>Famille</th>
-                                <th>Sous Famille</th>
-                                <th>Designation</th>
-                                <th>Référence</th>
-                                <th>Boitier</th>
-                                <th>Moq</th>
-                                <th>Qte</th>
-                                <th>Quantité Mini</th>
+                                <td class="titreCheckBoxTab"></td>
+                                <td class="titreFamille">Famille</td>
+                                <td class="titreSousFamille">Sous Famille</td>
+                                <td class="titreDesignation">Designation</td>
+                                <td class="titreReference">Référence</td>
+                                <td class="titreBoitier">Boitier</td>
+                                <td class="titreQte">Qte</td>
+                                <td class="titreQteNecessaire">Qte Mini</td>
+                           </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option[]" value="{{approvisionnement.idComposant}}"></td>
+                                <td>{{approvisionnement.composant.famille.nom}}</td>
+                                <td>{{approvisionnement.composant.sousFamille.nom}}</td>
+                                <td class="designation">{{approvisionnement.composant.nom}}</td>
+                                <td>{{approvisionnement.reference}}</td>
+                                <td>{{approvisionnement.composant.boitier}}</td>
+                                <td><input class="inputQuantite" type="text" name="{{approvisionnement.idComposant}}"></td>
+                                {% for qte in quantiteCommande %}
+                                    {% if qte.idComposant == approvisionnement.idComposant %}
+                                        <td>{{qte.quantite}}</td>
+                                    {% endif %}
+                                {% endfor %}
                             </tr>
-                        <tr>
-                            <td><input type="checkbox" name="option[]" value="{{approvisionnement.id}}"></td>
-                            <td>{{approvisionnement.composant.famille.nom}}</td>
-                            <td>{{approvisionnement.composant.sousFamille.nom}}</td>
-                            <td>{{approvisionnement.composant.nom}}</td>
-                            <td>{{approvisionnement.ref}}</td>
-                            <td>{{approvisionnement.composant.boitier}}</td>
-                            <td>{{approvisionnement.moq}}</td>
-                            <td><input class="inputQuantite" type="text" name="{{approvisionnement.id}}"></td>
-                            {% for qte in quantiteCommande %}
-                                {% if qte.idComposant == approvisionnement.idComposant %}
-                                    <td>{{qte.quantite}}</td>
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
                     {%else %}
                         <tr>
-                            <td><input type="checkbox" name="option[]" value="{{approvisionnement.id}}"></td>
+                            <td><input type="checkbox" name="option[]" value="{{approvisionnement.idComposant}}"></td>
                             <td>{{approvisionnement.composant.famille.nom}}</td>
                             <td>{{approvisionnement.composant.sousFamille.nom}}</td>
-                            <td>{{approvisionnement.composant.nom}}</td>
-                            <td>{{approvisionnement.ref}}</td>
+                            <td class="designation">{{approvisionnement.composant.nom}}</td>
+                            <td>{{approvisionnement.reference}}</td>
                             <td>{{approvisionnement.composant.boitier}}</td>
-                            <td>{{approvisionnement.moq}}</td>
-                            <td><input class="inputQuantite" type="text" name="{{approvisionnement.id}}"></td>
+                            <td><input class="inputQuantite" type="text" name="{{approvisionnement.idComposant}}"></td>
                             {% for qte in quantiteCommande %}
                                 {% if qte.idComposant == approvisionnement.idComposant %}
                                     <td>{{qte.quantite}}</td>

@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityManager;
 use IC\ApprovisionnementBundle\Entity\Appro;
 use IC\ApprovisionnementBundle\Entity\ApproComposant;
 
-class ICApprovisionnement
+class ICApprovisionnementMP
 {
     protected $doctrine;
     
@@ -190,16 +190,14 @@ class ICApprovisionnement
             $lastAppro = $doctrine->getRepository('ICApprovisionnementBundle:Appro')->getLastAppro();
             $lastAppro = $doctrine->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $lastAppro[0]->getId()));
             
-            foreach ($request->get('option') as $idMoq) 
+            foreach ($request->get('option') as $idFournisseur) 
             {
-                $moq = $doctrine->getRepository('ICApprovisionnementBundle:Moq')->findOneBy(array('id' => $idMoq));
-                
-                $quantite = $moq->getMoq() * $request->get($moq->getId());
+                $composantFournisseur = $doctrine->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->findOneBy(array('idComposant' => $idFournisseur));              
                 
                 if(!isset($listeComposantAppro['idComposant']))
                 {
-                    $listeComposantAppro['idComposant'][] = $moq->getIdComposant();
-                    $listeComposantAppro['quantite'][] = $quantite;
+                    $listeComposantAppro['idComposant'][] = $composantFournisseur->getIdComposant();
+                    $listeComposantAppro['quantite'][] = $request->get($idFournisseur);
                 }
                 else
                 {
@@ -207,17 +205,17 @@ class ICApprovisionnement
                     
                     for($i = 0; $i < count($listeComposantAppro['idComposant']); $i++) 
                     {
-                        if($listeComposantAppro['idComposant'][$i] == $moq->getIdComposant())
+                        if($listeComposantAppro['idComposant'][$i] == $composantFournisseur->getIdComposant())
                         {
                             $existe = 1;
-                            $listeComposantAppro['quantite'][$i] += $quantite;
+                            $listeComposantAppro['quantite'][$i] += $request->get($idFournisseur);
                         }
                     }
                     
                     if($existe == 0)
                     {
-                        $listeComposantAppro['idComposant'][] = $moq->getIdComposant();
-                        $listeComposantAppro['quantite'][] = $quantite;                    
+                        $listeComposantAppro['idComposant'][] = $composantFournisseur->getIdComposant();
+                        $listeComposantAppro['quantite'][] = $request->get($idFournisseur);                    
                     }
                 }
             }

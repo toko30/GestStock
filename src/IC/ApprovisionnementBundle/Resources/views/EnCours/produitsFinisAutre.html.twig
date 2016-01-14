@@ -4,6 +4,17 @@
 
 {% block entete %} {{ parent() }} En cours Autres Produits finis {% endblock %}
 
+{% block stylesheets %}
+
+	{{ parent() }}
+	
+	{% stylesheets filter='cssrewrite'
+	'@ICApprovisionnementBundle/Resources/public/css/approPFEnCours.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+    
+{% endblock %}
+
 {% block page %}
 
     {{ parent() }}
@@ -20,14 +31,14 @@
                 <tr>
                     <th>référence</th>
                     <th>Designation</th>
-                    <th>quantite</th>
+                    <th>Qte</th>
                 </tr>
                 {% for approvisionnement in approLecteur %}
                 
                     {% if approvisionnement.appro.id != id %}
                         
                         </table>
-                        <a href="{{ path('ic_approvisionnement_vers_lecteur',{idCommande: id}) }}">Commande réceptionnée</a>
+                        <a class="lienValiderCommande" href="{{ path('ic_approvisionnement_vers_lecteur',{idCommande: id}) }}">Commande réceptionnée</a>
                         <hr>
                         {% set id = approvisionnement.appro.id %}
                         
@@ -37,24 +48,24 @@
                             <tr>
                                 <th>Référence</th>
                                 <th>Designation</th>
-                                <th>quantite</th>
+                                <th>Qte</th>
                             </tr>				
                             <tr>
                                 <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-                                <td>{{approvisionnement.typeLecteur.designation}}</td>
+                                <td class="designation">{{approvisionnement.typeLecteur.designation}}</td>
                                 <td>{{approvisionnement.quantite}}</td>
                             </tr>
                     {%else %}
                         <tr>
                             <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-                            <td>{{approvisionnement.typeLecteur.designation}}</td>
+                            <td class="designation">{{approvisionnement.typeLecteur.designation}}</td>
                             <td>{{approvisionnement.quantite}}</td>
                         </tr>
                     {% endif %}
                     
                 {% endfor %}
             </table>     
-                <a href="{{ path('ic_approvisionnement_vers_lecteur',{idCommande: id}) }}">Commande réceptionnée</a>  
+                <a class="lienValiderCommande" href="{{ path('ic_approvisionnement_vers_lecteur',{idCommande: id}) }}">Commande réceptionnée</a>  
                 {% if approAutre is not empty %}
                     <hr>
                 {% endif %}
@@ -69,14 +80,14 @@
                 <tr>
                     <th>référence</th>
                     <th>Designation</th>
-                    <th>quantite</th>
+                    <th>Qte</th>
                 </tr>
                 {% for approvisionnement in approAutre %}
                 
                     {% if approvisionnement.appro.id != id %}
                         
                         </table>
-                            <a href="{{ path('ic_approvisionnement_vers_autre',{idCommande: id}) }}">Commande réceptionnée</a> 
+                            <a class="lienValiderCommande" href="{{ path('ic_approvisionnement_vers_autre',{idCommande: id}) }}">Commande réceptionnée</a> 
                             <hr>
                         {% set id = approvisionnement.appro.id %}
                         
@@ -86,24 +97,24 @@
                             <tr>
                                 <th>Référence</th>
                                 <th>Designation</th>
-                                <th>quantite</th>
+                                <th>Qte</th>
                             </tr>				
                         <tr>
                             <td>{{approvisionnement.Autre.reference}}</td>
-                            <td>{{approvisionnement.Autre.designation}}</td>
+                            <td class="designation">{{approvisionnement.Autre.designation}}</td>
                             <td>{{approvisionnement.quantite}}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{approvisionnement.Autre.reference}}</td>
-                            <td>{{approvisionnement.Autre.designation}}</td>
+                            <td class="designation">{{approvisionnement.Autre.designation}}</td>
                             <td>{{approvisionnement.quantite}}</td>
                         </tr>
                     {% endif %}
                     
                 {% endfor %}
             </table>    
-                <a href="{{ path('ic_approvisionnement_vers_autre',{idCommande: id}) }}">Commande réceptionnée</a>    
+                <a class="lienValiderCommande" href="{{ path('ic_approvisionnement_vers_autre',{idCommande: id}) }}">Commande réceptionnée</a>    
        {% endif %}
 	{% endif %}
 {% endblock %}

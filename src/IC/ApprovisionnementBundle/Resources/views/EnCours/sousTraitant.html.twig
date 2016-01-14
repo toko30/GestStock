@@ -4,7 +4,52 @@
 
 {% block entete %} {{ parent() }} production{% endblock %}
 
-{% block body %}
-    {{ parent() }}
+{% block stylesheets %}
 
+	{{ parent() }}
+	
+	{% stylesheets filter='cssrewrite'
+	'@ICApprovisionnementBundle/Resources/public/css/approSousTraitant.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+    
+{% endblock %}
+
+{% block page %}
+
+    {{ parent() }}
+    
+    <form method="post" action="{{ path('ic_approvisionnement_vers_sous_traitant', {idSousTraitant: idSousTraitant}) }}">
+    <table class="imp">
+        <tr>
+            <td class="titreFamille">Famille</td>
+            <td class="titreSousFamille">Sous Famille</td>
+            <td class="titreDesignation">Designation</td>
+            <td class="titreBoitier">Boitier</td>
+            <td class="titreQte">Qte</td>
+            <td class="titreQteNecessaire">Qte Mini</td>
+        </tr>
+        
+        {% set dispo = 1 %}
+        
+        {% for composantST in envoiComposantST %}
+            {% if composantST.dispo == 0 %}
+                {% set dispo = 0 %}
+                <tr class="composantNonDispo">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{composantST.famille}}</td>
+                <td>{{composantST.sousFamille}}</td>
+                <td class="designation">{{composantST.nom}}</td>
+                <td>{{composantST.boitier}}</td>
+                <td><input class="inputQuantite" type="text" name="{{composantST.id}}"></td>
+                <td>{{composantST.quantite}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if dispo == 1 %}
+        <input class="inputValiderCommande" type="submit" value="Envoyer les composants">
+    {% endif %}
+    </form>
 {% endblock %}

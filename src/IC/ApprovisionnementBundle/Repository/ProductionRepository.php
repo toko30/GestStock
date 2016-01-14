@@ -28,4 +28,13 @@ class ProductionRepository extends \Doctrine\ORM\EntityRepository
         ->getQuery()
         ->getResult();         
     }
+    
+    public function getListProdSousTraitantById($id)
+    {
+        return $this->createQueryBuilder('p')
+        ->where('p.etape = 1 AND p.idLieu = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getResult();  
+    }
 }

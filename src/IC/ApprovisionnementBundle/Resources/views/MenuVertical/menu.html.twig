@@ -27,3 +27,5 @@
 		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_envoi_sous_traitant', {idSousTraitant: sousTraitant.id}) }}">{{sousTraitant.nom}}</a><br>
     {% endfor %} 
 </nav>
+    <span class="lienImp" onclick="$('.imp').tableExport({type:'excel', escape:'false'})">Enregistrer au format Excel</span><br>
+    <span class="lienImp" onclick="javascript:window.print()">Imprimer</span><br>

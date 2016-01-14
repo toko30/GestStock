@@ -1,4 +1,15 @@
-.lienValiderCommande
+.composantNonDispo td
+{
+	background: red;
+	border: 1px solid red;
+	color: white;
+}
+.composantNonDispo:hover td
+{
+	background: darkred;
+	border: 1px solid darkred;
+}
+.inputValiderCommande
 {
     display: block;
     margin:10px auto;
@@ -10,9 +21,4 @@
     cursor: pointer;
     width:240px;
     text-align:center;
-}
-.ligneSeparatrice
-{
-    width: 60%;
-    margin: 30px auto 0 auto;
 }

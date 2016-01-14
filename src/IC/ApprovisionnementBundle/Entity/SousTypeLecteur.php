@@ -52,4 +52,3 @@ class SousTypeLecteur
         return $this->id;
     }
 }
-

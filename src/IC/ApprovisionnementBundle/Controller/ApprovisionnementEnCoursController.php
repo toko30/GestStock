@@ -32,9 +32,104 @@ class ApprovisionnementEnCoursController extends Controller
                                                                                                      'approAutre' => $approAutre));
     }
     
-    public function approEnCoursSousTraitantAction()
+    public function approEnCoursSousTraitantAction($idSousTraitant)
     {
-        return $this->render('ICApprovisionnementBundle:EnCours:sousTraitant.html.twig', array('partie' => 'approvisionnement', 'name' => 'test'));
+        //Connexion Doctrine
+        $em = $this->getDoctrine()->getManager();
+        
+        //Liste des requètes Doctrine pour les options du menu
+        $listProdSousTraitant = $em->getRepository('ICApprovisionnementBundle:Production')->getListProdSousTraitantById($idSousTraitant);
+        
+        $i = 0;
+
+        foreach($listProdSousTraitant as $prodSousTraitant)
+        {
+            $listComposantNomenclature = $em->getRepository('ICApprovisionnementBundle:ComposantNomenclature')->getComposantNomenclature($prodSousTraitant->getIdNomenclature());        
+            
+            $listComposantUtilise = explode(',', $prodSousTraitant->getComposantUtilise());
+            
+            foreach($listComposantNomenclature as $composantNomenclature)
+            {
+                if(in_array($composantNomenclature->getIdComposant(), $listComposantUtilise))
+                {
+                    if(empty($quantiteNomenclature))
+                    {
+                        $quantiteNomenclature['idComposant'][] = $composantNomenclature->getIdComposant();
+                        $quantiteNomenclature['quantite'][] = $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();                        
+                    }
+                    else
+                    {
+                        $existe = 0;
+                        
+                        for($i1 = 0; $i1 < count($quantiteNomenclature['idComposant']); $i1++)
+                        {
+                            if($quantiteNomenclature['idComposant'][$i1] == $composantNomenclature->getIdComposant())
+                            {
+                                $existe = 1;
+                                $quantiteNomenclature['quantite'][$i1] += $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();
+                            }
+                        }
+                        
+                        if($existe == 0)
+                        {
+                            $quantiteNomenclature['idComposant'][] = $composantNomenclature->getIdComposant();
+                            $quantiteNomenclature['quantite'][] = $composantNomenclature->getQuantite() * $prodSousTraitant->getQuantite();   
+                        }
+                    }
+                }            
+            } 
+        }
+
+        $listComposantSousTraitant = $em->getRepository('ICApprovisionnementBundle:ComposantSousTraitant')->getComposantSt($idSousTraitant);
+
+        if(empty($listComposantSousTraitant))
+        {
+            for($i = 0; $i < count($quantiteNomenclature['idComposant']); $i++)
+            {
+                $composant = $em->getRepository('ICApprovisionnementBundle:Composant')->getComposantById($quantiteNomenclature['idComposant'][$i]);
+                
+                $composantAEnvoyer[$i]['id'] = $composant[0]->getId();
+                $composantAEnvoyer[$i]['nom'] = $composant[0]->getNom();
+                $composantAEnvoyer[$i]['boitier'] = $composant[0]->getBoitier();
+                $composantAEnvoyer[$i]['famille'] = $composant[0]->getFamille()->getNom();
+                $composantAEnvoyer[$i]['sousFamille'] = $composant[0]->getSousFamille()->getNom();
+                $composantAEnvoyer[$i]['quantite'] = $quantiteNomenclature['quantite'][$i];
+
+                if($composant[0]->getStockInterne() < $composantAEnvoyer[$i]['quantite'])
+                    $composantAEnvoyer[$i]['dispo'] = 0;
+                else
+                    $composantAEnvoyer[$i]['dispo'] = 1;
+            }
+        }
+        else
+        {
+            for($i = 0; $i < count($quantiteNomenclature['idComposant']); $i++)
+            {
+                foreach ($listComposantSousTraitant as $composantSousTraitant) 
+                {
+                    if($composantSousTraitant->getIdComposant() == $quantiteNomenclature['idComposant'][$i] && $composantSousTraitant->getQuantite() < $quantiteNomenclature['quantite'][$i])
+                    {  
+                        $composant = $em->getRepository('ICApprovisionnementBundle:Composant')->getComposantById($quantiteNomenclature['idComposant'][$i]);
+                        
+                        $composantAEnvoyer[$i]['id'] = $composant[0]->getId();
+                        $composantAEnvoyer[$i]['nom'] = $composant[0]->getNom();
+                        $composantAEnvoyer[$i]['boitier'] = $composant[0]->getBoitier();
+                        $composantAEnvoyer[$i]['famille'] = $composant[0]->getFamille()->getNom();
+                        $composantAEnvoyer[$i]['sousFamille'] = $composant[0]->getSousFamille()->getNom();
+                        $composantAEnvoyer[$i]['quantite'] = $quantiteNomenclature['quantite'][$i] - $composantSousTraitant->getQuantite();
+                        
+                        if($composant[0]->getStockInterne() < $composantAEnvoyer[$i]['quantite'])
+                            $composantAEnvoyer[$i]['dispo'] = 0;
+                        else
+                            $composantAEnvoyer[$i]['dispo'] = 1;
+                    }
+                }
+            }            
+        }
+ 
+        return $this->render('ICApprovisionnementBundle:EnCours:sousTraitant.html.twig', array('partie' => 'approvisionnement', 
+                                                                                               'idSousTraitant' => $idSousTraitant,
+                                                                                               'envoiComposantST' => $composantAEnvoyer));
     }
     
     public function approVersStockInterneAction($idCommande)
@@ -79,6 +174,7 @@ class ApprovisionnementEnCoursController extends Controller
         
         return $this->redirectToRoute('ic_approvisionnement_en_cours_identifiant');
     }
+    
     public function approVersStockLecteurAction($idCommande)
     {
         

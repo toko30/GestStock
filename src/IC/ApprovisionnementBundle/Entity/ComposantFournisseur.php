@@ -3,10 +3,15 @@
 namespace IC\ApprovisionnementBundle\Entity;
 
 /**
- * Moq
+ * ComposantFournisseur
  */
-class Moq
+class ComposantFournisseur
 {
+    /**
+     * @var string
+     */
+    private $reference;
+
     /**
      * @var integer
      */
@@ -18,19 +23,14 @@ class Moq
     private $idFournisseur;
 
     /**
-     * @var string
-     */
-    private $ref;
-
-    /**
-     * @var integer
-     */
-    private $moq;
-
-    /**
      * @var integer
      */
     private $id;
+    
+    /**
+     * @var \IC\ApprovisionnementBundle\Entity\Composant
+     */
+    private $composant;
 
     /**
      * @var \IC\ApprovisionnementBundle\Entity\Fournisseur
@@ -38,17 +38,35 @@ class Moq
     private $fournisseur;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\Composant
+     * Set reference
+     *
+     * @param string reference
+     *
+     * @return ComposantFournisseur
      */
-    private $composant;
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
 
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
 
     /**
      * Set idComposant
      *
      * @param integer $idComposant
      *
-     * @return Moq
+     * @return ComposantFournisseur
      */
     public function setIdComposant($idComposant)
     {
@@ -72,7 +90,7 @@ class Moq
      *
      * @param integer $idFournisseur
      *
-     * @return Moq
+     * @return ComposantFournisseur
      */
     public function setIdFournisseur($idFournisseur)
     {
@@ -92,54 +110,6 @@ class Moq
     }
 
     /**
-     * Set ref
-     *
-     * @param string $ref
-     *
-     * @return Moq
-     */
-    public function setRef($ref)
-    {
-        $this->ref = $ref;
-
-        return $this;
-    }
-
-    /**
-     * Get ref
-     *
-     * @return string
-     */
-    public function getRef()
-    {
-        return $this->ref;
-    }
-
-    /**
-     * Set moq
-     *
-     * @param integer $moq
-     *
-     * @return Moq
-     */
-    public function setMoq($moq)
-    {
-        $this->moq = $moq;
-
-        return $this;
-    }
-
-    /**
-     * Get moq
-     *
-     * @return integer
-     */
-    public function getMoq()
-    {
-        return $this->moq;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -150,35 +120,11 @@ class Moq
     }
 
     /**
-     * Set fournisseur
-     *
-     * @param \IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur
-     *
-     * @return Moq
-     */
-    public function setFournisseur(\IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur = null)
-    {
-        $this->fournisseur = $fournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Get fournisseur
-     *
-     * @return \IC\ApprovisionnementBundle\Entity\Fournisseur
-     */
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
-    }
-
-    /**
      * Set composant
      *
      * @param \IC\ApprovisionnementBundle\Entity\Composant $composant
      *
-     * @return Moq
+     * @return ComposantFournisseur
      */
     public function setComposant(\IC\ApprovisionnementBundle\Entity\Composant $composant = null)
     {
@@ -195,5 +141,29 @@ class Moq
     public function getComposant()
     {
         return $this->composant;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur
+     *
+     * @return ComposantFournisseur
+     */
+    public function setFournisseur(\IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \IC\ApprovisionnementBundle\Entity\Fournisseur
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
     }
 }

@@ -18,8 +18,7 @@
 {% block page %}
 
     {{ parent() }}
-    
-    <section id="page">
+
     {% if appro is empty %}
 		aucune commande en cours
 	{% else %}
@@ -29,11 +28,11 @@
 		<h1>{{appro[0].appro.fournisseur.nom}} le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h1>
 		<table class="imp">
 			<tr>
-				<th>Famille</th>
-				<th>Sous Famille</th>
-				<th>Designation</th>
-				<th>Boitier</th>
-				<th>quantite</th>
+				<td class="titreFamille">Famille</td>
+				<td class="titreSousFamille">Sous Famille</td>
+				<td class="titreDesignation">Designation</td>
+				<td class="titreBoitier">Boitier</td>
+				<td class="titreQte">Qte</td>
 			</tr>
 			{% for approvisionnement in appro %}
 			
@@ -41,7 +40,7 @@
 					
 					</table> 
 					   
-                    <a class="inputValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
+                    <a class="lienValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
                     
                     {% set id = approvisionnement.appro.id %}
                     
@@ -51,16 +50,16 @@
 					
 					<table class="imp">
 						<tr>
-							<th>Famille</th>
-							<th>Sous Famille</th>
-							<th>Designation</th>
-							<th>Boitier</th>
-							<th>quantite</th>
+                            <td class="titreFamille">Famille</td>
+                            <td class="titreSousFamille">Sous Famille</td>
+                            <td class="titreDesignation">Designation</td>
+                            <td class="titreBoitier">Boitier</td>
+                            <td class="titreQte">Qte</td>
 						</tr>				
 					<tr>
 						<td>{{approvisionnement.composant.famille.nom}}</td>
 						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
-						<td>{{approvisionnement.composant.nom}}</td>
+						<td class="designation">{{approvisionnement.composant.nom}}</td>
 						<td>{{approvisionnement.composant.boitier}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
@@ -68,14 +67,14 @@
 					<tr>
 						<td>{{approvisionnement.composant.famille.nom}}</td>
 						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
-						<td>{{approvisionnement.composant.nom}}</td>
+						<td class="designation">{{approvisionnement.composant.nom}}</td>
 						<td>{{approvisionnement.composant.boitier}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
 				{% endif %}
 			{% endfor %}
 		</table>
-        <a class="inputValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
+        <a class="lienValiderCommande" href={{ path('ic_approvisionnement_vers_stock', {idCommande: id}) }}>Commande réceptionnée</a>
 	{% endif %}
-    </section>
+
 {% endblock %}
