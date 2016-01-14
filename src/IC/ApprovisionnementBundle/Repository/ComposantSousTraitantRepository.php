@@ -13,7 +13,8 @@ class ComposantSousTraitantRepository extends \Doctrine\ORM\EntityRepository
     public function getComposantSt($id)
 	{
 		return $this->createQueryBuilder('cst')
-        ->addSelect('cst')
+        ->join('cst.sousTraitant', 'st')
+        ->addSelect('cst', 'st')
 		->where('cst.idSousTraitant = :id')
 		->setParameter('id', $id)
 		->getQuery()

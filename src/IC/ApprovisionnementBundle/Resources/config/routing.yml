@@ -27,9 +27,11 @@ ic_approvisionnement_en_cours_autre:
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursPFAutre }
     
 ic_approvisionnement_envoi_sous_traitant:
-    path:     /Envoi-Sous-Traitant
+    path:     /Envoi-Sous-Traitant-{idSousTraitant}
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approEnCoursSousTraitant }
-    
+    requirements:
+        idSousTraitant: \d{1,10}
+
 ic_approvisionnement_calcul:
     path:     /Calcul-Approvisionnement-{idFournisseur}
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementMP:calculAppro }

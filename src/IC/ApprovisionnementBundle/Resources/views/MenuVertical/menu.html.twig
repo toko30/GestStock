@@ -22,7 +22,8 @@
     </div>
     
 	<span class="titreMenuVertical">Envoi MP Sous-Traitant</span><br>
-	
-		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_envoi_sous_traitant') }}">Liste sous traitant MP manquant</a><br>
-        
+    
+	{% for sousTraitant in sousTraitants %}
+		<a class="sousMenu decalageNoPlus" href="{{ path('ic_approvisionnement_envoi_sous_traitant', {idSousTraitant: sousTraitant.id}) }}">{{sousTraitant.nom}}</a><br>
+    {% endfor %} 
 </nav>

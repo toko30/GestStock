@@ -39,7 +39,7 @@ class MenuController extends Controller
                 
                 if(empty($ListSousTraitant))
                 {
-                    $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                    $ListSousTraitant[$i]['id'] = $sousTraitant->getId();
                     $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();
                 }
                 else
@@ -48,13 +48,13 @@ class MenuController extends Controller
                     //on vérifie que le sous traitant n'est pas déja dans la liste
                     for($i1 = 0; $i1 < count($ListSousTraitant); $i1++)
                     {
-                        if($sousTraitant->getId() == $ListSousTraitant[$i1]['idSousTraitant'])
+                        if($sousTraitant->getId() == $ListSousTraitant[$i1]['id'])
                             $existe = 1;
                     }
                     //si il n'y est pas on l'ajoute
                     if($existe == 0)
                     {
-                       $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
+                       $ListSousTraitant[$i]['id'] = $sousTraitant->getId();
                        $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();                        
                     }
                 }
@@ -95,14 +95,15 @@ class MenuController extends Controller
                 foreach ($listComposantSousTraitant as $ComposantST) 
                 {                            
                     for($i1 = 0; $i1 < count($quantiteNomenclature['idComposant']); $i1++)
-                    {echo '1<br>';
-                        if($quantiteNomenclature['idComposant'][$i1] == $ComposantST->getId() && $quantiteNomenclature['quantite'][$i1] > $ComposantST->getQuantite())
+                    {
+                        //echo $quantiteNomenclature['idComposant'][$i1].'=='.$ComposantST->getIdComposant().' '.$quantiteNomenclature['quantite'][$i1].'>'.$ComposantST->getQuantite().'<br>';
+                        if($quantiteNomenclature['idComposant'][$i1] == $ComposantST->getIdComposant() && $quantiteNomenclature['quantite'][$i1] > $ComposantST->getQuantite())
                         {
-
+                            
                             if(empty($ListSousTraitant))
                             {
-                                $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
-                                $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();
+                                $ListSousTraitant[$i]['id'] = $ComposantST->getSousTraitant()->getId();
+                                $ListSousTraitant[$i++]['nom'] = $ComposantST->getSousTraitant()->getNom();
                             }
                             else
                             {
@@ -110,14 +111,14 @@ class MenuController extends Controller
                                 //on vérifie que le sous traitant n'est pas déja dans la liste
                                 for($i1 = 0; $i1 < count($ListSousTraitant); $i1++)
                                 {
-                                    if($sousTraitant->getId() == $ListSousTraitant[$i1]['idSousTraitant'])
+                                    if($ComposantST->getSousTraitant()->getId() == $ListSousTraitant[$i1]['id'])
                                         $existe = 1;
                                 }
                                 //si il n'y est pas on l'ajoute
                                 if($existe == 0)
                                 {
-                                $ListSousTraitant[$i]['idSousTraitant'] = $sousTraitant->getId();
-                                $ListSousTraitant[$i++]['nom'] = $sousTraitant->getNom();                        
+                                $ListSousTraitant[$i]['id'] = $ComposantST->getSousTraitant()->getId();
+                                $ListSousTraitant[$i++]['nom'] = $ComposantST->getSousTraitant()->getNom();                        
                                 }
                             }
                         }
@@ -125,11 +126,11 @@ class MenuController extends Controller
                 }                                       
             }           
         }
-        var_dump($ListSousTraitant);
+
         //Création des formulaires en fonction de la page
         
         //génération du template Twig
         return $this->render('ICApprovisionnementBundle:MenuVertical:menu.html.twig', array('url' => $url,
-                                                                                            'sousTraitants' => '1'));
+                                                                                            'sousTraitants' => $ListSousTraitant));
     }
 }
