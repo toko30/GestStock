@@ -6,38 +6,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MatierePremiereController extends Controller
 {
-    public function affichageMatierePremiereAction($name)
+    public function affichageMatierePremiereAction()
     {
-        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('partie' => 'Administration', 'name' => 'test'));
     }
     
-    public function addMatierePremiereAction()
+    public function affichageAddMatierePremiereAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
     
-    public function modifierMatierePremiereAction()
+    public function affichageModifierMatierePremiereAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
     
-    public function deleteMatierePremiereAction()
+    public function affichageDeleteMatierePremiereAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
     
-    public function addFournisseurAction()
+    public function affichageAddFournisseurAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
     
-    public function modifierFournisseurAction()
+    public function affichageModifierFournisseurAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
     
-    public function deleteFournisseurAction()
+    public function affichageDeleteFournisseurAction()
     {
-        
+        return $this->render('ICAdministrationBundle:MP:affichage.html.twig', array('name' => 'test'));        
     }
 }

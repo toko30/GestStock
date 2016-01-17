@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/layout.css'
+	'@ICAdministrationBundle/Resources/public/css/menu_vertical.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/impression.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print">
+	{% endstylesheets %}
+{% endblock %}
+{% block entete %}Administration{% endblock %}
+
+{% block body %}
+	<section id="menuVertical">
+		{{ render(controller("ICAffichageBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
+	</section>
+    {% block page %}
+    {% endblock %}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{% javascripts 
+	'@ICAffichageBundle/Resources/public/js/*'
+	'@ICAffichageBundle/Resources/public/js/tableExport/tableExport.js'
+	'@ICAffichageBundle/Resources/public/js/tableExport/jquery.base64.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/sprintf.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/jspdf.js' 
+	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/base64.js' 
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}

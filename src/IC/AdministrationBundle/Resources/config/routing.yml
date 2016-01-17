@@ -1,3 +1,3 @@
-ic_administration_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ICAdministrationBundle:Default:index }
+ic_administration_matiere_premiere:
+    path:     /Matiere-Premiere
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:affichageMatierePremiere }
