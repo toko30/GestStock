@@ -59,44 +59,45 @@ class ICApprovisionnementMP
                             $quantiteCommande[$next]['quantite'] = $composantNomenclature->getComposant()->getStockInterne() - ($composantNomenclature->getQuantite() * $production->getQuantite());                            
                         }
                     }
-                    $composantStockST = array();
-                    //ajout de la quantité du stock sous traitant à additionner au stock à commander
-                    if(in_array($composantNomenclature->getIdComposant(), $listComposantUtilise))
+                }
+                
+                $composantStockST = array();
+                //ajout de la quantité du stock sous traitant à additionner au stock à commander
+                if(in_array($composantNomenclature->getIdComposant(), $listComposantUtilise))
+                {
+                    foreach($listComposantSousTraitant as $composantSousTraitant)
                     {
-                        foreach($listComposantSousTraitant as $composantSousTraitant)
+                        //on vérifie que le composant existe en stock chez le sous traitant
+                        if($composantSousTraitant->getIdComposant() == $composantNomenclature->getIdComposant())
                         {
-                            //on vérifie que le composant existe en stock chez le sous traitant
-                            if($composantSousTraitant->getIdComposant() == $composantNomenclature->getIdComposant())
+                            //au premier tour de boucle on créé le premier champ du tableau
+                            if(!isset($composantStockST[0]['idComposant']))
                             {
-                                //au premier tour de boucle on créé le premier champ du tableau
-                                if(!isset($composantStockST[0]['idComposant']))
+                                $composantStockST['lieu'] = $production->getIdLieu();
+                                $composantStockST['idComposant'][] = $composantSousTraitant->getIdComposant();
+                                $composantStockST['quantite'][] = $composantSousTraitant->getQuantite();
+                            }
+                            else
+                            {
+                                $existe = 0;
+                                
+                                for($i = 0; $i < count($composantStockST['idComposant']); $i++)
                                 {
-                                    $composantStockST['lieu'] = $production->getIdLieu();
+                                    //on vérifie que le composant n'existe pas déja chez un autre sous traitant sinon on l'ajoute a celui ci 
+                                    //on vérifie que l'on ne fais pas de doublon en comparant que le sous traitant actuel est différent du sous traitant enregistré
+                                    if($composantStockST['idComposant'][$i] == $composantNomenclature->getIdComposant() && $composantStockST['lieu'][$i] != $production->getIdLieu())
+                                    {
+                                        $existe = 1;
+                                        $composantStockST['lieu'][] = $production->getIdLieu();
+                                        $composantStockST['quantite'][$i] += $composantSousTraitant->getQuantite();
+                                    }
+                                }
+                                //si il n'existe pas on le créé
+                                if($existe == 0)
+                                {
+                                    $composantStockST['lieu'][] = $production->getIdLieu();
                                     $composantStockST['idComposant'][] = $composantSousTraitant->getIdComposant();
                                     $composantStockST['quantite'][] = $composantSousTraitant->getQuantite();
-                                }
-                                else
-                                {
-                                    $existe = 0;
-                                    
-                                    for($i = 0; $i < count($composantStockST['idComposant']); $i++)
-                                    {
-                                        //on vérifie que le composant n'existe pas déja chez un autre sous traitant sinon on l'ajoute a celui ci 
-                                        //on vérifie que l'on ne fais pas de doublon en comparant que le sous traitant actuel est différent du sous traitant enregistré
-                                        if($composantStockST['idComposant'][$i] == $composantNomenclature->getIdComposant() && $composantStockST['lieu'][$i] != $production->getIdLieu())
-                                        {
-                                            $existe = 1;
-                                            $composantStockST['lieu'][] = $production->getIdLieu();
-                                            $composantStockST['quantite'][$i] += $composantSousTraitant->getQuantite();
-                                        }
-                                    }
-                                    //si il n'existe pas on le créé
-                                    if($existe == 0)
-                                    {
-                                        $composantStockST['lieu'][] = $production->getIdLieu();
-                                        $composantStockST['idComposant'][] = $composantSousTraitant->getIdComposant();
-                                        $composantStockST['quantite'][] = $composantSousTraitant->getQuantite();
-                                    }
                                 }
                             }
                         }
