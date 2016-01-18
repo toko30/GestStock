@@ -345,9 +345,9 @@ class ProductionController extends Controller
                 $composant = $em->getRepository('ICProductionBundle:Composant')->find($composantNom->getComposant()->getId());
                 
                 $composant->setStockInterne($newQuantite);
-                
-                $em->flush();
-            }            
+            }
+            
+            $em->flush();           
         }
         //Sortie des composants l'or de production Sous traitant
         else
@@ -366,12 +366,12 @@ class ProductionController extends Controller
                         {
                             $newQuantite = $sousTraitant->getQuantite() - ($composantNom->getQuantite() * $production->getQuantite());
                             
-                            $sousTraitant->setQuantite($newQuantite);
-                            
-                            $em->flush();                                 
+                            $sousTraitant->setQuantite($newQuantite);                                                             
                         }
                     }
                 }
+                
+                $em->flush();
             }                
         }
         

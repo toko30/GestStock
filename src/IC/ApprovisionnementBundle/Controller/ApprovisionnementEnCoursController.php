@@ -3,6 +3,8 @@
 namespace IC\ApprovisionnementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use IC\ApprovisionnementBundle\Entity\ComposantSousTraitant;
 
 class ApprovisionnementEnCoursController extends Controller
 {
@@ -186,8 +188,7 @@ class ApprovisionnementEnCoursController extends Controller
         
         $appro = $em->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $idCommande));
         $approAutre = $em->getRepository('ICApprovisionnementBundle:ApproAutre')->getApproAutreById($idCommande);
-        
-        var_dump($approAutre);        
+       
         $em->remove($appro);
                            
         foreach($approAutre as $aAutre)
@@ -201,5 +202,37 @@ class ApprovisionnementEnCoursController extends Controller
         $em->flush();
         
         return $this->redirectToRoute('ic_approvisionnement_en_cours_autre');
+    }
+    
+    public function approVersStockSousTraitantAction(request $request, $idSousTraitant)
+    {
+        $em = $this->getDoctrine()->getManager(); 
+        
+        foreach ($request->get('option') as $idComposant) 
+        {
+            $composantST = $em->getRepository('ICApprovisionnementBundle:ComposantSousTraitant')->getComposantBySousTraitant($idComposant, $idSousTraitant);
+            $composant = $em->getRepository('ICApprovisionnementBundle:Composant')->findOneBy(array('id' => $idComposant));
+            $sousTraitant = $em->getRepository('ICApprovisionnementBundle:SousTraitant')->findOneBy(array('id' => $idSousTraitant));
+
+            if(!empty($composantST))
+            {
+                $composantST[0]->setQuantite($composantST[0]->getQuantite() + $request->get($idComposant));
+                
+                $em->persist($composantST[0]);
+            }
+            else
+            {               
+                $newComposantST = new ComposantSousTraitant();
+                $newComposantST->setSousTraitant($sousTraitant);
+                $newComposantST->setComposant($composant);
+                $newComposantST->setQuantite($request->get($idComposant));
+                
+                $em->persist($newComposantST);
+            }
+        }
+        
+        $em->flush();
+        
+        return $this->redirectToRoute('ic_approvisionnement_mp_production');
     }
 }

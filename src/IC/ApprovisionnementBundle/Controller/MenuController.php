@@ -3,7 +3,9 @@
 namespace IC\ApprovisionnementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use IC\ApprovisionnementBundle\Form\Type\MatierePremiereType;
+use IC\ApprovisionnementBundle\Form\Type\IdentifiantType;
+use IC\ApprovisionnementBundle\Form\Type\AutreType;
 
 class MenuController extends Controller
 {
@@ -24,7 +26,7 @@ class MenuController extends Controller
             $listComposantUtilise = explode(',', $prodSousTraitant->getComposantUtilise());
             
             
-            //Si le sous traitant change on nettoie la liste des composant
+            //Si le sous traitant change on nettoie la liste des composants
             if(!isset($idLieuPrecedent) || $prodSousTraitant->getIdLieu() != $idLieuPrecedent)
             {
                 unset($quantiteNomenclature);
@@ -32,7 +34,7 @@ class MenuController extends Controller
             
             $idLieuPrecedent = $prodSousTraitant->getIdLieu();
             
-            //Si aucun composant n'est chez le sous traitant on lajoute a la liste
+            //Si aucun composant n'est chez le sous traitant on l'ajoute à la liste
             if(empty($listComposantSousTraitant))
             {
                 $sousTraitant = $em->getRepository('ICApprovisionnementBundle:SousTraitant')->findOneBy(array('id' => $prodSousTraitant->getIdLieu()));
@@ -126,11 +128,27 @@ class MenuController extends Controller
                 }                                       
             }           
         }
-
-        //Création des formulaires en fonction de la page
+        //si la variable est vide on créé un tableau vide 
+        if(!isset($ListSousTraitant))
+            $ListSousTraitant = array();
         
+        $listFamille = $em->getRepository('ICApprovisionnementBundle:Famille')->findAll();
+        $listSousFamille = $em->getRepository('ICApprovisionnementBundle:SousFamille')->findAll();
+        $listFournisseur = $em->getRepository('ICApprovisionnementBundle:Fournisseur')->findAll();
+        $listTypeBadge = $em->getRepository('ICApprovisionnementBundle:SousTypeBadge')->findAll();
+        $listTypeLecteur = $em->getRepository('ICApprovisionnementBundle:SousTypeLecteur')->findAll();
+        $listTypeAutre = $em->getRepository('ICApprovisionnementBundle:TypeAutre')->findAll();
+        
+        //Création des formulaires en fonction de la page
+        if($url == 'ic_approvisionnement_mp_production' || $url == 'ic_approvisionnement_mp_critique')
+            $form = $this->createForm(new MatierePremiereType($listFamille, $listSousFamille, $listFournisseur)); 
+        elseif($url == 'ic_approvisionnement_pf_identifiant')
+            $form = $this->createForm(new IdentifiantType($listTypeBadge));  
+        else
+            $form = $this->createForm(new AutreType($listTypeLecteur, $listTypeAutre));                    
         //génération du template Twig
         return $this->render('ICApprovisionnementBundle:MenuVertical:menu.html.twig', array('url' => $url,
+                                                                                            'form' => $form->createView(),
                                                                                             'sousTraitants' => $ListSousTraitant));
     }
 }

@@ -43,7 +43,7 @@
                 <td>{{composantST.sousFamille}}</td>
                 <td class="designation">{{composantST.nom}}</td>
                 <td>{{composantST.boitier}}</td>
-                <td><input class="inputQuantite" type="text" name="{{composantST.id}}"></td>
+                <td><input class="inputQuantite" type="hidden" name="option[]" value="{{composantST.id}}"><input class="inputQuantite" type="text" name="{{composantST.id}}"></td>
                 <td>{{composantST.quantite}}</td>
             </tr>
         {% endfor %}

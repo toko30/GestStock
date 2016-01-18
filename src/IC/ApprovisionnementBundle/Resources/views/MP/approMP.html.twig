@@ -53,7 +53,7 @@
                         </form>
                         <h1>{{approvisionnement.fournisseur.nom}}</h1>
                         
-                        <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: approvisionnement.fournisseur.id}) }}">
+                        <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: approvisionnement.fournisseur.id, page: page}) }}">
                         <table class="imp">
                             <tr>
                                 <td class="titreCheckBoxTab"></td>

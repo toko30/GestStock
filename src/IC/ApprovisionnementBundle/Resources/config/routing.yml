@@ -79,7 +79,7 @@ ic_approvisionnement_vers_autre:
         idCommande: \d{1,10}
 
 ic_approvisionnement_vers_sous_traitant:
-    path:     /Vers-Stock-Autre-{idSousTraitant}
+    path:     /Vers-StockSous-Traitant-{idSousTraitant}
     defaults: { _controller: ICApprovisionnementBundle:ApprovisionnementEnCours:approVersStockSousTraitant }
     requirements:
         idSousTraitant: \d{1,10}
