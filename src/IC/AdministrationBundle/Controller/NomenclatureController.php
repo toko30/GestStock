@@ -16,12 +16,12 @@ class NomenclatureController extends Controller
         
     }
     
-    public function modifierNomenclatureAction($idNomenclature)
+    public function affichageModifierNomenclatureAction($idNomenclature)
     {
         
     }
     
-    public function deleteNomenclature($idNomenclature)
+    public function affichageDeleteNomenclature($idNomenclature)
     {
         
     }

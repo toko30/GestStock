@@ -1,0 +1,96 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/detailComposant.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+	{{ parent()}}
+    {{ form_start(form, {'attr': {'class': 'form-verical'}}) }}
+        <table>
+            <tr>
+                <td class="titreFamille">Famille</td>
+                <td class="titreSousFamille">Sous Famille</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreBoitier">Boitier</td>
+                <td class="titreStock mini">Stock mini</td>
+            </tr>
+            <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
+                <td class="titreFamille">{{ form_widget(form.famille, {'attr': {'class': 'inputListe'}} ) }}</td>
+                <td class="titreSousFamille" >{{ form_widget(form.sousFamille, {'attr': {'class': 'inputListe'}}) }}</td>
+                <td class="titreDesignation">{{ form_widget(form.nom, {'attr': {'class': 'inputDesignation'}} ) }}</td>
+                <td class="titreBoitier">{{ form_widget(form.boitier, {'attr': {'class': 'inputQuantite'}} ) }}</td>
+                <td class="titreStock mini">{{ form_widget(form.stockMini, {'attr': {'class': 'inputQuantite'}} )}}</td>
+            </tr>
+        </table>
+        {{ form_widget(form.modifier_le_composant, {'attr': {'class': 'inputValiderCommande'}}) }}
+        
+    {{ form_end(form) }}
+    
+            <h2>Liste des fournisseurs</h2>
+    {% if form2 is null %}        
+        {{ form_start(form1, {'attr': {'class': 'form-verical'}}) }}
+    {% else %}
+        {{ form_start(form2, {'attr': {'class': 'form-verical'}}) }}
+    {% endif %}
+        <table class="tableDetailFournisseur">
+            <tr>
+                <td class="titreSupprimer"></td>
+                <td class="titreFournisseur">Fournisseur</td>
+                <td class="titreReference">Référence</td>
+                <td class="titrePrix">Prix Unitaire</td>
+                <td class="titreDetails"></td>
+            </tr>
+            {% if form2 is null %}
+                <tr>
+                    <td class="supprimer"></td>
+                    <td class="titreFournisseur">{{ form_widget(form1.fournisseur, {'attr': {'class': 'inputListe'}}) }}</td>
+                    <td class="titreReference">{{ form_widget(form1.reference, {'attr': {'class': 'inputDesignation'}}) }}</td>
+                    <td class="titrePrix">{{ form_widget(form1.prix, {'attr': {'class': 'inputQuantite'}}) }}</td>
+                    <td class="details">{{ form_widget(form1.add_composant_fournisseur) }}</td>
+                </tr>   
+            {% endif %}
+                {% for composantFournisseur in composantsFournisseur %}
+                    {% if idComposantFournisseur == composantFournisseur.id %}
+                        <td class="supprimer"></td>
+                        <td class="titreFournisseur">{{ form_widget(form2.fournisseur, {'attr': {'class': 'inputListe'}}) }}</td>
+                        <td class="titreReference">{{ form_widget(form2.reference, {'attr': {'class': 'inputDesignation'}}) }}</td>
+                        <td class="titrePrix">{{ form_widget(form2.prix, {'attr': {'class': 'inputQuantite'}}) }}</td>
+                        <td class="details">{{ form_widget(form2.update_composant_fournisseur) }}</td>
+                    {% else %}
+                        <tr>
+                            <td class="supprimer">
+                                <a href="{{ path('ic_administration_composant_fournisseur_delete', {'idComposantFournisseur': composantFournisseur.id}) }}">
+                                    {% image 'img/redcroix.png' %}
+                                        <img class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>                        
+                            </td>
+                            <td>{{composantFournisseur.fournisseur.nom}}</td>
+                            <td>{{composantFournisseur.reference}}</td>
+                            <td>{{composantFournisseur.prix}} €</td>
+                            <td class="details">
+                                <a href="{{ path('ic_administration_mp_detail', {'idComposant': composantFournisseur.idComposant,'idComposantFournisseur': composantFournisseur.id, 'page': 'Modification'}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% if form2 is null %}        
+            {{ form_end(form1) }}
+        {% else %}
+            {{ form_end(form2) }}
+        {% endif %}
+        
+{% endblock %}

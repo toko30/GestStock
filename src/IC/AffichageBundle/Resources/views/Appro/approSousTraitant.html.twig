@@ -12,7 +12,7 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 	{{ parent() }}
 	{% if appro is not empty %}
 		<h1>Approvisionnement {{appro[0].appro.sousTraitant.nom}}</h1>

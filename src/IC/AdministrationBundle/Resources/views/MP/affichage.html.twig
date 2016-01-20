@@ -1,5 +1,68 @@
 {% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/composant.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
 {% block page %}
-{{parent()}}
-Hello {{ name }}!
+	{{ parent()}}
+    
+	{{ form_start(form, {'attr': {'class': 'form-verical', 'action': path('ic_administration_mp_add') }}) }}
+    
+	<table class="imp">
+		<tr>
+            <td class="titreSupprimer"></td>
+			<td class="titreFamille">Famille</td>
+			<td class="titreSousFamille">Sous Famille</td>
+			<td class="titreDesignation">Désignation</td>
+			<td class="titreBoitier">Boitier</td>
+			<td class="titreStock mini">Stock mini</td>
+			<td class="titreStock">Stock</td>
+			<td class="titreDetails"></td>
+		</tr>
+        
+        <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
+            <td class="supprimer"></td>
+            <td class="titreFamille">{{ form_widget(form.famille, {'attr': {'class': 'inputListe'}} ) }}</td>
+            <td class="titreSousFamille" >{{ form_widget(form.sousFamille, {'attr': {'class': 'inputListe'}}) }}</td>
+            <td class="titreDesignation">{{ form_widget(form.nom, {'attr': {'class': 'inputDesignation'}} ) }}</td>
+            <td class="titreBoitier">{{ form_widget(form.boitier, {'attr': {'class': 'inputQuantite'}} ) }}</td>
+            <td class="titreStock mini">{{ form_widget(form.stockMini, {'attr': {'class': 'inputQuantite'}} )}}</td>
+            <td class="supprimer"></td>
+            <td class="supprimer">{{ form_widget(form.add_composant) }}</td>
+        </tr>      
+
+		{% for composant in composants %}
+            <tr>
+                <td class="supprimer">
+                    <a href="{{ path('ic_administration_mp_delete', {'idComposant': composant.id}) }}">
+                        {% image 'img/redcroix.png' %}
+                            <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                        {% endimage %}
+                    </a>                        
+                </td>
+                <td class="famille">{{composant.Famille.nom}}</td>
+                <td class="sousFamille">{{composant.SousFamille.nom}}</td>
+                <td class="designation">{{composant.nom}}</td>
+                <td class="boitier">{{composant.boitier}}</td>
+                <td class="stock mini">{{composant.stockMini}}</td>
+                <td class="stock">{{composant.stockInterne}}</td>
+                <td class="details">
+                    <a href="{{ path('ic_administration_mp_detail', {'idComposant': composant.id}) }}">
+                        {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                            <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                        {% endimage %}
+                    </a>
+                </td>
+            </tr>	
+		{% endfor %}
+		</table>
+        {{ form_end(form) }}
 {% endblock %}

@@ -12,10 +12,8 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 	{{ parent() }}
-	
-	<h1>Approvisionnement Identifiant</h1>
 	
 	{% if appro is empty %}
 			aucune commande en cours

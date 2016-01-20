@@ -17,7 +17,6 @@ class MenuController extends Controller
         
         //Liste des requètes Doctrine pour les options du menu
         $listSousTraitant = $em->getRepository('ICProductionBundle:SousTraitant')->findAll();
-        //Création des formulaires en focntion de la page
         
         //génération du template Twig
         return $this->render('ICProductionBundle:MenuVertical:menu.html.twig', array('url' => $url,

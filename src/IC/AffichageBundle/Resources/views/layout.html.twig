@@ -20,6 +20,11 @@
 	<section id="menuVertical">
 		{{ render(controller("ICAffichageBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
+    <section id="page">
+        {% block page %}
+        
+        {% endblock %}
+    </section>
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}

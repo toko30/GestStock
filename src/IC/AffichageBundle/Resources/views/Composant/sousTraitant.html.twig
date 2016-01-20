@@ -12,7 +12,7 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 	{{ parent() }}
 	{% if composantSousTraitants is not empty %}
 		<h1>{{composantSousTraitants[0].soustraitant.nom}}</h1>

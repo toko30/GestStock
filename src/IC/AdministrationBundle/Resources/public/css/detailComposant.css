@@ -1,0 +1,13 @@
+.inputValiderCommande
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width:240px;
+    text-align:center;
+}

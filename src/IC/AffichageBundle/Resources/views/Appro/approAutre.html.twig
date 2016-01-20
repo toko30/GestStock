@@ -12,11 +12,9 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 
     {{ parent() }}
-
-    <h1>Approvisionnement Autres Produits Finis</h1>
     
     {% if approLecteur is empty and approAutre is empty %}
 		aucune commande en cours

@@ -12,7 +12,7 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
     {{ parent() }}
 	{% if nomenclatures is not empty %}
 		<h1>{{nomenclatures[0].version.nomenclature.nom}} - V{{nomenclatures[0].version.version}}</h1>

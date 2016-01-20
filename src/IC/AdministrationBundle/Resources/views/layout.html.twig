@@ -18,20 +18,18 @@
 
 {% block body %}
 	<section id="menuVertical">
-		{{ render(controller("ICAffichageBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
+		{{ render(controller("ICAdministrationBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
-    {% block page %}
-    {% endblock %}
+    <section id="page">
+        {% block page %}
+        
+        {% endblock %}
+    </section>
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	{% javascripts 
-	'@ICAffichageBundle/Resources/public/js/*'
-	'@ICAffichageBundle/Resources/public/js/tableExport/tableExport.js'
-	'@ICAffichageBundle/Resources/public/js/tableExport/jquery.base64.js' 
-	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/sprintf.js' 
-	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/jspdf.js' 
-	'@ICAffichageBundle/Resources/public/js/tableExport/jspdf/libs/base64.js' 
+	'@ICAdministrationBundle/Resources/public/js/trieChoixFamille.js'
 	%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}

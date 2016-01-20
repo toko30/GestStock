@@ -1,3 +1,79 @@
 ic_administration_matiere_premiere:
     path:     /Matiere-Premiere
     defaults: { _controller: ICAdministrationBundle:MatierePremiere:affichageMatierePremiere }
+
+ic_administration_mp_detail:
+    path:     /Detail-Matiere-Premiere-{page}-{idComposant}-{idComposantFournisseur}
+    defaults: 
+        _controller: ICAdministrationBundle:MatierePremiere:affichageMatierePremiereDetail
+        page: Afficher
+        idComposantFournisseur: 0
+    requirements:
+        idComposant: \d{1,10}
+        idComposantFournisseur: \d{1,10}
+        page: Afficher|Modification
+        
+ic_administration_mp_add:
+    path:     /Ajouter-Matiere-Premiere
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:addMatierePremiere }
+    
+ic_administration_mp_update:
+    path:     /Modifier-Matiere-Modifier-{idComposant}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:updateMatierePremiere }
+    requirements:
+        idComposant: \d{1,10}
+                        
+ic_administration_mp_delete:
+    path:     /Supprimer-Matiere-Premiere-{idComposant}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:deleteMatierePremiere }
+    requirements:
+        idComposant: \d{1,10}  
+          
+ic_administration_composant_fournisseur_add:
+    path:     /Ajouter-Composant-Fournisseur-{idComposant}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:addComposantFournisseur }
+    requirements:
+        idComposant: \d{1,10}    
+        
+ic_administration_composant_fournisseur_update:
+    path:     /Modifier-Composant-Fournisseur-{idComposantFournisseur}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:updateComposantFournisseur }
+    requirements:
+        idComposantFournisseur: \d{1,10}        
+
+ic_administration_composant_fournisseur_delete:
+    path:     /Supprimer-Composant-Fournisseur-{idComposantFournisseur}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:deleteComposantFournisseur }
+    requirements:
+        idComposantFournisseur: \d{1,10} 
+        
+ic_administration_affichage_fournisseur:
+    path:     /Fournisseur-{idFournisseur}
+    defaults:  
+        _controller: ICAdministrationBundle:Fournisseur:affichageFournisseur
+        idFournisseur: null
+    requirements:
+        idFournisseur: \d{1,10}
+            
+        
+ic_administration_fournisseur_add:
+    path:     /Ajouter-Fournisseur
+    defaults: { _controller: ICAdministrationBundle:Fournisseur:addFournisseur }       
+
+ic_administration_fournisseur_update:
+    path:     /Modifier-Fournisseur-{idFournisseur}
+    defaults: { _controller: ICAdministrationBundle:Fournisseur:updateFournisseur }   
+    requirements:
+        idFournisseur: \d{1,10} 
+            
+ic_administration_fournisseur_delete:
+    path:     /Delete-Fournisseur-{idFournisseur}
+    defaults: { _controller: ICAdministrationBundle:Fournisseur:deleteFournisseur }      
+    requirements:
+        idFournisseur: \d{1,10} 
+                         
+ic_ajax_choixFamille:
+    path:     /Choix-Famille-{idFamille}
+    defaults: { _controller: ICAdministrationBundle:MatierePremiere:choixFamille, idFamille: 0 }
+    requirements:
+        idFamille: \d{1,10}

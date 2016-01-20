@@ -1,0 +1,82 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/fournisseur.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    {{ form_start(form) }}
+        <table>
+            <tr>
+                <td class="titreFournisseurSupprimer"></td>
+                <td class="titrePageFournisseur">Nom</td>
+                <td class="titrePageFournisseur">Contact</td>
+                <td class="titrePageFournisseur">Email</td>
+                <td class="titrePageFournisseur">Numero</td>
+                <td class="titrePageFournisseur">Site Web</td>
+                <td class="titrePageFournisseur">Type</td>
+                <td class="titreFournisseurDetails"></td>
+            </tr>
+            {% if idFournisseur is null %}
+                <tr>
+                    <td class="FournisseurSupprimer"></td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.nom) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.contact) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.email) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.numero) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.site) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.type, {'attr': {'class': 'inputListe'}}) }}</td>
+                    <td class="FournisseurDetails">{{ form_widget(form.add_fournisseur) }}</td>
+                </tr>
+            {% endif %}
+            {% for fournisseur in fournisseurs %}
+                {% if idFournisseur == fournisseur.id %}
+                    <td class="FournisseurSupprimer"></td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.nom) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.contact) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.email) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.numero) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.site) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.type, {'attr': {'class': 'inputListe'}}) }}</td>
+                    <td class="FournisseurDetails">{{ form_widget(form.modifier_le_fournisseur) }}</td>                
+                {% else %} 
+                    <tr>
+                        <td class="FournisseurSupprimer">
+                            <a href="{{ path('ic_administration_fournisseur_delete', {'idFournisseur': fournisseur.id}) }}">
+                                {% image 'img/redcroix.png' %}
+                                    <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                {% endimage %}
+                            </a>                        
+                        </td>
+                        <td>{{ fournisseur.nom }}</td>
+                        <td>{{ fournisseur.contact }}</td>
+                        <td>{{ fournisseur.email }}</td>
+                        {% if fournisseur.numero == 0 %}
+                            <td></td>
+                        {% else %}
+                            <td>{{ fournisseur.numero }}</td>
+                        {% endif %}
+                        <td>{{ fournisseur.site }}</td>
+                        <td>{{ fournisseur.typeProduit.nom }}</td>
+                        <td class="FournisseurDetails">
+                            <a href="{{ path('ic_administration_affichage_fournisseur', {'idFournisseur': fournisseur.id}) }}">
+                                {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                    <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                {% endimage %}
+                            </a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %} 
+        </table>
+    {{ form_end(form) }}
+{% endblock %}
