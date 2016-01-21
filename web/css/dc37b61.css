@@ -1,0 +1,24 @@
+.composantNonDispo td
+{
+	background: red;
+	border: 1px solid red;
+	color: white;
+}
+.composantNonDispo:hover td
+{
+	background: darkred;
+	border: 1px solid darkred;
+}
+.inputValiderCommande
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width:240px;
+    text-align:center;
+}

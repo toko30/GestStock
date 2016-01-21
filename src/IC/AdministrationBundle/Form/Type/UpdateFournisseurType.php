@@ -4,8 +4,7 @@ namespace IC\AdministrationBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use IC\AdministrationBundle\Repository\FournisseurRepository;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UpdateFournisseurType extends AbstractType
 {
@@ -21,10 +20,10 @@ class UpdateFournisseurType extends AbstractType
         $builder->setAction($this->getPath());
         
         $builder->add('nom', 'text', array('required' => true));
-        $builder->add('contact', 'text', array('required' => true));
-        $builder->add('numero', 'text', array('required' => true));
-        $builder->add('site', 'text', array('required' => true));
-        $builder->add('email', 'text', array('required' => true));
+        $builder->add('contact', 'text', array('required' => false));
+        $builder->add('numero', 'text', array('required' => false));
+        $builder->add('site', 'text', array('required' => false));
+        $builder->add('email', 'text', array('required' => false));
         
         $builder->add('type', 'entity', array(
                       'class' => 'IC\AdministrationBundle\Entity\TypeProduit',
@@ -35,7 +34,7 @@ class UpdateFournisseurType extends AbstractType
         $builder->add('modifier_le_fournisseur', 'submit', array('attr' => array('class' => 'buttonUpdate')));
     }
     
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array('data_class' => 'IC\AdministrationBundle\Entity\Fournisseur'));
     }

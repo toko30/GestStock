@@ -5,7 +5,7 @@ namespace IC\AdministrationBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use IC\AdministrationBundle\Repository\SousFamilleRepository;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddComposantType extends AbstractType
 {
@@ -46,6 +46,11 @@ class AddComposantType extends AbstractType
         $builder->add('add_composant', 'submit', array('attr' => array('class' => 'buttonAdd')));
     }
     
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array('data_class' => 'IC\AdministrationBundle\Entity\Composant'));
+    }
+        
     public function getName()
     {
         return 'formComposant';

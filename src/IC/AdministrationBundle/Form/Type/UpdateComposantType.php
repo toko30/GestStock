@@ -5,7 +5,7 @@ namespace IC\AdministrationBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use IC\AdministrationBundle\Repository\SousFamilleRepository;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UpdateComposantType extends AbstractType
 {
@@ -46,7 +46,7 @@ class UpdateComposantType extends AbstractType
         $builder->add('modifier_le_composant', 'submit');
     }
     
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array('data_class' => 'IC\AdministrationBundle\Entity\Composant'));
     }

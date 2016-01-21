@@ -1,0 +1,25 @@
+.titrePageFournisseur
+{
+    background: #00B8D6;
+    color:white;
+    font-weight: bold;
+    width:auto;
+}
+.titreFournisseurSupprimer
+{
+    width:3%;
+    border:0;
+}
+.FournisseurSupprimer
+{
+    background: #00B8D6;    
+}
+.titreFournisseurDetails
+{
+    border:0;
+    width:3%;
+}
+.FournisseurDetails
+{
+    background: #00B8D6;
+}

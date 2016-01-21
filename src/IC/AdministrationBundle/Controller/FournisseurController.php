@@ -3,8 +3,10 @@
 namespace IC\AdministrationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use IC\AdministrationBundle\Form\Type\AddFournisseurType;
 use IC\AdministrationBundle\Form\Type\UpdateFournisseurType;
+use IC\AdministrationBundle\Entity\Fournisseur;
 
 class FournisseurController extends Controller
 {
@@ -17,7 +19,7 @@ class FournisseurController extends Controller
         if($idFournisseur != null)
         {
             $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur);
-            $formFournisseur = $this->createForm(new UpdateFournisseurType($this->generateUrl('ic_administration_fournisseur_update', array('idFournisseur' => $idFournisseur)), $fournisseur));
+            $formFournisseur = $this->createForm(new UpdateFournisseurType($this->generateUrl('ic_administration_fournisseur_update', array('idFournisseur' => $idFournisseur))), $fournisseur);
         }  
         else
             $formFournisseur = $this->createForm(new AddFournisseurType($this->generateUrl('ic_administration_fournisseur_add')));
@@ -28,18 +30,69 @@ class FournisseurController extends Controller
                                                                                              'fournisseurs' => $listFournisseur));
     }
     
-    public function AddFournisseurAction()
+    public function AddFournisseurAction(request $request)
     {
-        return $this->render('ICAdministrationBundle:Default:index.html.twig', array('name' => $name));
+        $em = $this->getDoctrine()->getManager();
+
+        $formFournisseur = $this->createForm(new AddFournisseurType($this->generateUrl('ic_administration_fournisseur_add')));
+        
+        if ($formFournisseur->handleRequest($request)->isValid())
+        {
+            $data = $request->get('formAddFournisseurType');
+            
+            $typeProduit = $em->getRepository('ICAdministrationBundle:TypeProduit')->find($data['type']);
+            
+            $fournisseur = new Fournisseur();
+            
+            $fournisseur->setNom($data['nom']);
+            $fournisseur->setContact($data['contact']);
+            $fournisseur->setEmail($data['email']);
+            $fournisseur->setNumero($data['numero']);
+            $fournisseur->setSite($data['site']);
+            $fournisseur->setTypeProduit($typeProduit);
+            
+            $em->persist($fournisseur);
+            $em->flush($fournisseur);     
+        }
+
+        return $this->redirectToRoute('ic_administration_affichage_fournisseur');
     }
     
-    public function updateFournisseurAction()
+    public function updateFournisseurAction(Request $request,$idFournisseur)
     {
-        return $this->render('ICAdministrationBundle:Default:index.html.twig', array('name' => $name));
+        $em = $this->getDoctrine()->getManager();
+
+        $formFournisseur = $this->createForm(new UpdateFournisseurType($this->generateUrl('ic_administration_fournisseur_update', array('idFournisseur' => $idFournisseur))));
+        
+        if ($formFournisseur->handleRequest($request)->isValid())
+        {
+            $data = $request->get('formUpdateFournisseurType');
+            
+            $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur); 
+            $typeProduit = $em->getRepository('ICAdministrationBundle:TypeProduit')->find($data['type']);   
+            
+            $fournisseur->setNom($data['nom']);
+            $fournisseur->setContact($data['contact']);
+            $fournisseur->setEmail($data['email']);
+            $fournisseur->setNumero($data['numero']);
+            $fournisseur->setSite($data['site']);
+            $fournisseur->setType($typeProduit);
+            
+            $em->flush($fournisseur);     
+        }
+
+        return $this->redirectToRoute('ic_administration_affichage_fournisseur');
     }
     
-    public function deleteFournisseurAction()
+    public function deleteFournisseurAction($idFournisseur)
     {
-        return $this->render('ICAdministrationBundle:Default:index.html.twig', array('name' => $name));
+        $em = $this->getDoctrine()->getManager();
+        
+        $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur); 
+        
+        $em->remove($fournisseur);
+        $em->flush();
+        
+        return $this->redirectToRoute('ic_administration_affichage_fournisseur');
     }
 }

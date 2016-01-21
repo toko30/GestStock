@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="IC\AdministrationBundle\Entity\Fournisseur">
+         <property name="nom">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">3</option>
+            </constraint>
+        </property>
+        <property name="contact">
+            <constraint name="Length">
+                <option name="min">3</option>
+            </constraint>
+        </property>
+        <property name="email">
+            <constraint name="Email"/>
+        </property>
+        <property name="numero">
+            <constraint name="Length">
+                <option name="min">0</option>
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="site">
+            <constraint name="Url"/>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\Composant">
+         <property name="nom">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+         <property name="boitier">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="stockMini">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\ComposantFournisseur">
+         <property name="reference">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="prix">
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="idComposant">
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="idFournisseur">
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

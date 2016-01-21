@@ -1,0 +1,86 @@
+.productionImpossible, .productionImpossible a, .productionImpossible td
+{
+    background: red;
+    border: 1px solid red;
+    color: white;
+}
+
+.productionImpossible:hover a, .productionImpossible a:hover, .productionImpossible:hover, .productionImpossible:hover td
+{
+    background: darkred;
+    border: 1px solid darkred;
+}
+.productionImpossible a
+{
+    text-decoration: underline;
+}
+
+.imgcross
+{
+    margin-top:5px;
+    width:15px;
+    height:15px;
+}
+
+.productionImpossible .croix
+{
+    background:white;
+}
+
+form
+{
+    text-align: center;    
+}
+
+.divTableProduction
+{
+    float:left;
+    margin: 0 5%;
+    width:40%;
+}
+table
+{
+width:100%;    
+}
+.caseVideSup
+{
+    border:0;
+    width:5%
+}
+.caseVideProd
+{
+    border:0;
+}
+.ligneCaseVideSup
+{
+    border-right: 0;
+}
+.caseProd, .caseProd a
+{
+    width:25%;
+    text-decoration: underline;
+    color: #00B8D6;
+    border-left:0;
+}
+.titreNomenclature, .titreQuantite
+{
+    background: #00B8D6;
+    width:auto;
+    border:0;
+    color:white;
+    font-weight: bold;
+}
+.titreQuantite
+{
+    width:30%;
+    border-right: 1px solid #00B8D6;
+}
+.ligneHover:hover .caseProd, .ligneHover:hover .caseProd a
+{
+    border: 1px solid  #00B8D6;
+    color:white;
+}
+.nom
+{
+    border-left: 0;
+}
