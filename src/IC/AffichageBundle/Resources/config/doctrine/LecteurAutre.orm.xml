@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="IC\AffichageBundle\Entity\LecteurAutre" repository-class="IC\AffichageBundle\Repository\LecteurAutreRepository" table="lecteur_autre">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numSerie" type="string" column="num_serie" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idLecteurAutre" type="integer" column="id_lecteur_autre" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="typeLecteurAutre" target-entity="TypeLecteurAutre" >
+      <join-column name="id_lecteur_autre" referenced-column-name="id" />
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

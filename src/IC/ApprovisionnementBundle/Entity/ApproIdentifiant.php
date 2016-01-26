@@ -168,3 +168,4 @@ class ApproIdentifiant
         return $this->badge;
     }
 }
+

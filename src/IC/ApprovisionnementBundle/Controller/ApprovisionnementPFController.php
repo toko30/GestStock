@@ -24,7 +24,7 @@ class ApprovisionnementPFController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $typeLecteur = $em->getRepository('ICApprovisionnementBundle:TypeLecteur')->getAllTypeLecteur();
+        $typeLecteur = $em->getRepository('ICApprovisionnementBundle:TypeLecteurAutre')->getAllTypeLecteur();
         $autre = $em->getRepository('ICApprovisionnementBundle:Autre')->getAllAutre();
         
         return $this->render('ICApprovisionnementBundle:PF:autre.html.twig', array('partie' => 'approvisionnement', 
@@ -108,8 +108,8 @@ class ApprovisionnementPFController extends Controller
             {
                 foreach ($request->get('option') as $idLecteur) 
                 {
-                    $typeLecteur = $em->getRepository('ICApprovisionnementBundle:TypeLecteur')->findOneBy(array('id' => $idLecteur));
-                    echo $idLecteur;
+                    $typeLecteur = $em->getRepository('ICApprovisionnementBundle:TypeLecteurAutre')->findOneBy(array('id' => $idLecteur));
+
                     $approLecteur = new ApproLecteur();
                     $approLecteur->setTypeLecteur($typeLecteur);
                     $approLecteur->setQuantite($request->get($idLecteur));

@@ -21,9 +21,12 @@
         {{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
             <div class="divTableProduction">
             
-                <h1>Production en attente</h1>
+                
                 
                 {% if listePrevisionnelle is not empty %}   
+                
+                    <h1>Production en attente</h1>
+                    
                     <table>
                         <tr>
                             <td class="caseVideSup"></td>
@@ -64,10 +67,11 @@
                 {% endif %}
             </div>
             <div class="divTableProduction">
-            
-                <h1>Production en cours</h1>
 
                 {% if listeEnCours is not empty %}   
+                            
+                <h1>Production en cours</h1>
+                
                     <table>
                         <tr>
                             <td class="titreNomenclature">Nomenclature</td>

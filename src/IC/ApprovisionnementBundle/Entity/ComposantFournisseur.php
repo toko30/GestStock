@@ -26,7 +26,7 @@ class ComposantFournisseur
      * @var integer
      */
     private $id;
-    
+
     /**
      * @var \IC\ApprovisionnementBundle\Entity\Composant
      */
@@ -37,10 +37,11 @@ class ComposantFournisseur
      */
     private $fournisseur;
 
+
     /**
      * Set reference
      *
-     * @param string reference
+     * @param string $reference
      *
      * @return ComposantFournisseur
      */
@@ -167,3 +168,4 @@ class ComposantFournisseur
         return $this->fournisseur;
     }
 }
+

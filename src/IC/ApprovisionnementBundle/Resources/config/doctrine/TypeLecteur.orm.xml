@@ -4,14 +4,9 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="referenceInterne" type="string" column="reference_interne" length="100" nullable="false">
+    <field name="idNomenclature" type="integer" column="id_nomenclature" nullable="false">
       <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="referenceFournisseur" type="string" column="reference_fournisseur" length="250" nullable="false">
-      <options>
-        <option name="fixed"/>
+        <option name="unsigned"/>
       </options>
     </field>
     <field name="designation" type="text" column="designation" length="65535" nullable="false">
@@ -19,38 +14,33 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="type" type="integer" column="type" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="frequence" type="integer" column="frequence" nullable="false">
       <options>
-        <option name="fixed"/>
+        <option name="unsigned"/>
       </options>
     </field>
-    <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
+    <field name="type" type="integer" column="type" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
     <field name="petite" type="integer" column="petite" nullable="false">
       <options>
-        <option name="fixed"/>
+        <option name="unsigned"/>
       </options>
     </field>
     <field name="moyenne" type="integer" column="moyenne" nullable="false">
       <options>
-        <option name="fixed"/>
+        <option name="unsigned"/>
       </options>
     </field>
     <field name="grande" type="integer" column="grande" nullable="false">
       <options>
-        <option name="fixed"/>
+        <option name="unsigned"/>
       </options>
     </field>
-    <one-to-one field="fournisseur" target-entity="Fournisseur" >
-      <join-column name="id_fournisseur" referenced-column-name="id" />
+    <one-to-one field="nomenclature" target-entity="Nomenclature" >
+        <join-column name="id_nomenclature" referenced-column-name="id" />
     </one-to-one>
   </entity>
 </doctrine-mapping>

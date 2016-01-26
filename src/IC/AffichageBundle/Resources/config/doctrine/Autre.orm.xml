@@ -14,6 +14,11 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="idFournisseur" type="integer" column="id_fournisseur" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
     <field name="quantite" type="integer" column="quantite" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -26,6 +31,9 @@
     </field>
     <one-to-one field="typeAutre" target-entity="TypeAutre" >
       <join-column name="type" referenced-column-name="id" />
+    </one-to-one>
+    <one-to-one field="fournisseur" target-entity="Fournisseur" >
+      <join-column name="id_fournisseur" referenced-column-name="id" />
     </one-to-one>
   </entity>
 </doctrine-mapping>

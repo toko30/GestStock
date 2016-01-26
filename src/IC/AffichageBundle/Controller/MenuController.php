@@ -16,9 +16,7 @@ class MenuController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         //Liste des requètes Doctrine pour les options du menu
-        $listFamille = $em->getRepository('ICAffichageBundle:Famille')->findAll();
-        $listSousFamille = $em->getRepository('ICAffichageBundle:SousFamille')->findAll();
-        $listFournisseur = $em->getRepository('ICAffichageBundle:Fournisseur')->findAll();
+        
         $listSousTraitant = $em->getRepository('ICAffichageBundle:SousTraitant')->findAll();
         $listNomenclature = $em->getRepository('ICAffichageBundle:VersionNomenclature')->getAllNomenclatureLastVersion();
         $listLecteur = $em->getRepository('ICAffichageBundle:SousTypeLecteur')->findAll();
@@ -27,13 +25,13 @@ class MenuController extends Controller
         $listProd = $em->getRepository('ICAffichageBundle:Production')->getListStProd();
         //Création des formulaires
         if($url == 'ic_affichage_composant_interne')
-            $form = $this->createForm(new ComposantInterneType($listFamille, $listSousFamille, $listFournisseur, $listNomenclature));
+            $form = $this->createForm(new ComposantInterneType());
         elseif($url == 'ic_affichage_produit_fini_lecteur_cv' || $url == 'ic_affichage_produit_fini_interne')
             $form = $this->createForm(new ProduitFiniLecteurType($listLecteur));
         elseif($url == 'ic_affichage_produit_fini_identifiant')
             $form = $this->createForm(new ProduitFiniIdentifiantType($listBadge));
         else
-            $form = $this->createForm(new ComposantSousTraitantType($listFamille, $listSousFamille, $listNomenclature));
+            $form = $this->createForm(new ComposantSousTraitantType);
             
         return $this->render('ICAffichageBundle:MenuVertical:menu.html.twig', array('form' => $form->createView(),
                                                                                     'url' => $url, 

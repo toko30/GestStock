@@ -28,6 +28,11 @@ class Production
     private $etape;
 
     /**
+     * @var string
+     */
+    private $composantUtilise;
+
+    /**
      * @var \DateTime
      */
     private $dateProd;
@@ -43,9 +48,9 @@ class Production
     private $sousTraitant;
 
     /**
-     * @var \IC\AffichageBundle\Entity\Nomenclature
+     * @var \IC\AffichageBundle\Entity\VersionNomenclature
      */
-    private $nomenclature;
+    private $version;
 
 
     /**
@@ -145,6 +150,30 @@ class Production
     }
 
     /**
+     * Set composantUtilise
+     *
+     * @param string $composantUtilise
+     *
+     * @return Production
+     */
+    public function setComposantUtilise($composantUtilise)
+    {
+        $this->composantUtilise = $composantUtilise;
+
+        return $this;
+    }
+
+    /**
+     * Get composantUtilise
+     *
+     * @return string
+     */
+    public function getComposantUtilise()
+    {
+        return $this->composantUtilise;
+    }
+
+    /**
      * Set dateProd
      *
      * @param \DateTime $dateProd
@@ -200,64 +229,6 @@ class Production
     public function getSousTraitant()
     {
         return $this->sousTraitant;
-    }
-
-    /**
-     * Set nomenclature
-     *
-     * @param \IC\AffichageBundle\Entity\Nomenclature $nomenclature
-     *
-     * @return Production
-     */
-    public function setNomenclature(\IC\AffichageBundle\Entity\Nomenclature $nomenclature = null)
-    {
-        $this->nomenclature = $nomenclature;
-
-        return $this;
-    }
-
-    /**
-     * Get nomenclature
-     *
-     * @return \IC\AffichageBundle\Entity\Nomenclature
-     */
-    public function getNomenclature()
-    {
-        return $this->nomenclature;
-    }
-    /**
-     * @var string
-     */
-    private $composantUtilise;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\VersionNomenclature
-     */
-    private $version;
-
-
-    /**
-     * Set composantUtilise
-     *
-     * @param string $composantUtilise
-     *
-     * @return Production
-     */
-    public function setComposantUtilise($composantUtilise)
-    {
-        $this->composantUtilise = $composantUtilise;
-
-        return $this;
-    }
-
-    /**
-     * Get composantUtilise
-     *
-     * @return string
-     */
-    public function getComposantUtilise()
-    {
-        return $this->composantUtilise;
     }
 
     /**

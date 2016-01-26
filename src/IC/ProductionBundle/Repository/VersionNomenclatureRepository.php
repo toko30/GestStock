@@ -13,7 +13,7 @@ class VersionNomenclatureRepository extends \Doctrine\ORM\EntityRepository
     public function getVersion($id)
     {
         return $this->createQueryBuilder('v')
-        ->add('orderBy', 'v.version DESC')
+        ->orderBy('v.version', 'DESC')
         ->where('v.idNomenclature = :id')
         ->setParameter('id', $id)
         ->setMaxResults('1')

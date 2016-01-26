@@ -24,8 +24,6 @@
         {% if composantFournisseur is empty %}
             {{ textPartie|nl2br }}
         {% else %}
-        
-            <h1>{{ titrePartie }}</h1>
             
             {% set id = composantFournisseur[0].fournisseur.id %}
             

@@ -197,3 +197,4 @@ class TypeBadge
         return $this->sousTypeBadge;
     }
 }
+

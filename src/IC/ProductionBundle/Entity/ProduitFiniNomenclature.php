@@ -168,3 +168,4 @@ class ProduitFiniNomenclature
         return $this->composant;
     }
 }
+

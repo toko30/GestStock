@@ -44,7 +44,7 @@ class FournisseurController extends Controller
             
             $fournisseur = new Fournisseur();
             
-            $fournisseur->setNom($data['nom']);
+            $fournisseur->setNom(strtoupper($data['nom']));
             $fournisseur->setContact($data['contact']);
             $fournisseur->setEmail($data['email']);
             $fournisseur->setNumero($data['numero']);
@@ -58,7 +58,7 @@ class FournisseurController extends Controller
         return $this->redirectToRoute('ic_administration_affichage_fournisseur');
     }
     
-    public function updateFournisseurAction(Request $request,$idFournisseur)
+    public function updateFournisseurAction(Request $request, $idFournisseur)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -67,17 +67,18 @@ class FournisseurController extends Controller
         if ($formFournisseur->handleRequest($request)->isValid())
         {
             $data = $request->get('formUpdateFournisseurType');
-            
+
             $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur); 
             $typeProduit = $em->getRepository('ICAdministrationBundle:TypeProduit')->find($data['type']);   
             
-            $fournisseur->setNom($data['nom']);
+            $fournisseur->setNom(strtoupper($data['nom']));
             $fournisseur->setContact($data['contact']);
             $fournisseur->setEmail($data['email']);
             $fournisseur->setNumero($data['numero']);
             $fournisseur->setSite($data['site']);
-            $fournisseur->setType($typeProduit);
+            $fournisseur->setTypeProduit($typeProduit);
             
+            $em->persist($fournisseur); 
             $em->flush($fournisseur);     
         }
 

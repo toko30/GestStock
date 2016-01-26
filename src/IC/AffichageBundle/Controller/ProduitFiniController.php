@@ -10,9 +10,9 @@ class ProduitFiniController extends Controller
     public function produitFiniIdcaptAction()
     {
         if(!empty($_POST['formProduitFiniLecteur']))
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 0);
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur']);
         else
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 0);
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0);
             
         return $this->render('ICAffichageBundle:produitFini:lecteur.html.twig', array('partie' => 'affichage', 'lecteur' => $nbLecteur));
     }
@@ -30,10 +30,12 @@ class ProduitFiniController extends Controller
     public function produitFiniAutreAction()
     {
         if(!empty($_POST['formProduitFiniLecteur']))
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur($_POST['formProduitFiniLecteur'], 1);
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:LecteurAutre')->countLecteur($_POST['formProduitFiniLecteur']);
         else
-            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Lecteur')->countLecteur(0, 1); 
+            $nbLecteur = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:LecteurAutre')->countLecteur(0); 
+            
+        $autres = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Autre')->findAll(); 
                    
-        return $this->render('ICAffichageBundle:produitFini:autre.html.twig', array('partie' => 'affichage', 'lecteur' => $nbLecteur));
+        return $this->render('ICAffichageBundle:produitFini:autre.html.twig', array('partie' => 'affichage', 'lecteur' => $nbLecteur, 'autres' => $autres));
     }
 }

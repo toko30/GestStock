@@ -10,4 +10,21 @@ namespace IC\AdministrationBundle\Repository;
  */
 class ComposantRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getComposantProduitFini()
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.idFamille IN(:famille)')
+        ->setParameter('famille', array(3,4))
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function getComposantPCB()
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.idFamille IN(:famille)')
+        ->setParameter('famille', array(1,2))
+        ->getQuery()
+        ->getResult();      
+    }
 }

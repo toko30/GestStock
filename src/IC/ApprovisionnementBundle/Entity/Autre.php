@@ -226,3 +226,4 @@ class Autre
         return $this->fournisseur;
     }
 }
+

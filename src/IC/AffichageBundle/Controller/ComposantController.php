@@ -49,6 +49,11 @@ class ComposantController extends Controller
     }
     public function detailAction($id)
     {
-        return $this->render('ICAffichageBundle:Composant:detail.html.twig', array('partie' => 'affichage', 'id'=> $id));
+        $em = $this->getDoctrine()->getManager();
+        
+        $composant = $em->getRepository('ICAdministrationBundle:Composant')->find($id);
+        $listComposantFournisseur = $em->getRepository('ICAdministrationBundle:ComposantFournisseur')->getListComposantById($id);
+        
+        return $this->render('ICAffichageBundle:Composant:detail.html.twig', array('partie' => 'affichage', 'composant'=> $composant, 'composantsFournisseur' => $listComposantFournisseur));
     }
 }

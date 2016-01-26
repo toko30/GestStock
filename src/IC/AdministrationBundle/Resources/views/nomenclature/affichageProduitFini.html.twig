@@ -1,0 +1,49 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Nomenclature{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/composant.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    <form method="post" action="">
+        <table>
+            <tr>
+                <td>Famille</td>
+                <td>Sous Famille</td>
+                <td>Designation</td>
+                <td>Boitier</td>
+                <td>quantite</td>
+            </tr>
+            {% for composant in composants %}
+                {% set existe = 0 %}
+                <tr>
+                    <td>{{ composant.famille.nom }}</td>
+                    <td>{{ composant.sousFamille.nom }}</td>
+                    <td>{{ composant.nom }}</td>
+                    <td>{{ composant.boitier }}</td>
+                    {% for produitFiniNomenclature in produitsFinisNomenclature %}
+                        {% if composant.id == produitFiniNomenclature.idComposant %}
+                            {% set existe = 1 %}
+                            <td><input type="text" name="{{ composant.id }}" value="{{ produitFiniNomenclature.quantite }}"/></td>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if existe == 0 %}
+                        <td><input type="text" name="{{ composant.id }}"/></td>
+                    {% endif %}
+                    
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Valider la nomenclature">
+    </form>
+{% endblock %}

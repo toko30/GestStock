@@ -13,11 +13,12 @@ class ProductionController extends Controller
     public function interneAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager(); 
-              
-        if('POST' == $request->getMethod())
+        $data = $request->get('formProduction');
+
+        if('POST' == $request->getMethod() && isset($data['nomenclature']))
         {    
             //Récupération de la derniere version de la nomenclature
-            $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($_POST['formProduction']['nomenclature']);
+            $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($data['nomenclature']);
             $idVersion = $version[0]->getId();
             $version = $version[0]->getVersion();
             
@@ -32,10 +33,10 @@ class ProductionController extends Controller
             //Calcul des cartes pouvant etre produites
             foreach($listeComposantnomenclature as $composant)
             {
-                $calculStockRestant = $composant->getComposant()->getStockInterne() - ($composant->getQuantite() * $_POST['formProduction']['quantite']);
+                $calculStockRestant = $composant->getComposant()->getStockInterne() - ($composant->getQuantite() * $data['quantite']);
 
                 $tabComposant[$i]['designation'] = $composant->getComposant()->getNom();
-                $tabComposant[$i]['quantite'] = $composant->getQuantite() * $_POST['formProduction']['quantite'];             
+                $tabComposant[$i]['quantite'] = $composant->getQuantite() * $data['quantite'];             
                 $tabComposant[$i++]['stock'] = $calculStockRestant;
                 
                 //Mise a jour du nombre de carte qui ne pourront pas etre produite avec le stock actuel
@@ -54,7 +55,7 @@ class ProductionController extends Controller
             }
             //génération de la vue avec les info de la carte et ses composants calculés précédement
             return $this->render('ICProductionBundle:Liste:interne.html.twig', array('partie' => 'production',
-                                                                                     'quantite' => $_POST['formProduction']['quantite'], 
+                                                                                     'quantite' => $data['quantite'], 
                                                                                      'composantNomenclature' => $tabComposant,
                                                                                      'nomenclature' => $nomenclature,
                                                                                      'idVersion' => $idVersion,

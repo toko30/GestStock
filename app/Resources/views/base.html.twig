@@ -47,7 +47,7 @@
             <a href="{{ path('ic_affichage_composant_interne') }}">Produit Fini</a>
         {% endif %}
         
-        {% if partie == 'admin' %}
+        {% if partie == 'Administration' %}
             <span class="spanMenu">Administration</span>
         {% else %}  
             <a href="{{ path('ic_administration_matiere_premiere') }}">Administration</a>
@@ -55,6 +55,7 @@
         
         </nav>
         {% block body %}{% endblock %}
+        
         {% block javascripts %}
             {% javascripts 
 	        'js/jquery.js' %}

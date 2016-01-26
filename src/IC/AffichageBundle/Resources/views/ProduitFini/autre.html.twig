@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block page %}
+
     {{ parent() }}
+    
 	<h1>Stock Autres Produits Finis</h1>
 	<table class="imp">
 		<tr>
@@ -23,9 +25,17 @@
 		</tr>
 		{% for lect in lecteur %}
 		<tr>
-			<td>{{lect.referenceInterne}}</td>
+			<td>{{lect.reference}}</td>
 			<td>{{lect.designation}}</td>
 			<td>{{lect.nbProduit}}</td>
+		</tr>
+		{% endfor %}
+
+		{% for autre in autres %}
+		<tr>
+			<td>{{autre.reference}}</td>
+			<td>{{autre.designation}}</td>
+			<td>{{autre.quantite}}</td>
 		</tr>
 		{% endfor %}
 	</table>

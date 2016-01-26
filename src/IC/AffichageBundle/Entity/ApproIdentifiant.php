@@ -33,9 +33,9 @@ class ApproIdentifiant
     private $appro;
 
     /**
-     * @var \IC\AffichageBundle\Entity\TypeBadge
+     * @var \IC\AffichageBundle\Entity\Badge
      */
-    private $typeBadge;
+    private $badge;
 
 
     /**
@@ -145,42 +145,13 @@ class ApproIdentifiant
     }
 
     /**
-     * Set typeBadge
-     *
-     * @param \IC\AffichageBundle\Entity\TypeBadge $typeBadge
-     *
-     * @return ApproIdentifiant
-     */
-    public function setTypeBadge(\IC\AffichageBundle\Entity\TypeBadge $typeBadge = null)
-    {
-        $this->typeBadge = $typeBadge;
-
-        return $this;
-    }
-
-    /**
-     * Get typeBadge
-     *
-     * @return \IC\AffichageBundle\Entity\TypeBadge
-     */
-    public function getTypeBadge()
-    {
-        return $this->typeBadge;
-    }
-    /**
-     * @var \IC\AffichageBundle\Entity\TypeBadge
-     */
-    private $badge;
-
-
-    /**
      * Set badge
      *
-     * @param \IC\AffichageBundle\Entity\TypeBadge $badge
+     * @param \IC\AffichageBundle\Entity\Badge $badge
      *
      * @return ApproIdentifiant
      */
-    public function setBadge(\IC\AffichageBundle\Entity\TypeBadge $badge = null)
+    public function setBadge(\IC\AffichageBundle\Entity\Badge $badge = null)
     {
         $this->badge = $badge;
 
@@ -190,7 +161,7 @@ class ApproIdentifiant
     /**
      * Get badge
      *
-     * @return \IC\AffichageBundle\Entity\TypeBadge
+     * @return \IC\AffichageBundle\Entity\Badge
      */
     public function getBadge()
     {

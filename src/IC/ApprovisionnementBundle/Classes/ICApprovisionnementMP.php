@@ -19,6 +19,8 @@ class ICApprovisionnementMP
         $doctrine = $this->doctrine;
         
         $listProduction = $doctrine->getRepository('ICApprovisionnementBundle:Production')->getListProdEnAttente();
+        $quantiteCommande = array();
+        $composantStockST = array();
         
         foreach($listProduction as $production)
         {

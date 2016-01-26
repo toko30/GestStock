@@ -31,6 +31,6 @@
     </field>
     <one-to-one field="sousTypeBadge" target-entity="SousTypeBadge" >
         <join-column name="type" referenced-column-name="id" />
-      </one-to-one>
+    </one-to-one>
   </entity>
 </doctrine-mapping>

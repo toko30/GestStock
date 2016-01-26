@@ -8,11 +8,6 @@ namespace IC\ProductionBundle\Entity;
 class Lecteur
 {
     /**
-     * @var integer
-     */
-    private $etat;
-
-    /**
      * @var string
      */
     private $numSerie;
@@ -37,35 +32,6 @@ class Lecteur
      */
     private $id;
 
-    /**
-     * @var \IC\ProductionBundle\Entity\TypeLecteur
-     */
-    private $typeLecteur;
-
-
-    /**
-     * Set etat
-     *
-     * @param integer $etat
-     *
-     * @return Lecteur
-     */
-    public function setEtat($etat)
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    /**
-     * Get etat
-     *
-     * @return integer
-     */
-    public function getEtat()
-    {
-        return $this->etat;
-    }
 
     /**
      * Set numSerie
@@ -172,28 +138,5 @@ class Lecteur
     {
         return $this->id;
     }
-
-    /**
-     * Set typeLecteur
-     *
-     * @param \IC\ProductionBundle\Entity\TypeLecteur $typeLecteur
-     *
-     * @return Lecteur
-     */
-    public function setTypeLecteur(\IC\ProductionBundle\Entity\TypeLecteur $typeLecteur = null)
-    {
-        $this->typeLecteur = $typeLecteur;
-
-        return $this;
-    }
-
-    /**
-     * Get typeLecteur
-     *
-     * @return \IC\ProductionBundle\Entity\TypeLecteur
-     */
-    public function getTypeLecteur()
-    {
-        return $this->typeLecteur;
-    }
 }
+

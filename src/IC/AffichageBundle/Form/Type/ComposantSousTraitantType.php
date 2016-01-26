@@ -8,83 +8,43 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ComposantSousTraitantType extends AbstractType
 {
-  private $famille;
-  private $sousFamille;
-  private $fournisseur;
-  private $nomenclature;
   
-  public function __construct($fam, $sousFam, $nom)
-  {
-    $this->fam = $fam;
-    $this->sousFam = $sousFam;
-    $this->nomenclature = $nom;
-  }
-  
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    foreach($this->getFam() AS $famille)
-      $choixFamille[] = $famille->getNom();
-      
-    foreach($this->getSousFam() AS $sousFamille)
-      $choixSousFamille[] = $sousFamille->getNom();   
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        
+        $builder->add('recherche', 'text', array('required' => false));
 
-    foreach($this->getNomenclature() AS $nomenclature)
-      $choixNomenclature[] = $nomenclature->getNomenclature()->getNom(); 
-      
-    $builder->add('recherche', 'text', array('required' => false));
-    
-    $builder->add('choixRecherche', 'choice', array('choices' => array('Désignation', 'Référence'),
-                  'multiple' => false,
-                  'expanded' => true,
-                  'empty_data'  => 0));
-                                   
-    $builder->add('famille', 'choice', array('choices' => $choixFamille,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));
-                
-    $builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));   
-                               
-    /*$builder->add('nomenclature', 'choice', array('choices' => $choixNomenclature,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0)); */
+        $builder->add('choixRecherche', 'choice', array('choices' => array('Désignation', 'Référence'),
+                        'multiple' => false,
+                        'expanded' => true,
+                        'empty_data'  => 0));
+                                        
+        $builder->add('famille', 'entity', array(
+                        'class' => 'IC\AffichageBundle\Entity\Famille',
+                        'choice_label' => 'nom',
+                        'multiple' => true,
+                        'expanded' => true));
+                    
+        $builder->add('sousFamille', 'entity', array(
+                        'class' => 'IC\AffichageBundle\Entity\SousFamille',
+                        'choice_label' => 'nom',
+                        'multiple' => true,
+                        'expanded' => true));            
+                                    
 
-    $builder->add('stock', 'text', array('required' => false));
-    
-    $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
-              'multiple' => false,
-              'expanded' => true,
-              'empty_data'  => 0));    
-              
-   $builder->add('Rechercher', 'submit');                                                 
-    $builder->add('Trier', 'submit');
-  }
+        $builder->add('stock', 'text', array('required' => false));
 
-  public function getName()
-  {
-    return 'formComposantSousTraitant';
-  }
-  
-  public function getFam()
-  {
-    return $this->fam;
-  }
-  
-  public function getSousFam()
-  {
-     return $this->sousFam;
-  }
-  
-  public function getFournisseur()
-  {
-     return $this->fournisseur;
-  }
-  public function getNomenclature()
-  {
-     return $this->nomenclature;
-  }
+        $builder->add('plus_ou_moins', 'choice', array('choices' => array('Supérieur', 'Inférieur'),
+                    'multiple' => false,
+                    'expanded' => true,
+                    'empty_data'  => 0));    
+                    
+        $builder->add('Rechercher', 'submit');                                                 
+        $builder->add('Trier', 'submit');
+    }
+
+    public function getName()
+    {
+        return 'formComposantSousTraitant';
+    }
 }

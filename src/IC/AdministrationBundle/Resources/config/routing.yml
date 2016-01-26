@@ -67,11 +67,45 @@ ic_administration_fournisseur_update:
         idFournisseur: \d{1,10} 
             
 ic_administration_fournisseur_delete:
-    path:     /Delete-Fournisseur-{idFournisseur}
+    path:     /Supprimer-Fournisseur-{idFournisseur}
     defaults: { _controller: ICAdministrationBundle:Fournisseur:deleteFournisseur }      
     requirements:
         idFournisseur: \d{1,10} 
-                         
+
+ic_administration_nomenclature:
+    path:     /Nomenclature-{allVersion}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:affichageNomenclature, allVersion: 0 }      
+    requirements:
+        allVersion: 0|1
+        
+ic_administration_composant_nomenclature:
+    path:     /Composant-Nomenclature-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:affichageComposantNomenclature }      
+    requirements:
+        idNomenclature: \d{1,10}
+        
+ic_administration_produit_fini_nomenclature:
+    path:     /Produit-Fini-Nomenclature-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:affichageProduitFiniNomenclature }      
+    requirements:
+        idNomenclature: \d{1,10}
+        
+ic_administration_add_nomenclature:
+    path:     /Ajouter-Nomenclature
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:ajouterNomenclature }
+                
+ic_administration_add_version_nomenclature:
+    path:     /Ajouter-Version-Nomenclature-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:ajouterVersionNomenclature }
+    requirements:
+        idNomenclature: \d{1,10}
+                        
+ic_administration_delete_version_nomenclature:
+    path:     /Supprimer-Nomenclature-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:deleteVersionNomenclature }      
+    requirements:
+        idNomenclature: \d{1,10}
+        
 ic_ajax_choixFamille:
     path:     /Choix-Famille-{idFamille}
     defaults: { _controller: ICAdministrationBundle:MatierePremiere:choixFamille, idFamille: 0 }

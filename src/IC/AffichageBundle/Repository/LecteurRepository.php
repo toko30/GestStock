@@ -4,27 +4,17 @@ namespace IC\AffichageBundle\Repository;
 
 class LecteurRepository extends \Doctrine\ORM\EntityRepository
 {
-   public function countLecteur($critere, $id)
+   public function countLecteur($critere)
    {
         $req = $this->createQueryBuilder('l')
-        ->select('COUNT(l.idLecteur) as nbProduit, t.referenceInterne, t.designation')
+        ->select('COUNT(l.idLecteur) as nbProduit, n.nom, t.designation')
         ->join('l.typeLecteur', 't')
-        ->groupBy('l.idLecteur');  
-        
-        if($id == 0)
-        {
-            $req->where('t.idFournisseur = :id')
-            ->setParameter('id', 0);         
-        }
-        else
-        {
-            $req->where('t.idFournisseur != :id')
-            ->setParameter('id', 0);              
-        }
+        ->join('t.nomenclature', 'n')
+        ->groupBy('l.idLecteur');        
         
        if(!empty($critere['recherche']))
         {
-            $req->andWhere('t.referenceInterne LIKE :ref')
+            $req->andWhere('n.nom LIKE :ref')
             ->setParameter('ref', '%'.$critere['recherche'].'%');
         }
                 

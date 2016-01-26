@@ -6,10 +6,11 @@ class VersionNomenclatureRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getAllNomenclatureLastVersion()
     {
-        return $this->createQueryBuilder('v')
-        ->join('v.nomenclature', 'n')
-        ->orderBy('v.version', 'DESC')
-        ->getQuery()
-        ->getResult();
+        return $this->createQueryBuilder('vn')
+        ->join('vn.nomenclature', 'n')
+        ->addSelect('n')
+        ->orderBy('vn.idNomenclature', 'DESC')
+        ->addOrderBy('vn.version', 'DESC')
+        ->getQuery()->getResult();
     }   
 }

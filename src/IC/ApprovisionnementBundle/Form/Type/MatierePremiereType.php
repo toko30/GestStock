@@ -5,45 +5,37 @@ namespace IC\ApprovisionnementBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use IC\ApprovisionnementBundle\Repository\FournisseurRepository;
 
 class MatierePremiereType extends AbstractType
 {
-    private $famille;
-    private $sousFamille;
-    private $fournisseur;
-
-    public function __construct($fam, $sousFam, $four)
-    {
-        $this->fam = $fam;
-        $this->sousFam = $sousFam;
-        $this->fournisseur = $four;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        foreach($this->getFam() AS $famille)
-            $choixFamille[] = $famille->getNom();
-            
-        foreach($this->getSousFam() AS $sousFamille)
-            $choixSousFamille[] = $sousFamille->getNom();  
-            
-        foreach($this->getFournisseur() AS $fournisseur)
-            $choixFournisseur[] = $fournisseur->getNom(); 
+    {          
                                         
-        $builder->add('famille', 'choice', array('choices' => $choixFamille,
+        $builder->add('famille', 'entity', array(
+                        'class' => 'IC\ApprovisionnementBundle\Entity\Famille',
+                        'choice_label' => 'nom',
                         'multiple' => true,
-                        'expanded' => true,
-                        'empty_data'  => 0));
+                        'expanded' => true));
                     
-        $builder->add('sousFamille', 'choice', array('choices' => $choixSousFamille,
+        $builder->add('sousFamille', 'entity', array(
+                        'class' => 'IC\ApprovisionnementBundle\Entity\SousFamille',
+                        'choice_label' => 'nom',
                         'multiple' => true,
-                        'expanded' => true,
-                        'empty_data'  => 0));                                         
+                        'expanded' => true));                                         
                         
-        $builder->add('fournisseur', 'choice', array('choices' => $choixFournisseur,
-                        'multiple' => true,
-                        'expanded' => true,
-                        'empty_data'  => 0)); 
+        $builder->add('fournisseur', 'entity', array(
+                      'class' => 'IC\ApprovisionnementBundle\Entity\Fournisseur',
+                      'choice_label' => 'nom',
+                      'multiple'  => true,
+                      'expanded' => true,
+                      'query_builder' => function (FournisseurRepository $er) 
+                      {
+                        return $er->createQueryBuilder('f')
+                        ->where('f.type = 1');
+                      }
+                      ));
                                         
         $builder->add('Trier', 'submit');
     }
@@ -52,20 +44,4 @@ class MatierePremiereType extends AbstractType
     {
         return 'formApproMatierePremiere';
     }
-
-    public function getFam()
-    {
-        return $this->fam;
-    }
-
-    public function getSousFam()
-    {
-        return $this->sousFam;
-    }
-
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
-    }
-
 }

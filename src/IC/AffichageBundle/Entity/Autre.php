@@ -167,4 +167,62 @@ class Autre
     {
         return $this->typeAutre;
     }
+    /**
+     * @var integer
+     */
+    private $idFournisseur;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\Fournisseur
+     */
+    private $fournisseur;
+
+
+    /**
+     * Set idFournisseur
+     *
+     * @param integer $idFournisseur
+     *
+     * @return Autre
+     */
+    public function setIdFournisseur($idFournisseur)
+    {
+        $this->idFournisseur = $idFournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get idFournisseur
+     *
+     * @return integer
+     */
+    public function getIdFournisseur()
+    {
+        return $this->idFournisseur;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \IC\AffichageBundle\Entity\Fournisseur $fournisseur
+     *
+     * @return Autre
+     */
+    public function setFournisseur(\IC\AffichageBundle\Entity\Fournisseur $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \IC\AffichageBundle\Entity\Fournisseur
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
+    }
 }

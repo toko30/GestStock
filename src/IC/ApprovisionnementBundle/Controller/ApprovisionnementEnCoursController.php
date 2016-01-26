@@ -184,7 +184,7 @@ class ApprovisionnementEnCoursController extends Controller
     
     public function approVersStockAutreAction($idCommande)
     {
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
         
         $appro = $em->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $idCommande));
         $approAutre = $em->getRepository('ICApprovisionnementBundle:ApproAutre')->getApproAutreById($idCommande);

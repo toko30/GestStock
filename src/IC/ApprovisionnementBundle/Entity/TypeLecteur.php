@@ -8,14 +8,9 @@ namespace IC\ApprovisionnementBundle\Entity;
 class TypeLecteur
 {
     /**
-     * @var string
+     * @var integer
      */
-    private $referenceInterne;
-
-    /**
-     * @var string
-     */
-    private $referenceFournisseur;
+    private $idNomenclature;
 
     /**
      * @var string
@@ -25,17 +20,12 @@ class TypeLecteur
     /**
      * @var integer
      */
-    private $type;
-
-    /**
-     * @var integer
-     */
     private $frequence;
 
     /**
      * @var integer
      */
-    private $idFournisseur;
+    private $type;
 
     /**
      * @var integer
@@ -58,57 +48,33 @@ class TypeLecteur
     private $id;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\Fournisseur
+     * @var \IC\ApprovisionnementBundle\Entity\Nomenclature
      */
-    private $fournisseur;
+    private $nomenclature;
 
 
     /**
-     * Set referenceInterne
+     * Set idNomenclature
      *
-     * @param string $referenceInterne
+     * @param integer $idNomenclature
      *
      * @return TypeLecteur
      */
-    public function setReferenceInterne($referenceInterne)
+    public function setIdNomenclature($idNomenclature)
     {
-        $this->referenceInterne = $referenceInterne;
+        $this->idNomenclature = $idNomenclature;
 
         return $this;
     }
 
     /**
-     * Get referenceInterne
+     * Get idNomenclature
      *
-     * @return string
+     * @return integer
      */
-    public function getReferenceInterne()
+    public function getIdNomenclature()
     {
-        return $this->referenceInterne;
-    }
-
-    /**
-     * Set referenceFournisseur
-     *
-     * @param string $referenceFournisseur
-     *
-     * @return TypeLecteur
-     */
-    public function setReferenceFournisseur($referenceFournisseur)
-    {
-        $this->referenceFournisseur = $referenceFournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Get referenceFournisseur
-     *
-     * @return string
-     */
-    public function getReferenceFournisseur()
-    {
-        return $this->referenceFournisseur;
+        return $this->idNomenclature;
     }
 
     /**
@@ -136,30 +102,6 @@ class TypeLecteur
     }
 
     /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return TypeLecteur
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Set frequence
      *
      * @param integer $frequence
@@ -184,27 +126,27 @@ class TypeLecteur
     }
 
     /**
-     * Set idFournisseur
+     * Set type
      *
-     * @param integer $idFournisseur
+     * @param integer $type
      *
      * @return TypeLecteur
      */
-    public function setIdFournisseur($idFournisseur)
+    public function setType($type)
     {
-        $this->idFournisseur = $idFournisseur;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get idFournisseur
+     * Get type
      *
      * @return integer
      */
-    public function getIdFournisseur()
+    public function getType()
     {
-        return $this->idFournisseur;
+        return $this->type;
     }
 
     /**
@@ -290,26 +232,27 @@ class TypeLecteur
     }
 
     /**
-     * Set fournisseur
+     * Set nomenclature
      *
-     * @param \IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur
+     * @param \IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature
      *
      * @return TypeLecteur
      */
-    public function setFournisseur(\IC\ApprovisionnementBundle\Entity\Fournisseur $fournisseur = null)
+    public function setNomenclature(\IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature = null)
     {
-        $this->fournisseur = $fournisseur;
+        $this->nomenclature = $nomenclature;
 
         return $this;
     }
 
     /**
-     * Get fournisseur
+     * Get nomenclature
      *
-     * @return \IC\ApprovisionnementBundle\Entity\Fournisseur
+     * @return \IC\ApprovisionnementBundle\Entity\Nomenclature
      */
-    public function getFournisseur()
+    public function getNomenclature()
     {
-        return $this->fournisseur;
+        return $this->nomenclature;
     }
 }
+

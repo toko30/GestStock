@@ -27,7 +27,7 @@ class ProduitFiniLecteurType extends AbstractType
                 'expanded' => true,
                 'empty_data'  => 0));
                 
-    $builder->add('frequence', 'choice', array('choices' => array('13,56 MHz', '125 KHz'),
+    $builder->add('frequence', 'choice', array('choices' => array('125 KHz', '13,56 MHz'),
                 'multiple' => true,
                 'expanded' => true,
                 'empty_data'  => 0));                              

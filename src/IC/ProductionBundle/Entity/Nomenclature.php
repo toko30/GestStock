@@ -15,16 +15,6 @@ class Nomenclature
     /**
      * @var integer
      */
-    private $version;
-
-    /**
-     * @var integer
-     */
-    private $type;
-
-    /**
-     * @var integer
-     */
     private $id;
 
 
@@ -53,54 +43,6 @@ class Nomenclature
     }
 
     /**
-     * Set version
-     *
-     * @param integer $version
-     *
-     * @return Nomenclature
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return integer
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return Nomenclature
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -110,3 +52,4 @@ class Nomenclature
         return $this->id;
     }
 }
+

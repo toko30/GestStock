@@ -15,7 +15,7 @@ class ApproAutre
     /**
      * @var integer
      */
-    private $idLecteur;
+    private $idAutre;
 
     /**
      * @var integer
@@ -33,9 +33,9 @@ class ApproAutre
     private $appro;
 
     /**
-     * @var \IC\AffichageBundle\Entity\TypeLecteur
+     * @var \IC\AffichageBundle\Entity\Autre
      */
-    private $typeLecteur;
+    private $autre;
 
 
     /**
@@ -63,27 +63,27 @@ class ApproAutre
     }
 
     /**
-     * Set idLecteur
+     * Set idAutre
      *
-     * @param integer $idLecteur
+     * @param integer $idAutre
      *
      * @return ApproAutre
      */
-    public function setIdLecteur($idLecteur)
+    public function setIdAutre($idAutre)
     {
-        $this->idLecteur = $idLecteur;
+        $this->idAutre = $idAutre;
 
         return $this;
     }
 
     /**
-     * Get idLecteur
+     * Get idAutre
      *
      * @return integer
      */
-    public function getIdLecteur()
+    public function getIdAutre()
     {
-        return $this->idLecteur;
+        return $this->idAutre;
     }
 
     /**
@@ -143,64 +143,6 @@ class ApproAutre
     {
         return $this->appro;
     }
-
-    /**
-     * Set typeLecteur
-     *
-     * @param \IC\AffichageBundle\Entity\TypeLecteur $typeLecteur
-     *
-     * @return ApproAutre
-     */
-    public function setTypeLecteur(\IC\AffichageBundle\Entity\TypeLecteur $typeLecteur = null)
-    {
-        $this->typeLecteur = $typeLecteur;
-
-        return $this;
-    }
-
-    /**
-     * Get typeLecteur
-     *
-     * @return \IC\AffichageBundle\Entity\TypeLecteur
-     */
-    public function getTypeLecteur()
-    {
-        return $this->typeLecteur;
-    }
-    /**
-     * @var integer
-     */
-    private $idAutre;
-
-
-    /**
-     * Set idAutre
-     *
-     * @param integer $idAutre
-     *
-     * @return ApproAutre
-     */
-    public function setIdAutre($idAutre)
-    {
-        $this->idAutre = $idAutre;
-
-        return $this;
-    }
-
-    /**
-     * Get idAutre
-     *
-     * @return integer
-     */
-    public function getIdAutre()
-    {
-        return $this->idAutre;
-    }
-    /**
-     * @var \IC\AffichageBundle\Entity\Autre
-     */
-    private $autre;
-
 
     /**
      * Set autre

@@ -1,0 +1,57 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Nomenclature{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+
+    {% if nomenclatures is not empty %}   
+        {% set idNomenclature = 0 %}
+        <form method="post" action="{{ path('ic_administration_add_nomenclature') }}">
+            <table class="">
+                <tr>
+                    <td>Designation</td>
+                    <td>Version</td>
+                    <td colspan="2">Nomenclature</td>
+                    {% if allVersion == 0 %}<td></td>{% endif%}
+                </tr>
+                {% if allVersion == 0 %}
+                    <tr>
+                        <td><input type="text" name="nomenclature"></td>
+                        <td colspan="3"><input type="submit"></td>
+                        
+                    </tr>
+                {% endif %}
+                {% for nomenclature in nomenclatures %}
+                    {% if nomenclature.nomenclature.id != idNomenclature or allVersion == 1 %}
+                        {% set idNomenclature = nomenclature.nomenclature.id %}
+                        <tr>
+                            <td class="">{{ nomenclature.nomenclature.nom }}</td>                                
+                            <td>{{ nomenclature.version }}</td>
+                            <td><a href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: nomenclature.id}) }}">PCB</a></td>
+                            <td><a href="{{ path('ic_administration_produit_fini_nomenclature', {idNomenclature: nomenclature.id}) }}">Produit Fini</a></td>
+                            
+                            {% if allVersion == 0 %}<td><a class="versionPlus" href=""></a></td>{% endif%}
+                            
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+            </form>
+            {% if allVersion == 0 %}
+                <a href="{{ path('ic_administration_nomenclature', {allVersion: 1}) }}">Afficher toute les versions</a>
+            {% else %}
+                 <a href="{{ path('ic_administration_nomenclature', {allVersion: 0}) }}">Afficher seulement les dernières versions</a>
+            {% endif %}
+    {% endif %}
+{% endblock %}

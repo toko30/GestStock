@@ -27,6 +27,16 @@ class ApproLecteur
      */
     private $id;
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Appro
+     */
+    private $appro;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeLecteur
+     */
+    private $typeLecteur;
+
 
     /**
      * Set idCommande
@@ -109,16 +119,6 @@ class ApproLecteur
     {
         return $this->id;
     }
-    /**
-     * @var \IC\AffichageBundle\Entity\Appro
-     */
-    private $appro;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\TypeLecteur
-     */
-    private $typeLecteur;
-
 
     /**
      * Set appro

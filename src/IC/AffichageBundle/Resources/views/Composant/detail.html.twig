@@ -12,6 +12,42 @@
 {% endblock %}
 
 {% block page %}
+
 	{{ parent()}}
-	detail {{id}}
+    
+        <table>
+            <tr>
+                <td class="titreFamille">Famille</td>
+                <td class="titreSousFamille">Sous Famille</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreBoitier">Boitier</td>
+                <td class="titreStock mini">Stock</td>
+                <td class="titreStock mini">Stock mini</td>
+            </tr>
+            <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
+                <td class="famille">{{composant.famille.nom}}</td>
+                <td class="sousFamille">{{composant.sousFamille.nom}}</td>
+                <td class="designation">{{composant.nom}}</td>
+                <td class="boitier">{{composant.boitier}}</td>
+                <td class="stock">{{composant.stockInterne}}</td>
+                <td class="stock mini">{{composant.stockMini}}</td>
+            </tr>
+        </table>
+    
+            <h2>Liste des fournisseurs</h2>
+
+        <table class="tableDetailFournisseur">
+            <tr>
+                <td class="titreFournisseur">Fournisseur</td>
+                <td class="titreReference">Référence</td>
+                <td class="titrePrix">Prix Unitaire</td>
+            </tr>
+                {% for composantFournisseur in composantsFournisseur %}
+                        <tr>
+                            <td>{{composantFournisseur.fournisseur.nom}}</td>
+                            <td>{{composantFournisseur.reference}}</td>
+                            <td>{{composantFournisseur.prix}} €</td>
+                        </tr>
+                {% endfor %}
+            </table>
 {% endblock %}

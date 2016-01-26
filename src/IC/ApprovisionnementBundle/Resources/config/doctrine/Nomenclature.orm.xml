@@ -9,15 +9,5 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="version" type="integer" column="version" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="type" type="integer" column="type" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
   </entity>
 </doctrine-mapping>

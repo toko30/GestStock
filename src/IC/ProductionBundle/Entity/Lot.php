@@ -16,11 +16,12 @@ class Lot
      * @var \DateTime
      */
     private $dateProd;
-    
+
     /**
      * @var \DateTime
      */
     private $dateTest;
+
     /**
      * @var integer
      */
@@ -74,7 +75,7 @@ class Lot
     {
         return $this->dateProd;
     }
-    
+
     /**
      * Set dateTest
      *
@@ -90,7 +91,7 @@ class Lot
     }
 
     /**
-     * Get dateProd
+     * Get dateTest
      *
      * @return \DateTime
      */
@@ -98,7 +99,7 @@ class Lot
     {
         return $this->dateTest;
     }
-    
+
     /**
      * Get id
      *
@@ -109,3 +110,4 @@ class Lot
         return $this->id;
     }
 }
+
