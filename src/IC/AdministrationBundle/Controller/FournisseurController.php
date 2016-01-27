@@ -84,16 +84,4 @@ class FournisseurController extends Controller
 
         return $this->redirectToRoute('ic_administration_affichage_fournisseur');
     }
-    
-    public function deleteFournisseurAction($idFournisseur)
-    {
-        $em = $this->getDoctrine()->getManager();
-        
-        $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur); 
-        
-        $em->remove($fournisseur);
-        $em->flush();
-        
-        return $this->redirectToRoute('ic_administration_affichage_fournisseur');
-    }
 }

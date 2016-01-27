@@ -1,6 +1,6 @@
 <?php
 
-namespace IC\AdministrationBundle\Entity;
+namespace IC\AffichageBundle\Entity;
 
 /**
  * ProduitFiniNomenclature
@@ -28,12 +28,12 @@ class ProduitFiniNomenclature
     private $id;
 
     /**
-     * @var \IC\AdministrationBundle\Entity\VersionNomenclature
+     * @var \IC\AffichageBundle\Entity\VersionNomenclature
      */
     private $version;
 
     /**
-     * @var \IC\AdministrationBundle\Entity\Composant
+     * @var \IC\AffichageBundle\Entity\Composant
      */
     private $composant;
 
@@ -123,11 +123,11 @@ class ProduitFiniNomenclature
     /**
      * Set version
      *
-     * @param \IC\AdministrationBundle\Entity\VersionNomenclature $version
+     * @param \IC\AffichageBundle\Entity\VersionNomenclature $version
      *
      * @return ProduitFiniNomenclature
      */
-    public function setVersion(\IC\AdministrationBundle\Entity\VersionNomenclature $version = null)
+    public function setVersion(\IC\AffichageBundle\Entity\VersionNomenclature $version = null)
     {
         $this->version = $version;
 
@@ -137,7 +137,7 @@ class ProduitFiniNomenclature
     /**
      * Get version
      *
-     * @return \IC\AdministrationBundle\Entity\VersionNomenclature
+     * @return \IC\AffichageBundle\Entity\VersionNomenclature
      */
     public function getVersion()
     {
@@ -147,11 +147,11 @@ class ProduitFiniNomenclature
     /**
      * Set composant
      *
-     * @param \IC\AdministrationBundle\Entity\Composant $composant
+     * @param \IC\AffichageBundle\Entity\Composant $composant
      *
      * @return ProduitFiniNomenclature
      */
-    public function setComposant(\IC\AdministrationBundle\Entity\Composant $composant = null)
+    public function setComposant(\IC\AffichageBundle\Entity\Composant $composant = null)
     {
         $this->composant = $composant;
 
@@ -161,7 +161,7 @@ class ProduitFiniNomenclature
     /**
      * Get composant
      *
-     * @return \IC\AdministrationBundle\Entity\Composant
+     * @return \IC\AffichageBundle\Entity\Composant
      */
     public function getComposant()
     {

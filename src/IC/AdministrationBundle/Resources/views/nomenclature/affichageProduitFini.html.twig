@@ -14,7 +14,8 @@
 {% block page %}
 
 	{{ parent()}}
-    <form method="post" action="">
+    
+    <form method="post" action="{{ path('ic_administration_update_produit_fini_nomenclature', {idNomenclature: idNomenclature}) }}">
         <table>
             <tr>
                 <td>Famille</td>
@@ -24,6 +25,7 @@
                 <td>quantite</td>
             </tr>
             {% for composant in composants %}
+                <input type="hidden" name="listId[]" value="{{ composant.id }}">
                 {% set existe = 0 %}
                 <tr>
                     <td>{{ composant.famille.nom }}</td>
@@ -34,7 +36,7 @@
                         {% if composant.id == produitFiniNomenclature.idComposant %}
                             {% set existe = 1 %}
                             <td><input type="text" name="{{ composant.id }}" value="{{ produitFiniNomenclature.quantite }}"/></td>
-                        {% endif %}
+                        {% endif %}           
                     {% endfor %}
                     
                     {% if existe == 0 %}

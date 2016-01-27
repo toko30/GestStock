@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="IC\ProductionBundle\Entity\ComposantNomenclature" repository-class="IC\ProductionBundle\Repository\ComposantNomenclatureRepository" table="composant_nomenclature">
+  <entity name="IC\AffichageBundle\Entity\ProduitFiniNomenclature" repository-class="IC\AffichageBundle\Repository\ProduitFiniNomenclatureRepository" table="produit_fini_nomenclature">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="idComposant" type="integer" column="id_composant" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
     <field name="idVersion" type="integer" column="id_version" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="quantite" type="integer" column="quantite" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="position" type="text" column="position" length="65535" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="optionSt" type="integer" column="option_st" nullable="false">
+    <field name="idComposant" type="integer" column="id_composant" nullable="false">
       <options>
-        <option name="unsigned"/>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="quantite" type="integer" column="quantite" nullable="false">
+      <options>
+        <option name="fixed"/>
       </options>
     </field>
     <one-to-one field="version" target-entity="VersionNomenclature">

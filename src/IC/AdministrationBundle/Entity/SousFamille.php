@@ -22,6 +22,11 @@ class SousFamille
      */
     private $id;
 
+    /**
+     * @var \IC\AdministrationBundle\Entity\Famille
+     */
+    private $famille;
+
 
     /**
      * Set idFamille
@@ -80,4 +85,29 @@ class SousFamille
     {
         return $this->id;
     }
+
+    /**
+     * Set famille
+     *
+     * @param \IC\AdministrationBundle\Entity\Famille $famille
+     *
+     * @return SousFamille
+     */
+    public function setFamille(\IC\AdministrationBundle\Entity\Famille $famille = null)
+    {
+        $this->famille = $famille;
+
+        return $this;
+    }
+
+    /**
+     * Get famille
+     *
+     * @return \IC\AdministrationBundle\Entity\Famille
+     */
+    public function getFamille()
+    {
+        return $this->famille;
+    }
 }
+

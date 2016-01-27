@@ -2,10 +2,10 @@
 
 namespace IC\AffichageBundle\Repository;
 
-class ComposantNomenclatureRepository extends \Doctrine\ORM\EntityRepository
+class ProduitFiniNomenclatureRepository extends \Doctrine\ORM\EntityRepository
 {
    
-   public function getComposantNomenclaturePCBById($id)
+   public function getProduitFiniNomenclatureById($id)
    {
 		return $this->createQueryBuilder('nc')
         ->join('nc.composant', 'c')

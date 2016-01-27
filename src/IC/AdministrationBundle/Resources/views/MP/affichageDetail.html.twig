@@ -75,7 +75,7 @@
                             </td>
                             <td>{{composantFournisseur.fournisseur.nom}}</td>
                             <td>{{composantFournisseur.reference}}</td>
-                            <td>{{composantFournisseur.prix}} €</td>
+                            <td>{{composantFournisseur.prix|number_format(4, '.', ' ')}} €</td>
                             <td class="details">
                                 <a href="{{ path('ic_administration_mp_detail', {'idComposant': composantFournisseur.idComposant,'idComposantFournisseur': composantFournisseur.id, 'page': 'Modification'}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}

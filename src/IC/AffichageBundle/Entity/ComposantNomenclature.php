@@ -15,7 +15,7 @@ class ComposantNomenclature
     /**
      * @var integer
      */
-    private $idNomenclature;
+    private $idVersion;
 
     /**
      * @var integer
@@ -73,27 +73,27 @@ class ComposantNomenclature
     }
 
     /**
-     * Set idNomenclature
+     * Set idVersion
      *
-     * @param integer $idNomenclature
+     * @param integer $idVersion
      *
      * @return ComposantNomenclature
      */
-    public function setIdNomenclature($idNomenclature)
+    public function setIdVersion($idVersion)
     {
-        $this->idNomenclature = $idNomenclature;
+        $this->idVersion = $idVersion;
 
         return $this;
     }
 
     /**
-     * Get idNomenclature
+     * Get idVersion
      *
      * @return integer
      */
-    public function getIdNomenclature()
+    public function getIdVersion()
     {
-        return $this->idNomenclature;
+        return $this->idVersion;
     }
 
     /**

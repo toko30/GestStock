@@ -15,7 +15,7 @@ class ComposantNomenclature
     /**
      * @var integer
      */
-    private $idNomenclature;
+    private $idVersion;
 
     /**
      * @var integer
@@ -38,9 +38,9 @@ class ComposantNomenclature
     private $id;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\Nomenclature
+     * @var \IC\ApprovisionnementBundle\Entity\VersionNomenclature
      */
-    private $nomenclature;
+    private $version;
 
     /**
      * @var \IC\ApprovisionnementBundle\Entity\Composant
@@ -73,27 +73,27 @@ class ComposantNomenclature
     }
 
     /**
-     * Set idNomenclature
+     * Set idVersion
      *
-     * @param integer $idNomenclature
+     * @param integer $idVersion
      *
      * @return ComposantNomenclature
      */
-    public function setIdNomenclature($idNomenclature)
+    public function setIdVersion($idVersion)
     {
-        $this->idNomenclature = $idNomenclature;
+        $this->idVersion = $idVersion;
 
         return $this;
     }
 
     /**
-     * Get idNomenclature
+     * Get idVersion
      *
      * @return integer
      */
-    public function getIdNomenclature()
+    public function getIdVersion()
     {
-        return $this->idNomenclature;
+        return $this->idVersion;
     }
 
     /**
@@ -179,27 +179,27 @@ class ComposantNomenclature
     }
 
     /**
-     * Set nomenclature
+     * Set version
      *
-     * @param \IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature
+     * @param \IC\ApprovisionnementBundle\Entity\VersionNomenclature $version
      *
      * @return ComposantNomenclature
      */
-    public function setNomenclature(\IC\ApprovisionnementBundle\Entity\Nomenclature $nomenclature = null)
+    public function setVersion(\IC\ApprovisionnementBundle\Entity\VersionNomenclature $version = null)
     {
-        $this->nomenclature = $nomenclature;
+        $this->version = $version;
 
         return $this;
     }
 
     /**
-     * Get nomenclature
+     * Get version
      *
-     * @return \IC\ApprovisionnementBundle\Entity\Nomenclature
+     * @return \IC\ApprovisionnementBundle\Entity\VersionNomenclature
      */
-    public function getNomenclature()
+    public function getVersion()
     {
-        return $this->nomenclature;
+        return $this->version;
     }
 
     /**

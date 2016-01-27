@@ -13,8 +13,8 @@ class ProduitFiniNomenclature extends \Doctrine\ORM\EntityRepository
     public function getComposantByNomenclature($idNomenclature)
     {
         return $this->createQueryBuilder('pfn')
-        ->where('pfn.idNomenclature = :idNomenclature')
-        ->setParameter('idNomenclature', $idNomenclature)
+        ->where('pfn.idVersion = :idVersion')
+        ->setParameter('idVersion', $idNomenclature)
         ->getQuery()
         ->getResult();
     }

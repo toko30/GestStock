@@ -116,18 +116,7 @@ class MatierePremiereController extends Controller
         }
         
         return $this->redirectToRoute('ic_administration_mp_detail', array('idComposant' => $idComposant));
-    }
-    
-    public function deleteMatierePremiereAction($idComposant)
-    { 
-        $em = $this->getDoctrine()->getManager();
-        $composant = $em->getRepository('ICAdministrationBundle:Composant')->find($idComposant); 
-        
-        $em->remove($composant);
-        $em->flush();
-        
-        return $this->redirectToRoute('ic_administration_matiere_premiere');
-    }
+    }   
     
     public function addComposantFournisseurAction(request $request, $idComposant)
     {
@@ -183,6 +172,7 @@ class MatierePremiereController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
+        
         $composantFournisseur = $em->getRepository('ICAdministrationBundle:ComposantFournisseur')->find($idComposantFournisseur); 
         $idComposant = $composantFournisseur->getComposant()->getId();
         

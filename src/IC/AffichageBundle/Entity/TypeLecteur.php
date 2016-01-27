@@ -47,6 +47,11 @@ class TypeLecteur
      */
     private $id;
 
+    /**
+     * @var \IC\AffichageBundle\Entity\Nomenclature
+     */
+    private $nomenclature;
+
 
     /**
      * Set idNomenclature
@@ -225,11 +230,6 @@ class TypeLecteur
     {
         return $this->id;
     }
-    /**
-     * @var \IC\AffichageBundle\Entity\Nomenclature
-     */
-    private $nomenclature;
-
 
     /**
      * Set nomenclature

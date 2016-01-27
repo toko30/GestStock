@@ -15,7 +15,7 @@
 
 	{{ parent()}}
 
-    <form method="post" action="">
+    <form method="post" action="{{ path('ic_administration_update_composant_nomenclature', {idNomenclature: idNomenclature}) }}">
         <table>
             <tr>
             <td>Famille</td>
@@ -23,9 +23,11 @@
             <td>Designation</td>
             <td>Boitier</td>
             <td>quantite</td>
+            <td>position</td>
             <td>Opt St</td>
             </tr>
             {% for composant in composants %}
+                <input type="hidden" name="listId[]" value="{{ composant.id }}">
                 {% set existe = 0 %}
                 <tr>
                     <td>{{ composant.famille.nom }}</td>
@@ -37,6 +39,7 @@
                         {% if composant.id == composantNomenclature.idComposant %}
                             {% set existe = 1 %}
                             <td><input type="text" name="{{ composant.id }}" value="{{ composantNomenclature.quantite }}"/></td>
+                            <td><input type="text" name="position{{ composant.id }}" value="{{ composantNomenclature.position }}"/></td>
                             {% if composantNomenclature.optionSt == 1 %}
                                 <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}" checked></td>
                             {% else %}
@@ -47,6 +50,7 @@
                     
                     {% if existe == 0 %}
                         <td><input type="text" name="{{ composant.id }}"/></td>
+                        <td><input type="text" name="position{{ composant.id }}"/></td>
                         <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}"></td>
                     {% endif %}
                     

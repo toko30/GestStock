@@ -41,11 +41,12 @@ class Fournisseur
      * @var integer
      */
     private $id;
-    
+
     /**
      * @var \IC\AdministrationBundle\Entity\TypeProduit
      */
     private $typeProduit;
+
 
     /**
      * Set nom
@@ -225,3 +226,4 @@ class Fournisseur
         return $this->typeProduit;
     }
 }
+

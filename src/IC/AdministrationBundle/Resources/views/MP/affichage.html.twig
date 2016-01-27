@@ -18,7 +18,6 @@
     
 	<table class="imp">
 		<tr>
-            <td class="titreSupprimer"></td>
 			<td class="titreFamille">Famille</td>
 			<td class="titreSousFamille">Sous Famille</td>
 			<td class="titreDesignation">Désignation</td>
@@ -29,7 +28,6 @@
 		</tr>
         
         <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
-            <td class="supprimer"></td>
             <td class="titreFamille">{{ form_widget(form.famille, {'attr': {'class': 'inputListe'}} ) }}</td>
             <td class="titreSousFamille" >{{ form_widget(form.sousFamille, {'attr': {'class': 'inputListe'}}) }}</td>
             <td class="titreDesignation">{{ form_widget(form.nom, {'attr': {'class': 'inputDesignation'}} ) }}</td>
@@ -41,13 +39,6 @@
 
 		{% for composant in composants %}
             <tr>
-                <td class="supprimer">
-                    <a href="{{ path('ic_administration_mp_delete', {'idComposant': composant.id}) }}">
-                        {% image 'img/redcroix.png' %}
-                            <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
-                        {% endimage %}
-                    </a>                        
-                </td>
                 <td class="famille">{{composant.Famille.nom}}</td>
                 <td class="sousFamille">{{composant.SousFamille.nom}}</td>
                 <td class="designation">{{composant.nom}}</td>

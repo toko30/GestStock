@@ -10,4 +10,12 @@ namespace IC\AdministrationBundle\Repository;
  */
 class NomenclatureRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getLastNomenclature()
+    {
+        return $this->createQueryBuilder('n')
+        ->orderBy('n.id', 'DESC')
+        ->getQuery()
+        ->getResult();        
+    }
 }

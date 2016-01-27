@@ -20,6 +20,11 @@ class Autre
     /**
      * @var integer
      */
+    private $idFournisseur;
+
+    /**
+     * @var integer
+     */
     private $quantite;
 
     /**
@@ -36,6 +41,11 @@ class Autre
      * @var \IC\AffichageBundle\Entity\TypeAutre
      */
     private $typeAutre;
+
+    /**
+     * @var \IC\AffichageBundle\Entity\Fournisseur
+     */
+    private $fournisseur;
 
 
     /**
@@ -84,6 +94,30 @@ class Autre
     public function getDesignation()
     {
         return $this->designation;
+    }
+
+    /**
+     * Set idFournisseur
+     *
+     * @param integer $idFournisseur
+     *
+     * @return Autre
+     */
+    public function setIdFournisseur($idFournisseur)
+    {
+        $this->idFournisseur = $idFournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get idFournisseur
+     *
+     * @return integer
+     */
+    public function getIdFournisseur()
+    {
+        return $this->idFournisseur;
     }
 
     /**
@@ -166,40 +200,6 @@ class Autre
     public function getTypeAutre()
     {
         return $this->typeAutre;
-    }
-    /**
-     * @var integer
-     */
-    private $idFournisseur;
-
-    /**
-     * @var \IC\AffichageBundle\Entity\Fournisseur
-     */
-    private $fournisseur;
-
-
-    /**
-     * Set idFournisseur
-     *
-     * @param integer $idFournisseur
-     *
-     * @return Autre
-     */
-    public function setIdFournisseur($idFournisseur)
-    {
-        $this->idFournisseur = $idFournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Get idFournisseur
-     *
-     * @return integer
-     */
-    public function getIdFournisseur()
-    {
-        return $this->idFournisseur;
     }
 
     /**

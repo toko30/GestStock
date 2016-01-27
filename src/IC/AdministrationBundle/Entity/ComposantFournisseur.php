@@ -11,12 +11,12 @@ class ComposantFournisseur
      * @var string
      */
     private $reference;
-    
+
     /**
      * @var float
      */
     private $prix;
-    
+
     /**
      * @var integer
      */
@@ -65,6 +65,30 @@ class ComposantFournisseur
     public function getReference()
     {
         return $this->reference;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param float $prix
+     *
+     * @return ComposantFournisseur
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return float
+     */
+    public function getPrix()
+    {
+        return $this->prix;
     }
 
     /**
@@ -172,28 +196,5 @@ class ComposantFournisseur
     {
         return $this->fournisseur;
     }
-
-    /**
-     * Set prix
-     *
-     * @param float $prix
-     *
-     * @return ComposantFournisseur
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    /**
-     * Get prix
-     *
-     * @return float
-     */
-    public function getPrix()
-    {
-        return $this->prix;
-    }
 }
+

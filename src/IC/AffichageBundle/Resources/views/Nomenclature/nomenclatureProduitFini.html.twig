@@ -23,7 +23,6 @@
 					<td class="titreDesignation">Désignation</td>
 					<td class="titreBoitier">Boitier</td>
 					<td class="titreStock">Quantité</td>
-					<td class="titreStock">Position</td>
 					<td class="titreDetails"></td>
 				</tr>
 				{% for nomenclature in nomenclatures %}
@@ -33,7 +32,6 @@
 						<td class="designation">{{nomenclature.composant.nom}}</td>
 						<td class="boitier">{{nomenclature.composant.boitier}}</td>
 						<td class="stock">{{nomenclature.quantite}}</td>
-						<td class="stock">{{nomenclature.position}}</td>
 						<td class="details">
 							<a href="">
 							{% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}

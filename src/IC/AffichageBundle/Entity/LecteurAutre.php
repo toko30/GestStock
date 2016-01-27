@@ -22,6 +22,11 @@ class LecteurAutre
      */
     private $id;
 
+    /**
+     * @var \IC\AffichageBundle\Entity\TypeLecteurAutre
+     */
+    private $typeLecteurAutre;
+
 
     /**
      * Set numSerie
@@ -80,11 +85,6 @@ class LecteurAutre
     {
         return $this->id;
     }
-    /**
-     * @var \IC\AffichageBundle\Entity\TypeLecteurAutre
-     */
-    private $typeLecteurAutre;
-
 
     /**
      * Set typeLecteurAutre

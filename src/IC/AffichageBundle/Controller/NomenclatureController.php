@@ -16,8 +16,8 @@ class NomenclatureController extends Controller
     
     public function nomenclatureCompleteAction($id)
     {
-        $listNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantNomenclature')->getComposantNomenclatureCompleteById($id);
+        $listNomenclature = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ProduitFiniNomenclature')->getProduitFiniNomenclatureById($id);
        
-        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureComposant.html.twig', array('partie' => 'affichage', 'nomenclatures' => $listNomenclature));
+        return $this->render('ICAffichageBundle:Nomenclature:nomenclatureProduitFini.html.twig', array('partie' => 'affichage', 'nomenclatures' => $listNomenclature));
     }  
 }

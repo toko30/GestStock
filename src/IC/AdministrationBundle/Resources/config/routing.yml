@@ -54,8 +54,7 @@ ic_administration_affichage_fournisseur:
         idFournisseur: null
     requirements:
         idFournisseur: \d{1,10}
-            
-        
+                    
 ic_administration_fournisseur_add:
     path:     /Ajouter-Fournisseur
     defaults: { _controller: ICAdministrationBundle:Fournisseur:addFournisseur }       
@@ -73,10 +72,14 @@ ic_administration_fournisseur_delete:
         idFournisseur: \d{1,10} 
 
 ic_administration_nomenclature:
-    path:     /Nomenclature-{allVersion}
-    defaults: { _controller: ICAdministrationBundle:Nomenclature:affichageNomenclature, allVersion: 0 }      
+    path:     /Nomenclature-{allVersion}-{idNomenclature}
+    defaults:
+        _controller: ICAdministrationBundle:Nomenclature:affichageNomenclature
+        allVersion: 0
+        idNomenclature: 0   
     requirements:
         allVersion: 0|1
+        idNomenclature: \d{1,10}
         
 ic_administration_composant_nomenclature:
     path:     /Composant-Nomenclature-{idNomenclature}
@@ -98,14 +101,36 @@ ic_administration_add_version_nomenclature:
     path:     /Ajouter-Version-Nomenclature-{idNomenclature}
     defaults: { _controller: ICAdministrationBundle:Nomenclature:ajouterVersionNomenclature }
     requirements:
-        idNomenclature: \d{1,10}
-                        
-ic_administration_delete_version_nomenclature:
-    path:     /Supprimer-Nomenclature-{idNomenclature}
-    defaults: { _controller: ICAdministrationBundle:Nomenclature:deleteVersionNomenclature }      
+        idNomenclature: \d{1,10}       
+                                
+ic_administration_update_nomenclature:
+    path:     /Modifier-Nomenclature-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:modifierNomenclature }      
     requirements:
         idNomenclature: \d{1,10}
         
+ic_administration_update_composant_nomenclature:
+    path:     /Modifier-Nomenclature-Composant-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:modifierNomenclatureComposant }      
+    requirements:
+        idNomenclature: \d{1,10}
+        
+ic_administration_update_produit_fini_nomenclature:
+    path:     /Modifier-Nomenclature-Produit-Fini-{idNomenclature}
+    defaults: { _controller: ICAdministrationBundle:Nomenclature:modifierNomenclatureProduitFini }      
+    requirements:
+        idNomenclature: \d{1,10}
+        
+ic_administration_affichage_sous_famille:
+    path:     /Sous-Famille
+    defaults: { _controller: ICAdministrationBundle:Option:sousFamille }      
+    
+ic_administration_add_sous_famille:
+    path:     /Ajouter-Sous-Famille-{idFamille}
+    defaults: { _controller: ICAdministrationBundle:Option:AddsousFamille }      
+    requirements:
+        idFamille: \d{1,10}
+                                    
 ic_ajax_choixFamille:
     path:     /Choix-Famille-{idFamille}
     defaults: { _controller: ICAdministrationBundle:MatierePremiere:choixFamille, idFamille: 0 }

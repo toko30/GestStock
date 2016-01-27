@@ -1,0 +1,38 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Sous Famille{% endblock %}
+
+{% block entete %}{{ parent() }} Sous Famille{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/optionSousFamille.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+
+    {% for famille in listFamille %}
+        <form method="post" action="{{ path('ic_administration_add_sous_famille', {idFamille: famille.id}) }}">
+            <table>
+                <tr>
+                    <td colspan="2">{{famille.nom}}</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="nom"></td><td><input type="submit"></td>
+                </tr>
+            {% for sousFamille in listSousFamille %}
+                {% if famille.id == sousFamille.idFamille %}
+                    <tr>
+                        <td>{{sousFamille.nom}}</td><td>modifier</td>
+                    </tr>
+                {% endif%}
+            {% endfor %}
+            </table>
+        </form>
+    {% endfor %}
+
+{% endblock %}

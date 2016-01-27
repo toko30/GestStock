@@ -18,4 +18,12 @@ class SousFamilleRepository extends \Doctrine\ORM\EntityRepository
         ->setParameter('idFamille', $idFamille)
         ->getQuery()->getResult();
     }
+    public function getAllSousFamille()
+    {
+        return $this->createQueryBuilder('sf')
+        ->join('sf.famille', 'f')
+        ->addSelect('f')
+        ->orderBy('sf.idFamille', 'ASC')
+        ->getQuery()->getResult();
+    }
 }

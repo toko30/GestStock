@@ -9,7 +9,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="idNomenclature" type="integer" column="id_nomenclature" nullable="false">
+    <field name="idVersion" type="integer" column="id_version" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
@@ -29,8 +29,8 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <one-to-one field="nomenclature" target-entity="Nomenclature">
-      <join-column name="id_nomenclature" referenced-column-name="id" />
+    <one-to-one field="version" target-entity="VersionNomenclature">
+      <join-column name="id_version" referenced-column-name="id" />
     </one-to-one>
     <one-to-one field="composant" target-entity="Composant" >
       <join-column name="id_composant" referenced-column-name="id" />

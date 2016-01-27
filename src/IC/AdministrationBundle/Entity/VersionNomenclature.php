@@ -22,6 +22,11 @@ class VersionNomenclature
      */
     private $id;
 
+    /**
+     * @var \IC\AdministrationBundle\Entity\Nomenclature
+     */
+    private $nomenclature;
+
 
     /**
      * Set idNomenclature
@@ -80,11 +85,6 @@ class VersionNomenclature
     {
         return $this->id;
     }
-    /**
-     * @var \IC\AdministrationBundle\Entity\Nomenclature
-     */
-    private $nomenclature;
-
 
     /**
      * Set nomenclature
@@ -110,3 +110,4 @@ class VersionNomenclature
         return $this->nomenclature;
     }
 }
+

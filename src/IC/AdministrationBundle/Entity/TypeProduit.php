@@ -52,3 +52,4 @@ class TypeProduit
         return $this->id;
     }
 }
+

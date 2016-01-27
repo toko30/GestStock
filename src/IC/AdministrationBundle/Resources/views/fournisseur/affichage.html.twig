@@ -17,7 +17,6 @@
     {{ form_start(form) }}
         <table>
             <tr>
-                <td class="titreFournisseurSupprimer"></td>
                 <td class="titrePageFournisseur">Nom</td>
                 <td class="titrePageFournisseur">Contact</td>
                 <td class="titrePageFournisseur">Email</td>
@@ -28,7 +27,6 @@
             </tr>
             {% if idFournisseur is null %}
                 <tr>
-                    <td class="FournisseurSupprimer"></td>
                     <td class="titrePageFournisseur">{{ form_widget(form.nom) }}</td>
                     <td class="titrePageFournisseur">{{ form_widget(form.contact) }}</td>
                     <td class="titrePageFournisseur">{{ form_widget(form.email) }}</td>
@@ -40,7 +38,6 @@
             {% endif %}
             {% for fournisseur in fournisseurs %}
                 {% if idFournisseur == fournisseur.id %}
-                    <td class="FournisseurSupprimer"></td>
                     <td class="titrePageFournisseur">{{ form_widget(form.nom) }}</td>
                     <td class="titrePageFournisseur">{{ form_widget(form.contact) }}</td>
                     <td class="titrePageFournisseur">{{ form_widget(form.email) }}</td>
@@ -50,13 +47,6 @@
                     <td class="FournisseurDetails">{{ form_widget(form.modifier_le_fournisseur) }}</td>                
                 {% else %} 
                     <tr>
-                        <td class="FournisseurSupprimer">
-                            <a href="{{ path('ic_administration_fournisseur_delete', {'idFournisseur': fournisseur.id}) }}">
-                                {% image 'img/redcroix.png' %}
-                                    <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
-                                {% endimage %}
-                            </a>                        
-                        </td>
                         <td>{{ fournisseur.nom }}</td>
                         <td>{{ fournisseur.contact }}</td>
                         <td>{{ fournisseur.email }}</td>

@@ -13,8 +13,8 @@ class ComposantNomenclatureRepository extends \Doctrine\ORM\EntityRepository
     public function getComposantByNomenclature($idNomenclature)
     {
         return $this->createQueryBuilder('cn')
-        ->where('cn.idNomenclature = :idNomenclature')
-        ->setParameter('idNomenclature', $idNomenclature)
+        ->where('cn.idVersion = :idVersion')
+        ->setParameter('idVersion', $idNomenclature)
         ->getQuery()
         ->getResult();
     }
