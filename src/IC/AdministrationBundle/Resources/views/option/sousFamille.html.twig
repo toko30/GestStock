@@ -16,18 +16,29 @@
 	{{ parent()}}
 
     {% for famille in listFamille %}
-        <form method="post" action="{{ path('ic_administration_add_sous_famille', {idFamille: famille.id}) }}">
-            <table>
+        {% if idSousFamille == 0 %}
+            <form method="post" action="{{ path('ic_administration_add_sous_famille', {idFamille: famille.id}) }}">
+        {% else %}
+            <form method="post" action="{{ path('ic_administration_update_sous_famille', {idSousFamille: idSousFamille}) }}">
+        {% endif %}
+            <table> 
                 <tr>
                     <td colspan="2">{{famille.nom}}</td>
                 </tr>
-                <tr>
-                    <td><input type="text" name="nom"></td><td><input type="submit"></td>
-                </tr>
+                {% if idSousFamille == 0 %}
+                    <tr>
+                        <td><input type="text" name="nom"></td><td><input type="submit"></td>
+                    </tr>
+                {% endif %}
             {% for sousFamille in listSousFamille %}
+            
                 {% if famille.id == sousFamille.idFamille %}
                     <tr>
-                        <td>{{sousFamille.nom}}</td><td>modifier</td>
+                        {% if idSousFamille == sousFamille.id %} 
+                             <td><input type="text" name="nom" placeholder="{{sousFamille.nom}}"></td><td><input type="submit"></td>   
+                        {% else %}
+                            <td>{{sousFamille.nom}}</td><td><a href="{{ path('ic_administration_affichage_sous_famille', {idSousFamille: sousFamille.id}) }}">modifier<a></td>
+                        {% endif %}
                     </tr>
                 {% endif%}
             {% endfor %}

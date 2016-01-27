@@ -122,15 +122,23 @@ ic_administration_update_produit_fini_nomenclature:
         idNomenclature: \d{1,10}
         
 ic_administration_affichage_sous_famille:
-    path:     /Sous-Famille
-    defaults: { _controller: ICAdministrationBundle:Option:sousFamille }      
-    
+    path:     /Sous-Famille{idSousFamille}
+    defaults: { _controller: ICAdministrationBundle:Option:sousFamille, idSousFamille: 0 }      
+    requirements:
+        idSousFamille: \d{1,10}
+        
 ic_administration_add_sous_famille:
     path:     /Ajouter-Sous-Famille-{idFamille}
-    defaults: { _controller: ICAdministrationBundle:Option:AddsousFamille }      
+    defaults: { _controller: ICAdministrationBundle:Option:addsousFamille }      
     requirements:
         idFamille: \d{1,10}
-                                    
+        
+ic_administration_update_sous_famille:
+    path:     /Modifier-Sous-Famille-{idSousFamille}
+    defaults: { _controller: ICAdministrationBundle:Option:updatesousFamille }      
+    requirements:
+        idSousFamille: \d{1,10}
+                                            
 ic_ajax_choixFamille:
     path:     /Choix-Famille-{idFamille}
     defaults: { _controller: ICAdministrationBundle:MatierePremiere:choixFamille, idFamille: 0 }
