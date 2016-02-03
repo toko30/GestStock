@@ -3,9 +3,9 @@
 namespace IC\AdministrationBundle\Entity;
 
 /**
- * Nomenclature
+ * TypeAutre
  */
-class Nomenclature
+class TypeAutre
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class Nomenclature
      *
      * @param string $nom
      *
-     * @return Nomenclature
+     * @return TypeAutre
      */
     public function setNom($nom)
     {
@@ -52,3 +52,4 @@ class Nomenclature
         return $this->id;
     }
 }
+

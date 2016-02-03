@@ -23,14 +23,14 @@ class ProduitFiniIdentifiantType extends AbstractType
     $builder->add('recherche', 'text', array('required' => false));
                                    
     $builder->add('type', 'choice', array('choices' => $choixType,
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0));
                 
     $builder->add('frequence', 'choice', array('choices' => array('13,56 MHz', '125 KHz'),
-                'multiple' => true,
-                'expanded' => true,
-                'empty_data'  => 0));                              
+                  'multiple' => true,
+                  'expanded' => true,
+                  'empty_data'  => 0));                              
               
    $builder->add('Rechercher', 'submit');                                                 
     $builder->add('Trier', 'submit');

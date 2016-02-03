@@ -284,4 +284,3 @@ class Composant
         return $this->sousFamille;
     }
 }
-

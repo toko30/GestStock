@@ -1,0 +1,82 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Nomenclature{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    
+    {{ form_start(form) }}
+    <table>
+        <tr>
+            <td>Reference</td>
+            <td>Désignation</td>
+            <td>Type</td>
+            <td>Fréquence</td>
+            <td>Petite</td>
+            <td>Moyenne</td>
+            <td>Grande</td>
+            <td></td>
+        </tr>
+        {% if idTypeLecteur == 0 %}
+            <tr>
+                <td>{{ form_widget(form.nomenclature) }}</td>
+                <td>{{ form_widget(form.designation) }}</td>
+                <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                <td>{{ form_widget(form.frequence) }}</td>
+                <td>{{ form_widget(form.petite) }}</td>
+                <td>{{ form_widget(form.moyenne) }}</td>
+                <td>{{ form_widget(form.grande) }}</td>
+                <td>{{ form_widget(form.submitTypeLecteur, {attr: {'class': 'buttonAdd'}}) }}</td>
+            </tr>
+        {% endif %}
+        {% for typeLec in typeLecteur %}
+            {% if idTypeLecteur == typeLec.id %}
+                <tr>
+                    <td>{{ form_widget(form.nomenclature) }}</td>
+                    <td>{{ form_widget(form.designation) }}</td>
+                    <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                    <td>{{ form_widget(form.frequence) }}</td>
+                    <td>{{ form_widget(form.petite) }}</td>
+                    <td>{{ form_widget(form.moyenne) }}</td>
+                    <td>{{ form_widget(form.grande) }}</td>
+                    <td>{{ form_widget(form.submitTypeLecteur, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>{{ typeLec.nomenclature.nom }}</td>
+                    <td>{{ typeLec.designation }}</td>
+                    <td>{{ typeLec.sousTypeLecteur.nom }}</td>
+                    <td>
+                    {% if typeLec.frequence == 1 %}
+                        13.56MHz
+                    {% else %}
+                        125KHz
+                    {% endif %}
+                    </td>
+                    <td>{{ typeLec.petite }}</td>
+                    <td>{{ typeLec.moyenne }}</td>
+                    <td>{{ typeLec.grande }}</td>
+                    <td>
+                        <a href="{{ path('ic_administration_affichage_produit_fini_lecteur_interne', {'idTypeLecteur': typeLec.id}) }}">
+                            {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                            {% endimage %}
+                        </a>
+                    </td>
+                </tr>
+            {% endif %}
+            
+        {% endfor %}
+    </table>
+    {{ form_end(form) }}
+{% endblock %}

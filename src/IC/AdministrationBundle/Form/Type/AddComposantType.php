@@ -21,19 +21,17 @@ class AddComposantType extends AbstractType
         $builder->setAction($this->getPath());
         
         $builder->add('nom', 'text', array('required' => true));
-        $builder->add('boitier', 'text', array('required' => true));
+        $builder->add('boitier', 'text', array('required' => false));
         $builder->add('stockMini', 'text', array('required' => true));
 
         $builder->add('famille', 'entity', array(
                       'class' => 'IC\AdministrationBundle\Entity\Famille',
                       'choice_label' => 'nom',
-                      'multiple'  => false,
-                      ));
+                      'multiple'  => false));
   
         $builder->add('sousFamille', 'entity', array(
                       'class' => 'IC\AdministrationBundle\Entity\SousFamille',
                       'choice_label' => 'nom',
-
                       'multiple'  => false,
                       'query_builder' => function (SousFamilleRepository $er)
                       {

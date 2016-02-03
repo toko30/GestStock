@@ -3,9 +3,9 @@
 namespace IC\AdministrationBundle\Entity;
 
 /**
- * Nomenclature
+ * SousTypeLecteur
  */
-class Nomenclature
+class SousTypeLecteur
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class Nomenclature
      *
      * @param string $nom
      *
-     * @return Nomenclature
+     * @return SousTypeLecteur
      */
     public function setNom($nom)
     {

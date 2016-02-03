@@ -10,7 +10,7 @@ class UpdateFournisseurType extends AbstractType
 {
     private $path;
     
-    public function __construct($path)
+    public function __construct($path = null)
     {
         $this->path = $path;
     }

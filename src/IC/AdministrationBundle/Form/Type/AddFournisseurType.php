@@ -28,8 +28,7 @@ class AddFournisseurType extends AbstractType
         $builder->add('type', 'entity', array(
                       'class' => 'IC\AdministrationBundle\Entity\TypeProduit',
                       'choice_label' => 'nom',
-                      'multiple'  => false,
-                      ));
+                      'multiple'  => false));
 
         $builder->add('add_fournisseur', 'submit', array('attr' => array('class' => 'buttonAdd')));
     }

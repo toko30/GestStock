@@ -1,0 +1,243 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Nomenclature{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    
+    {% set idFournisseur = lecteurAutre[0].fournisseur.id %}
+    
+    {{ form_start(form) }}
+        {{ form_widget(form.idFournisseur, {attr: {'value': lecteurAutre[0].fournisseur.id}}) }}
+        <h1>{{lecteurAutre[0].fournisseur.nom}}</h1>
+        <table>
+            <tr>
+                <td>Reference</td>
+                <td>Désignation</td>
+                <td>Type</td>
+                <td>Fréquence</td>
+                <td>Petite</td>
+                <td>Moyenne</td>
+                <td>Grande</td>
+                <td></td>
+            </tr>
+            {% if idAutre == 0 or idType != 1 %}
+                <tr>
+                    <td>{{ form_widget(form.reference) }}</td>
+                    <td>{{ form_widget(form.designation) }}</td>
+                    <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                    <td>{{ form_widget(form.frequence) }}</td>
+                    <td>{{ form_widget(form.petite) }}</td>
+                    <td>{{ form_widget(form.moyenne) }}</td>
+                    <td>{{ form_widget(form.grande) }}</td>
+                    <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                </tr>
+            {% endif %}
+            
+            {% for lecAutre in lecteurAutre %}
+                {% if idFournisseur != lecAutre.fournisseur.id %}
+                    {% set idFournisseur = lecAutre.fournisseur.id %}
+                    </table>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.idFournisseur, {attr: {'value': lecAutre.fournisseur.id}}) }}
+                    <h1>{{lecAutre.fournisseur.nom}}</h1>
+                    <table>
+                        <tr>
+                            <td>Reference</td>
+                            <td>Désignation</td>
+                            <td>Type</td>
+                            <td>Fréquence</td>
+                            <td>Petite</td>
+                            <td>Moyenne</td>
+                            <td>Grande</td>
+                            <td></td>
+                        </tr>
+                        {% if idAutre == 0 or idType != 1 %}
+                            <tr>
+                                <td>{{ form_widget(form.reference) }}</td>
+                                <td>{{ form_widget(form.designation) }}</td>
+                                <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                                <td>{{ form_widget(form.frequence) }}</td>
+                                <td>{{ form_widget(form.petite) }}</td>
+                                <td>{{ form_widget(form.moyenne) }}</td>
+                                <td>{{ form_widget(form.grande) }}</td>
+                                <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                            </tr>
+                        {% endif %}
+                    {% if idAutre == lecAutre.id and idType == 1 %}
+                        <tr>
+                            <td>{{ form_widget(form.reference) }}</td>
+                            <td>{{ form_widget(form.designation) }}</td>
+                            <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                            <td>{{ form_widget(form.frequence) }}</td>
+                            <td>{{ form_widget(form.petite) }}</td>
+                            <td>{{ form_widget(form.moyenne) }}</td>
+                            <td>{{ form_widget(form.grande) }}</td>
+                            <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ lecAutre.reference }}</td>
+                            <td>{{ lecAutre.designation }}</td>
+                            <td>{{ lecAutre.sousTypeLecteur.nom }}</td>
+                            <td>
+                            {% if lecAutre.frequence == 1 %}
+                                13.56MHz
+                            {% else %}
+                                125KHz
+                            {% endif %}
+                            </td>
+                            <td>{{ lecAutre.petite }}</td>
+                            <td>{{ lecAutre.moyenne }}</td>
+                            <td>{{ lecAutre.grande }}</td>
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': lecAutre.id, idType: 1}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}                
+                {% else %}
+                    {% if idAutre == lecAutre.id and idType == 1 %}
+                        <tr>
+                            <td>{{ form_widget(form.reference) }}</td>
+                            <td>{{ form_widget(form.designation) }}</td>
+                            <td>{{ form_widget(form.sousTypeLecteur) }}</td>
+                            <td>{{ form_widget(form.frequence) }}</td>
+                            <td>{{ form_widget(form.petite) }}</td>
+                            <td>{{ form_widget(form.moyenne) }}</td>
+                            <td>{{ form_widget(form.grande) }}</td>
+                            <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ lecAutre.reference }}</td>
+                            <td>{{ lecAutre.designation }}</td>
+                            <td>{{ lecAutre.sousTypeLecteur.nom }}</td>
+                            <td>
+                            {% if lecAutre.frequence == 1 %}
+                                13.56MHz
+                            {% else %}
+                                125KHz
+                            {% endif %}
+                            </td>
+                            <td>{{ lecAutre.petite }}</td>
+                            <td>{{ lecAutre.moyenne }}</td>
+                            <td>{{ lecAutre.grande }}</td> 
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': lecAutre.id, idType: 1}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endif %}  
+            {% endfor %}
+        </table>
+       {{ form_end(form) }}
+    {% set idFournisseur = autre[0].fournisseur.id %}
+    
+    {{ form_start(form1) }}
+        {{ form_widget(form1.idFournisseur, {attr: {'value': autre[0].fournisseur.id}}) }}
+        <h1>{{autre[0].fournisseur.nom}}</h1>
+        <table>
+            <tr>
+                <td>Reference</td>
+                <td>Désignation</td>
+                <td>Type</td>
+                <td></td>
+            </tr>
+            {% if idAutre == 0 or idType != 2 %}
+                <tr>
+                    <td>{{ form_widget(form1.reference) }}</td>
+                    <td>{{ form_widget(form1.designation) }}</td>
+                    <td>{{ form_widget(form1.typeAutre) }}</td>
+                    <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                </tr>
+            {% endif %}
+            
+            {% for a in autre %}
+                {% if idFournisseur != a.fournisseur.id %}
+                    {% set idFournisseur = a.fournisseur.id %}
+                    </table>
+                    {{ form_end(form1) }}
+                    {{ form_start(form1) }}
+                    {{ form_widget(form1.idFournisseur, {attr: {'value': a.fournisseur.id}}) }}
+                    <h1>{{a.fournisseur.nom}}</h1>
+                    <table>
+                        <tr>
+                            <td>Reference</td>
+                            <td>Désignation</td>
+                            <td>Type</td>
+                            <td></td>
+                        </tr>
+                        {% if idAutre == 0 or idType != 2 %}
+                            <tr>
+                                <td>{{ form_widget(form1.reference) }}</td>
+                                <td>{{ form_widget(form1.designation) }}</td>
+                                <td>{{ form_widget(form1.typeAutre) }}</td>
+                                <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                            </tr>
+                        {% endif %}
+                    {% if idAutre == a.id and idType == 2 %}
+                        <tr>
+                            <td>{{ form_widget(form1.reference) }}</td>
+                            <td>{{ form_widget(form1.designation) }}</td>
+                            <td>{{ form_widget(form1.typeAutre) }}</td>
+                            <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ a.reference }}</td>
+                            <td>{{ a.designation }}</td>
+                            <td>{{ a.typeAutre.nom }}</td>
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': a.id, idType: 2}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}                
+                {% else %}
+                    {% if idAutre == a.id and idType == 2 %}
+                        <tr>
+                            <td>{{ form_widget(form1.reference) }}</td>
+                            <td>{{ form_widget(form1.designation) }}</td>
+                            <td>{{ form_widget(form1.typeAutre) }}</td>
+                            <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ a.reference }}</td>
+                            <td>{{ a.designation }}</td>
+                            <td>{{ a.typeAutre.nom }}</td>
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': a.id, idType: 2}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endif %}  
+            {% endfor %}
+        </table>
+        {{ form_end(form1) }}
+{% endblock %}

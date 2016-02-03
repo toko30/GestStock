@@ -212,3 +212,16 @@ tr td
     border:0;
     cursor:pointer;
 }
+.buttonAdd
+{
+    display: inline-block;
+    width:20px;
+    height:20px;
+    background:url('../img/whiteplus.png') top left no-repeat;
+    text-indent:-9000px;
+    text-transform: capitalize;
+    line-height: -9999px;
+    overflow:hidden;
+    border:0;
+    cursor:pointer;
+}

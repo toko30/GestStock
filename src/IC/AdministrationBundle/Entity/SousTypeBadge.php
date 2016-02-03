@@ -3,9 +3,9 @@
 namespace IC\AdministrationBundle\Entity;
 
 /**
- * Nomenclature
+ * SousTypeBadge
  */
-class Nomenclature
+class SousTypeBadge
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class Nomenclature
      *
      * @param string $nom
      *
-     * @return Nomenclature
+     * @return SousTypeBadge
      */
     public function setNom($nom)
     {

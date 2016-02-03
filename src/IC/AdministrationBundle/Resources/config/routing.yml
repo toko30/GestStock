@@ -121,6 +121,61 @@ ic_administration_update_produit_fini_nomenclature:
     requirements:
         idNomenclature: \d{1,10}
         
+ic_administration_affichage_produit_fini_lecteur_interne:
+    path:     /Produit-Fini-Lecteur-{idTypeLecteur}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:affichageProduitFiniLecteurInterne, idTypeLecteur: 0 }
+    requirements:
+        idTypeLecteur: \d{1,10}
+        
+ic_administration_type_lecteur_add:
+    path:     /Ajouter-Produit-Fini-Lecteur
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:addProduitFiniLecteurInterne }
+            
+ic_administration_type_lecteur_update:
+    path:     /Modifier-Produit-Fini-Lecteur-{idTypeLecteur}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:updateProduitFiniLecteurInterne }
+    requirements:
+        idTypeLecteur: \d{1,10}
+        
+ic_administration_affichage_produit_fini_identifiant_interne:
+    path:     /Produit-Identifiant-{idIdentifiant}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:affichageIdentifiant, idIdentifiant: 0 }
+    requirements:
+        idIdentifiant: \d{1,10}
+        
+ic_administration_identifiant_add:
+    path:     /Ajouter-Identifiant
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:addIdentifiant }
+            
+ic_administration_identifiant_update:
+    path:     /Modifier-Identifiant-{idIdentifiant}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:updateIdentifiant }
+    requirements:
+        idIdentifiant: \d{1,10}
+        
+ic_administration_affichage_produit_fini_autre_interne:
+    path:     /Produit-Autre-{idAutre}-{idType}
+    defaults: 
+        _controller: ICAdministrationBundle:ProduitFini:affichageAutre
+        idAutre: 0
+        idType: 0
+    requirements:
+        idAutre: \d{1,10}
+        idType: \d{1,10}
+        
+ic_administration_autre_add:
+    path:     /Ajouter-Autre-{idType}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:addAutre }
+    requirements:
+        idType: \d{1,10}
+                    
+ic_administration_autre_update:
+    path:     /Modifier-Autre-{idAutre}-{idType}
+    defaults: { _controller: ICAdministrationBundle:ProduitFini:updateAutre }
+    requirements:
+        idAutre: \d{1,10}
+        idType: \d{1,10}   
+                                
 ic_administration_affichage_sous_famille:
     path:     /Sous-Famille{idSousFamille}
     defaults: { _controller: ICAdministrationBundle:Option:sousFamille, idSousFamille: 0 }      

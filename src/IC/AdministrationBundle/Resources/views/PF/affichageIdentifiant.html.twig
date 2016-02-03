@@ -1,0 +1,126 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Nomenclature{% endblock %}
+
+{% block entete %}{{ parent() }} Nomenclature{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    {% set idFournisseur = typeIdentifiant[0].fournisseur.id %}
+    {{ form_start(form) }}
+    {{ form_widget(form.idFournisseur, {attr: {'value': typeIdentifiant[0].fournisseur.id}}) }}
+        <h1>{{typeIdentifiant[0].fournisseur.nom}}</h1>
+        <table>
+            <tr>
+                <td>Reference</td>
+                <td>Désignation</td>
+                <td>Type</td>
+                <td>Fréquence</td>
+                <td></td>
+            </tr>
+            {% if idIdentifiant == 0 %}
+                <tr>
+                    <td>{{ form_widget(form.reference) }}</td>
+                    <td>{{ form_widget(form.designation) }}</td>
+                    <td>{{ form_widget(form.sousTypeBadge) }}</td>
+                    <td>{{ form_widget(form.frequence) }}</td>
+                    <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
+                </tr>
+            {% endif %}
+            {% for typeId in typeIdentifiant %}
+                {% if idFournisseur != typeId.fournisseur.id %}
+                    {% set idFournisseur = typeId.fournisseur.id %}
+                    </table>
+                    {{ form_end(form) }}
+                    {{ form_start(form) }}
+                    {{ form_widget(form.idFournisseur, {attr: {'value': typeId.fournisseur.id}}) }}
+                    <h1>{{typeId.fournisseur.nom}}</h1>
+                    <table>
+                        <tr>
+                            <td>Reference</td>
+                            <td>Désignation</td>
+                            <td>Type</td>
+                            <td>Fréquence</td>
+                            <td></td>
+                        </tr>
+                        {% if idIdentifiant == 0 %}
+                            <tr>
+                                <td>{{ form_widget(form.reference) }}</td>
+                                <td>{{ form_widget(form.designation) }}</td>
+                                <td>{{ form_widget(form.sousTypeBadge) }}</td>
+                                <td>{{ form_widget(form.frequence) }}</td>
+                                <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
+                            </tr>
+                        {% endif %}
+                    {% if idIdentifiant == typeId.id %}
+                        <tr>
+                            <td>{{ form_widget(form.reference) }}</td>
+                            <td>{{ form_widget(form.designation) }}</td>
+                            <td>{{ form_widget(form.sousTypeBadge) }}</td>
+                            <td>{{ form_widget(form.frequence) }}</td>
+                            <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ typeId.reference }}</td>
+                            <td>{{ typeId.designation }}</td>
+                            <td>{{ typeId.sousTypeBadge.nom }}</td>
+                            <td>
+                            {% if typeId.frequence == 1 %}
+                                13.56MHz
+                            {% else %}
+                                125KHz
+                            {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_identifiant_interne', {'idIdentifiant': typeId.id}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}                
+                {% else %}
+                    {% if idIdentifiant == typeId.id %}
+                        <tr>
+                            <td>{{ form_widget(form.reference) }}</td>
+                            <td>{{ form_widget(form.designation) }}</td>
+                            <td>{{ form_widget(form.sousTypeBadge) }}</td>
+                            <td>{{ form_widget(form.frequence) }}</td>
+                            <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ typeId.reference }}</td>
+                            <td>{{ typeId.designation }}</td>
+                            <td>{{ typeId.sousTypeBadge.nom }}</td>
+                            <td>
+                            {% if typeId.frequence == 1 %}
+                                13.56MHz
+                            {% else %}
+                                125KHz
+                            {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('ic_administration_affichage_produit_fini_identifiant_interne', {'idIdentifiant': typeId.id}) }}">
+                                    {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    {% endimage %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endif %}  
+            {% endfor %}
+        </table>
+        {{ form_end(form) }}
+{% endblock %}

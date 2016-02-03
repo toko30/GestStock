@@ -36,7 +36,6 @@
             </constraint>
         </property>
          <property name="boitier">
-            <constraint name="NotBlank" />
             <constraint name="Length">
                 <option name="min">1</option>
             </constraint>
@@ -66,6 +65,68 @@
             </constraint>
         </property>
         <property name="idFournisseur">
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\TypeLecteur">
+        <property name="designation">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\TypeBadge">
+        <property name="reference">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="designation">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="frequence">
+            <constraint name="Length">
+                <option name="min">1</option>
+                <option name="max">2</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\TypeLecteurAutre">
+        <property name="reference">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="designation">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="frequence">
+            <constraint name="Length">
+                <option name="min">1</option>
+                <option name="max">1</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="IC\AdministrationBundle\Entity\Autre">
+        <property name="reference">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+        <property name="designation">
+            <constraint name="NotBlank" />
             <constraint name="Length">
                 <option name="min">1</option>
             </constraint>

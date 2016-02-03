@@ -3,9 +3,9 @@
 namespace IC\AdministrationBundle\Entity;
 
 /**
- * ComposantFournisseur
+ * TypeBadge
  */
-class ComposantFournisseur
+class TypeBadge
 {
     /**
      * @var string
@@ -13,14 +13,19 @@ class ComposantFournisseur
     private $reference;
 
     /**
-     * @var float
+     * @var string
      */
-    private $prix;
+    private $designation;
 
     /**
      * @var integer
      */
-    private $idComposant;
+    private $frequence;
+
+    /**
+     * @var integer
+     */
+    private $type;
 
     /**
      * @var integer
@@ -33,22 +38,21 @@ class ComposantFournisseur
     private $id;
 
     /**
-     * @var \IC\AdministrationBundle\Entity\Composant
+     * @var \IC\AdministrationBundle\Entity\SousTypeBadge
      */
-    private $composant;
-
+    private $sousTypeBadge;
+    
     /**
      * @var \IC\AdministrationBundle\Entity\Fournisseur
      */
     private $fournisseur;
-
 
     /**
      * Set reference
      *
      * @param string $reference
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
     public function setReference($reference)
     {
@@ -68,51 +72,75 @@ class ComposantFournisseur
     }
 
     /**
-     * Set prix
+     * Set designation
      *
-     * @param float $prix
+     * @param string $designation
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
-    public function setPrix($prix)
+    public function setDesignation($designation)
     {
-        $this->prix = $prix;
+        $this->designation = $designation;
 
         return $this;
     }
 
     /**
-     * Get prix
+     * Get designation
      *
-     * @return float
+     * @return string
      */
-    public function getPrix()
+    public function getDesignation()
     {
-        return $this->prix;
+        return $this->designation;
     }
 
     /**
-     * Set idComposant
+     * Set frequence
      *
-     * @param integer $idComposant
+     * @param integer $frequence
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
-    public function setIdComposant($idComposant)
+    public function setFrequence($frequence)
     {
-        $this->idComposant = $idComposant;
+        $this->frequence = $frequence;
 
         return $this;
     }
 
     /**
-     * Get idComposant
+     * Get frequence
      *
      * @return integer
      */
-    public function getIdComposant()
+    public function getFrequence()
     {
-        return $this->idComposant;
+        return $this->frequence;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return TypeBadge
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -120,7 +148,7 @@ class ComposantFournisseur
      *
      * @param integer $idFournisseur
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
     public function setIdFournisseur($idFournisseur)
     {
@@ -150,27 +178,27 @@ class ComposantFournisseur
     }
 
     /**
-     * Set composant
+     * Set sousTypeBadge
      *
-     * @param \IC\AdministrationBundle\Entity\Composant $composant
+     * @param \IC\AdministrationBundle\Entity\SousTypeBadge $sousTypeBadge
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
-    public function setComposant(\IC\AdministrationBundle\Entity\Composant $composant = null)
+    public function setSousTypeBadge(\IC\AdministrationBundle\Entity\SousTypeBadge $sousTypeBadge = null)
     {
-        $this->composant = $composant;
+        $this->sousTypeBadge = $sousTypeBadge;
 
         return $this;
     }
 
     /**
-     * Get composant
+     * Get sousTypeBadge
      *
-     * @return \IC\AdministrationBundle\Entity\Composant
+     * @return \IC\AdministrationBundle\Entity\SousTypeBadge
      */
-    public function getComposant()
+    public function getSousTypeBadge()
     {
-        return $this->composant;
+        return $this->sousTypeBadge;
     }
 
     /**
@@ -178,7 +206,7 @@ class ComposantFournisseur
      *
      * @param \IC\AdministrationBundle\Entity\Fournisseur $fournisseur
      *
-     * @return ComposantFournisseur
+     * @return TypeBadge
      */
     public function setFournisseur(\IC\AdministrationBundle\Entity\Fournisseur $fournisseur = null)
     {

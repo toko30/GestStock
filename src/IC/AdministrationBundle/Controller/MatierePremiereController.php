@@ -23,7 +23,7 @@ class MatierePremiereController extends Controller
         if('POST' == $request->getMethod())
         {
             //recheche basique par composant
-            $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->getStockByCritere($_POST['formComposantInterne']);
+            $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->getStockByCritere($request->get('formComposantInterne'));
         }
         else
             $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->findAll();

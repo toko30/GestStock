@@ -110,4 +110,3 @@ class VersionNomenclature
         return $this->nomenclature;
     }
 }
-

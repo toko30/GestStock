@@ -226,4 +226,3 @@ class Fournisseur
         return $this->typeProduit;
     }
 }
-
