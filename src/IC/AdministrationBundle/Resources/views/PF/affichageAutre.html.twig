@@ -6,7 +6,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
-	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+	'@ICAdministrationBundle/Resources/public/css/produitFini.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -15,32 +15,37 @@
 
 	{{ parent()}}
     
-    {% set idFournisseur = lecteurAutre[0].fournisseur.id %}
+    
+    {% if lecteurAutre is not empty %}
     
     {{ form_start(form) }}
         {{ form_widget(form.idFournisseur, {attr: {'value': lecteurAutre[0].fournisseur.id}}) }}
+        
         <h1>{{lecteurAutre[0].fournisseur.nom}}</h1>
+        
+        {% set idFournisseur = lecteurAutre[0].fournisseur.id %}
+        
         <table>
             <tr>
-                <td>Reference</td>
-                <td>Désignation</td>
-                <td>Type</td>
-                <td>Fréquence</td>
-                <td>Petite</td>
-                <td>Moyenne</td>
-                <td>Grande</td>
-                <td></td>
+                <td class="titreReferenceAutre">Reference</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreType">Type</td>
+                <td class="titreFrequence">Fréquence</td>
+                <td class="titreEtiquette">Petite</td>
+                <td class="titreEtiquette">Moyenne</td>
+                <td class="titreEtiquette">Grande</td>
+                <td class="titreDetails"></td>
             </tr>
             {% if idAutre == 0 or idType != 1 %}
                 <tr>
-                    <td>{{ form_widget(form.reference) }}</td>
-                    <td>{{ form_widget(form.designation) }}</td>
-                    <td>{{ form_widget(form.sousTypeLecteur) }}</td>
-                    <td>{{ form_widget(form.frequence) }}</td>
-                    <td>{{ form_widget(form.petite) }}</td>
-                    <td>{{ form_widget(form.moyenne) }}</td>
-                    <td>{{ form_widget(form.grande) }}</td>
-                    <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.sousTypeLecteur) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.petite) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.moyenne) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.grande) }}</td>
+                    <td class="details">{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
                 </tr>
             {% endif %}
             
@@ -53,42 +58,42 @@
                     <h1>{{lecAutre.fournisseur.nom}}</h1>
                     <table>
                         <tr>
-                            <td>Reference</td>
-                            <td>Désignation</td>
-                            <td>Type</td>
-                            <td>Fréquence</td>
-                            <td>Petite</td>
-                            <td>Moyenne</td>
-                            <td>Grande</td>
-                            <td></td>
+                            <td class="titreReferenceLecteur">Reference</td>
+                            <td class="titreDesignation">Désignation</td>
+                            <td class="titreType">Type</td>
+                            <td class="titreFrequence">Fréquence</td>
+                            <td class="titreEtiquette">Petite</td>
+                            <td class="titreEtiquette">Moyenne</td>
+                            <td class="titreEtiquette">Grande</td>
+                            <td class="titreDetails"></td>
                         </tr>
                         {% if idAutre == 0 or idType != 1 %}
                             <tr>
-                                <td>{{ form_widget(form.reference) }}</td>
-                                <td>{{ form_widget(form.designation) }}</td>
-                                <td>{{ form_widget(form.sousTypeLecteur) }}</td>
-                                <td>{{ form_widget(form.frequence) }}</td>
-                                <td>{{ form_widget(form.petite) }}</td>
-                                <td>{{ form_widget(form.moyenne) }}</td>
-                                <td>{{ form_widget(form.grande) }}</td>
-                                <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.sousTypeLecteur) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.petite) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.moyenne) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.grande) }}</td>
+                                <td class="details">{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
                             </tr>
                         {% endif %}
                     {% if idAutre == lecAutre.id and idType == 1 %}
                         <tr>
-                            <td>{{ form_widget(form.reference) }}</td>
-                            <td>{{ form_widget(form.designation) }}</td>
-                            <td>{{ form_widget(form.sousTypeLecteur) }}</td>
-                            <td>{{ form_widget(form.frequence) }}</td>
-                            <td>{{ form_widget(form.petite) }}</td>
-                            <td>{{ form_widget(form.moyenne) }}</td>
-                            <td>{{ form_widget(form.grande) }}</td>
-                            <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.sousTypeLecteur) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.petite) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.moyenne) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.grande) }}</td>
+                            <td class="details">{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ lecAutre.reference }}</td>
-                            <td>{{ lecAutre.designation }}</td>
+                            <td class="designation">{{ lecAutre.designation }}</td>
                             <td>{{ lecAutre.sousTypeLecteur.nom }}</td>
                             <td>
                             {% if lecAutre.frequence == 1 %}
@@ -100,7 +105,7 @@
                             <td>{{ lecAutre.petite }}</td>
                             <td>{{ lecAutre.moyenne }}</td>
                             <td>{{ lecAutre.grande }}</td>
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': lecAutre.id, idType: 1}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -112,19 +117,19 @@
                 {% else %}
                     {% if idAutre == lecAutre.id and idType == 1 %}
                         <tr>
-                            <td>{{ form_widget(form.reference) }}</td>
-                            <td>{{ form_widget(form.designation) }}</td>
-                            <td>{{ form_widget(form.sousTypeLecteur) }}</td>
-                            <td>{{ form_widget(form.frequence) }}</td>
-                            <td>{{ form_widget(form.petite) }}</td>
-                            <td>{{ form_widget(form.moyenne) }}</td>
-                            <td>{{ form_widget(form.grande) }}</td>
-                            <td>{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.sousTypeLecteur) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.petite) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.moyenne) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.grande) }}</td>
+                            <td class="details">{{ form_widget(form.submitLecteurAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ lecAutre.reference }}</td>
-                            <td>{{ lecAutre.designation }}</td>
+                            <td class="designation">{{ lecAutre.designation }}</td>
                             <td>{{ lecAutre.sousTypeLecteur.nom }}</td>
                             <td>
                             {% if lecAutre.frequence == 1 %}
@@ -136,7 +141,7 @@
                             <td>{{ lecAutre.petite }}</td>
                             <td>{{ lecAutre.moyenne }}</td>
                             <td>{{ lecAutre.grande }}</td> 
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': lecAutre.id, idType: 1}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -149,6 +154,9 @@
             {% endfor %}
         </table>
        {{ form_end(form) }}
+    {% endif %}
+    {% if autre is not empty %}
+    
     {% set idFournisseur = autre[0].fournisseur.id %}
     
     {{ form_start(form1) }}
@@ -156,17 +164,17 @@
         <h1>{{autre[0].fournisseur.nom}}</h1>
         <table>
             <tr>
-                <td>Reference</td>
-                <td>Désignation</td>
-                <td>Type</td>
-                <td></td>
+                <td class="titreReferenceAutre">Reference</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreType">Type</td>
+                <td class="titreDetails"></td>
             </tr>
             {% if idAutre == 0 or idType != 2 %}
                 <tr>
-                    <td>{{ form_widget(form1.reference) }}</td>
-                    <td>{{ form_widget(form1.designation) }}</td>
-                    <td>{{ form_widget(form1.typeAutre) }}</td>
-                    <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form1.reference) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form1.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form1.typeAutre) }}</td>
+                    <td class="details">{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
                 </tr>
             {% endif %}
             
@@ -180,32 +188,32 @@
                     <h1>{{a.fournisseur.nom}}</h1>
                     <table>
                         <tr>
-                            <td>Reference</td>
-                            <td>Désignation</td>
-                            <td>Type</td>
-                            <td></td>
+                            <td class="titreReferenceAutre">Reference</td>
+                            <td class="titreDesignation">Désignation</td>
+                            <td class="titreType">Type</td>
+                            <td class="titreDetails"></td>
                         </tr>
                         {% if idAutre == 0 or idType != 2 %}
                             <tr>
-                                <td>{{ form_widget(form1.reference) }}</td>
-                                <td>{{ form_widget(form1.designation) }}</td>
-                                <td>{{ form_widget(form1.typeAutre) }}</td>
-                                <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form1.reference) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form1.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form1.typeAutre) }}</td>
+                                <td class="details">{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonAdd'}}) }}</td>
                             </tr>
                         {% endif %}
                     {% if idAutre == a.id and idType == 2 %}
                         <tr>
-                            <td>{{ form_widget(form1.reference) }}</td>
-                            <td>{{ form_widget(form1.designation) }}</td>
-                            <td>{{ form_widget(form1.typeAutre) }}</td>
-                            <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.typeAutre) }}</td>
+                            <td class="details">{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ a.reference }}</td>
-                            <td>{{ a.designation }}</td>
+                            <td class="designation">{{ a.designation }}</td>
                             <td>{{ a.typeAutre.nom }}</td>
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': a.id, idType: 2}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -217,17 +225,17 @@
                 {% else %}
                     {% if idAutre == a.id and idType == 2 %}
                         <tr>
-                            <td>{{ form_widget(form1.reference) }}</td>
-                            <td>{{ form_widget(form1.designation) }}</td>
-                            <td>{{ form_widget(form1.typeAutre) }}</td>
-                            <td>{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.designation) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form1.typeAutre) }}</td>
+                            <td class="details">{{ form_widget(form1.submitAutre, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ a.reference }}</td>
-                            <td>{{ a.designation }}</td>
+                            <td class="designation">{{ a.designation }}</td>
                             <td>{{ a.typeAutre.nom }}</td>
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_autre_interne', {'idAutre': a.id, idType: 2}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -240,4 +248,5 @@
             {% endfor %}
         </table>
         {{ form_end(form1) }}
+    {% endif %}
 {% endblock %}

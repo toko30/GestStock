@@ -49,7 +49,11 @@
 						</tr>				
 					<tr>
 						<td>{{approvisionnement.composant.famille.nom}}</td>
-						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+                        <td class="sousFamille">
+                            {% if approvisionnement.composant.idSousFamille != 0 %}
+                                {{approvisionnement.composant.sousFamille.nom}}
+                            {% endif %}
+                        </td>
 						<td>{{approvisionnement.composant.nom}}</td>
 						<td>{{approvisionnement.composant.boitier}}</td>
 						<td>{{approvisionnement.quantite}}</td>
@@ -57,7 +61,11 @@
 				{%else %}
 					<tr>
 						<td>{{approvisionnement.composant.famille.nom}}</td>
-						<td>{{approvisionnement.composant.sousFamille.nom}}</td>
+                        <td class="sousFamille">
+                            {% if approvisionnement.composant.idSousFamille != 0 %}
+                                {{approvisionnement.composant.sousFamille.nom}}
+                            {% endif %}
+                        </td>
 						<td>{{approvisionnement.composant.nom}}</td>
 						<td>{{approvisionnement.composant.boitier}}</td>
 						<td>{{approvisionnement.quantite}}</td>

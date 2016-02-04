@@ -29,7 +29,11 @@
 				{% for nomenclature in nomenclatures %}
 					<tr>
 						<td class="famille">{{nomenclature.composant.Famille.nom}}</td>
-						<td class="sousFamille">{{nomenclature.composant.sousFamille.nom}}</td>
+                        <td class="sousFamille">
+                            {% if nomenclature.composant.idSousFamille != 0 %}
+                                {{nomenclature.composant.sousFamille.nom}}
+                            {% endif %}
+                        </td>
 						<td class="designation">{{nomenclature.composant.nom}}</td>
 						<td class="boitier">{{nomenclature.composant.boitier}}</td>
 						<td class="stock">{{nomenclature.quantite}}</td>

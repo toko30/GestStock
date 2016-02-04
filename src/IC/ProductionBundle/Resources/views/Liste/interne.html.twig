@@ -15,7 +15,7 @@
 
 {{ parent() }}
 <section id="page">
-    
+    {% if nomenclature is not empty %}
     <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
         <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
         
@@ -40,5 +40,6 @@
             </tr>
         {% endfor %}
     </table>
+    {% endif %}
 </section>
 {% endblock %}

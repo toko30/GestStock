@@ -6,7 +6,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
-	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+	'@ICAdministrationBundle/Resources/public/css/optionSousFamille.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -29,7 +29,11 @@
                 {% set existe = 0 %}
                 <tr>
                     <td>{{ composant.famille.nom }}</td>
-                    <td>{{ composant.sousFamille.nom }}</td>
+                    <td class="sousFamille">
+                        {% if composant.idSousFamille != 0 %}
+                            {{composant.SousFamille.nom}}
+                        {% endif %}
+                    </td>
                     <td>{{ composant.nom }}</td>
                     <td>{{ composant.boitier }}</td>
                     {% for produitFiniNomenclature in produitsFinisNomenclature %}

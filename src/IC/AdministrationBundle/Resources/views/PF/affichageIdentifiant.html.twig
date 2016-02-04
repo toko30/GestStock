@@ -6,7 +6,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
-	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
+	'@ICAdministrationBundle/Resources/public/css/produitFini.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -14,25 +14,28 @@
 {% block page %}
 
 	{{ parent()}}
+    
+    {% if typeIdentifiant is not empty %}
+
     {% set idFournisseur = typeIdentifiant[0].fournisseur.id %}
     {{ form_start(form) }}
     {{ form_widget(form.idFournisseur, {attr: {'value': typeIdentifiant[0].fournisseur.id}}) }}
         <h1>{{typeIdentifiant[0].fournisseur.nom}}</h1>
         <table>
             <tr>
-                <td>Reference</td>
-                <td>Désignation</td>
-                <td>Type</td>
-                <td>Fréquence</td>
-                <td></td>
+                <td class="titreReference">Reference</td>
+                <td class="titreDesignation">Désignation</td>
+                <td  class="titreType">Type</td>
+                <td class="titreFrequence">Fréquence</td>
+                <td class="titreDetails"></td>
             </tr>
             {% if idIdentifiant == 0 %}
                 <tr>
-                    <td>{{ form_widget(form.reference) }}</td>
-                    <td>{{ form_widget(form.designation) }}</td>
-                    <td>{{ form_widget(form.sousTypeBadge) }}</td>
-                    <td>{{ form_widget(form.frequence) }}</td>
-                    <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.sousTypeBadge) }}</td>
+                    <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                    <td class="details">{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
                 </tr>
             {% endif %}
             {% for typeId in typeIdentifiant %}
@@ -45,33 +48,33 @@
                     <h1>{{typeId.fournisseur.nom}}</h1>
                     <table>
                         <tr>
-                            <td>Reference</td>
-                            <td>Désignation</td>
-                            <td>Type</td>
-                            <td>Fréquence</td>
-                            <td></td>
+                            <td class="titreReference">Reference</td>
+                            <td class="titreDesignation">Désignation</td>
+                            <td  class="titreType">Type</td>
+                            <td class="titreFrequence">Fréquence</td>
+                            <td class="titreDetails"></td>
                         </tr>
                         {% if idIdentifiant == 0 %}
                             <tr>
-                                <td>{{ form_widget(form.reference) }}</td>
-                                <td>{{ form_widget(form.designation) }}</td>
-                                <td>{{ form_widget(form.sousTypeBadge) }}</td>
-                                <td>{{ form_widget(form.frequence) }}</td>
-                                <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.sousTypeBadge) }}</td>
+                                <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                                <td class="details">{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonAdd'}}) }}</td>
                             </tr>
                         {% endif %}
                     {% if idIdentifiant == typeId.id %}
                         <tr>
-                            <td>{{ form_widget(form.reference) }}</td>
-                            <td>{{ form_widget(form.designation) }}</td>
-                            <td>{{ form_widget(form.sousTypeBadge) }}</td>
-                            <td>{{ form_widget(form.frequence) }}</td>
-                            <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.sousTypeBadge) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                            <td class="details">{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ typeId.reference }}</td>
-                            <td>{{ typeId.designation }}</td>
+                            <td class="designation">{{ typeId.designation }}</td>
                             <td>{{ typeId.sousTypeBadge.nom }}</td>
                             <td>
                             {% if typeId.frequence == 1 %}
@@ -80,7 +83,7 @@
                                 125KHz
                             {% endif %}
                             </td>
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_identifiant_interne', {'idIdentifiant': typeId.id}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -92,16 +95,16 @@
                 {% else %}
                     {% if idIdentifiant == typeId.id %}
                         <tr>
-                            <td>{{ form_widget(form.reference) }}</td>
-                            <td>{{ form_widget(form.designation) }}</td>
-                            <td>{{ form_widget(form.sousTypeBadge) }}</td>
-                            <td>{{ form_widget(form.frequence) }}</td>
-                            <td>{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.reference) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.designation, {attr: {'class': 'inputDesignation'}}) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.sousTypeBadge) }}</td>
+                            <td class="titreDesignation">{{ form_widget(form.frequence) }}</td>
+                            <td class="details">{{ form_widget(form.submitIdentifiant, {attr: {'class': 'buttonUpdate'}}) }}</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td>{{ typeId.reference }}</td>
-                            <td>{{ typeId.designation }}</td>
+                            <td class="designation">{{ typeId.designation }}</td>
                             <td>{{ typeId.sousTypeBadge.nom }}</td>
                             <td>
                             {% if typeId.frequence == 1 %}
@@ -110,7 +113,7 @@
                                 125KHz
                             {% endif %}
                             </td>
-                            <td>
+                            <td class="details">
                                 <a href="{{ path('ic_administration_affichage_produit_fini_identifiant_interne', {'idIdentifiant': typeId.id}) }}">
                                     {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
                                         <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
@@ -123,4 +126,5 @@
             {% endfor %}
         </table>
         {{ form_end(form) }}
+        {% endif %}
 {% endblock %}

@@ -19,7 +19,7 @@
 	<table class="imp">
 		<tr>
 			<td class="titreFamille">Famille</td>
-			<td class="titreSousFamille">Sous Famille</td>
+			<td class="titreFamille">Sous Famille</td>
 			<td class="titreDesignation">Désignation</td>
 			<td class="titreBoitier">Boitier</td>
 			<td class="titreStock mini">Stock mini</td>
@@ -29,7 +29,7 @@
         
         <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
             <td class="titreFamille">{{ form_widget(form.famille, {'attr': {'class': 'inputListe'}} ) }}</td>
-            <td class="titreSousFamille" >{{ form_widget(form.sousFamille, {'attr': {'class': 'inputListe'}}) }}</td>
+            <td class="titreFamille" >{{ form_widget(form.sousFamille, {'attr': {'class': 'inputListe'}}) }}</td>
             <td class="titreDesignation">{{ form_widget(form.nom, {'attr': {'class': 'inputDesignation'}} ) }}</td>
             <td class="titreBoitier">{{ form_widget(form.boitier, {'attr': {'class': 'inputQuantite'}} ) }}</td>
             <td class="titreStock mini">{{ form_widget(form.stockMini, {'attr': {'class': 'inputQuantite'}} )}}</td>
@@ -40,7 +40,11 @@
 		{% for composant in composants %}
             <tr>
                 <td class="famille">{{composant.Famille.nom}}</td>
-                <td class="sousFamille">{{composant.SousFamille.nom}}</td>
+                <td class="sousFamille">
+                    {% if composant.idSousFamille != 0 %}
+                        {{composant.SousFamille.nom}}
+                    {% endif %}
+                </td>
                 <td class="designation">{{composant.nom}}</td>
                 <td class="boitier">{{composant.boitier}}</td>
                 <td class="stock mini">{{composant.stockMini}}</td>

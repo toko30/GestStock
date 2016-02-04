@@ -1,0 +1,61 @@
+{% extends "ICAffichageBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Approvisionnement Identifiant{% endblock %}
+
+{% block entete %}{{ parent() }} Approvisionnement Identifiant{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets filter='cssrewrite'
+	'@ICAffichageBundle/Resources/public/css/appro.css' %}
+		{{ parent() }}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+	{{ parent() }}
+	
+	{% if appro is empty %}
+			aucune commande en cours
+	{% else %}
+	
+		{% set id = appro[0].appro.id %}
+		
+		<h2>Commande passée le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h2>
+		<table class="imp tabApproIdentifiant">
+			<tr>
+                <td class="titreDesignation">Référence</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreStock">Quantité</td>
+			</tr>
+			{% for approvisionnement in appro %}
+			
+				{% if approvisionnement.appro.id != id %}
+					{% set id = approvisionnement.appro.id %}
+					</table>
+					
+					<h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
+					
+					<table class="imp tabApproIdentifiant">
+						<tr>
+                            <td class="titreDesignation">Référence</td>
+                            <td class="titreDesignation">Désignation</td>
+                            <td class="titreStock">Quantité</td>
+						</tr>				
+					<tr>
+						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td>{{approvisionnement.quantite}}</td>
+					</tr>
+				{% endif %}
+				
+			{% endfor %}
+		</table>
+	{% endif %}
+{% endblock %}

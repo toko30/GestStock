@@ -26,7 +26,11 @@
             </tr>
             <tr id="pathAjax" data-path="{{ path('ic_ajax_choixFamille') }}">
                 <td class="famille">{{composant.famille.nom}}</td>
-                <td class="sousFamille">{{composant.sousFamille.nom}}</td>
+                <td class="sousFamille">
+                    {% if composant.idSousFamille != 0 %}
+                        {{composant.SousFamille.nom}}
+                    {% endif %}
+                </td>
                 <td class="designation">{{composant.nom}}</td>
                 <td class="boitier">{{composant.boitier}}</td>
                 <td class="stock">{{composant.stockInterne}}</td>

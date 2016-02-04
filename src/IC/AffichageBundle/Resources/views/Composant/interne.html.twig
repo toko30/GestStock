@@ -31,7 +31,11 @@
 			{% if 0 in etat %}
 				<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
 							<td class="famille">{{composant.Famille.nom}}</td>
-							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="sousFamille">
+                                {% if composant.idSousFamille != 0 %}
+                                    {{composant.SousFamille.nom}}
+                                {% endif %}
+                            </td>
 							<td class="designation">{{composant.nom}}</td>
 							<td class="boitier">{{composant.boitier}}</td>
 							<td class="stock mini">{{composant.stockMini}}</td>
@@ -49,7 +53,11 @@
 					{% if composant.stockMini <= composant.stockInterne %}
 						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
 							<td class="famille">{{composant.Famille.nom}}</td>
-							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="sousFamille">
+                                {% if composant.idSousFamille != 0 %}
+                                    {{composant.SousFamille.nom}}
+                                {% endif %}
+                            </td>
 							<td class="designation">{{composant.nom}}</td>
 							<td class="boitier">{{composant.boitier}}</td>
 							<td class="stock mini">{{composant.stockMini}}</td>
@@ -67,7 +75,11 @@
 					{% if composant.stockMini > composant.stockInterne %}
 						<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
 							<td class="famille">{{composant.Famille.nom}}</td>
-							<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+							<td class="sousFamille">
+                                {% if composant.idSousFamille != 0 %}
+                                    {{composant.SousFamille.nom}}
+                                {% endif %}
+                            </td>
 							<td class="designation">{{composant.nom}}</td>
 							<td class="boitier">{{composant.boitier}}</td>
 							<td class="stock mini">{{composant.stockMini}}</td>
@@ -84,7 +96,11 @@
 				{% else %}	
 					<tr class="{% if composant.stockMini > composant.stockInterne %}stockInsufisant {% endif %}ligneStock">
 						<td class="famille">{{composant.Famille.nom}}</td>
-						<td class="sousFamille">{{composant.SousFamille.nom}}</td>
+						<td class="sousFamille">
+                            {% if composant.idSousFamille != 0 %}
+                                {{composant.SousFamille.nom}}
+                            {% endif %}
+                        </td>
 						<td class="designation">{{composant.nom}}</td>
 						<td class="boitier">{{composant.boitier}}</td>
 						<td class="stock mini">{{composant.stockMini}}</td>

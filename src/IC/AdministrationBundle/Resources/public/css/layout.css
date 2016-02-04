@@ -182,6 +182,7 @@ tr td
 }
 .buttonUpdate
 {
+    margin:0 4px 0 0;
     display: inline-block;
     width:20px;
     height:20px;
@@ -195,7 +196,7 @@ tr td
 }
 .buttonAdd
 {
-    margin-top:3px;
+    margin:5px 0 0 5px;
     display: inline-block;
     width:20px;
     height:20px;

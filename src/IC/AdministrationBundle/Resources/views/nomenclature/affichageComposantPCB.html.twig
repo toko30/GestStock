@@ -31,7 +31,11 @@
                 {% set existe = 0 %}
                 <tr>
                     <td>{{ composant.famille.nom }}</td>
-                    <td>{{ composant.sousFamille.nom }}</td>
+                    <td class="sousFamille">
+                        {% if composant.idSousFamille != 0 %}
+                            {{composant.SousFamille.nom}}
+                        {% endif %}
+                    </td>
                     <td class="designation">{{ composant.nom }}</td>
                     <td>{{ composant.boitier }}</td>
                     

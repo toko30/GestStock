@@ -15,44 +15,51 @@ class ProductionController extends Controller
         $em = $this->getDoctrine()->getManager(); 
         $data = $request->get('formProduction');
 
-        if('POST' == $request->getMethod() && isset($data['nomenclature']))
-        {    
+        if('POST' == $request->getMethod() && isset($data['versionNomenclature']))
+        {
+            
             //Récupération de la derniere version de la nomenclature
-            $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($data['nomenclature']);
+            $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($data['versionNomenclature']);
             $idVersion = $version[0]->getId();
             $version = $version[0]->getVersion();
             
             //enregistrement du nom de la nomenclature et les composants qui y sont liés            
             $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($idVersion);
-            $nomenclature = $listeComposantnomenclature[0]->getVersion()->getNomenclature()->getNom();
-                   
+            
             //déclaration à 0 du nombre de carte qui ne pourront pas être produites
+            $tabComposant = array();
             $nbProdManquant = 0;
             $i = 0;
-            
-            //Calcul des cartes pouvant etre produites
-            foreach($listeComposantnomenclature as $composant)
+            $nomenclature = '';
+            if(!empty($listeComposantnomenclature))
             {
-                $calculStockRestant = $composant->getComposant()->getStockInterne() - ($composant->getQuantite() * $data['quantite']);
-
-                $tabComposant[$i]['designation'] = $composant->getComposant()->getNom();
-                $tabComposant[$i]['quantite'] = $composant->getQuantite() * $data['quantite'];             
-                $tabComposant[$i++]['stock'] = $calculStockRestant;
+                $nomenclature = $listeComposantnomenclature[0]->getVersion()->getNomenclature()->getNom();
                 
-                //Mise a jour du nombre de carte qui ne pourront pas etre produite avec le stock actuel
-                if($calculStockRestant < 0)
+                //Calcul des cartes pouvant etre produites
+                foreach($listeComposantnomenclature as $composant)
                 {
-                    $calculQuantite = round(abs($calculStockRestant) / $composant->getQuantite(), 0, PHP_ROUND_HALF_DOWN);
+                    $calculStockRestant = $composant->getComposant()->getStockInterne() - ($composant->getQuantite() * $data['quantite']);
+
+                    $tabComposant[$i]['designation'] = $composant->getComposant()->getNom();
+                    $tabComposant[$i]['quantite'] = $composant->getQuantite() * $data['quantite'];             
+                    $tabComposant[$i++]['stock'] = $calculStockRestant;
                     
-                    if(isset($nbProdManquant))
+                    //Mise a jour du nombre de carte qui ne pourront pas etre produite avec le stock actuel
+                    if($calculStockRestant < 0)
                     {
-                        if($nbProdManquant < $calculQuantite)
+                        $calculQuantite = round(abs($calculStockRestant) / $composant->getQuantite(), 0, PHP_ROUND_HALF_DOWN);
+                        
+                        if(isset($nbProdManquant))
+                        {
+                            if($nbProdManquant < $calculQuantite)
+                                $nbProdManquant = $calculQuantite;
+                        }
+                        else
                             $nbProdManquant = $calculQuantite;
                     }
-                    else
-                        $nbProdManquant = $calculQuantite;
                 }
-            }
+            }            
+            
             //génération de la vue avec les info de la carte et ses composants calculés précédement
             return $this->render('ICProductionBundle:Liste:interne.html.twig', array('partie' => 'production',
                                                                                      'quantite' => $data['quantite'], 
@@ -107,8 +114,21 @@ class ProductionController extends Controller
                     $i1++;
                 }
             }
+            
+            //Listage des dernières nomenclatures
+            $listeAllVersionNomenclature = $em->getRepository('ICProductionBundle:VersionNomenclature')->getAllVersion();
+            $i = 0;
+            foreach($listeAllVersionNomenclature as $versionNomenclature)
+            {
+                if($i != $versionNomenclature->getNomenclature()->getId())
+                {
+                    $i = $versionNomenclature->getNomenclature()->getId();
+                    $listLastNomenclature[] = $versionNomenclature;
+                }
+            }
+
             //Création du formulaire et affichage de la vue
-            $form = $this->createForm(new ProductionType());
+            $form = $this->createForm(new ProductionType($listLastNomenclature));
             return $this->render('ICProductionBundle:Production:interne.html.twig', array('partie' => 'production',
                                                                                           'form' => $form->createView(),
                                                                                           'listeEnCours' => $listeEnCours,
