@@ -6,7 +6,7 @@
 
 {% block stylesheets %}
 	{% stylesheets filter='cssrewrite'
-	'@ICAffichageBundle/Resources/public/css/sous_traitant.css' %}
+	'@ICAffichageBundle/Resources/public/css/appro.css' %}
 		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
@@ -22,11 +22,11 @@
 		{% set id = appro[0].appro.id %}
 		
 		<h2>Commande passée le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h2>
-		<table class="imp">
+		<table class="imp tabApproIdentifiant">
 			<tr>
-				<th>référence</th>
-				<th>Designation</th>
-				<th>quantite</th>
+                <td class="titreDesignation">Référence</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreStock">Quantité</td>
 			</tr>
 			{% for approvisionnement in appro %}
 			
@@ -36,21 +36,21 @@
 					
 					<h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
 					
-					<table class="imp">
+					<table class="imp tabApproIdentifiant">
 						<tr>
-							<th>Référence</th>
-							<th>Designation</th>
-							<th>quantite</th>
+                            <td class="titreDesignation">Référence</td>
+                            <td class="titreDesignation">Désignation</td>
+                            <td class="titreStock">Quantité</td>
 						</tr>				
 					<tr>
 						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
-						<td>{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
-				{%else %}
+				{% else %}
 					<tr>
 						<td>{{approvisionnement.badge.typeBadge.reference}}</td>
-						<td>{{approvisionnement.badge.typeBadge.designation}}</td>
+						<td class="designation">{{approvisionnement.badge.typeBadge.designation}}</td>
 						<td>{{approvisionnement.quantite}}</td>
 					</tr>
 				{% endif %}

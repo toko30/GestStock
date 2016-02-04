@@ -68,13 +68,7 @@ tr td
 	color: white;
 	width:10%;
 }
-.titreSousFamille
-{
-	font-weight:bold;
-	background: #00B8D6;
-	color: white;
-	width:10%;
-}
+
 .titreReference
 {
 	font-weight:bold;
@@ -186,19 +180,6 @@ tr td
 	background: #00B8D6;
 	color: white;    
 }
-.buttonAdd 
-{
-    display: inline-block;
-    width:16px;
-    height:16px;
-    background:url('../img/whiteplus.png') top left no-repeat;
-    text-indent:-9000px;
-    text-transform: capitalize;
-    line-height: -9999px;
-    overflow:hidden;
-    border:0;
-    cursor:pointer;
-}
 .buttonUpdate
 {
     display: inline-block;
@@ -214,6 +195,7 @@ tr td
 }
 .buttonAdd
 {
+    margin-top:3px;
     display: inline-block;
     width:20px;
     height:20px;
@@ -224,4 +206,17 @@ tr td
     overflow:hidden;
     border:0;
     cursor:pointer;
+}
+.inputValider
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width:240px;
+    text-align:center;
 }

@@ -6,7 +6,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite'
-	'@ICAdministrationBundle/Resources/public/css/composant.css' %}
+	'@ICAdministrationBundle/Resources/public/css/nomenclature.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
@@ -42,7 +42,6 @@
                     {% if existe == 0 %}
                         <td><input type="text" name="{{ composant.id }}"/></td>
                     {% endif %}
-                    
                 </tr>
             {% endfor %}
         </table>

@@ -9,3 +9,52 @@ tr:hover .versionPlus
 {
     background:url('../img/whiteplus.png') top left no-repeat;
 }
+.tabNomenclature
+{
+    width:60%;
+}
+.titreNomenclature
+{
+	background: #00B8D6;
+    color:white;
+    width:40%;
+    font-weight: bold;
+}
+.titreVersion
+{
+    background: #00B8D6;
+    color:white;
+    font-weight: bold;
+    width:10%;
+}
+.lienNomenclatureComp, .lienNomenclatureCompModif
+{
+    text-decoration: underline;
+    font-weight: normal;
+    color: #00B8D6;
+}
+tr:hover a, .lienNomenclatureComp:hover, .lienNomenclatureCompModif
+{
+    color: white;
+}
+.titreOptSt
+{	
+    background: #00B8D6;
+    color:white;
+    width:3%;
+    font-weight: bold;
+}
+.titreQteNomenclature
+{
+    background: #00B8D6;
+    color:white;
+    font-weight: bold;
+    width:5%;    
+}
+.titrePositionNomenclature
+{
+    background: #00B8D6;
+    color:white;
+    font-weight: bold;
+    width:10%;    
+}

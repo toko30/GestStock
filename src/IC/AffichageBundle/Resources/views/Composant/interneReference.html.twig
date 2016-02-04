@@ -24,15 +24,14 @@
 	
 	<table class="imp">
 		<tr>
-			<th class="titreFamille">Famille</th>
-			<th class="titreSousFamille">Sous Famille</th>
-			<th class="titreDesignation">Désignation</th>
-			<th class="titreDesignation">Référence</th>
-			<th class="titreStock">moq</th>
-			<th class="titreBoitier">Boitier</th>
-			<th class="titreStock">Stock mini</th>
-			<th class="titreStock">Stock</th>
-			<th class="titreDetails"></th>
+			<td class="titreFamille">Famille</th>
+			<td class="titreSousFamille">Sous Famille</td>
+			<td class="titreDesignation">Désignation</td>
+			<td class="titreDesignation">Référence</td>
+			<td class="titreBoitier">Boitier</td>
+			<td class="titreStock">Stock mini</td>
+			<td class="titreStock">Stock</td>
+			<td class="titreDetails"></td>
 		</tr>
 		
 	{% for composant in composants %}
@@ -44,15 +43,14 @@
 			
 			<table class="imp">
 				<tr>
-					<th class="titreFamille">Famille</th>
-					<th class="titreSousFamille">Sous Famille</th>
-					<th class="titreDesignation">Désignation</th>
-					<th class="titreDesignation">Référence</th>
-					<th class="titreStock">moq</th>
-					<th class="titreBoitier">Boitier</th>
-					<th class="titreStock">Stock mini</th>
-					<th class="titreStock">Stock</th>
-					<th class="titreDetails"></th>
+                    <td class="titreFamille">Famille</th>
+                    <td class="titreSousFamille">Sous Famille</td>
+                    <td class="titreDesignation">Désignation</td>
+                    <td class="titreDesignation">Référence</td>
+                    <td class="titreBoitier">Boitier</td>
+                    <td class="titreStock">Stock mini</td>
+                    <td class="titreStock">Stock</td>
+                    <td class="titreDetails"></td>
 				</tr>
 		{% endif %}
 			{% if 0 in etat %}	
@@ -62,7 +60,6 @@
 					<td class="sousFamille">{{composant.composant.SousFamille.nom}}</td>
 					<td class="designation">{{composant.composant.nom}}</td>
 					<td class="designation">{{composant.ref}}</td>
-					<td class="stock">{{composant.moq}}</td>
 					<td class="boitier">{{composant.composant.boitier}}</td>
 					<td class="stock">{{composant.composant.stockMini}}</td>
 					<td class="stock">{{composant.composant.stockInterne}}</td>

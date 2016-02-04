@@ -19,53 +19,58 @@
         {% else %}
             <form method="post" action="{{ path('ic_administration_add_nomenclature') }}">
         {% endif %}
-            <table class="">
+            <table class="tabNomenclature">
                 <tr>
-                    <td colspan="2">Designation</td>
-                    <td>Version</td>
-                    <td colspan="2">Nomenclature</td>
-                    {% if allVersion == 0 %}<td></td>{% endif%}
+                    <td class="titreDesignation" colspan="2">Designation</td>
+                    <td class="titreVersion">Version</td>
+                    <td class="titreNomenclature" colspan="2">Nomenclature</td>
                 </tr>
                 {% if allVersion == 0  and modifNomenclature == 0 %}
                     <tr>
-                        <td><input type="text" name="nomenclature"></td>
-                        <td><input type="submit"></td>
-                         <td colspan="4"></td>
+                        <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomenclature"></td>
+                        <td class="titreDesignation"><input type="submit" value="" class="buttonAdd"></td>
+                         <td class="titreDesignation" colspan="4"></td>
                     </tr>
                 {% endif %}
-    {% if nomenclatures is not empty %}   
+    {% if nomenclatures is not empty %}  
+     
         {% set idNomenclature = 0 %}
        
-                {% for versionNomenclature in nomenclatures %}
-                    {% if versionNomenclature.nomenclature.id != idNomenclature or allVersion == 1 %}
-                        {% set idNomenclature = versionNomenclature.nomenclature.id %}
-                        
-                        <tr>
-                            {% if allVersion == 0  and modifNomenclature == 0 %}
-                                <td class="">{{ versionNomenclature.nomenclature.nom }}</td>          
-                                <td class=""><a href="{{ path('ic_administration_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}">Modifier Désignation</a></td> 
-                                {% else %}
-                                    {% if modifNomenclature == versionNomenclature.nomenclature.id %}
-                                        <td class=""><input type="text" name="nomNomenclature" placeholder="{{ versionNomenclature.nomenclature.nom }}"></td> 
-                                        <td class=""><input type="submit" value="Go"></td> 
-                                    {% else %}
-                                        <td colspan="2" class="">{{ versionNomenclature.nomenclature.nom }}</td>  
-                                  {% endif %}
-                                {% endif %}                        
-                            <td>{{ versionNomenclature.version }}</td>
-                            <td><a href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
-                            <td><a href="{{ path('ic_administration_produit_fini_nomenclature', {idNomenclature: versionNomenclature.id}) }}">Produit Fini</a></td>
-                            
-                            {% if allVersion == 0 %}<td><a class="versionPlus" href="{{ path('ic_administration_add_version_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}"></a></td>{% endif%}     
-                        </tr>
+        {% for versionNomenclature in nomenclatures %}
+        
+            {% if versionNomenclature.nomenclature.id != idNomenclature or allVersion == 1 %}
+            
+                {% set idNomenclature = versionNomenclature.nomenclature.id %}        
+                
+                <tr>
+                    {% if allVersion == 0  and modifNomenclature == 0 %}
+                        <td class="">{{ versionNomenclature.nomenclature.nom }}</td>          
+                        <td class=""><a href="{{ path('ic_administration_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}">Modifier Désignation</a></td> 
+                    {% else %}
+                        {% if modifNomenclature == versionNomenclature.nomenclature.id %}
+                            <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomNomenclature" placeholder="{{ versionNomenclature.nomenclature.nom }}"></td> 
+                            <td class="titreDesignation"><input type="submit" value="" class="buttonUpdate"></td>
+                            <td class="titreDesignation">{{ versionNomenclature.version }}</td>
+                            <td class="titreDesignation"><a class="lienNomenclatureCompModif" href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
+                            <td class="titreDesignation"><a class="lienNomenclatureCompModif" href="{{ path('ic_administration_produit_fini_nomenclature', {idNomenclature: versionNomenclature.id}) }}">Produit Fini</a></td> 
+                        {% else %}
+                            <td colspan="2" class="">{{ versionNomenclature.nomenclature.nom }}</td>  
+                        {% endif %}
                     {% endif %}
-                {% endfor %}
-
-            {% if allVersion == 0 %}
-                <a href="{{ path('ic_administration_nomenclature', {allVersion: 1}) }}">Afficher toute les versions</a>
-            {% else %}
-                 <a href="{{ path('ic_administration_nomenclature', {allVersion: 0}) }}">Afficher seulement les dernières versions</a>
+                    
+                    {% if modifNomenclature != versionNomenclature.nomenclature.id %}
+                            <td>
+                                {{ versionNomenclature.version }}
+                                {% if allVersion == 0 %}
+                                    <a class="versionPlus" href="{{ path('ic_administration_add_version_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}"></a>
+                                {% endif%}
+                            </td>
+                            <td><a class="lienNomenclatureComp" href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
+                            <td><a class="lienNomenclatureComp" href="{{ path('ic_administration_produit_fini_nomenclature', {idNomenclature: versionNomenclature.id}) }}">Produit Fini</a></td>
+                    {% endif %}
+                </tr>
             {% endif %}
+        {% endfor %}         
     {% endif %}
         </table>
     </form>

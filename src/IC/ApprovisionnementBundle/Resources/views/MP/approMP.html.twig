@@ -15,7 +15,7 @@
     
 {% endblock %}
 
-{% block body %}
+{% block page %}
 
     {{ parent() }}
 
@@ -77,7 +77,7 @@
                                     {% endif %}
                                 {% endfor %}
                             </tr>
-                    {%else %}
+                    {% else %}
                         <tr>
                             <td><input type="checkbox" name="option[]" value="{{approvisionnement.idComposant}}"></td>
                             <td>{{approvisionnement.composant.famille.nom}}</td>

@@ -18,12 +18,12 @@
 		<h1>Approvisionnement {{appro[0].appro.sousTraitant.nom}}</h1>
 		<table class="imp">
 			<tr>
-				<th>Famille</th>
-				<th>SousFamille</th>
-				<th>Designation</th>
-				<th>Boitier</th>
-				<th>Quantité</th>
-				<th>Date d'envoi</th>
+                <td class="titreFamille">Famille</td>
+                <td class="titreFamille">Sous Famille</td>
+                <td class="titreDesignation">Désignation</td>
+                <td class="titreBoitier">Boitier</td>
+                <td class="titreStock">Quantite</td>
+				<td class="titreStock">Date d'envoi</td>
 			</tr>
 			{% for approvisionnement in appro %}
 				<tr>

@@ -10,7 +10,6 @@
 	{% endstylesheets %}
 	{% stylesheets filter='cssrewrite'
 	'@ICApprovisionnementBundle/Resources/public/css/impression.css' %}
-		{{ parent() }}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print">
 	{% endstylesheets %}
 {% endblock %}
