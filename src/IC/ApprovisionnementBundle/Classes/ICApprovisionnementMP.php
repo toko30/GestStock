@@ -29,7 +29,7 @@ class ICApprovisionnementMP
             $listComposantUtilise = explode(',', $production->getComposantUtilise());
             
             foreach($listComposantNomenclature as $composantNomenclature)
-            {   
+            {
                 //si le composant fais parti des composants à envoyé au sous traitant ou si la production se fais en interne
                 if(in_array($composantNomenclature->getIdComposant(), $listComposantUtilise) || $production->getIdLieu() == 0)
                 {
@@ -143,8 +143,9 @@ class ICApprovisionnementMP
             }
         }
         return $quantiteCommande;
-    }  
+    }
     
+    //Ajout au stock les composant qui sont en cours d'approvisionnement
     public function ajoutApproEnCour($composantApproEncours, $quantiteCommande)
     {
         foreach($composantApproEncours as $appro)
@@ -160,8 +161,9 @@ class ICApprovisionnementMP
         return $quantiteCommande;    
     }
     
+    //On trie en supprimmant les composants dont le stock est suffisant
     public function verifStockCommande($quantiteCommande)
-    {        
+    {
         $nbQuantiteCommande = count($quantiteCommande);
         
         for($i = 0; $i < $nbQuantiteCommande; $i++)
@@ -171,10 +173,11 @@ class ICApprovisionnementMP
             else
                 $quantiteCommande[$i]['quantite'] = abs($quantiteCommande[$i]['quantite']);
         }
+
         return array_values($quantiteCommande);        
     }
     
-    public function calculAppro($request, $idFournisseur)
+    public function addAproComposant($request, $idFournisseur)
     {
         $doctrine = $this->doctrine;
         

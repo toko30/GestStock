@@ -29,8 +29,8 @@
 			<tr>
 				<td class="famille">{{composantSousTraitant.composant.Famille.nom}}</td>
 				<td class="sousFamille">
-                    {% if composant.idSousFamille != 0 %}
-                        {{composant.SousFamille.nom}}
+                    {% if composantSousTraitant.composant.idSousFamille != 0 %}
+                        {{composantSousTraitant.composant.SousFamille.nom}}
                     {% endif %}
                 </td>
 				<td class="designation">{{composantSousTraitant.composant.nom}}</td>

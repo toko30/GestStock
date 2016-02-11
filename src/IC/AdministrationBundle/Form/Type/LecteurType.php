@@ -20,8 +20,6 @@ class LecteurType extends AbstractType
     {
         $builder->setAction($this->getPath());
                 
-
-
         $builder->add('nomenclature', 'entity', array(
                       'class' => 'IC\AdministrationBundle\Entity\Nomenclature',
                       'choice_label' => 'nom',

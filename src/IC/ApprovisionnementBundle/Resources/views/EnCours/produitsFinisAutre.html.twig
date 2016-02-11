@@ -18,7 +18,7 @@
 {% block page %}
 
     {{ parent() }}
-    
+
     {% if approLecteur is empty and approAutre is empty %}
 		aucune commande en cours
 	{% else %}
@@ -51,14 +51,14 @@
                                 <th>Qte</th>
                             </tr>				
                             <tr>
-                                <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-                                <td class="designation">{{approvisionnement.typeLecteur.designation}}</td>
+                                <td>{{approvisionnement.typeLecteurAutre.reference}}</td>
+                                <td class="designation">{{approvisionnement.typeLecteurAutre.designation}}</td>
                                 <td>{{approvisionnement.quantite}}</td>
                             </tr>
                     {%else %}
                         <tr>
-                            <td>{{approvisionnement.typeLecteur.referenceInterne}}</td>
-                            <td class="designation">{{approvisionnement.typeLecteur.designation}}</td>
+                            <td>{{approvisionnement.typeLecteurAutre.reference}}</td>
+                            <td class="designation">{{approvisionnement.typeLecteurAutre.designation}}</td>
                             <td>{{approvisionnement.quantite}}</td>
                         </tr>
                     {% endif %}

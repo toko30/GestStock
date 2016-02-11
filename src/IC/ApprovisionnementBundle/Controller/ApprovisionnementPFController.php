@@ -4,10 +4,6 @@ namespace IC\ApprovisionnementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use IC\ApprovisionnementBundle\Entity\Appro;
-use IC\ApprovisionnementBundle\Entity\ApproIdentifiant;
-use IC\ApprovisionnementBundle\Entity\ApproAutre;
-use IC\ApprovisionnementBundle\Entity\ApproLecteur;
 
 class ApprovisionnementPFController extends Controller
 {
@@ -34,93 +30,17 @@ class ApprovisionnementPFController extends Controller
     
     public function calculApproIdentifiantAction(request $request, $idFournisseur)
     {
-        if($request->get('option') != null)
-        {
-            $em = $this->getDoctrine()->getManager();
-            
-            $fournisseur = $em->getRepository('ICApprovisionnementBundle:Fournisseur')->findOneBy(array('id' => $idFournisseur));
-            
-            $appro = new Appro();
-            $appro->setFournisseur($fournisseur);
-            $appro->setTypeProduit(2);
-            $appro->setDateCommande(new \Datetime());
-            
-            $em->persist($appro);
-            $em->flush();  
-                
-            $lastAppro = $em->getRepository('ICApprovisionnementBundle:Appro')->getLastAppro();
-            $lastAppro = $em->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $lastAppro[0]->getId()));
+        //Ajout des identifiants en BDD
+        $this->container->get('ic_approvisionnement_pf')->addApproIdentifiant($request, $idFournisseur);
         
-            foreach ($request->get('option') as $idBadge) 
-            {    
-                if($request->get($idBadge) != null)
-                {
-                    $badge = $em->getRepository('ICApprovisionnementBundle:Badge')->findOneBy(array('id' => $idBadge));
-                    
-                    
-                    $composantAppro = new ApproIdentifiant();
-                    $composantAppro->setBadge($badge);
-                    $composantAppro->setQuantite($request->get($idBadge));
-                    $composantAppro->setAppro($lastAppro);
-                    
-                    $em->persist($composantAppro);                    
-                }
-            }
-            $em->flush();     
-        }
         return $this->redirectToRoute('ic_approvisionnement_pf_identifiant');
     }
     
     public function calculApproAutreAction(request $request, $idFournisseur)
-    {
-        if($request->get('option') != null)
-        {
-            $em = $this->getDoctrine()->getManager();
-            
-            $fournisseur = $em->getRepository('ICApprovisionnementBundle:Fournisseur')->findOneBy(array('id' => $idFournisseur));
+    {        
+        //Ajout des autres produits fini en BDD
+        $this->container->get('ic_approvisionnement_pf')->addApproAutre($request, $idFournisseur);
                 
-            $appro = new Appro();
-            $appro->setFournisseur($fournisseur);
-            $appro->setTypeProduit($fournisseur->getType());
-            $appro->setDateCommande(new \Datetime());
-            
-            $em->persist($appro);
-            $em->flush();
-                
-            $lastAppro = $em->getRepository('ICApprovisionnementBundle:Appro')->getLastAppro();
-            $lastAppro = $em->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $lastAppro[0]->getId()));
-            
-            if($fournisseur->getType() == 4)
-            {
-                foreach ($request->get('option') as $idAutre) 
-                {
-                    $autre = $em->getRepository('ICApprovisionnementBundle:Autre')->findOneBy(array('id' => $idAutre));
-
-                    $approAutre = new ApproAutre();
-                    $approAutre->setAutre($autre);
-                    $approAutre->setQuantite($request->get($idAutre));
-                    $approAutre->setAppro($lastAppro);
-                       
-                    $em->persist($approAutre);            
-                }
-            }
-            elseif($fournisseur->getType() == 3)
-            {
-                foreach ($request->get('option') as $idLecteur) 
-                {
-                    $typeLecteur = $em->getRepository('ICApprovisionnementBundle:TypeLecteurAutre')->findOneBy(array('id' => $idLecteur));
-
-                    $approLecteur = new ApproLecteur();
-                    $approLecteur->setTypeLecteur($typeLecteur);
-                    $approLecteur->setQuantite($request->get($idLecteur));
-                    $approLecteur->setAppro($lastAppro);
-                       
-                    $em->persist($approLecteur);            
-                }                
-            }
-            
-            $em->flush();
-        }
         return $this->redirectToRoute('ic_approvisionnement_pf_autre');
     }    
 }

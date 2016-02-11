@@ -1,5 +1,15 @@
 services:
     ic_approvisionnement_mp:
         class: IC\ApprovisionnementBundle\Classes\ICApprovisionnementMP
-        arguments: 
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+
+    ic_approvisionnement_pf:
+        class: IC\ApprovisionnementBundle\Classes\ICApprovisionnementPF
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+       
+    ic_approvisionnement_en_cours:
+        class: IC\ApprovisionnementBundle\Classes\ICApprovisionnementEnCours
+        arguments:
             entityManager: "@doctrine.orm.entity_manager"

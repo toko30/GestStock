@@ -1,4 +1,5 @@
 services:
-#    ic_production.example:
-#        class: IC\ProductionBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    ic_approvisionnement_en_cours:
+        class: IC\ProductionBundle\Classes\ICProduction
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"

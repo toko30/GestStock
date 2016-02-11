@@ -79,7 +79,8 @@ class ApprovisionnementMPController extends Controller
     public function calculApproAction(request $request, $idFournisseur, $page)
     {
         //Ajoute les composant a la liste des appro en cours
-        $this->container->get('ic_approvisionnementMP')->calculAppro($request, $idFournisseur);
+        $this->container->get('ic_approvisionnementMP')->addAproComposant($request, $idFournisseur);
+        
         if($page == 'critique')
             return $this->redirectToRoute('ic_approvisionnement_mp_critique');
         else

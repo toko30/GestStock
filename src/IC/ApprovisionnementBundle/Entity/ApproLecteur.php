@@ -33,9 +33,9 @@ class ApproLecteur
     private $appro;
 
     /**
-     * @var \IC\ApprovisionnementBundle\Entity\TypeLecteur
+     * @var \IC\ApprovisionnementBundle\Entity\TypeLecteurAutre
      */
-    private $typeLecteur;
+    private $typeLecteurAutre;
 
 
     /**
@@ -145,15 +145,15 @@ class ApproLecteur
     }
 
     /**
-     * Set typeLecteur
+     * Set typeLecteurAutre
      *
-     * @param \IC\ApprovisionnementBundle\Entity\TypeLecteur $typeLecteur
+     * @param \IC\ApprovisionnementBundle\Entity\TypeLecteurAutre $typeLecteurAutre
      *
      * @return ApproLecteur
      */
-    public function setTypeLecteur(\IC\ApprovisionnementBundle\Entity\TypeLecteur $typeLecteur = null)
+    public function setTypeLecteurAutre(\IC\ApprovisionnementBundle\Entity\TypeLecteurAutre $typeLecteurAutre = null)
     {
-        $this->typeLecteur = $typeLecteur;
+        $this->typeLecteurAutre = $typeLecteurAutre;
 
         return $this;
     }
@@ -161,11 +161,11 @@ class ApproLecteur
     /**
      * Get typeLecteur
      *
-     * @return \IC\ApprovisionnementBundle\Entity\TypeLecteur
+     * @return \IC\ApprovisionnementBundle\Entity\TypeLecteurAutre
      */
-    public function getTypeLecteur()
+    public function getTypeLecteurAutre()
     {
-        return $this->typeLecteur;
+        return $this->typeLecteurAutre;
     }
 }
 
