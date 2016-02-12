@@ -9,3 +9,30 @@
 	background: darkred;
 	border: 1px solid darkred;
 }
+.tabComposantProduction
+{
+    width:50%;
+}
+.titreDesignation
+{
+	font-weight:bold;
+	background: #00B8D6;
+	color: white;
+	width:auto;
+}
+.titreQte
+{
+	font-weight:bold;
+	background: #00B8D6;
+	color: white;
+	width:15%;    
+}
+.designation
+{
+    text-align:left;
+}
+.titreCheckBox
+{
+	background: #00B8D6;
+    width:30px;
+}

@@ -15,6 +15,7 @@ class ComposantFournisseurRepository extends \Doctrine\ORM\EntityRepository
        $req = $this->createQueryBuilder('cf')
         ->join('cf.fournisseur', 'f')
         ->join('cf.composant', 'c')
+        ->orderBy('c.nom')
         ->addSelect('c', 'f')
         ->orderBy('cf.idFournisseur', 'ASC')
         ->where('cf.idComposant =:id')

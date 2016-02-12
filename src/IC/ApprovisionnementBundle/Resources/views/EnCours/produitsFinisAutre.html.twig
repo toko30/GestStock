@@ -29,9 +29,9 @@
             
             <table class="imp">
                 <tr>
-                    <th>référence</th>
-                    <th>Designation</th>
-                    <th>Qte</th>
+                    <td class="titreReference">référence</td>
+                    <td class="titreDesignation">Designation</td>
+                    <td class="titreQte">Qte</td>
                 </tr>
                 {% for approvisionnement in approLecteur %}
                 
@@ -46,9 +46,9 @@
                         
                         <table class="imp">
                             <tr>
-                                <th>Référence</th>
-                                <th>Designation</th>
-                                <th>Qte</th>
+    				            <td class="titreReference">référence</td>
+				                <td class="titreDesignation">Designation</td>
+				                <td class="titreQte">Qte</td>
                             </tr>				
                             <tr>
                                 <td>{{approvisionnement.typeLecteurAutre.reference}}</td>
@@ -78,9 +78,9 @@
             
             <table class="imp">
                 <tr>
-                    <th>référence</th>
-                    <th>Designation</th>
-                    <th>Qte</th>
+                    <td class="titreReference">référence</td>
+                    <td class="titreDesignation">Designation</td>
+                    <td class="titreQte">Qte</td>
                 </tr>
                 {% for approvisionnement in approAutre %}
                 
@@ -95,9 +95,9 @@
                         
                         <table class="imp">
                             <tr>
-                                <th>Référence</th>
-                                <th>Designation</th>
-                                <th>Qte</th>
+         			        	<td class="titreReference">référence</td>
+				                <td class="titreDesignation">Designation</td>
+				                <td class="titreQte">Qte</td>
                             </tr>				
                         <tr>
                             <td>{{approvisionnement.Autre.reference}}</td>

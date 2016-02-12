@@ -32,7 +32,7 @@
                          <td class="titreDesignation" colspan="4"></td>
                     </tr>
                 {% endif %}
-    {% if nomenclatures is not empty %}  
+    {% if nomenclatures is not empty %}
      
         {% set idNomenclature = 0 %}
        
@@ -45,10 +45,17 @@
                 <tr>
                     {% if allVersion == 0  and modifNomenclature == 0 %}
                         <td class="">{{ versionNomenclature.nomenclature.nom }}</td>          
-                        <td class=""><a href="{{ path('ic_administration_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}">Modifier Désignation</a></td> 
+                        <td class="details">
+                        {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                            <a href="{{ path('ic_administration_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}">
+                                <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                            </a>
+                        {% endimage %}
+                            
+                        </td> 
                     {% else %}
                         {% if modifNomenclature == versionNomenclature.nomenclature.id %}
-                            <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomNomenclature" placeholder="{{ versionNomenclature.nomenclature.nom }}"></td> 
+                            <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomNomenclature" value="{{ versionNomenclature.nomenclature.nom }}" onfocus="this.value = ''" onblur="if(this.value == '') { this.value = '{{ versionNomenclature.nomenclature.nom }}' }"></td> 
                             <td class="titreDesignation"><input type="submit" value="" class="buttonUpdate"></td>
                             <td class="titreDesignation">{{ versionNomenclature.version }}</td>
                             <td class="titreDesignation"><a class="lienNomenclatureCompModif" href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
@@ -65,7 +72,7 @@
                                     <a class="versionPlus" href="{{ path('ic_administration_add_version_nomenclature', {idNomenclature: versionNomenclature.nomenclature.id}) }}"></a>
                                 {% endif%}
                             </td>
-                            <td><a class="lienNomenclatureComp" href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
+                            <td class="caseLienNomenclature"><a class="lienNomenclatureComp" href="{{ path('ic_administration_composant_nomenclature', {idNomenclature: versionNomenclature.id}) }}">PCB</a></td>
                             <td><a class="lienNomenclatureComp" href="{{ path('ic_administration_produit_fini_nomenclature', {idNomenclature: versionNomenclature.id}) }}">Produit Fini</a></td>
                     {% endif %}
                 </tr>

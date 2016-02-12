@@ -19,14 +19,14 @@
 	<h1>Stock Autres Produits Finis</h1>
 	<table class="imp">
 		<tr>
-			<td class="titreDesignation">Référence</td>
+			<td class="titreReference">Référence</td>
 			<td class="titreDesignation">Désignation</td>
 			<td class="titreStock">Quantité</td>
 		</tr>
 		{% for lect in lecteur %}
 		<tr>
 			<td>{{lect.reference}}</td>
-			<td>{{lect.designation}}</td>
+			<td class="designation">{{lect.designation}}</td>
 			<td>{{lect.nbProduit}}</td>
 		</tr>
 		{% endfor %}
@@ -34,7 +34,7 @@
 		{% for autre in autres %}
 		<tr>
 			<td>{{autre.reference}}</td>
-			<td>{{autre.designation}}</td>
+			<td class="designation">{{autre.designation}}</td>
 			<td>{{autre.quantite}}</td>
 		</tr>
 		{% endfor %}

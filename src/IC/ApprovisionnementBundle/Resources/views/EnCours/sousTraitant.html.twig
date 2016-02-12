@@ -1,8 +1,8 @@
 {% extends 'ICApprovisionnementBundle::layout.html.twig' %}
 
-{% block title %} {{ parent() }} production{% endblock %}
+{% block title %} {{ parent() }} - Envoi de stock sous traitant{% endblock %}
 
-{% block entete %} {{ parent() }} production{% endblock %}
+{% block entete %} Envoi de stock sous traitant{% endblock %}
 
 {% block stylesheets %}
 
@@ -18,6 +18,8 @@
 {% block page %}
 
     {{ parent() }}
+    
+    <h1>{{ nomSousTraitant }}</h1>
     
     <form method="post" action="{{ path('ic_approvisionnement_vers_sous_traitant', {idSousTraitant: idSousTraitant}) }}">
     <table class="imp">

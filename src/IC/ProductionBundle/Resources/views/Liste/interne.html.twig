@@ -11,35 +11,35 @@
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
 {% endblock %}
-{% block body %}
+{% block page %}
 
-{{ parent() }}
-<section id="page">
+    {{ parent() }}
+
     {% if nomenclature is not empty %}
     <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
         <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
         
-    <a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite}) }}">Ajouter à la liste des productions en attente</a> 
+    <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite}) }}">Ajouter à la liste des productions en attente</a> 
 
     {% if nbProdManquant != 0 and (quantite - nbProdManquant) != 0 %} 
-        ou <a href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
+        <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
     {% endif %}
 
-    <table>
-        <tr>  
-            <td>designation</td>
-            <td>Quantité nécessaire</td>
-            <td>Stock Restant</td>
+    <table class="tabComposantProduction">
+        <tr>
+            <td class="titreDesignation">Designation</td>
+            <td class="titreQte">Qte nécessaire</td>
+            <td class="titreQte">Stock Restant</td>
         </tr>
         {% for composant in composantNomenclature %}
             
             <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
-                <td>{{composant.designation}}</td>
+                <td class="designation">{{composant.designation}}</td>
                 <td>{{composant.quantite}}</td>
                 <td>{{composant.stock}}</td>
             </tr>
         {% endfor %}
     </table>
     {% endif %}
-</section>
+
 {% endblock %}

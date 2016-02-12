@@ -12,82 +12,88 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 
 	{{ parent() }}
     
-    <section id="page">
-        <h1>Evaluation des besoins de production</h1>
-        {{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
-            <div class="divTableProduction">
+    <h1>Evaluation des besoins de production</h1>
+    
+    {{ include("ICProductionBundle:Form:FormProduction.html.twig") }}
+    
+    <div class="divTableProduction">
+    
+        {% if listePrevisionnelle is not empty %}   
+        
+            <h1>Production en attente</h1>
             
+            <table>
+                <tr>
+                    <td class="caseVideSup"></td>
+                    <td class="titreNomenclature">Nomenclature</td>
+                    <td class="titreQuantite">Quantité</td>
+                    <td class="caseVideProd"></td>
+                </tr>
+            {% for previsionnelle in listePrevisionnelle %}
+            
+                {% if previsionnelle.lancement == 0 %}
                 
-                
-                {% if listePrevisionnelle is not empty %}   
-                
-                    <h1>Production en attente</h1>
+                    <tr class="productionImpossible">
+                        <td class="ligneCaseVideSup">
+                            <a href="{{ path('ic_suppression_previsionnelle', {idProd: previsionnelle.id}) }}">
+                                {% image 'img/whitecroix.png' %}
+                                    <img class="imgcross" src="{{ asset_url }}" alt="Fleche Bas" />
+                                {% endimage %}
+                            </a>
+                        </td>
+                        <td class="nom">{{previsionnelle.nom}}</td>
+                        <td>{{previsionnelle.quantite}}</td>
+                        <td><a href="{{ path('ic_approvisionnement_mp_production') }}">Approvisionnement</a></td> 
+                    </tr>
                     
-                    <table>
-                        <tr>
-                            <td class="caseVideSup"></td>
-                            <td class="titreNomenclature">Nomenclature</td>
-                            <td class="titreQuantite">Quantité</td>
-                            <td class="caseVideProd"></td>
-                        </tr>
-                    {% for previsionnelle in listePrevisionnelle %}
-                        {% if previsionnelle.lancement == 0 %}
-                            <tr class="productionImpossible">
-                                <td class="ligneCaseVideSup">
-                                    <a href="{{ path('ic_suppression_previsionnelle', {idProd: previsionnelle.id}) }}">
-                                        {% image 'img/whitecroix.png' %}
-                                            <img class="imgcross" src="{{ asset_url }}" alt="Fleche Bas" />
-                                        {% endimage %}
-                                    </a>
-                                </td>
-                                <td class="nom">{{previsionnelle.nom}}</td>
-                                <td>{{previsionnelle.quantite}}</td>
-                                <td><a href="{{ path('ic_approvisionnement_mp_production') }}">Approvisionnement</a></td> 
-                            </tr>
-                        {% else %}
-                            <tr class="ligneHover">
-                                <td class="ligneCaseVideSup">
-                                    <a href="{{ path('ic_suppression_previsionnelle', {idProd: previsionnelle.id}) }}">
-                                        {% image 'img/redcroix.png' %}
-                                            <img class="imgcross" src="{{ asset_url }}" alt="Fleche Bas" />
-                                        {% endimage %}
-                                    </a>
-                                </td>
-                                <td class="nom">{{previsionnelle.nom}}</td>
-                                <td>{{previsionnelle.quantite}}</td>
-                                <td class="caseProd"><a href="{{ path('ic_lancement_prod', {idProd: previsionnelle.id}) }}">Lancer la prod</a></td>          
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    </table>
-                {% endif %}
-            </div>
-            <div class="divTableProduction">
-
-                {% if listeEnCours is not empty %}   
-                            
-                <h1>Production en cours</h1>
+                {% else %}
                 
-                    <table>
-                        <tr>
-                            <td class="titreNomenclature">Nomenclature</td>
-                            <td class="titreQuantite">Quantité</td>
-                            <td class="caseVideProd"></td>
-                        </tr>
-                        
-                        {% for enCours in listeEnCours %}
-                                <tr class="ligneHover">
-                                    <td>{{enCours.nom}}</td>
-                                    <td>{{enCours.quantite}}</td>
-                                    <td class="caseProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">prod terminée</a></td> 
-                                </tr>
-                        {% endfor %}
-                    </table>
+                    <tr class="ligneHover">
+                        <td class="ligneCaseVideSup">
+                            <a href="{{ path('ic_suppression_previsionnelle', {idProd: previsionnelle.id}) }}">
+                                {% image 'img/redcroix.png' %}
+                                    <img class="imgcross" src="{{ asset_url }}" alt="Fleche Bas" />
+                                {% endimage %}
+                            </a>
+                        </td>
+                        <td class="nom">{{previsionnelle.nom}}</td>
+                        <td>{{previsionnelle.quantite}}</td>
+                        <td class="caseProd"><a href="{{ path('ic_lancement_prod', {idProd: previsionnelle.id}) }}">Lancer la prod</a></td>          
+                    </tr>
+                    
                 {% endif %}
-            </div>
-    </section>    
+                
+            {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+    
+    <div class="divTableProduction">
+
+        {% if listeEnCours is not empty %}   
+                    
+        <h1>Production en cours</h1>
+        
+            <table>
+                <tr>
+                    <td class="titreNomenclature">Nomenclature</td>
+                    <td class="titreQuantite">Quantité</td>
+                    <td class="caseVideProd"></td>
+                </tr>
+                
+                {% for enCours in listeEnCours %}
+                        <tr class="ligneHover">
+                            <td>{{enCours.nom}}</td>
+                            <td>{{enCours.quantite}}</td>
+                            <td class="caseProd"><a href="{{ path('ic_lancement_test', {idProd: enCours.id}) }}">prod terminée</a></td> 
+                        </tr>
+                {% endfor %}
+                
+            </table>
+        {% endif %}
+    </div>   
 {% endblock %}

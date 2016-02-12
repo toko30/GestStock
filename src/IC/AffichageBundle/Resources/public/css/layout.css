@@ -11,7 +11,6 @@
 {
     float:left;
     width:70%;
-    padding-top:50px;
 }
 h1, h2
 {
@@ -94,7 +93,6 @@ tr td
 	background: white;
 	border-top: 0;
 	border-right: 0;
-	width:2%;
 }
 .titreQte
 {
@@ -118,6 +116,7 @@ tr td
 .details
 {
 	background: #00B8D6;
+    width:30px;
 }
 .flecheDetails
 {

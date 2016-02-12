@@ -15,6 +15,7 @@ class ComposantRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('c')
         ->join('c.famille', 'f')
         ->join('c.sousFamille', 's')
+        ->orderBy('c.nom')
         ->addSelect('f', 's')
         ->where('c.id = :id')
         ->setParameter('id', $id)

@@ -56,5 +56,9 @@ tr:hover a, .lienNomenclatureComp:hover, .lienNomenclatureCompModif
     background: #00B8D6;
     color:white;
     font-weight: bold;
-    width:10%;    
+    width:20%;    
+}
+.caseLienNomenclature
+{
+    width:20%;
 }

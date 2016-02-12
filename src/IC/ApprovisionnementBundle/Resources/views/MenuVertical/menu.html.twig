@@ -31,7 +31,7 @@
 </nav>
     <span class="lienImp" onclick="$('.imp').tableExport({type:'excel', escape:'false'})">Enregistrer au format Excel</span><br>
     <span class="lienImp" onclick="javascript:window.print()">Imprimer</span><br>
-
+    <br>
 {% if url == "ic_approvisionnement_mp_production" or url == "ic_approvisionnement_mp_critique" %}
 	{{ include("ICApprovisionnementBundle:Form:FormMatierePremiere.html.twig") }}
 {% elseif url == "ic_approvisionnement_pf_identifiant" %}

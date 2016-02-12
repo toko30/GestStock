@@ -11,6 +11,7 @@ class ComposantSousTraitantRepository extends \Doctrine\ORM\EntityRepository
 		->join('s.composant', 'c')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
+        ->orderBy('c.nom')
 		->where('s.idSousTraitant = :id')
 		->setParameter('id', $id)
 		->getQuery()
@@ -24,6 +25,7 @@ class ComposantSousTraitantRepository extends \Doctrine\ORM\EntityRepository
 		->join('s.composant', 'c')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
+        ->orderBy('c.nom')
 		->where('s.idSousTraitant = :id')
 		->setParameter('id', $id);
 		

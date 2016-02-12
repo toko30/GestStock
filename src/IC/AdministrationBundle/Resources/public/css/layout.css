@@ -142,6 +142,7 @@ tr td
 .details
 {
 	background: #00B8D6;
+    width:30px;
 }
 .flecheDetails
 {
@@ -220,4 +221,10 @@ tr td
     cursor: pointer;
     width:240px;
     text-align:center;
+}
+.inputQuantite
+{
+    text-align: center;
+    width: 50px;
+    margin: 0 10px;
 }

@@ -27,7 +27,7 @@
                 </tr>
                 {% if idSousFamille == 0 %}
                     <tr>
-                        <td><input type="text" name="nom"></td><td class="details"><input type="submit" class="buttonAdd"></td>
+                        <td><input class="inputDesignation center" type="text" name="nom"></td><td class="details"><input type="submit" class="buttonAdd"></td>
                     </tr>
                 {% endif %}
             {% for sousFamille in listSousFamille %}
@@ -35,9 +35,16 @@
                 {% if famille.id == sousFamille.idFamille %}
                     <tr>
                         {% if idSousFamille == sousFamille.id %} 
-                             <td><input type="text" name="nom" placeholder="{{sousFamille.nom}}"></td><td class="details"><input type="submit" class="buttonUpdate"></td>   
+                             <td><input class="inputDesignation center" type="text" name="nom" value="{{ sousFamille.nom }}" onfocus="this.value = ''"  onblur="if(this.value == '') { this.value = '{{sousFamille.nom}}' }"></td><td class="details"><input type="submit" class="buttonUpdate"></td>   
                         {% else %}
-                            <td>{{sousFamille.nom}}</td><td class="details"><a href="{{ path('ic_administration_affichage_sous_famille', {idSousFamille: sousFamille.id}) }}">modifier<a></td>
+                            <td>{{sousFamille.nom}}</td>
+                            <td class="details">
+                                {% image '@ICAffichageBundle/Resources/public/img/fleche.png' %}
+                                    <a href="{{ path('ic_administration_affichage_sous_famille', {idSousFamille: sousFamille.id}) }}">
+                                        <img id="" class="flecheDetails" src="{{ asset_url }}" alt="Fleche Détail" />
+                                    </a>
+                                {% endimage %}
+                            </td>
                         {% endif %}
                     </tr>
                 {% endif%}

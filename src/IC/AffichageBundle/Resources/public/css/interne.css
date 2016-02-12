@@ -13,3 +13,21 @@ table
 	background: darkred;
 	border: 1px solid darkred;
 }
+.titreFournisseur
+{
+	font-weight:bold;
+	background: #00B8D6;
+	color: white;
+	width:10%;    
+}
+.titrePrix
+{
+	font-weight:bold;
+	background: #00B8D6;
+	color: white;
+	width:10%;    
+}
+.tableDetailFournisseur
+{
+    width:50%;
+}

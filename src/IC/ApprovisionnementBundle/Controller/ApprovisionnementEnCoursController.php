@@ -39,8 +39,9 @@ class ApprovisionnementEnCoursController extends Controller
         //Connexion Doctrine
         $em = $this->getDoctrine()->getManager();
         
-        //Liste des requètes Doctrine pour les options du menu
+        //Liste des requètes Doctrine
         $listProdSousTraitant = $em->getRepository('ICApprovisionnementBundle:Production')->getListProdSousTraitantById($idSousTraitant);
+        $infoSousTraitant = $em->getRepository('ICApprovisionnementBundle:SousTraitant')->find($idSousTraitant);
         
         $i = 0;
 
@@ -153,7 +154,8 @@ class ApprovisionnementEnCoursController extends Controller
             }            
         }
 
-        return $this->render('ICApprovisionnementBundle:EnCours:sousTraitant.html.twig', array('partie' => 'approvisionnement', 
+        return $this->render('ICApprovisionnementBundle:EnCours:sousTraitant.html.twig', array('partie' => 'approvisionnement',
+                                                                                               'nomSousTraitant' => $infoSousTraitant->getNom(),
                                                                                                'idSousTraitant' => $idSousTraitant,
                                                                                                'envoiComposantST' => $composantAEnvoyer));
     }

@@ -9,6 +9,5 @@ namespace IC\AffichageBundle\Repository;
  * repository methods below.
  */
 class FournisseurRepository extends \Doctrine\ORM\EntityRepository
-{
-    
+{ 
 }

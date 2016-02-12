@@ -38,11 +38,11 @@
             {% endif %}
             {% for fournisseur in fournisseurs %}
                 {% if idFournisseur == fournisseur.id %}
-                    <td class="titrePageFournisseur">{{ form_widget(form.nom) }}</td>
-                    <td class="titrePageFournisseur">{{ form_widget(form.contact) }}</td>
-                    <td class="titrePageFournisseur">{{ form_widget(form.email) }}</td>
-                    <td class="titrePageFournisseur">{{ form_widget(form.numero) }}</td>
-                    <td class="titrePageFournisseur">{{ form_widget(form.site) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.nom, {attr: {'onfocus': 'this.value = ""'}}) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.contact, {attr: {'onfocus': 'this.value = ""'}}) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.email, {attr: {'onfocus': 'this.value = ""'}}) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.numero, {attr: {'onfocus': 'this.value = ""'}}) }}</td>
+                    <td class="titrePageFournisseur">{{ form_widget(form.site, {attr: {'onfocus': 'this.value = ""'}}) }}</td>
                     <td class="titrePageFournisseur">{{ form_widget(form.type, {'attr': {'class': 'inputListe'}}) }}</td>
                     <td class="FournisseurDetails">{{ form_widget(form.modifier_le_fournisseur) }}</td>                
                 {% else %} 

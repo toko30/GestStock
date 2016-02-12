@@ -7,6 +7,11 @@
 	padding: 20px;
 	margin-bottom: 50px;
 }
+#page
+{
+    float:left;
+    width:70%;
+}
 h1, h2
 {
 	text-align: center;	
@@ -36,8 +41,27 @@ tr th
 	background: #00B8D6;
 	color: white;
 }
-#page
+
+.inputCalculer
 {
-    float:left;
-    width:75%;
+    background: #00B8D6;
+    padding:3px 5px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    text-align:center;
+    font-weight:bold;
+}
+.inputValid
+{
+    display: block;
+    margin:10px auto;
+    background: #00B8D6;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width:450px;
+    text-align:center;
 }

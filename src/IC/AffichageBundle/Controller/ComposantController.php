@@ -14,25 +14,27 @@ class ComposantController extends Controller
         //Partie Recherche et trie des composants
         if('POST' == $request->getMethod())
         {
-            if(!empty($_POST['formComposantInterne']['etat']))
-                $etat[0] = $_POST['formComposantInterne']['etat'];   
+            $data = $request->get('formComposantInterne');
+            
+            if(!empty($data['etat']))
+                $etat[0] = $data['etat'];   
 
             //Recherche Par fournisseur ou par référence    
-            if(!empty($_POST['formComposantInterne']['fournisseur']) || ($_POST['formComposantInterne']['choixRecherche'] == 1 && !empty($_POST['formComposantInterne']['recherche'])))
+            if(!empty($data['fournisseur']) || ($data['choixRecherche'] == 1 && !empty($data['recherche'])))
             {
-                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Moq')->getStockFournisseurByCritere($_POST['formComposantInterne']); 
+                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Moq')->getStockFournisseurByCritere($data); 
                 
-                if(!empty($_POST['formComposantInterne']['recherche']) && empty($_POST['formComposantInterne']['fournisseur']))
+                if(!empty($data['recherche']) && empty($data['fournisseur']))
                     return $this->render('ICAffichageBundle:Composant:interneReference.html.twig', array('partie' => 'affichage', 'composants' => $listComposant, 'etat' => $etat));
                 else             
                     return $this->render('ICAffichageBundle:Composant:interneFournisseur.html.twig', array('partie' => 'affichage', 'composants1' => $listComposant, 'etat' => $etat));                 
             } 
             else
                 //recheche basique par composant
-                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockByCritere($_POST['formComposantInterne']);
+                $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockByCritere($data);
         }
         else
-            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->findAll();
+            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:Composant')->getStockByCritere(0);
 
         return $this->render('ICAffichageBundle:Composant:interne.html.twig', array('partie' => 'affichage', 'composants' => $listComposant, 'etat' => $etat));
     }
@@ -41,7 +43,7 @@ class ComposantController extends Controller
     {
         //Partie Recherche et trie des composants
         if('POST' == $request->getMethod())
-            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantkByCritere($_POST['formComposantSousTraitant'], $id);
+            $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantkByCritere($request->get('formComposantSousTraitant'), $id);           
         else
             $listComposant = $this->getDoctrine()->getManager()->getRepository('ICAffichageBundle:ComposantSousTraitant')->getStockSousTraitantById($id);  
                   

@@ -22,8 +22,8 @@
             <td class="titreFamille">Sous Famille</td>
             <td class="titreDesignation">Designation</td>
             <td class="titreBoitier">Boitier</td>
-            <td class="titreQteNomenclature">quantite</td>
-            <td class="titrePositionNomenclature">position</td>
+            <td class="titreQteNomenclature">Qte</td>
+            <td class="titrePositionNomenclature">Position</td>
             <td class="titreOptSt">Opt St</td>
             </tr>
             {% for composant in composants %}
@@ -42,19 +42,21 @@
                     {% for composantNomenclature in composantsNomenclature %}
                         {% if composant.id == composantNomenclature.idComposant %}
                             {% set existe = 1 %}
-                            <td><input class="inputQte" type="text" name="{{ composant.id }}" value="{{ composantNomenclature.quantite }}"/></td>
-                            <td><input class="inputDesignation" type="text" name="position{{ composant.id }}" value="{{ composantNomenclature.position }}"/></td>
+                            <td><input class="inputQuantite" type="text" name="{{ composant.id }}" value="{{ composantNomenclature.quantite }}" onfocus="this.value = ''"></td>
+                            <td><input class="inputDesignation" type="text" name="position{{ composant.id }}" value="{{ composantNomenclature.position }} onfocus="this.value = ''""></td>
+                            
                             {% if composantNomenclature.optionSt == 1 %}
                                 <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}" checked></td>
                             {% else %}
                                 <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}"></td>
                             {% endif %}
+                            
                         {% endif %}
                     {% endfor %}
                     
                     {% if existe == 0 %}
-                        <td><input type="text" name="{{ composant.id }}"/></td>
-                        <td><input type="text" name="position{{ composant.id }}"/></td>
+                        <td><input class="inputQuantite" type="text" name="{{ composant.id }}" onfocus="this.value = ''"></td>
+                        <td><input class="inputDesignation" type="text" name="position{{ composant.id }}" onfocus="this.value = ''"></td>
                         <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}"></td>
                     {% endif %}
                     

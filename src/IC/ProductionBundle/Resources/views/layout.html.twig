@@ -2,6 +2,8 @@
 
 {% block title %}Production{% endblock %}
 
+{% block entete %}Production{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
     
@@ -18,12 +20,15 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block entete %}Production{% endblock %}
-
 {% block body %}
 	<section id="menuVertical">
 		{{ render(controller("ICProductionBundle:Menu:menu", {'url': app.request.attributes.get('_route')})) }}
 	</section>
+    <section id="page">
+        {% block page %}
+        
+        {% endblock %}
+    </section>
 {% endblock %}
 
 {% block javascripts %}

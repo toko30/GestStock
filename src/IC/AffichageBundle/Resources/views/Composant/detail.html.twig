@@ -18,7 +18,7 @@
         <table>
             <tr>
                 <td class="titreFamille">Famille</td>
-                <td class="titreSousFamille">Sous Famille</td>
+                <td class="titreFamille">Sous Famille</td>
                 <td class="titreDesignation">Désignation</td>
                 <td class="titreBoitier">Boitier</td>
                 <td class="titreStock mini">Stock</td>
@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{composantFournisseur.fournisseur.nom}}</td>
                             <td>{{composantFournisseur.reference}}</td>
-                            <td>{{composantFournisseur.prix}} €</td>
+                            <td>{{composantFournisseur.prix|number_format(4, '.', ' ')}} €</td>
                         </tr>
                 {% endfor %}
             </table>

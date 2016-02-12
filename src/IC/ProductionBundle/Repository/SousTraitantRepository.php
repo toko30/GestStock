@@ -17,6 +17,7 @@ class SousTraitantRepository extends \Doctrine\ORM\EntityRepository
         ->join('s.composant', 'c')
         ->join('c.famille', 'f')
         ->join('c.sousFamille', 'sf')
+        ->orderBy('c.designation')
         ->where('st.id = :id')
         ->setParameter('id', $id)
         ->getQuery()

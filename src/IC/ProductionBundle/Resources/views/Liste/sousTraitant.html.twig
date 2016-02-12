@@ -12,20 +12,20 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block body %}
+{% block page %}
 {{ parent() }}
 <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
     <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
 <form method="post" action="{{ path('ic_calcul', {'idProducteur': id, 'idVersion': idVersion, 'quantite1': quantite}) }}">  
       
-    <input type="submit" value="Ajouter à la production prévisionnelle"></a> 
+    <input type="submit" value="Ajouter à la production prévisionnelle" class="inputValid"></a> 
 
     <table>
         <tr>
-            <td></td>  
-            <td>designation</td>
-            <td>Quantité nécessaire</td>
-            <td>Stock Restant</td>
+            <td class="titreCheckBox"></td>  
+            <td class="titreDesignation">Designation</td>
+            <td class="titreQte">Qte nécessaire</td>
+            <td class="titreQte">Stock Restant</td>
         </tr>
         {% for composant in composantNomenclature %}
             
@@ -37,7 +37,7 @@
                     <input type="checkbox" name="option[]" value="{{composant.id}}">
                 {% endif %}
                 </td>
-                <td>{{composant.designation}}</td>
+                <td class="designation">{{composant.designation}}</td>
                 <td>{{composant.quantite}}</td>
                 <td>{{composant.stock}}</td>
             </tr>

@@ -26,7 +26,7 @@ class MatierePremiereController extends Controller
             $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->getStockByCritere($request->get('formComposantInterne'));
         }
         else
-            $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->findAll();
+            $listComposant = $em->getRepository('ICAdministrationBundle:Composant')->getStockByCritere(0);
         
         $formComposant = $this->createForm(new AddComposantType($this->generateUrl('ic_administration_mp_add')));
         

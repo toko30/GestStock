@@ -8,9 +8,8 @@ class ApproLecteurRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('al')
         ->join('al.appro', 'a')
-        ->join('al.typeLecteur', 'tl')
-        ->addSelect('a')
-        ->addSelect('tl')
+        ->join('al.typeLecteurAutre', 'tla')
+        ->addSelect('a', 'tla')
         ->orderby('al.idCommande')
         ->where('a.typeProduit = 3')
         ->getQuery()
