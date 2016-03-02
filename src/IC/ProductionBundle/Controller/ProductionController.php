@@ -14,51 +14,18 @@ class ProductionController extends Controller
     {
         $em = $this->getDoctrine()->getManager(); 
         $data = $request->get('formProduction');
-
+        
+        //AFFICHAGE LISTE COMPOSANT NOMENCLATURE
         if('POST' == $request->getMethod() && isset($data['versionNomenclature']))
         {
-            
             //Récupération de la derniere version de la nomenclature
             $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($data['versionNomenclature']);
             $idVersion = $version[0]->getId();
             $version = $version[0]->getVersion();
             
-            //enregistrement du nom de la nomenclature et les composants qui y sont liés            
-            $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($idVersion);
-            
-            //déclaration à 0 du nombre de carte qui ne pourront pas être produites
-            $tabComposant = array();
-            $nbProdManquant = 0;
-            $i = 0;
-            $nomenclature = '';
-            if(!empty($listeComposantnomenclature))
-            {
-                $nomenclature = $listeComposantnomenclature[0]->getVersion()->getNomenclature()->getNom();
-                
-                //Calcul des cartes pouvant etre produites
-                foreach($listeComposantnomenclature as $composant)
-                {
-                    $calculStockRestant = $composant->getComposant()->getStockInterne() - ($composant->getQuantite() * $data['quantite']);
-
-                    $tabComposant[$i]['designation'] = $composant->getComposant()->getNom();
-                    $tabComposant[$i]['quantite'] = $composant->getQuantite() * $data['quantite'];             
-                    $tabComposant[$i++]['stock'] = $calculStockRestant;
-                    
-                    //Mise a jour du nombre de carte qui ne pourront pas etre produite avec le stock actuel
-                    if($calculStockRestant < 0)
-                    {
-                        $calculQuantite = round(abs($calculStockRestant) / $composant->getQuantite(), 0, PHP_ROUND_HALF_DOWN);
-                        
-                        if(isset($nbProdManquant))
-                        {
-                            if($nbProdManquant < $calculQuantite)
-                                $nbProdManquant = $calculQuantite;
-                        }
-                        else
-                            $nbProdManquant = $calculQuantite;
-                    }
-                }
-            }            
+            //recupération de la liste des composant nécéssaire à la production, le nb de prod manquant et le nom de la nomenclature
+            $info = $this->container->get('ic_production')->getListComposantNomenclatureInterne($data, $idVersion);
+            list($tabComposant, $nbProdManquant, $nomenclature) = $info;
             
             //génération de la vue avec les info de la carte et ses composants calculés précédement
             return $this->render('ICProductionBundle:Liste:interne.html.twig', array('partie' => 'production',
@@ -72,63 +39,16 @@ class ProductionController extends Controller
         //AFFICHAGE DES TABLEAUX PREVISIONNEL ET PROD EN COURS
         else
         {
-            //récupération des productions Internes
-            $listeProd = $em->getRepository('ICProductionBundle:Production')->getProdInterne(0);
-            
-            //déclaration des variable vide au cas ou il n'y est pas de prod de lancée
-            $listeEnCours = '';
-            $listePrevisionnelle = '';
-            
-            $i = 0;
-            $i1 = 0;
-            
-            foreach($listeProd as $prod)
-            {
-                //enregistrement des productions en cours pour affichage
-                if($prod->getEtape() == 2)
-                {
-                    $listeEnCours[$i]['id'] = $prod->getId();
-                    $listeEnCours[$i]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
-                    $listeEnCours[$i]['quantite'] = $prod->getQuantite();
-                    $listeEnCours[$i++]['date_prod'] = $prod->getDateProd();
-                }
-                else
-                {
-                    //enregistrement des prod prévisionelle pour affichage                                      
-                    $listePrevisionnelle[$i1]['id'] = $prod->getId();
-                    $listePrevisionnelle[$i1]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
-                    $listePrevisionnelle[$i1]['quantite'] = $prod->getQuantite();
-                    $listePrevisionnelle[$i1]['lancement'] = 1;
-                    
-                    //vérification de la possibilitée de lancement d'une production
-                    $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($prod->getVersion()->getId());
-                    
-                    foreach($listeComposantnomenclature as $composantNomenclature)
-                    {
-                        if($composantNomenclature->getComposant()->getStockInterne() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
-                        {
-                            $listePrevisionnelle[$i1]['lancement'] = 0; 
-                            break;
-                        }
-                    }
-                    $i1++;
-                }
-            }
+            //recupération des information pour afficher les deux tableau de production
+            $info = $this->container->get('ic_production')->getTabProdInterne();
+            list($listeEnCours, $listePrevisionnelle) = $info;
             
             //Listage des dernières nomenclatures
-            $listeAllVersionNomenclature = $em->getRepository('ICProductionBundle:VersionNomenclature')->getAllVersion();
-            $i = 0;
-            foreach($listeAllVersionNomenclature as $versionNomenclature)
-            {
-                if($i != $versionNomenclature->getNomenclature()->getId())
-                {
-                    $i = $versionNomenclature->getNomenclature()->getId();
-                    $listLastNomenclature[] = $versionNomenclature;
-                }
-            }
+            $listLastNomenclature = $this->container->get('ic_production')->listLastNomenclature();
 
             //Création du formulaire et affichage de la vue
             $form = $this->createForm(new ProductionType($listLastNomenclature));
+            
             return $this->render('ICProductionBundle:Production:interne.html.twig', array('partie' => 'production',
                                                                                           'form' => $form->createView(),
                                                                                           'listeEnCours' => $listeEnCours,
@@ -137,71 +57,25 @@ class ProductionController extends Controller
     }
     
     public function sousTraitantAction(Request $request, $id)
-    {   
+    {
         $em = $this->getDoctrine()->getManager();
         $data = $request->get('formProduction');
         
         //AFFICHAGE LISTE COMPOSANT NOMENCLATURE
         if('POST' == $request->getMethod())
-        {         
+        {
             //Récupération de la derniere version de la nomenclature
             $version = $em->getRepository('ICProductionBundle:VersionNomenclature')->getVersion($data['versionNomenclature']);   
             $idVersion = $version[0]->getId();
             $version = $version[0]->getVersion();
             
-            //enregistrement du sous traitant, du nom de la nomenclature et les composants qui y sont liés
-            $ComposantSousTraitant = $em->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($id);
-            $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($idVersion);  
-            
-            if(!empty($ComposantSousTraitant[0]))
-                $nomSousTraitant = $ComposantSousTraitant[0]->getSousTraitant()->getNom();
-                
-            //déclaration à 0 du nombre de carte qui ne pourront pas être produites    
-            $tabComposant = array();
-            $nbProdManquant = 0;
-            $i = 0;
-            $nomenclature = '';   
-             
-            if(!empty($listeComposantnomenclature))
-            {
-                $nomenclature = $listeComposantnomenclature[0]->getVersion()->getNomenclature()->getNom();                           
-
-                //Calcul des cartes pouvant etre produites          
-                foreach ($listeComposantnomenclature as $composant)
-                {
-                    $calculStockRestant = 0 - ($composant->getQuantite() * $data['quantite']);
-                    
-                    //Vérification de la présence des composant dans le stock sous Traitant
-                    foreach($ComposantSousTraitant as $st)
-                    {
-                        if($st->getIdComposant() == $composant->getComposant()->getId())
-                            $calculStockRestant = $st->getQuantite() - ($composant->getQuantite() * $data['quantite']);
-                    }
-                        
-                    $tabComposant[$i]['id'] = $composant->getComposant()->getId();
-                    $tabComposant[$i]['designation'] = $composant->getComposant()->getNom();
-                    $tabComposant[$i]['quantite'] = $composant->getQuantite() * $data['quantite'];           
-                    $tabComposant[$i]['stock'] = $calculStockRestant;
-                    $tabComposant[$i++]['option'] = $composant->getOptionSt();
-                    
-                    //Mise a jour du nombre de carte qui ne pourront pas etre produite avec le stock actuel
-                    if($calculStockRestant < 0)
-                    {
-                        $calculQuantite = round(abs($calculStockRestant) / $composant->getQuantite(), 0, PHP_ROUND_HALF_DOWN);
-                        
-                        if(isset($nbProdManquant))
-                        {
-                            if($nbProdManquant < $calculQuantite)
-                                $nbProdManquant = $calculQuantite;
-                        }
-                        else
-                            $nbProdManquant = $calculQuantite;
-                    }
-                }
-            } 
+            //recupération de la liste des composant nécéssaire à la production, le nb de prod manquant et le nom de la nomenclature
+            $info = $this->container->get('ic_production')->getListComposantNomenclatureSousTraitant($data, $idVersion, $id);
+            list($tabComposant, $nbProdManquant, $nomenclature) = $info;            
+           
             return $this->render('ICProductionBundle:Liste:sousTraitant.html.twig', array('partie' => 'production',
                                                                                           'id' => $id,
-                                                                                          'quantite' => $_POST['formProduction']['quantite'],
+                                                                                          'quantite' => $data['quantite'],
                                                                                           'composantNomenclature' => $tabComposant,       
                                                                                           'nomenclature' => $nomenclature,
                                                                                           'idVersion' => $idVersion,
@@ -212,91 +86,11 @@ class ProductionController extends Controller
         //AFFICHAGE DES TABLEAUX PREVISIONNEL ET EN PROD EN COURS
         else
         {
-            $listeProd = $em->getRepository('ICProductionBundle:Production')->getProdInterne($id);
-            
-            //déclaration des variable vide au cas ou il n'y est pas de prod de lancée
-            
-            $listeEnCours = '';
-            $listePrevisionnelle = '';
-            
-            $i = 0;
-            $i1 = 0;
-            
-            foreach($listeProd as $prod)
-            {
-                //enregistrement des productions en cours
-                if($prod->getEtape() == 2)
-                {
-                    $listeEnCours[$i]['id'] = $prod->getId();
-                    $listeEnCours[$i]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
-                    $listeEnCours[$i]['quantite'] = $prod->getQuantite();
-                    $listeEnCours[$i++]['date_prod'] = $prod->getDateProd();
-                }
-                else
-                {
-                    //récupération des composant utiliser pour la prod St
-                    $listeComposantUtiliseSt = explode(',', $prod->getComposantUtilise());
-                    
-                    //enregistrement des prod prévisionelle
-                    $listeComposantnomenclature = $em->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($prod->getVersion()->getId());
-                    $listeComposantSousTraitant = $em->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($id);
-                    
-                    $listePrevisionnelle[$i1]['id'] = $prod->getId();
-                    $listePrevisionnelle[$i1]['nom'] = $prod->getVersion()->getNomenclature()->getNom().'-V'.$prod->getVersion()->getVersion();
-                    $listePrevisionnelle[$i1]['quantite'] = $prod->getQuantite();
-                    $listePrevisionnelle[$i1]['lancement'] = 1;        
-                    
-                    //vérification de la possibilité de lancement d'une production
-                    foreach($listeComposantnomenclature as $composantNomenclature)
-                    {
-                        if(in_array($composantNomenclature->getComposant()->getId(), $listeComposantUtiliseSt))
-                        {
-                            if(empty($listeComposantSousTraitant))
-                            {
-                                $composantManquant = 1;
-                            }
-                            else
-                            {
-                                foreach($listeComposantSousTraitant as $composantSt)
-                                {
-                                    $composantManquant = 1;
-                                    
-                                    if($composantNomenclature->getComposant()->getId() == $composantSt->getIdComposant())
-                                    {                          
-                                        $composantManquant = 0;
-                                        if($composantSt->getQuantite() - ($prod->getQuantite() * $composantNomenclature->getQuantite()) < 0)
-                                        {
-                                            $listePrevisionnelle[$i1]['lancement'] = 0; 
-                                            break;
-                                        }
-                                        break; 
-                                    }
-                                }                                
-                            }
-
-                            //Si le composant n'est pas trouvé dans la boucle c'est qu'il n'est pas chez le sousTraitant(on ne peut donc pas produire)
-                            if($composantManquant == 1)
-                            {
-                                $listePrevisionnelle[$i1]['lancement'] = 0; 
-                                break;
-                            }
-                        }
-                    }
-                    $i1++;
-                }
-            }
+            $info = $this->container->get('ic_production')->getTabProdSousTraitant($id);
+            list($listeEnCours, $listePrevisionnelle) = $info;
             
             //Listage des dernières nomenclatures
-            $listeAllVersionNomenclature = $em->getRepository('ICProductionBundle:VersionNomenclature')->getAllVersion();
-            $i = 0;
-            foreach($listeAllVersionNomenclature as $versionNomenclature)
-            {
-                if($i != $versionNomenclature->getNomenclature()->getId())
-                {
-                    $i = $versionNomenclature->getNomenclature()->getId();
-                    $listLastNomenclature[] = $versionNomenclature;
-                }
-            }
+            $listLastNomenclature = $this->container->get('ic_production')->listLastNomenclature();
 
             //Création du formulaire et affichage de la vue
             $form = $this->createForm(new ProductionType($listLastNomenclature));
@@ -314,6 +108,7 @@ class ProductionController extends Controller
         {
             //Connexion doctrine
             $em = $this->getDoctrine()->getManager();
+            $option = $request->get('option');
             
             //récupération des entitées pour les Jointures 
             $lieu = $em->getRepository('ICProductionBundle:SousTraitant')->findOneBy(array('id' => $idProducteur));
@@ -329,11 +124,11 @@ class ProductionController extends Controller
             $prod->setEtape(1);
             $prod->setDateProd(new \Datetime());
             
-            if(isset($_POST['option']))
+            if(isset($option))
             {
                 $listeComposant = '';
                 
-                foreach ($_POST['option'] as $value)
+                foreach ($option as $value)
                     $listeComposant .= $value.',';
                 
                 $listeComposant = trim($listeComposant, ',');
@@ -359,7 +154,7 @@ class ProductionController extends Controller
             }
             
             $em->flush();            
-        }       
+        }
         
         if($idProducteur == 0)
             return $this->redirectToRoute('ic_production_interne');
@@ -410,10 +205,9 @@ class ProductionController extends Controller
                             $sousTraitant->setQuantite($newQuantite);                                                             
                         }
                     }
-                }
-                
-                $em->flush();
-            }                
+                }   
+            }   
+            $em->flush();             
         }
         
         //Passage de la production de l'etape 1(prévisionnelle) à l'étape 2(prod)
@@ -450,7 +244,7 @@ class ProductionController extends Controller
         $lastLot = $em->getRepository('ICProductionBundle:Lot')->getLastLot();
         
         //création de la liste de carte à tester ainsi que leurs numéro de série
-        for($i =0; $i < $production->getQuantite(); $i++)
+        for($i = 0, $i1 = 1; $i < $production->getQuantite(); $i++, $i1++)
         {
             while(true)
             {
@@ -470,9 +264,14 @@ class ProductionController extends Controller
                     $lecteurTest->setAssemble(0);
                     
                     $em->persist($lecteurTest);
-                    $em->flush();
                     break;
                 }
+            }
+            
+            if($i1 == 3000 || $production->getQuantite() == $i + 1)
+            {
+                $i1 = 0;
+                $em->flush();
             }
         }
         

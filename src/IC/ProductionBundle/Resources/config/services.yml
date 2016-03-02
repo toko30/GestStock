@@ -1,5 +1,5 @@
 services:
-    ic_approvisionnement_en_cours:
+    ic_production:
         class: IC\ProductionBundle\Classes\ICProduction
         arguments:
             entityManager: "@doctrine.orm.entity_manager"

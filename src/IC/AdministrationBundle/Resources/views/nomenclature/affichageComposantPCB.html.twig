@@ -43,7 +43,7 @@
                         {% if composant.id == composantNomenclature.idComposant %}
                             {% set existe = 1 %}
                             <td><input class="inputQuantite" type="text" name="{{ composant.id }}" value="{{ composantNomenclature.quantite }}" onfocus="this.value = ''"></td>
-                            <td><input class="inputDesignation" type="text" name="position{{ composant.id }}" value="{{ composantNomenclature.position }} onfocus="this.value = ''""></td>
+                            <td><input class="inputDesignation" type="text" name="position{{ composant.id }}" value="{{ composantNomenclature.position }}" onfocus="this.value = ''""></td>
                             
                             {% if composantNomenclature.optionSt == 1 %}
                                 <td><input type="checkbox" name="optionSt[]" value="{{ composant.id }}" checked></td>

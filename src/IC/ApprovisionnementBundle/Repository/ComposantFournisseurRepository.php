@@ -10,7 +10,7 @@ namespace IC\ApprovisionnementBundle\Repository;
  */
 class ComposantFournisseurRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function GetComposantFournisseurById($listeIdComposant)
+    public function getComposantFournisseurById($listeIdComposant)
     {
         for($i = 0; $i < count($listeIdComposant); $i++)
         {

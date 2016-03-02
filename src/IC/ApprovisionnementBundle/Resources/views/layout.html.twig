@@ -2,17 +2,21 @@
 {% block title %}Approvisionnement{% endblock %}
 
 {% block stylesheets %}
+
 	{{ parent() }}
+    
 	{% stylesheets filter='cssrewrite'
 	'@ICApprovisionnementBundle/Resources/public/css/layout.css'
 	'@ICApprovisionnementBundle/Resources/public/css/menu_vertical.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
 	{% endstylesheets %}
+    
 	{% stylesheets filter='cssrewrite'
 	'@ICApprovisionnementBundle/Resources/public/css/impression.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print">
 	{% endstylesheets %}
 {% endblock %}
+
 {% block entete %}Approvisionnement{% endblock %}
 
 {% block body %}
@@ -27,7 +31,9 @@
 {% endblock %}
 
 {% block javascripts %}
+
 	{{ parent() }}
+    
 	{% javascripts
 	'@ICApprovisionnementBundle/Resources/public/js/*' %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>

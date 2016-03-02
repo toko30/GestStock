@@ -30,7 +30,7 @@ class FournisseurController extends Controller
                                                                                              'fournisseurs' => $listFournisseur));
     }
     
-    public function AddFournisseurAction(request $request)
+    public function addFournisseurAction(request $request)
     {
         $em = $this->getDoctrine()->getManager();
 

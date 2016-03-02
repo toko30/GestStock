@@ -13,7 +13,7 @@ class ComposantNomenclatureRepository extends \Doctrine\ORM\EntityRepository
         ->join('v.nomenclature', 'n')
 		->join('c.famille', 'f')
 		->join('c.sousFamille', 'sf')
-        ->orderBy('c.designation')
+        ->orderBy('c.nom')
 		->addSelect('c', 'v', 'n')
 		->where('nc.idVersion = :id')
 		->setParameter('id', $id)

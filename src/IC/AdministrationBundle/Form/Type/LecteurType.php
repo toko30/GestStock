@@ -16,6 +16,7 @@ class LecteurType extends AbstractType
     {
         $this->path = $path;
     }
+    
     public function buildForm(FormBuilderInterface $builder, array $choice_label)
     {
         $builder->setAction($this->getPath());

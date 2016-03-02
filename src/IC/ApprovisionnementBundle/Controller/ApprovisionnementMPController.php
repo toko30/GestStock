@@ -31,7 +31,7 @@ class ApprovisionnementMPController extends Controller
         
         //récupération des fournisseurs dont le composant est disponible
         if($quantiteCommande != null)
-            $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->GetComposantFournisseurById($quantiteCommande);
+            $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->getComposantFournisseurById($quantiteCommande);
         else
             $listComposantFournisseur = array();
             
@@ -64,7 +64,7 @@ class ApprovisionnementMPController extends Controller
                      
         //récupération des fournisseurs dont le composant est disponible
         if($quantiteCommande != null)
-            $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->GetComposantFournisseurById($quantiteCommande);
+            $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->getComposantFournisseurById($quantiteCommande);
         else
             $listComposantFournisseur = array();          
                
