@@ -96,10 +96,11 @@ class MenuController extends Controller
                 
                 foreach ($listComposantSousTraitant as $ComposantST) 
                 {                            
-                    for($i1 = 0; $i1 < count($quantiteNomenclature['idComposant']); $i1++)
+                    for($i = 0; $i < count($quantiteNomenclature['idComposant']); $i++)
                     {
+                        
                         //echo $quantiteNomenclature['idComposant'][$i1].'=='.$ComposantST->getIdComposant().' '.$quantiteNomenclature['quantite'][$i1].'>'.$ComposantST->getQuantite().'<br>';
-                        if($quantiteNomenclature['idComposant'][$i1] == $ComposantST->getIdComposant() && $quantiteNomenclature['quantite'][$i1] > $ComposantST->getQuantite())
+                        if($quantiteNomenclature['idComposant'][$i] == $ComposantST->getIdComposant() && $quantiteNomenclature['quantite'][$i] > $ComposantST->getQuantite())
                         {
                             
                             if(empty($ListSousTraitant))
@@ -119,8 +120,8 @@ class MenuController extends Controller
                                 //si il n'y est pas on l'ajoute
                                 if($existe == 0)
                                 {
-                                $ListSousTraitant[$i]['id'] = $ComposantST->getSousTraitant()->getId();
-                                $ListSousTraitant[$i++]['nom'] = $ComposantST->getSousTraitant()->getNom();                        
+                                    $ListSousTraitant[$i]['id'] = $ComposantST->getSousTraitant()->getId();
+                                    $ListSousTraitant[$i++]['nom'] = $ComposantST->getSousTraitant()->getNom();                        
                                 }
                             }
                         }
@@ -128,7 +129,7 @@ class MenuController extends Controller
                 }                                       
             }           
         }
-        
+
         //si la variable est vide on créé un tableau vide 
         if(!isset($ListSousTraitant))
             $ListSousTraitant = array();
@@ -144,7 +145,7 @@ class MenuController extends Controller
             $form = $this->createForm(new IdentifiantType($listTypeBadge));  
         else
             $form = $this->createForm(new AutreType($listTypeLecteur, $listTypeAutre));  
-                              
+
         //génération du template Twig
         return $this->render('ICApprovisionnementBundle:MenuVertical:menu.html.twig', array('url' => $url,
                                                                                             'form' => $form->createView(),

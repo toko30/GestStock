@@ -39,8 +39,8 @@ class ApprovisionnementMPController extends Controller
         
         return $this->render('ICApprovisionnementBundle:MP:approMP.html.twig', array('partie' => 'approvisionnement', 
                                                                                      'titrePartie' => 'Approvisionnement nécéssaire à la production',
-                                                                                     'textPartie' => 'Aucun approvisionnement nécéssaire à la production
-                                                                                                        Si une production ne peut être lancée c\'est que les composants sont en cours d\'approvisionnement',
+                                                                                     'textPartie' => 'Aucun approvisionnement nécéssaire à la production',
+                                                                                     'textPartie1' => 'Si une production ne peut être lancée, vérifier les composants en cours d\'approvisionnement',
                                                                                      'page' => 'production',
                                                                                      'composantFournisseur' => $listComposantFournisseur,
                                                                                      'quantiteCommande' => $quantiteCommande));

@@ -16,30 +16,36 @@
     {{ parent() }}
 
     {% if nomenclature is not empty %}
-    <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
-        <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
-        
-    <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite}) }}">Ajouter à la liste des productions en attente</a> 
-
-    {% if nbProdManquant != 0 and (quantite - nbProdManquant) != 0 %} 
-        <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
-    {% endif %}
-
-    <table class="tabComposantProduction">
-        <tr>
-            <td class="titreDesignation">Designation</td>
-            <td class="titreQte">Qte nécessaire</td>
-            <td class="titreQte">Stock Restant</td>
-        </tr>
-        {% for composant in composantNomenclature %}
+        <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
+            <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
             
-            <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
-                <td class="designation">{{composant.designation}}</td>
-                <td>{{composant.quantite}}</td>
-                <td>{{composant.stock}}</td>
+        <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite}) }}">Ajouter à la liste des productions en attente</a> 
+
+        {% if nbProdManquant != 0 and (quantite - nbProdManquant) != 0 %} 
+            <a class="inputValid" href="{{ path('ic_calcul', {'idProducteur': 0, 'idVersion': idVersion, 'quantite1': quantite, 'quantite2': (quantite - nbProdManquant)}) }}">Diviser la production</a>
+        {% endif %}
+
+        <table class="tabComposantProduction">
+            <tr>
+                <td class="titreDesignation">Designation</td>
+                <td class="titreQte">Qte nécessaire</td>
+                <td class="titreQte">Stock Restant</td>
             </tr>
-        {% endfor %}
-    </table>
+            
+            {% for composant in composantNomenclature %}               
+                <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
+                    <td class="designation">{{composant.designation}}</td>
+                    <td>{{composant.quantite}}</td>
+                    <td>{{composant.stock}}</td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+    {% else %}
+        <div class="infoPageVide">
+            Aucun composant renseigné dans cette nomenclature<br>
+            Cliquer <a class="lienRetour" href="{{ path('ic_production_interne')}}">ici</a> pour revenir à la page précédente
+        </div>
     {% endif %}
 
 {% endblock %}

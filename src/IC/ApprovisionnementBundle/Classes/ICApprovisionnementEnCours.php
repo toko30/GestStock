@@ -55,6 +55,9 @@ class ICApprovisionnementEnCours
                 
                 $doctrine->persist($newComposantST);
             }
+            
+            $composant->setStockInterne($composant->getStockinterne() - $request->get($idComposant));
+            $doctrine->persist($composant);
         }
         
         $doctrine->flush();

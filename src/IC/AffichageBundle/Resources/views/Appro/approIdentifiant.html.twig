@@ -21,7 +21,7 @@
 	
 		{% set id = appro[0].appro.id %}
 		
-		<h2>Commande passée le {{appro[0].appro.dateCommande|date('d-m-Y')}}</h2>
+		<h2>{{ appro[0].appro.fournisseur.nom }} le {{ appro[0].appro.dateCommande|date('d-m-Y') }}</h2>
 		<table class="imp tabApproIdentifiant">
 			<tr>
                 <td class="titreReference">Référence</td>
@@ -34,7 +34,7 @@
 					{% set id = approvisionnement.appro.id %}
 					</table>
 					
-					<h2>Commande passée le {{approvisionnement.appro.dateCommande|date('d-m-Y')}}</h2>
+					<h2>{{ approvisionnement.appro.fournisseur.nom }} le {{ approvisionnement.appro.dateCommande|date('d-m-Y') }}</h2>
 					
 					<table class="imp tabApproIdentifiant">
 						<tr>

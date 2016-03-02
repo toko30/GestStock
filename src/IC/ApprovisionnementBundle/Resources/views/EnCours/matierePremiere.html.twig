@@ -20,7 +20,7 @@
     {{ parent() }}
 
     {% if appro is empty %}
-		aucune commande en cours
+		<div class="infoPageVide">aucune commande en cours</div>
 	{% else %}
 	
 		{% set id = appro[0].appro.id %}

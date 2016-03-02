@@ -14,24 +14,34 @@
 {% block page %}
 
 	{{ parent()}}
-        {% if modifNomenclature != 0 %}
-            <form method="post" action="{{ path('ic_administration_update_nomenclature', {idNomenclature: modifNomenclature}) }}">
-        {% else %}
-            <form method="post" action="{{ path('ic_administration_add_nomenclature') }}">
+    
+    {% if allVersion == 0 %}
+        <a class="lienAffNomenclature" href="{{ path('ic_administration_nomenclature', {allVersion: 1}) }}">Afficher toutes les versions</a>
+    {% else %}
+        <a class="lienAffNomenclature" href="{{ path('ic_administration_nomenclature', {allVersion: 0}) }}">Afficher les dernières versions seulement</a>
+    {% endif %}
+    
+    {% if modifNomenclature != 0 %}
+        <form method="post" action="{{ path('ic_administration_update_nomenclature', {idNomenclature: modifNomenclature}) }}">
+    {% else %}
+        <form method="post" action="{{ path('ic_administration_add_nomenclature') }}">
+    {% endif %}
+    
+    <table class="tabNomenclature">
+        <tr>
+            <td class="titreDesignation" colspan="2">Designation</td>
+            <td class="titreVersion">Version</td>
+            <td class="titreNomenclature" colspan="2">Nomenclature</td>
+        </tr>
+        
+        {% if allVersion == 0  and modifNomenclature == 0 %}
+            <tr>
+                <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomenclature"></td>
+                <td class="titreDesignation"><input type="submit" value="" class="buttonAdd"></td>
+                <td class="titreDesignation" colspan="4"></td>
+            </tr>
         {% endif %}
-            <table class="tabNomenclature">
-                <tr>
-                    <td class="titreDesignation" colspan="2">Designation</td>
-                    <td class="titreVersion">Version</td>
-                    <td class="titreNomenclature" colspan="2">Nomenclature</td>
-                </tr>
-                {% if allVersion == 0  and modifNomenclature == 0 %}
-                    <tr>
-                        <td class="titreDesignation"><input class="inputDesignation" type="text" name="nomenclature"></td>
-                        <td class="titreDesignation"><input type="submit" value="" class="buttonAdd"></td>
-                         <td class="titreDesignation" colspan="4"></td>
-                    </tr>
-                {% endif %}
+            
     {% if nomenclatures is not empty %}
      
         {% set idNomenclature = 0 %}

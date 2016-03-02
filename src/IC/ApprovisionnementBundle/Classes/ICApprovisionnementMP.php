@@ -180,64 +180,44 @@ class ICApprovisionnementMP
     public function addAproComposant($request, $idFournisseur)
     {
         $doctrine = $this->doctrine;
-        
-        if($request->get('option') != null)
-        {
-            $fournisseur = $doctrine->getRepository('ICApprovisionnementBundle:Fournisseur')->findOneBy(array('id' => $idFournisseur));
+        $existe = 0;
 
-            $appro = new Appro();
-            $appro->setFournisseur($fournisseur);
-            $appro->setTypeProduit(1);
-            $appro->setDateCommande(new \Datetime());
+        $fournisseur = $doctrine->getRepository('ICApprovisionnementBundle:Fournisseur')->findOneBy(array('id' => $idFournisseur));
+
+        $appro = new Appro();
+        $appro->setFournisseur($fournisseur);
+        $appro->setTypeProduit(1);
+        $appro->setDateCommande(new \Datetime());
+        
+        $doctrine->persist($appro);
+        $doctrine->flush();  
             
-            $doctrine->persist($appro);
-            $doctrine->flush();  
-                
-            $lastAppro = $doctrine->getRepository('ICApprovisionnementBundle:Appro')->getLastAppro();
-            $lastAppro = $doctrine->getRepository('ICApprovisionnementBundle:Appro')->findOneBy(array('id' => $lastAppro[0]->getId()));
+        $lastAppro = $doctrine->getRepository('ICApprovisionnementBundle:Appro')->getLastAppro();
             
-            foreach ($request->get('option') as $idFournisseur) 
+        foreach ($request->get('listId') as $id)
+        {
+			$vide = $request->get($id);
+            
+            if(!empty($vide))
             {
-                $composantFournisseur = $doctrine->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->findOneBy(array('idComposant' => $idFournisseur));              
-                
-                if(!isset($listeComposantAppro['idComposant']))
-                {
-                    $listeComposantAppro['idComposant'][] = $composantFournisseur->getIdComposant();
-                    $listeComposantAppro['quantite'][] = $request->get($idFournisseur);
-                }
-                else
-                {
-                    $existe = 0;
-                    
-                    for($i = 0; $i < count($listeComposantAppro['idComposant']); $i++) 
-                    {
-                        if($listeComposantAppro['idComposant'][$i] == $composantFournisseur->getIdComposant())
-                        {
-                            $existe = 1;
-                            $listeComposantAppro['quantite'][$i] += $request->get($idFournisseur);
-                        }
-                    }
-                    
-                    if($existe == 0)
-                    {
-                        $listeComposantAppro['idComposant'][] = $composantFournisseur->getIdComposant();
-                        $listeComposantAppro['quantite'][] = $request->get($idFournisseur);                    
-                    }
-                }
-            }
-            
-            for($i = 0; $i < count($listeComposantAppro['idComposant']); $i++) 
-            {
-                $composant = $doctrine->getRepository('ICApprovisionnementBundle:Composant')->findOneBy(array('id' => $listeComposantAppro['idComposant'][$i]));
+                $existe = 1; 
+                $composant = $doctrine->getRepository('ICApprovisionnementBundle:Composant')->findOneBy(array('id' => $id));
                 
                 $composantAppro = new ApproComposant();
                 $composantAppro->setComposant($composant);
-                $composantAppro->setQuantite($listeComposantAppro['quantite'][$i]);
-                $composantAppro->setAppro($lastAppro);
+                $composantAppro->setQuantite($request->get($id));
+                $composantAppro->setAppro($lastAppro[0]);
                 
                 $doctrine->persist($composantAppro);
             }
-            $doctrine->flush();            
         }
+        
+        if($existe == 0)
+        {
+            $doctrine->remove($lastAppro[0]);
+        }
+        
+        $doctrine->flush();
+                    
     }
 }

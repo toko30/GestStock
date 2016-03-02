@@ -20,7 +20,14 @@
     {{ parent() }}
         
         {% if composantFournisseur is empty %}
-            {{ textPartie|nl2br }}
+            <div class="infoPageVide">
+            
+                {{ textPartie }}<br>
+                <br>
+                {% if textPartie1 is defined %}
+                    <span class="erreur">{{ textPartie1 }}</span>
+                {% endif %}
+            </div>
         {% else %}
             
             {% set id = composantFournisseur[0].fournisseur.id %}
@@ -31,7 +38,6 @@
             
             <table class="imp">
                 <tr>
-                    <td class="titreCheckBoxTab"></td>
                     <td class="titreFamille">Famille</td>
                     <td class="titreSousFamille">Sous Famille</td>
                     <td class="titreDesignation">Designation</td>
@@ -52,7 +58,6 @@
                         <form method="post" action="{{ path('ic_approvisionnement_calcul', {idFournisseur: approvisionnement.fournisseur.id, page: page}) }}">
                         <table class="imp">
                             <tr>
-                                <td class="titreCheckBoxTab"></td>
                                 <td class="titreFamille">Famille</td>
                                 <td class="titreSousFamille">Sous Famille</td>
                                 <td class="titreDesignation">Designation</td>
@@ -62,7 +67,7 @@
                                 <td class="titreQteNecessaire">Qte Mini</td>
                            </tr>
                             <tr>
-                                <td><input type="checkbox" name="option[]" value="{{approvisionnement.idComposant}}"></td>
+                                <input type="hidden" name="listId[]" value="{{approvisionnement.idComposant}}">
                                 <td>{{approvisionnement.composant.famille.nom}}</td>
                                 <td>{{approvisionnement.composant.sousFamille.nom}}</td>
                                 <td class="designation">{{approvisionnement.composant.nom}}</td>
@@ -77,7 +82,7 @@
                             </tr>
                     {% else %}
                         <tr>
-                            <td><input type="checkbox" name="option[]" value="{{approvisionnement.idComposant}}"></td>
+                            <input type="hidden" name="listId[]" value="{{approvisionnement.idComposant}}">
                             <td>{{approvisionnement.composant.famille.nom}}</td>
                             <td>{{approvisionnement.composant.sousFamille.nom}}</td>
                             <td class="designation">{{approvisionnement.composant.nom}}</td>

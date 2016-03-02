@@ -13,35 +13,44 @@
 {% endblock %}
 
 {% block page %}
-{{ parent() }}
-<h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
-    <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
-<form method="post" action="{{ path('ic_calcul', {'idProducteur': id, 'idVersion': idVersion, 'quantite1': quantite}) }}">  
-      
-    <input type="submit" value="Ajouter à la production prévisionnelle" class="inputValid"></a> 
 
-    <table>
-        <tr>
-            <td class="titreCheckBox"></td>  
-            <td class="titreDesignation">Designation</td>
-            <td class="titreQte">Qte nécessaire</td>
-            <td class="titreQte">Stock Restant</td>
-        </tr>
-        {% for composant in composantNomenclature %}
+    {{ parent() }}
+    
+    {% if nomenclature is not empty %}    
+        <h1>Pour {{quantite}} carte(s) {{nomenclature}}-V{{version}}</h1>
+            <h2>Production Possible : {{quantite - nbProdManquant}} carte(s)</h2>
+        <form method="post" action="{{ path('ic_calcul', {'idProducteur': id, 'idVersion': idVersion, 'quantite1': quantite}) }}">  
             
-            <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
-                <td>
-                {% if composant.option == 0 %}
-                    <input type="checkbox" name="option[]" value="{{composant.id}}" checked>
-                {% else %}
-                    <input type="checkbox" name="option[]" value="{{composant.id}}">
-                {% endif %}
-                </td>
-                <td class="designation">{{composant.designation}}</td>
-                <td>{{composant.quantite}}</td>
-                <td>{{composant.stock}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-</form>
+            <input type="submit" value="Ajouter à la production prévisionnelle" class="inputValid"></a> 
+
+            <table>
+                <tr>
+                    <td class="titreCheckBox"></td>  
+                    <td class="titreDesignation">Designation</td>
+                    <td class="titreQte">Qte nécessaire</td>
+                    <td class="titreQte">Stock Restant</td>
+                </tr>
+                {% for composant in composantNomenclature %}
+                    
+                    <tr class="{% if composant.stock < 0 %}stockInsufisant{% endif %}">
+                        <td>
+                        {% if composant.option == 0 %}
+                            <input type="checkbox" name="option[]" value="{{composant.id}}" checked>
+                        {% else %}
+                            <input type="checkbox" name="option[]" value="{{composant.id}}">
+                        {% endif %}
+                        </td>
+                        <td class="designation">{{composant.designation}}</td>
+                        <td>{{composant.quantite}}</td>
+                        <td>{{composant.stock}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% else %}
+        <div class="infoPageVide">
+            Aucun composant renseigné dans cette nomenclature<br>
+            Cliquer <a class="lienRetour" href="{{ path('ic_production_sous_traitant', {id :id}) }}">ici</a> pour revenir à la page précédente
+        </div>
+    {% endif %}
 {% endblock %}

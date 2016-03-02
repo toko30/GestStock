@@ -45,11 +45,26 @@ body
 }
 #menuHorizontal a:hover
 {
-	transition: 1s ease all;
 	color: #00B8D6;
 	background: white;
 }
 body
 {
 	overflow : scroll;	
+}
+#page
+{
+    float:left;
+    width:70%;
+    padding-top:50px;
+}
+.infoPageVide
+{
+    text-align: center;
+    font-size: 20px;
+}
+.erreur
+{
+    color: red;
+    font-weight: bold;
 }

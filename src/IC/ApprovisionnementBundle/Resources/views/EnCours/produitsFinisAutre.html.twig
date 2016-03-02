@@ -20,7 +20,7 @@
     {{ parent() }}
 
     {% if approLecteur is empty and approAutre is empty %}
-		aucune commande en cours
+		<div class="infoPageVide">aucune commande en cours</div>
 	{% else %}
 	   {% if approLecteur is not empty %}
             {% set id = approLecteur[0].appro.id %}
