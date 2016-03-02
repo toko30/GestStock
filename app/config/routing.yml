@@ -21,3 +21,4 @@ ic_production:
 ic_affichage:
     resource: "@ICAffichageBundle/Resources/config/routing.yml"
     prefix:   /Affichage
+    

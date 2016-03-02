@@ -16,7 +16,7 @@ class FournisseurController extends Controller
         
         $listFournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->findAll();
         
-        if($idFournisseur != null)
+        if($idFournisseur !== null)
         {
             $fournisseur = $em->getRepository('ICAdministrationBundle:Fournisseur')->find($idFournisseur);
             $formFournisseur = $this->createForm(new UpdateFournisseurType($this->generateUrl('ic_administration_fournisseur_update', array('idFournisseur' => $idFournisseur))), $fournisseur);

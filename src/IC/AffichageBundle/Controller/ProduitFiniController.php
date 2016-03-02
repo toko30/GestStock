@@ -3,7 +3,7 @@
 namespace IC\AffichageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use IC\AffichageBundle\Form\ComposantInterneType;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProduitFiniController extends Controller
 {

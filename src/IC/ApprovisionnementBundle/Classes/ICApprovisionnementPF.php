@@ -16,9 +16,9 @@ class ICApprovisionnementPF
         $this->doctrine = $doctrine;
     }
     
-    public function addApproIdentifiant($request, $idFournisseur)
+    public function addApproIdentifiant(request $request, $idFournisseur)
     {
-        if($request->get('option') != null)
+        if($request->get('option') !== null)
         {
             $doctrine = $this->doctrine;
             
@@ -36,7 +36,7 @@ class ICApprovisionnementPF
         
             foreach ($request->get('option') as $idBadge) 
             {    
-                if($request->get($idBadge) != null)
+                if($request->get($idBadge) !== null)
                 {
                     $badge = $doctrine->getRepository('ICApprovisionnementBundle:Badge')->findOneBy(array('id' => $idBadge));
                     
@@ -52,9 +52,9 @@ class ICApprovisionnementPF
             $doctrine->flush();     
         }
     }
-    public function addApproAutre($request, $idFournisseur)
+    public function addApproAutre(request $request, $idFournisseur)
     {
-        if($request->get('option') != null)
+        if($request->get('option') !== null)
         {
             $doctrine = $this->doctrine;
             

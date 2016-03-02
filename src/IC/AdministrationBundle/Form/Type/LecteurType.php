@@ -5,7 +5,6 @@ namespace IC\AdministrationBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use IC\AdministrationBundle\Repository\SousTypeLecteurRepository;
 
 class LecteurType extends AbstractType
 {

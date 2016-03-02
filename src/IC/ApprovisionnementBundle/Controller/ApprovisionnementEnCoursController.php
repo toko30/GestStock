@@ -4,7 +4,6 @@ namespace IC\ApprovisionnementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use IC\ApprovisionnementBundle\Entity\ComposantSousTraitant;
 
 class ApprovisionnementEnCoursController extends Controller
 {

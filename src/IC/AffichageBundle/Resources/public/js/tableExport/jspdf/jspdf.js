@@ -30,7 +30,7 @@ var jsPDF = function(){
 	var pageHeight;
 	var k; // Scale factor
 	var unit = 'mm'; // Default to mm for units
-	var fontNumber; // TODO: This is temp, replace with real font handling
+	var fontNumber; // This is temp, replace with real font handling
 	var documentProperties = {};
 	var fontSize = 16; // Default font size
 	var pageFontSize = 16;
@@ -61,11 +61,11 @@ var jsPDF = function(){
 	
 	var putPages = function() {
 		
-		// TODO: Fix, hardcoded to a4 portrait
+		// Fix, hardcoded to a4 portrait
 		var wPt = pageWidth * k;
 		var hPt = pageHeight * k;
 
-		for(n=1; n <= page; n++) {
+		for(var n = 1; n <= page; n++) {
 			newObject();
 			out('<</Type /Page');
 			out('/Parent 1 0 R');	
@@ -74,7 +74,7 @@ var jsPDF = function(){
 			out('endobj');
 			
 			//Page content
-			p = pages[n];
+			var p = pages[n];
 			newObject();
 			out('<</Length ' + p.length  + '>>');
 			putStream(p);
@@ -84,7 +84,7 @@ var jsPDF = function(){
 		out('1 0 obj');
 		out('<</Type /Pages');
 		var kids='/Kids [';
-		for (i = 0; i < page; i++) {
+		for (var i = 0; i < page; i++) {
 			kids += (3 + 2 * i) + ' 0 R ';
 		}
 		out(kids + ']');
@@ -114,7 +114,7 @@ var jsPDF = function(){
 	}	
 	
 	var putFonts = function() {
-		// TODO: Only supports core font hardcoded to Helvetica
+		// Only supports core font hardcoded to Helvetica
 		newObject();
 		fontNumber = objectNumber;
 		name = 'Helvetica';
@@ -127,7 +127,7 @@ var jsPDF = function(){
 	}
 	
 	var putImages = function() {
-		// TODO
+		
 	}
 	
 	var putResourceDictionary = function() {
@@ -143,7 +143,6 @@ var jsPDF = function(){
 	}
 	
 	var putXobjectDict = function() {
-		// TODO
 		// Loop through images
 	}
 	
@@ -178,7 +177,7 @@ var jsPDF = function(){
 	var putCatalog = function () {
 		out('/Type /Catalog');
 		out('/Pages 1 0 R');
-		// TODO: Add zoom and layout modes
+		// Add zoom and layout modes
 		out('/OpenAction [3 0 R /FitH null]');
 		out('/PageLayout /OneColumn');
 	}	
@@ -234,7 +233,7 @@ var jsPDF = function(){
 		state = 2;
 		pages[page] = '';
 		
-		// TODO: Hardcoded at A4 and portrait
+		// Hardcoded at A4 and portrait
 		pageHeight = pageFormats['a4'][1] / k;
 		pageWidth = pageFormats['a4'][0] / k;
 	}
@@ -252,7 +251,7 @@ var jsPDF = function(){
 		// Set line width
 		out(sprintf('%.2f w', (lineWidth * k)));
 		
-		// Set font - TODO
+		// Set font
 		// 16 is the font size
 		pageFontSize = fontSize;
 		out('BT /F1 ' + parseInt(fontSize) + '.00 Tf ET'); 		
@@ -293,7 +292,7 @@ var jsPDF = function(){
 			if(type == 'datauri') {
 				document.location.href = 'data:application/pdf;base64,' + Base64.encode(buffer);
 			}
-			// @TODO: Add different output options
+			// Add different output options
 		},
 		setFontSize: function(size) {
 			fontSize = size;

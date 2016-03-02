@@ -4,7 +4,6 @@ namespace IC\ApprovisionnementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use IC\ApprovisionnementBundle\Classes\ApprovisionnementProduction;
 
 class ApprovisionnementMPController extends Controller
 {
@@ -23,14 +22,14 @@ class ApprovisionnementMPController extends Controller
         //soustraction des appro en cour au quantité nécéssaires
         $listApproEnCours = $em->getRepository('ICApprovisionnementBundle:ApproComposant')->getApproEnCours();
         
-        if($listApproEnCours != null)
+        if($listApproEnCours !== null)
             $quantiteCommande = $this->container->get('ic_approvisionnementMP')->ajoutApproEnCour($listApproEnCours, $quantiteCommande);
         
         //sortie des composants dont le stock est suffisant
         $quantiteCommande = $this->container->get('ic_approvisionnementMP')->verifStockCommande($quantiteCommande);
         
         //récupération des fournisseurs dont le composant est disponible
-        if($quantiteCommande != null)
+        if($quantiteCommande !== null)
             $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->getComposantFournisseurById($quantiteCommande);
         else
             $listComposantFournisseur = array();
@@ -56,14 +55,14 @@ class ApprovisionnementMPController extends Controller
         //soustraction des appro en cour au quantité nécéssaires
         $listApproEnCours = $em->getRepository('ICApprovisionnementBundle:ApproComposant')->getApproEnCours();
         
-        if($listApproEnCours != null)
+        if($listApproEnCours !== null)
             $quantiteCommande = $this->container->get('ic_approvisionnementMP')->ajoutApproEnCour($listApproEnCours, $quantiteCommande);    
   
        //sortie des composants dont le stock est suffisant
         $quantiteCommande = $this->container->get('ic_approvisionnementMP')->verifStockCommande($quantiteCommande); 
                      
         //récupération des fournisseurs dont le composant est disponible
-        if($quantiteCommande != null)
+        if($quantiteCommande !== null)
             $listComposantFournisseur = $em->getRepository('ICApprovisionnementBundle:ComposantFournisseur')->getComposantFournisseurById($quantiteCommande);
         else
             $listComposantFournisseur = array();          

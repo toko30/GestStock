@@ -255,7 +255,7 @@ class ProductionController extends Controller
                 $verifDispoCarteTest = $em->getRepository('ICProductionBundle:CarteTest')->findOneBy(array('numSerie' => $rand));
                 
                 //s'il n'est pas utilisé on ajoute le ligne dans CarteTest
-                if(empty($verifDispo) && empty($verifDispoCarteTest))
+                if(empty($verifDispoLecteur) && empty($verifDispoCarteTest))
                 {
                     $lecteurTest = new CarteTest();  
                     $lecteurTest->setNumSerie($rand);

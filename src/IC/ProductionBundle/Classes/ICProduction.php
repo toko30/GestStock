@@ -33,7 +33,7 @@ class ICProduction
         return $listLastNomenclature;
     }
     
-    public function calculQteproduction($nbProdManquant, $calculStockRestant, $composant)
+    public function calculQteproduction($nbProdManquant, $calculStockRestant,Composant $composant)
     {
         if($calculStockRestant < 0)
         {
@@ -137,9 +137,6 @@ class ICProduction
         //enregistrement du sous traitant, du nom de la nomenclature et les composants qui y sont liés
         $ComposantSousTraitant = $doctrine->getRepository('ICProductionBundle:ComposantSousTraitant')->getComposantSt($id);
         $listeComposantnomenclature = $doctrine->getRepository('ICProductionBundle:ComposantNomenclature')->getComposantNomenclatureProd($idVersion);  
-        
-        if(!empty($ComposantSousTraitant[0]))
-            $nomSousTraitant = $ComposantSousTraitant[0]->getSousTraitant()->getNom();
             
         //déclaration à 0 du nombre de carte qui ne pourront pas être produites    
         $tabComposant = array();

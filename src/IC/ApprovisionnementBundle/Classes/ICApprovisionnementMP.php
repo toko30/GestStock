@@ -177,7 +177,7 @@ class ICApprovisionnementMP
         return array_values($quantiteCommande);        
     }
     
-    public function addAproComposant($request, $idFournisseur)
+    public function addAproComposant(request $request, $idFournisseur)
     {
         $doctrine = $this->doctrine;
         $existe = 0;

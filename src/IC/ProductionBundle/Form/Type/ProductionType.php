@@ -4,7 +4,6 @@ namespace IC\ProductionBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use IC\ProductionBundle\Repository\VersionNomenclatureRepository;
 
 class ProductionType extends AbstractType
 {

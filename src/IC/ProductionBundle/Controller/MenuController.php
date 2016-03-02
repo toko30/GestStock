@@ -3,10 +3,6 @@
 namespace IC\ProductionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use IC\AffichageBundle\Form\Type\ComposantInterneType;
-use IC\AffichageBundle\Form\Type\ComposantSousTraitantType;
-use IC\AffichageBundle\Form\Type\ProduitFiniLecteurType;
-use IC\AffichageBundle\Form\Type\ProduitFiniIdentifiantType;
 
 class MenuController extends Controller
 {

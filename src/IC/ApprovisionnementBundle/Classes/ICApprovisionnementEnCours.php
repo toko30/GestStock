@@ -30,7 +30,7 @@ class ICApprovisionnementEnCours
         $doctrine->flush();
     }
     
-    public function addStockSousTraitant($request, $idSousTraitant)
+    public function addStockSousTraitant(request $request, $idSousTraitant)
     {
         $doctrine = $this->doctrine;
         

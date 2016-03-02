@@ -3,7 +3,6 @@
 namespace IC\AffichageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use IC\AffichageBundle\Form\ComposantInterneType;
 
 class ApprovisionnementController extends Controller
 {
