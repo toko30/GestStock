@@ -1,0 +1,20 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Stock Interne{% endblock %}
+
+{% block entete %}{{ parent() }} Stock Interne{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+    
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/fournisseur.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+    firmware
+{% endblock %}

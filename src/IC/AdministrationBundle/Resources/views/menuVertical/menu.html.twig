@@ -3,21 +3,22 @@
 		<a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_matiere_premiere') }}">Matières Premières</a><br>
         <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_fournisseur') }}">Fournisseurs</a><br>
         <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_nomenclature') }}">Nomenclatures</a><br>
-        <a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Firmware</a><br>
+        <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_firmware') }}">Firmware</a><br>
+        <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_qualite') }}">Contrôle Qualité</a><br>
         
         {% image 'img/plus.png' %}
             <span id="sousMenu1" class="sousMenu"><img id="sousMenu11" class="imgFlecheliste majuscule" src="{{ asset_url }}" alt="Fleche Bas" />Produits Finis</span><br>
         {% endimage %}
         
         <div class="divSousMenu" id="sousMenu111">
-            <a class="sousSousMenu" href="{{ path('ic_administration_affichage_produit_fini_lecteur_interne') }}">Lecteur</a><br>
+            <a class="sousSousMenu" href="{{ path('ic_administration_affichage_produit_fini_lecteur_interne') }}">Lecteurs</a><br>
             <a class="sousSousMenu" href="{{ path('ic_administration_affichage_produit_fini_identifiant_interne') }}">Identifiants</a><br>
-            <a class="sousSousMenu" href="{{ path('ic_administration_affichage_produit_fini_autre_interne') }}">Autre</a><br>
+            <a class="sousSousMenu" href="{{ path('ic_administration_affichage_produit_fini_autre_interne') }}">Autres PF</a><br>
         </div>
         
     <span class="titreMenuVertical">Options</span><br>
         <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_sous_famille') }}">Sous Famille</a><br>
-        <a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Type badge</a><br>
-        <a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Type lecteur</a><br>
-        <a class="sousMenu decalageNoPlus" href="{{ path('ic_production_interne') }}">Type autre</a><br>
+        <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_type_badge') }}">Type badge</a><br>
+        <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_type_lecteur') }}">Type lecteur</a><br>
+        <a class="sousMenu decalageNoPlus" href="{{ path('ic_administration_affichage_type_autre') }}">Type autre</a><br>
 </nav>

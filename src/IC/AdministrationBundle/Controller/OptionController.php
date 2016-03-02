@@ -50,4 +50,28 @@ class OptionController extends Controller
         
         return $this->redirectToRoute('ic_administration_affichage_sous_famille');        
     }
+    
+    public function typeBadgeAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        
+        return $this->render('ICAdministrationBundle:option:typeBadge.html.twig', array('partie' => 'Administration'));
+    }
+    
+    public function typeLecteurAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        return $this->render('ICAdministrationBundle:option:typeLecteur.html.twig', array('partie' => 'Administration'));
+    }
+    
+    public function typeAutreAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        
+        return $this->render('ICAdministrationBundle:option:typeAutre.html.twig', array('partie' => 'Administration'));
+    }
 }

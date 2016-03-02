@@ -175,7 +175,15 @@ ic_administration_autre_update:
     requirements:
         idAutre: \d{1,10}
         idType: \d{1,10}   
-                                
+        
+ic_administration_affichage_qualite:
+    path:     /Controle-Qualite
+    defaults: { _controller: ICAdministrationBundle:Qualite:affichageQualite }
+    
+ic_administration_affichage_firmware:
+    path:     /Firmware
+    defaults: { _controller: ICAdministrationBundle:Firmware:affichageFirmware }      
+                                 
 ic_administration_affichage_sous_famille:
     path:     /Sous-Famille{idSousFamille}
     defaults: { _controller: ICAdministrationBundle:Option:sousFamille, idSousFamille: 0 }      
@@ -192,8 +200,25 @@ ic_administration_update_sous_famille:
     path:     /Modifier-Sous-Famille-{idSousFamille}
     defaults: { _controller: ICAdministrationBundle:Option:updatesousFamille }      
     requirements:
+        idSousFamille: \d{1,10}   
+            
+ic_administration_affichage_type_badge:
+    path:     /Type-Badge
+    defaults: { _controller: ICAdministrationBundle:Option:typeBadge }      
+    requirements:
         idSousFamille: \d{1,10}
-                                            
+        
+ic_administration_affichage_type_lecteur:
+    path:     /Type-Lecteur
+    defaults: { _controller: ICAdministrationBundle:Option:typeLecteur }      
+    requirements:
+        idSousFamille: \d{1,10}
+        
+ic_administration_affichage_type_autre:
+    path:     /Type-Autre
+    defaults: { _controller: ICAdministrationBundle:Option:typeAutre }      
+ 
+                                                  
 ic_ajax_choixFamille:
     path:     /Choix-Famille-{idFamille}
     defaults: { _controller: ICAdministrationBundle:MatierePremiere:choixFamille, idFamille: 0 }

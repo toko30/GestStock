@@ -1,0 +1,18 @@
+{% extends "ICAdministrationBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Sous Famille{% endblock %}
+
+{% block entete %}{{ parent() }} Sous Famille{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite'
+	'@ICAdministrationBundle/Resources/public/css/optionSousFamille.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block page %}
+
+	{{ parent()}}
+lecteur
+{% endblock %}
